@@ -1,0 +1,105 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FLEET Management</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{% static 'vendors/metisMenu/metisMenu.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'dist/css/sb-admin-2.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<style type="text/css">
+ body, html {
+        height: 100%;
+        background-repeat: no-repeat;
+    }
+
+    .wrapper {
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+
+    .form-signin {
+        max-width: 700px;
+        padding: 30px 38px 66px;
+        margin: 0 auto;
+        background-color: #A6ACAF;
+        border: 5px solid rgba(0,0,0,0.1);
+        border-radius: 50px;
+    }
+
+    .form-signin-heading {
+        text-align: center;
+        margin-bottom: 0px;
+    }
+
+    .form-control {
+        position: relative;
+        font-size: 14px;
+        height: 8px;
+        padding: 10px;
+    }
+</style>
+
+<div class="wrapper">
+    <form class="form-signin" method="POST">
+        <h2 align="center">Fleet Management System</h2>
+        <h1 class="form-signin-heading">
+        <img src="{% static 'images/fleet.jpg' %}" style="width:700px;height:250px" />
+        <br><br>
+        </h1>
+
+            {% csrf_token %}
+            {{ form|crispy }}
+
+        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+        <label for="remember"> Remember Me</label>
+        <button class="btn btn-primary" style="width:150px;height: 30px;float:right" type="submit">LOGIN</button>
+    </form>
+</div>
+
+
+    
+
+    <!-- jQuery -->
+    <script src="{% static 'vendors/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{% static 'vendors/metisMenu/metisMenu.min.js' %}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'dist/js/sb-admin-2.js' %}"></script>
+
+</body>
+
+</html>
