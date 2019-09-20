@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+input{
+    max-height: 30px;
+}
+
+.button {
+  padding: 15px 25px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #797a7a;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #131414}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+<div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+        <h3>New Vehicle Payments</h3>&nbsp;
+    </div>
+
+<form method="POST" action="">
+{% csrf_token %}
+    <form>
+    <fieldset>
+    <legend align="left"><u>Purchase Order Details</u></legend><br>
+
+    <div class="col-sm-4">
+        <label>Assignee Employee ID</label>
+    <input style="text-transform" type="text" name="Eid" id="Eid" class="form-control"  required>
+    </div>
+
+    <div class="col-sm-4">
+        <label>Employee First Name:</label>
+        <input type="text" name="Efm" id="Efm" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Employee Last Name:</label>
+        <input type="text" name="Elm" id="Elm" class="form-control">
+    </div>
+    <br><br>
+    </fieldset>
+    </form>
+    <hr>
+    <fieldset>
+    <legend align="left"><u>Vehicle Details</u></legend><br>
+    <div class="col-sm-4">
+        <label>Vehicle Delivery Date:</label>
+        <input style="text-transform" type="date" name="Ddate" id="Ddate" class="form-control">
+    </div>
+
+    <div class="col-sm-4">
+        <label>Vehicle Plate Number:</label>
+        <input style="text-transform" type="text" name="Vplate" id="Vplate" class="form-control">
+    </div>
+
+    <div class="col-sm-4">
+        <label>Vehicle Model Year:</label>
+        <input type="text" name="Vmodel" id="Vmodel" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Vehicle Brand:</label>
+        <input type="text" name="Vbrand" id="Vbrand" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Vehicle Make:</label>
+        <input type="text" name="Vmake" id="Vmake" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Vehicle Dealer:</label>
+        <input type="text" name="Vdealer" id="Vdealer" class="form-control">
+    </div>
+    </fieldset>
+    <br><br><br>
+    <div class="card-footer">
+        <button type="submit" class="button">PROCEED</button><button 
+       class="button" type="reset" value="Reset">CLEAR FIELDS</button>
+    </div>
+
+</form>
+</div>
+
+{% endblock %}

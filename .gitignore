@@ -115,6 +115,8 @@ celerybeat-schedule
 env/
 venv/
 ENV/
+Env/
+.Env
 env.bak/
 venv.bak/
 
@@ -135,5 +137,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
+#
+.DS_store
 # End of https://www.gitignore.io/api/django

@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'mathfilters',
     'django.contrib.humanize',
-    'account',
-    'registrations',
+    'account.apps.AccountConfig',
+    'payment.apps.paymentConfig',
+    'maintenance.apps.MaintenanceConfig',
 
 ]
 

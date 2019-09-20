@@ -1,0 +1,260 @@
+{% extends 'base.html' %}
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" />
+<style>
+
+input{
+    max-height: 30px;
+}
+
+.button {
+  padding: 15px 25px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #797a7a;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #131414}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+<!--Java date computation-->
+<script type="text/javascript">
+    $(document).ready(function() {
+      
+    $( "#startdate,#enddate" ).datepicker({
+    changeMonth: true,
+    changeYear: true,
+    firstDay: 1,
+    dateFormat: 'yy/mm/dd',
+    })
+
+    $( "#Srental" ).datepicker({ dateFormat: 'yy/mm/dd' });
+    $( "#Erental" ).datepicker({ dateFormat: 'yy/mm/dd' });
+
+    $('#Erental').change(function() {
+        var start = $('#Srental').datepicker('getDate');
+        var end   = $('#Erental').datepicker('getDate');
+
+    if (start<end) {
+        var days   = (end - start)/1000/60/60/24;
+    $('#Rduration').val(days);
+    }
+    else {
+      $('#Srental').val("");
+      $('#Erental').val("");
+        $('#Rduration').val("");
+    }
+    }); //end change function
+    }); //end ready
+
+</script>
+<!--Java Autofill date-->
+<!--<script type="text/javascript">
+    function myFunction() {
+    document.getElementById('demo').value= Date();
+}-->
+<script>
+    function getDate() {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+
+      if(dd<10) {
+          dd = '0'+dd
+      } 
+
+      if(mm<10) {
+          mm = '0'+mm
+      } 
+
+      today = yyyy + '-' + mm + '-' + dd;
+      console.log(today);
+      document.getElementById("date").value = today;
+    }
+
+
+    window.onload = function() {
+      getDate();
+    };
+
+</script>
+
+<div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+        <h3>Car Rental Payment's</h3>&nbsp;
+    </div>
+<form method="POST" action="{% url 'Car_submit' %}">
+{% csrf_token %}
+
+<!--     <h4><u>Assignee Details</u></h4>
+ -->    
+ <input type="text" name="date" id="date" hidden />
+    <div class="col-sm-4">
+        <label>Bill Date:</label>
+        <input style= "text-transform:" type="date" name="Bdate" id="Bdate" class="form-control" required>
+    </div>
+    <div class="col-sm-4">
+        <label>Assignee Employee ID</label>
+        <input style= "text-transform:" type="text" name="Eid" id="Eid" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Employee First Name:</label>
+        <input style= "text-transform:" type="text" name="Efm" id="Efm" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Employee Last Name:</label>
+        <input style="text-transform:" type="text" name="Elm" id="Elm" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Assignee Company:</label>
+        <input style="text-transform:" type="text" name="Acom" id="Acom" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Assignee Cost Center:</label>
+        <input style="text-transform:" type="text" name="Acost" id="Acost" class="form-control">
+    </div>
+
+<!--     <h4><u>Other Assignee Details</u></h4><br>
+ -->    
+    <div class="col-sm-4">
+        <label>Other Assignee First Name:</label>
+        <input style="text-transform:" type="Ofname" name="Ofname" id="Ddate" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Other Assignee Last Name:</label>
+        <input style="text-transform:" type="text" name="Olname" id="Olname" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Other Assignee Cost Center:</label>
+        <input style="text-transform:" type="text" name="Ocost" id="Ocost" class="form-control">
+    </div>
+
+
+<!--     <h4><u>Vehicle Details</u></h4>
+-->    <div class="col-sm-3">
+        <label>Plate Number:</label>
+        <input style="text-transform:" type="text" name="Pnumber" id="Ddate" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <label>Vehicle Provider:</label>
+        <input style="text-transform:" type="text" name="Vprovider" id="Vprovider" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <label>Vehicle Brand:</label>
+        <input style="text-transform:" type="text" name="Vbrand" id="Vbrand" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <label>Vehicle Make:</label>
+        <input style="text-transform:" type="text" name="Vmake" id="Vmake" class="form-control">
+    </div>
+
+    <!-- <h4><u>Rental Details</u></h4> -->
+    <div class="col-sm-3">
+        <label>Date Delivered Vehicle:</label>
+        <input style="text-transform:" type="date" name="Ddelivered" id="Ddelivered" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <label>Start of Rental:</label>
+        <input style="text-transform:" type="text" name="Srental" id="Srental" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <label>End of Rental:</label>
+        <input style="text-transform:" type="text" name="Erental" id="Erental" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <label>Rental Duration:</label>
+        <input style="text-transform:" type="text" name="Rduration" id="Rduration" class="form-control" readonly>
+    </div>
+
+<!--     <H4><u>Expense Details</u></H4>-->
+    <div class="col-sm-3">
+        <div class="form-group">
+        <label>Rental Cost:</label>
+        <input style="text-transform:" type="Number" name="Rcost" id="Rcost" placeholder="0" class="form-control amount"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+        <label>Gasoline Cost:</label>
+        <input style="text-transform:" type="Number" name="Gcost" id="Srental" placeholder="0" class="form-control amount"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+        <label>Toll Fee:</label>
+        <input style="text-transform:" type="Number" name="Tfee" id="Tfee" placeholder="0" class="form-control amount"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+        <label>Parking Fee:</label>
+        <input style="text-transform:" type="Number" name="Pfee" id="Pfee" placeholder="0" class="form-control amount"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+        <label>Delivery Fee:</label>
+        <input style="text-transform:" type="Number" name="Dfee" id="Dfee" placeholder="0" class="form-control amount"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+        <label>Driver Fee:</label>
+        <input style="text-transform:" type="Number" name="Driverfee" id="Driverfee" placeholder="0" class="form-control amount"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+        <label>Meal Cost:</label>
+        <input style="text-transform:" type="Number" name="M_cost" id="M_cost" placeholder="0" class="form-control amount"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+        <label>Other Expenses:</label>
+        <input style="text-transform:" type="Number" name="Other_exp" id="Other_exp" placeholder="0" class="form-control amount"/>
+        </div>
+    </div>
+    <div class="col-sm-12" align="right">
+        <div class="form-group">
+        <label>Total:</label>
+         <input align="right" style="width: 90px; text-transform:" type="text" name="Total" id="Total" placeholder="0" readonly>
+    <!-- <output id="result"></output> -->    
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <button type="submit" class="button">PROCEED</button><button 
+       class="button" type="reset" value="Reset">CLEAR FIELDS</button>
+    </div>
+</div>
+</form>
+<!-- <script>
+    $('.form-group').on('input','.amount',function(){
+        var totalSum = 0;
+        $('.form-group .amount').each(function(){
+            var inputVal = $(this).val();
+            if($.isNumeric(inputVal)){
+                totalSum +=parseFloat(inputVal);
+            }
+        });
+        $('#Total').text(totalSum)
+    });
+</script> -->
+{% endblock %}

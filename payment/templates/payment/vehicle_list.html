@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style type="text/css">
+    th{
+        font-size: 13px;
+        text-align: left;
+    }
+    td{
+        font-size: 12px;
+        text-align: left;
+    }
+
+</style>
+<div class="breadcrumbs">
+    <div class="col-sm-7">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Vehicle Payment's</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                <div class="card-header">
+                    <a href="{% url 'Vehicle-new' %}"><u>Add New Vehicle Payment:</u></a>&nbsp;
+                </div>                         
+                <table id="bootstrap-data-table-export"a class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Activity ID:</th>
+                            <th>Assignee Full Name:</th>
+                            <th>Assignee Cost Center:</th>
+                            <th>Billing Date:</th>
+                            <th>Plate Number:</th>
+                            <th>Date Initiated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for list in Car_rental_list %}
+                        <tr class="odd gradeX">
+                            <td><a href=""></a></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->
+    <!-- /.row -->
+{% endblock %}
+
+
