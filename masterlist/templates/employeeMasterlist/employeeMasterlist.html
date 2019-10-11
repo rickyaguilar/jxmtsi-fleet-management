@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="breadcrumbs">
+    <div class="col-sm-12">
+        <h1 class="page-header">Employee MasterList</h1>
+    </div>
+</div>
+
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                <div class="card-header">
+                    <a href="{% url 'employeeMasterlist-new' %}" style="color:black"><u>Add New Employee</u></a>
+                </div>                         
+                <table id="bootstrap-data-table-export"a class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Company:</th>
+                            <th>Employee ID:</th>
+                            <th>Employee Full Name:</th>
+                            <th>Name Suffix:</th>
+                            <th>Job Category:</th>
+                            <th>Group</th>
+                            <th>Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+<!--                         {% for CarRental in object_list %}
+                        <tr class="odd gradeX">
+                            <td><a href="{% url 'Carrental_summary' CarRental.id %}"><u>{{ CarRental.Activity_id }}</u></a></td>
+                            <td>{{ CarRental.F_name }} {{ CarRental.L_name }}</td>
+                            <td>{{ CarRental.Cost_center }}</td>
+                            <td>{{ CarRental.Bill_date }}</td>
+                            <td>{{ CarRental.Plate_no }}</td>
+                            <td>{{ CarRental.SLA }}/Days</td>
+                            <td>{{ CarRental.Date_initiated }}</td>
+                        </tr>
+                        {% endfor %} -->
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->
+    <!-- /.row -->
+{% endblock %}
+
+

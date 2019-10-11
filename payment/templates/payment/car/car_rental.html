@@ -4,33 +4,7 @@
 <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
 <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" />
-<style>
 
-input{
-    max-height: 30px;
-}
-
-.button {
-  padding: 15px 25px;
-  font-size: 12px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #797a7a;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-}
-
-.button:hover {background-color: #131414}
-
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-</style>
 <!--Java date computation-->
 <script type="text/javascript">
     $(document).ready(function() {
@@ -63,10 +37,6 @@ input{
 
 </script>
 <!--Java Autofill date-->
-<!--<script type="text/javascript">
-    function myFunction() {
-    document.getElementById('demo').value= Date();
-}-->
 <script>
     function getDate() {
       var today = new Date();
@@ -101,9 +71,7 @@ input{
     </div>
 <form method="POST" action="{% url 'Car_submit' %}">
 {% csrf_token %}
-
-<!--     <h4><u>Assignee Details</u></h4>
- -->    
+<input type="text" name="SLA" id="SLA" value="15" hidden>
  <input type="text" name="date" id="date" hidden />
     <div class="col-sm-4">
         <label>Bill Date:</label>
@@ -129,9 +97,7 @@ input{
         <label>Assignee Cost Center:</label>
         <input style="text-transform:" type="text" name="Acost" id="Acost" class="form-control">
     </div>
-
-<!--     <h4><u>Other Assignee Details</u></h4><br>
- -->    
+   
     <div class="col-sm-4">
         <label>Other Assignee First Name:</label>
         <input style="text-transform:" type="Ofname" name="Ofname" id="Ddate" class="form-control">
@@ -143,11 +109,10 @@ input{
     <div class="col-sm-4">
         <label>Other Assignee Cost Center:</label>
         <input style="text-transform:" type="text" name="Ocost" id="Ocost" class="form-control">
+        <br>
     </div>
 
-
-<!--     <h4><u>Vehicle Details</u></h4>
--->    <div class="col-sm-3">
+    <div class="col-sm-3">
         <label>Plate Number:</label>
         <input style="text-transform:" type="text" name="Pnumber" id="Ddate" class="form-control">
     </div>
@@ -186,75 +151,78 @@ input{
     <div class="col-sm-3">
         <div class="form-group">
         <label>Rental Cost:</label>
-        <input style="text-transform:" type="Number" name="Rcost" id="Rcost" placeholder="0" class="form-control amount"/>
+        <input style="text-transform:" type="Number" name="Rcost" id="Rcost" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Gasoline Cost:</label>
-        <input style="text-transform:" type="Number" name="Gcost" id="Srental" placeholder="0" class="form-control amount"/>
+        <input style="text-transform:" type="Number" name="Gcost" id="Gcost" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Toll Fee:</label>
-        <input style="text-transform:" type="Number" name="Tfee" id="Tfee" placeholder="0" class="form-control amount"/>
+        <input style="text-transform:" type="Number" name="Tfee" id="Tfee" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Parking Fee:</label>
-        <input style="text-transform:" type="Number" name="Pfee" id="Pfee" placeholder="0" class="form-control amount"/>
+        <input style="text-transform:" type="Number" name="Pfee" id="Pfee" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Delivery Fee:</label>
-        <input style="text-transform:" type="Number" name="Dfee" id="Dfee" placeholder="0" class="form-control amount"/>
+        <input style="text-transform:" type="Number" name="Dfee" id="Dfee" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Driver Fee:</label>
-        <input style="text-transform:" type="Number" name="Driverfee" id="Driverfee" placeholder="0" class="form-control amount"/>
+        <input style="text-transform:" type="Number" name="Driverfee" id="Driverfee" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Meal Cost:</label>
-        <input style="text-transform:" type="Number" name="M_cost" id="M_cost" placeholder="0" class="form-control amount"/>
+        <input style="text-transform:" type="Number" name="M_cost" id="M_cost" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Other Expenses:</label>
-        <input style="text-transform:" type="Number" name="Other_exp" id="Other_exp" placeholder="0" class="form-control amount"/>
-        </div>
+        <input style="text-transform:" type="Number" name="Other_exp" id="Other_exp" placeholder="0" class="form-control" onkeyup="add()" />
+        </div><br>
     </div>
     <div class="col-sm-12" align="right">
         <div class="form-group">
-        <label>Total:</label>
-         <input align="right" style="width: 90px; text-transform:" type="text" name="Total" id="Total" placeholder="0" readonly>
-    <!-- <output id="result"></output> -->    
+        <label>Total Expenses:</label>
+         <input align="right" style="width: 150px; text-transform:" type="text" name="Total" id="Total" onclick="add()" readonly>    
         </div>
     </div>
 
     <div class="card-footer">
-        <button type="submit" class="button">PROCEED</button><button 
+        <button type="submit" class="button">PROCEED</a><button 
        class="button" type="reset" value="Reset">CLEAR FIELDS</button>
     </div>
 </div>
 </form>
-<!-- <script>
-    $('.form-group').on('input','.amount',function(){
-        var totalSum = 0;
-        $('.form-group .amount').each(function(){
-            var inputVal = $(this).val();
-            if($.isNumeric(inputVal)){
-                totalSum +=parseFloat(inputVal);
-            }
-        });
-        $('#Total').text(totalSum)
-    });
-</script> -->
+<script>
+    function add(){
+    var a,b,c,d,e,f,g,h,i;
+        a=Number(document.getElementById("Rcost").value);
+        b=Number(document.getElementById("Gcost").value);
+        c=Number(document.getElementById("Tfee").value);
+        d=Number(document.getElementById("Pfee").value);
+        e=Number(document.getElementById("Dfee").value);
+        f=Number(document.getElementById("Driverfee").value);
+        g=Number(document.getElementById("M_cost").value);
+        h=Number(document.getElementById("Other_exp").value);
+        i= a + b + c + d + e + f + g + h;
+        document.getElementById("Total").value= i;
+    }
+</script>
+
 {% endblock %}

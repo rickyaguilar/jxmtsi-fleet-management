@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script>
+  function vehiclePayment(cityName) {
+    var i;
+    var x = document.getElementsByClassName("vehicle");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    document.getElementById(cityName).style.display = "block";  
+  }
+  </script>
+<script>
+    function getDate() {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+
+      if(dd<10) {
+          dd = '0'+dd
+      } 
+
+      if(mm<10) {
+          mm = '0'+mm
+      } 
+
+      today = yyyy + '-' + mm + '-' + dd;
+      console.log(today);
+      document.getElementById("Idate").value = today;
+    }
+
+
+    window.onload = function() {
+      getDate();
+    };
+
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Fuel Supplier Payments</h3>&nbsp;
+    </div>
+</div>
+<div class="w3-bar w3-gray">
+  <button class="w3-bar-item w3-button" onclick="vehiclePayment('Fuel Supplier Payment')">Fuel Supplier Payment</button>
+  <button class="w3-bar-item w3-button" onclick="vehiclePayment('OutBound Process')">OutBound Process</button>
+</div>
+<form method="POST" action="{% url 'Fuel_submit' %}">
+{% csrf_token %}
+<input type="text" name="Idate" id="Idate" hidden />
+<input type="text" name="SLA" id="F_SLA" value="15" hidden />
+<div id="Fuel Supplier Payment" class="w3-container vehicle">
+  <fieldset>
+    <legend align="left">Statement Of Account Processing</legend><br>
+      <div class="col-sm-4">
+        <label>Date Receive SOA:</label>
+        <input style="text-transform" type="Date" name="DateSOA" id="DateSOA" class="form-control"  required>
+      </div>
+
+      <div class="col-sm-4">
+        <label>Fuel Provider:</label>
+        <input type="text" name="F_provider" id="F_provider" class="form-control">
+      </div>
+      <div class="col-sm-4">
+        <label>SOA Current Amount:</label>
+        <input type="text" name="SOA_Camount" id="SOA_Camount" class="form-control">
+      </div>
+      <div class="col-sm-4">
+        <label>SOA Outstanding Amount:</label>
+        <input type="text" name="SOA_Oamount" id="SOA_Oamount" class="form-control">
+      </div>
+      <div class="col-sm-4">
+        <label>Payee:</label>
+        <SELECT name="SOA_payee" id="SOA_payee" width="300" style="width: 300px">
+          <option></option>
+          <option value="1">Globe</option>
+          <option value="2">Innove</option>
+          <option value="3">Bayan</option>
+        </SELECT>
+      </div>
+      <div class="col-sm-4">
+        <label>SOA Billing Date:</label>
+        <input type="Date" name="Bill_date" id="Bill_date" class="form-control" required>
+      </div>
+  </fieldset>
+  <fieldset>
+    <legend>RFS Processing</legend>
+    <div class="col-sm-4">
+      <label>SOA ATTACHED</label>
+      <textarea rows="4" cols="50" name="SOA_attached" id="SOA_attached" ></textarea>
+    </div>
+  </fieldset>
+  <div class="card-footer">
+    <button class="button" type="reset" value="Reset">CLEAR FIELDS</button>
+  </div>
+</div>
+<div id="OutBound Process" class="w3-container vehicle" style="display:none">
+  <fieldset>
+    <legend align="left">RPS Process</legend><br>
+      <div class="col-sm-4">
+        <label>Deadline Of Payment</label>
+        <input type="date" name="Deadline" id="Deadline" class="form-control">
+      </div>
+      <div class="col-sm-4">
+        <label>Date Forwarded to Accounting</label>
+        <input type="date" name="DateForwarder" id="DateForwarder" class="form-control">
+      </div>
+  </fieldset>
+  <div class="card-footer">
+    <button type="Submit" class="button">SUBMIT</butoon><button class="button" type="reset" value="Reset">CLEAR FIELDS</button>
+  </div>
+</div>
+</form>
+{% endblock %}

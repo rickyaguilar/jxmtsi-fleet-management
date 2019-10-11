@@ -1,4 +1,86 @@
 {% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="{% static 'assets/js/bootstrap.js' %}"></script>
+<script src="{% static 'assets/js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+<!-- You can alternatively load the minified version -->
+<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+<style type="text/css">
+    th{
+        font-size: 13px;
+        text-align: left;
+    }
+    td{
+        font-size: 12px;
+        text-align: left;
+    }
+
+input{
+    max-height: 30px;
+}
+
+.button {
+  padding: 15px 25px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #797a7a;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #131414}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
 
 <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -16,7 +98,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="{% url 'Vehicle_list' %}">New Vehicle Payment's</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="{% url 'carrental_list'%}">Car Rental Payment's</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Fuel Supplier Payment's</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'Fuel_supplierList' %}">Fuel Supplier Payment's</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -37,8 +119,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Monitoring</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Shuttle</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Service</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'Monitoring_list' %}">FATA Monitoring</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -53,6 +134,13 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="#">Shuttle</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="#">Service</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>MasterList</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'vehicle-list' %}">Vehicle Masterlist</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'employee-list' %}">Employee Masterlist</a></li>
                         </ul>
                     </li>
                 </ul>

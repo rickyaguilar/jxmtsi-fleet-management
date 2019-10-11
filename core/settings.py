@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'account.apps.AccountConfig',
     'payment.apps.paymentConfig',
-    'maintenance.apps.MaintenanceConfig',
+    'masterlist.apps.MasterlistConfig',
+    'monitoring.apps.MonitoringConfig',
 
 ]
 

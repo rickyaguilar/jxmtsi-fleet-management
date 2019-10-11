@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Car Rental Payment Details</h2>
+    </div>
+</div>
+
+<br>
+
+<table width="90%" class="table table-bordered table-hover" border="2px">
+    <tr>
+      <th width="25%">Activity ID: </th><td width="25%">{{ object.Activity_id }}</td>
+      <th width="25%">Invoice No: </th><td width="25%">{{ object.I_number }}</td>
+    </tr>
+    <tr>
+        <th></th><td></td>
+        <th></th><td></td>
+    </tr>
+    <tr>
+      <th>Billing Date:</th><td>{{ object.Bill_date }}</td>
+      <th>Assignee Employee ID: </th> <td>{{ object.Employee_id }}</td>
+    </tr>
+    <tr>
+      <th>Employee First Name: </th> <td>{{ object.F_name }}</td>
+      <th>Employee Last Name: </th> <td>{{ object.L_name }}</td>
+    </tr>
+    <tr>
+      <th>Assignee Company:</th> <td>{{ object.Assignee_company }}</td>
+      <th>Assignee Cost Center:</th> <td>{{ object.Cost_center }}</td>
+    </tr>
+    <tr>
+      <th>Other Assignee First Name: </th> <td>{{ object.O_Fname }}</td>
+      <th>Other Assignee Last Name:</th> <td>{{ object.O_Lname }}</td>
+    </tr>
+    <tr>
+      <th>Other Assignee Cost Center: </th> <td>{{ object.O_cost_center }}</td>
+      <th>Plate Number: </th> <td>{{ object.Plate_no }}</td>
+    </tr>
+    <tr>
+      <th>Vehicle Provider:</th> <td>{{ object.V_provider }}</td>
+      <th>Vehicle Brand: </th> <td>{{ object.V_brand }}</td>
+    </tr>
+    <tr>
+      <th>Vehicle Make: </th> <td>{{ object.V_make }}</td>
+      <th>Date Delivered Vehicle:: </th> <td>{{ object.D_vehicle}}</td>
+    </tr>
+    <tr>
+      <th>Start of Rental:</th> <td>{{ object.S_rental }}</td>
+      <th>End of Rental: </th> <td>{{ object.E_rental }}</td>
+    </tr>
+    <tr>
+      <th>Rental Duration: </th> <td>{{ object.R_duration }}-Days</td>
+      <th>Rental Cost:</th> <td>{{ object.R_Cost }}</td>
+    </tr>
+    <tr>
+      <th>Gasoline Cost:</th> <td>{{ object.G_cost }}</td>
+      <th>Toll Fee:</th> <td>{{ object.T_fee }}</td>
+    </tr>
+    <tr>
+      <th>Parking Fee: </th> <td>{{ object.P_fee }}</td>
+      <th>Delivery Fee:</th> <td>{{ object.Del_fee }}</td>
+    </tr>
+    <tr>
+      <th>Driver Fee:</th> <td>{{ object.Dri_fee }}</td>
+      <th>Meal Cost: </th> <td>{{ object.M_cost }}</td>
+    </tr>
+    <tr>
+
+      <th>Other Expenses:</th> <td>{{ object.O_expenses }}</td>
+    </tr>
+    <tr>
+        <th></th><td></td>
+        <th></th><td></td>
+    </tr>
+        <tr>
+        <th></th><td></td>
+        <th>VAT:</th><td>{{object.VAT}}</td>
+    </tr> 
+    <tr>
+        <th></th><td></td>
+        <th>Total Expenses:</th><td>₱  {{ object.T_expenses }}</td>
+    </tr>    
+</table>
+    <div class="card-footer">
+      <a data-toggle="modal" data-target="updateModal" class="button" style="color:white">UPDATE</a>
+    </div>
+
+<!--Update Modal--->
+<form method="POST" action="">
+{% csrf_token %}
+  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:90%;" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="page-header">Update Car Rental</h2>
+        </div>
+        <div class="modal-body">
+        <div class="tab-content">
+        <div id="bs_dept" class="tab-pane fade in active">
+        <div class="row">
+              <div class="col-sm-4">
+                  <label>Bill Date:</label>
+                  <input style= "text-transform:" type="date" name="Bdate" id="Bdate" class="form-control" required>
+              </div>
+              <div class="col-sm-4">
+                  <label>Assignee Employee ID</label>
+                  <input style= "text-transform:" type="text" name="Eid" id="Eid" class="form-control">
+              </div>
+              <div class="col-sm-4">
+                  <label>Employee First Name:</label>
+                  <input style= "text-transform:" type="text" name="Efm" id="Efm" class="form-control">
+              </div>
+              <div class="col-sm-4">
+                  <label>Employee Last Name:</label>
+                  <input style="text-transform:" type="text" name="Elm" id="Elm" class="form-control">
+              </div>
+              <div class="col-sm-4">
+                  <label>Assignee Company:</label>
+                  <input style="text-transform:" type="text" name="Acom" id="Acom" class="form-control">
+              </div>
+              <div class="col-sm-4">
+                  <label>Assignee Cost Center:</label>
+                  <input style="text-transform:" type="text" name="Acost" id="Acost" class="form-control">
+              </div>
+             
+              <div class="col-sm-4">
+                  <label>Other Assignee First Name:</label>
+                  <input style="text-transform:" type="Ofname" name="Ofname" id="Ddate" class="form-control">
+              </div>
+              <div class="col-sm-4">
+                  <label>Other Assignee Last Name:</label>
+                  <input style="text-transform:" type="text" name="Olname" id="Olname" class="form-control">
+              </div>
+              <div class="col-sm-4">
+                  <label>Other Assignee Cost Center:</label>
+                  <input style="text-transform:" type="text" name="Ocost" id="Ocost" class="form-control">
+                  <br>
+              </div>
+
+              <div class="col-sm-3">
+                  <label>Plate Number:</label>
+                  <input style="text-transform:" type="text" name="Pnumber" id="Ddate" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                  <label>Vehicle Provider:</label>
+                  <input style="text-transform:" type="text" name="Vprovider" id="Vprovider" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                  <label>Vehicle Brand:</label>
+                  <input style="text-transform:" type="text" name="Vbrand" id="Vbrand" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                  <label>Vehicle Make:</label>
+                  <input style="text-transform:" type="text" name="Vmake" id="Vmake" class="form-control">
+              </div>
+
+              <!-- <h4><u>Rental Details</u></h4> -->
+              <div class="col-sm-3">
+                  <label>Date Delivered Vehicle:</label>
+                  <input style="text-transform:" type="date" name="Ddelivered" id="Ddelivered" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                  <label>Start of Rental:</label>
+                  <input style="text-transform:" type="text" name="Srental" id="Srental" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                  <label>End of Rental:</label>
+                  <input style="text-transform:" type="text" name="Erental" id="Erental" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                  <label>Rental Duration:</label>
+                  <input style="text-transform:" type="text" name="Rduration" id="Rduration" class="form-control" readonly>
+              </div>
+
+          <!--     <H4><u>Expense Details</u></H4>-->
+              <div class="col-sm-3">
+                  <div class="form-group">
+                  <label>Rental Cost:</label>
+                  <input style="text-transform:" type="Number" name="Rcost" id="Rcost" placeholder="0" class="form-control" onkeyup="add()"/>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="form-group">
+                  <label>Gasoline Cost:</label>
+                  <input style="text-transform:" type="Number" name="Gcost" id="Gcost" placeholder="0" class="form-control" onkeyup="add()"/>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="form-group">
+                  <label>Toll Fee:</label>
+                  <input style="text-transform:" type="Number" name="Tfee" id="Tfee" placeholder="0" class="form-control" onkeyup="add()"/>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="form-group">
+                  <label>Parking Fee:</label>
+                  <input style="text-transform:" type="Number" name="Pfee" id="Pfee" placeholder="0" class="form-control" onkeyup="add()"/>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="form-group">
+                  <label>Delivery Fee:</label>
+                  <input style="text-transform:" type="Number" name="Dfee" id="Dfee" placeholder="0" class="form-control" onkeyup="add()"/>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="form-group">
+                  <label>Driver Fee:</label>
+                  <input style="text-transform:" type="Number" name="Driverfee" id="Driverfee" placeholder="0" class="form-control" onkeyup="add()"/>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="form-group">
+                  <label>Meal Cost:</label>
+                  <input style="text-transform:" type="Number" name="M_cost" id="M_cost" placeholder="0" class="form-control" onkeyup="add()"/>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="form-group">
+                  <label>Other Expenses:</label>
+                  <input style="text-transform:" type="Number" name="Other_exp" id="Other_exp" placeholder="0" class="form-control" onkeyup="add()" />
+                  </div><br>
+              </div>
+              <div class="col-sm-12" align="right">
+                  <div class="form-group">
+                  <label>Total Expenses:</label>
+                   <input align="right" style="width: 150px; text-transform:" type="text" name="Total" id="Total" onclick="add()" readonly>    
+                  </div>
+              </div>
+        </div>
+        </div>
+        <br><br>
+        <div class="col-lg-12">
+            <button class="btn btn-primary" type="submit" style="width:100px;">PROCEED</button>    
+        </div>
+            <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+</div>
+
+{% endblock %}

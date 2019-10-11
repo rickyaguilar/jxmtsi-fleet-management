@@ -1,24 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<style type="text/css">
-    th{
-        font-size: 13px;
-        text-align: left;
-    }
-    td{
-        font-size: 12px;
-        text-align: left;
-    }
-
-</style>
 <div class="breadcrumbs">
-    <div class="col-sm-7">
-        <div class="page-header float-left">
-            <div class="page-title">
-                <h1>Vehicle Payment's</h1>
-            </div>
-        </div>
+    <div class="col-sm-12">
+        <h1 class="page-header">Vehicle Payment's</h1>
     </div>
 </div>
 <div class="content mt-3">
@@ -34,21 +18,28 @@
                         <tr>
                             <th>Activity ID:</th>
                             <th>Assignee Full Name:</th>
-                            <th>Assignee Cost Center:</th>
-                            <th>Billing Date:</th>
+                            <th>Next Process:</th>
                             <th>Plate Number:</th>
+                            <th>PO Number:</th>
+                            <th>SLA Working Days</th>
                             <th>Date Initiated</th>
+                            <th>Date Lapsed:</th>
+                            <th>Deadline</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for list in Car_rental_list %}
+                        {% for VehiclePayment in object_list %}
                         <tr class="odd gradeX">
-                            <td><a href=""></a></td>
+                            <td><a href="{% url 'Vehicle-summary' VehiclePayment.id %}">{{ VehiclePayment.Activity_id }}</a></td>
+                            <td>{{ VehiclePayment.E_First_name }} {{ VehiclePayment.E_Last_name }}</td>
+                            <td></td>
+                            <td>{{ VehiclePayment.V_plateNo }}</td>
+                            <td>{{ VehiclePayment.PO_no }}</td>
+                            <td>{{ VehiclePayment.V_SLA }}/Days</td>
+                            <td>{{ VehiclePayment.Date_initiated}}</td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                           
                         </tr>
                         {% endfor %}
                     </tbody>

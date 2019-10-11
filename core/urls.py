@@ -23,7 +23,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('FLEET/', include('account.urls')),
     path('Payment/', include('payment.urls')),
-    path('Maintenance/', include('maintenance.urls')),
+    path('Masterlist/', include('masterlist.urls')),
+    path('Monitoring/', include('monitoring.urls')),
     path('', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name='logout'),
 

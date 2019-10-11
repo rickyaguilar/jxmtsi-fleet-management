@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+        <h3>Employee MasterList</h3>&nbsp;
+    </div>
+<form method="POST" action="">
+{% csrf_token %}
+    <div class="col-sm-4">
+        <label>Company:</label>
+        <input style= "text-transform:" type="text" name="Company" id="Company" class="form-control" required>
+    </div>
+    <div class="col-sm-4">
+        <label>Employee ID</label>
+        <input style= "text-transform:" type="text" name="Employee_id" id="Employee_id" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Last Name:</label>
+        <input style= "text-transform:" type="text" name="lastName" id="lastName" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>First Name:</label>
+        <input style="text-transform:" type="text" name="firstName" id="firstName" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Name Suffix:</label>
+        <input style="text-transform:" type="text" name="Nsuffix" id="Nsuffix" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>External Role Title:</label>
+        <input style="text-transform:" type="text" name="role_tittle" id="role_tittle" class="form-control">
+    </div>
+   
+    <div class="col-sm-4">
+        <label>Job Category:</label>
+        <input style="text-transform:" type="text" name="job_cat" id="job_cat" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Hiring Date:</label>
+        <input style="text-transform:" type="text" name="hiring_date" id="hiring_date" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Tenure:</label>
+        <input style="text-transform:" type="text" name="tenure" id="tenure" class="form-control">
+        <br>
+    </div>
+
+    <div class="col-sm-4">
+        <label>Band:</label>
+        <input style="text-transform:" type="text" name="Band" id="Band" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Cost Center:</label>
+        <input style="text-transform:" type="text" name="cost_center" id="cost_center" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Div Code:</label>
+        <input style="text-transform:" type="text" name="div_code" id="div_code" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Group:</label>
+        <input style="text-transform:" type="text" name="group" id="group" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Division:</label>
+        <input style="text-transform:" type="text" name="division" id="division" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Department:</label>
+        <input style="text-transform:" type="text" name="dept" id="dept" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Section:</label>
+        <input style="text-transform:" type="text" name="section" id="section" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Unit:</label>
+        <input style="text-transform:" type="text" name="unit" id="unit" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Sub Unit:</label>
+        <input style="text-transform:" type="text" name="sub_unit" id="sub_unit" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>IS ID:</label>
+        <input style="text-transform:" type="text" name="is_id" id="is_id" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>IS Last Name:</label>
+        <input style="text-transform:" type="text" name="IS_lname" id="IS_lname" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>IS First Name:</label>
+        <input style="text-transform:" type="text" name="IS_fname" id="IS_fname" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Location:</label>
+        <input style="text-transform:" type="text" name="location" id="location" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Area:</label>
+        <input style="text-transform:" type="text" name="area" id="area" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Area 2:</label>
+        <input style="text-transform:" type="text" name="area2" id="area2" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label>Benefit Group:</label>
+        <input style="text-transform:" type="text" name="benifit" id="benifit" class="form-control">
+    </div>
+
+</div>
+    <div class="card-footer">
+        <button type="submit" class="button">PROCEED</a></button><button 
+       class="button" type="reset" value="Reset">CLEAR FIELDS</button>
+    </div>
+
+</form>
+{% endblock %}

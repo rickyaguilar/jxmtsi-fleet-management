@@ -1,30 +1,38 @@
-from django.shortcuts import render,HttpResponseRedirect, render
+from django.shortcuts import render,HttpResponseRedirect,reverse
+from django.urls import reverse_lazy
 from .models import (
     CarRental,
+    VehiclePayment,
+    Fuel_supplier,
 )
-# from django.views.generic import (
-#     DetailView
-# )
-#from django.utils.decorators import method_decorator
-#from django.contrib.auth.decorators import user_passes_test
+from django.views.generic import (
+     DetailView,
+     ListView,
+     CreateView,
+     UpdateView,
+ )
+from . forms import (
+    VehiclePaymentform
+    # CarRentalForm
+)
 
+# class CarrentalCreateView(CreateView):
+#     model = CarRental
+#     form_class = CarRentalForm
+#     template_name = 'payment/car/carsample.html'
 
-
-#def in_group(user):
-#    if user.groups.filter(name="Driver").exists():
-#        return True
-#    else:
-#        raise PermissionDenied()
-
-def Car(request):
-	Car_rental_list = CarRental.objects.all()
-	return render(request, 'payment/carrental_list.html', {'title':'Car Rental Payment','Car_rental_list': Car_rental_list})
+class CarListView(ListView):
+	model = CarRental
+	template_name = 'payment/car/carrental_list.html'
+	
+class CarRentalDetailView(DetailView):
+	model = CarRental
+	template_name = 'payment/car/carrental_summary.html'
 
 def Carrentalpayment(request):
-#    @method_decorator(user_passes_test(in_group))
-#    def dispatch(self, *args, **kwargs):
-#        return super().dispatch(*args, **kwargs)
-    return render(request, 'payment/car_rental.html')
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    return render(request, 'payment/car/car_rental.html')
 
 def Carrental_submit(request):
 	if request.method == 'POST':
@@ -60,6 +68,7 @@ def Carrental_submit(request):
 		Meal_cost = request.POST.get('M_cost')
 		Other_exp = request.POST.get('Other_exp')
 		Total = request.POST.get('Total')
+		C_SLA = request.POST.get('SLA')
 
 
 		saveto_CRP = CarRental(Bill_date=Bill_date,Employee_id=employee_id, L_name=lastname, F_name=firstname,
@@ -67,36 +76,64 @@ def Carrental_submit(request):
 			O_cost_center=Other_cost, Plate_no=Plate_no, V_provider=V_provider, V_brand=V_brand, V_make=V_make,
 			D_vehicle=Delivered_V, S_rental=S_rental, E_rental=E_rental, R_duration=Rduration, R_Cost=R_cost,
 			G_cost=Gas_cost, T_fee=Toll_fee, P_fee=Park_fee, Del_fee=Del_fee, Dri_fee=Driverfee, M_cost=Meal_cost,
-			O_expenses=Other_exp, T_expenses=Total, Date_initiated=Date_initiated)
+			O_expenses=Other_exp, T_expenses=Total, Date_initiated=Date_initiated, C_SLA=SLA)
 		saveto_CRP.save()
 
 		return HttpResponseRedirect('/Payment/Car/')
 
-# class CarRentalDetailView(DetailView):
-# 	#@method_decorator(user_passes_test(in_group))
-# 	def dispatch(self, *args, **kwargs):
-# 		return super().dispatch(*args, **kwargs)
-# 	model = CarRental
-# 	template_name = 'Car_rental/carrental_summary.html'
 
-# 	def get_context_data(self, **kwargs):
-# 		context = super().get_context_data(**kwargs)
-# 		context['rental'] = CarRental.objects.filter(Activity_id=self.object.pk)
-# 		context['Crental'] = CarRental.objects.all()
-# 		return context
+class VehicleCreateView(CreateView):
+    model = VehiclePayment
+    form_class = VehiclePaymentform
+    template_name = 'payment/vehicle/vehiclepayment_new.html'
 
-def VehicleCreate(request):
-#    @method_decorator(user_passes_test(in_group))
-#    def dispatch(self, *args, **kwargs):
-#        return super().dispatch(*args, **kwargs)
-    return render(request, 'payment/vehiclepayment_new.html')
+class VehicleListView(ListView):
+	model = VehiclePayment
+	template_name = 'payment/vehicle/vehicle_list.html'
 
-#@user_passes_test(in_group)
-def Vehicle_list(request):
-	#Car_rental_list = CarRental.objects.all()
-	return render(request, 'payment/vehicle_list.html', {'title':'','Vehicle list': Vehicle_list})
+class VehicleDetailView(DetailView):
+	model = VehiclePayment
+	template_name = 'payment/vehicle/vehiclepayment_summary.html'
 
+class VehicleUpdateView(UpdateView):
+    model = VehiclePayment
+    form_class = VehiclePaymentform
+    template_name = 'payment/vehicle/vehiclepayment_new.html'
+			
 
+class FuelDetailView(DetailView):
+	model = Fuel_supplier
+	template_name = 'payment/fuel/fuel_supplierSummary.html'
+
+class FuelListView(ListView):
+	model = Fuel_supplier
+	template_name = 'payment/fuel/fuel_supplierList.html'
+
+def Fuel_supplierCreate(request):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    return render(request, 'payment/fuel/fuel_supplier.html')
+
+def Fuelsupplier_submit(request):
+	if request.method == 'POST':
+		DateSOA = request.POST.get('DateSOA')
+		F_provider = request.POST.get('F_provider')
+		Bill_date = request.POST.get('Bill_date')
+		SOA_Camount = request.POST.get('SOA_Camount')
+		SOA_Oamount = request.POST.get('SOA_Oamount')
+		SOA_payee = request.POST.get('SOA_payee')
+		SOA_attached = request.POST.get('SOA_attached')
+		Date_initiated = request.POST.get('Idate')
+		Deadline = request.POST.get('Deadline')
+		DateForwarder = request.POST.get('DateForwarder')
+		F_SLA = request.POST.get('SLA')
+
+		saveto_FSP = Fuel_supplier(SOA_Date_received=DateSOA, Fuel_provider=F_provider, SOA_billdate=Bill_date, SOA_current_amount=SOA_Camount,
+			SOA_outstanding_amount=SOA_Oamount, Payee=SOA_payee, SOA_attached=SOA_attached, Date_initiated=Date_initiated,
+			Payment_deadline=Deadline, Date_forwarded=DateForwarder, F_SLA=SLA)
+		saveto_FSP.save()
+
+		return HttpResponseRedirect('/Payment/Fuel/')
 
 
 
