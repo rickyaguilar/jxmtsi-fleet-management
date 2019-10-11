@@ -9,7 +9,8 @@ from .views import (
   	FuelDetailView,
   	VehicleCreateView,
   	VehicleUpdateView,
-  	# CarrentalCreateView,
+  	FuelCreateView,
+  	FuelUpdateView,
  )
 
 urlpatterns = [
@@ -23,8 +24,8 @@ urlpatterns = [
 	path('Carrental/Submit', views.Carrental_submit, name='Car_submit'),
 	path('CarSummary/Detail/<int:pk>', CarRentalDetailView.as_view(), name='Carrental_summary'),
 	path('Fuel/', FuelListView.as_view(), name = 'Fuel_supplierList'),
-	path('Fuel/New', views.Fuel_supplierCreate, name='Fuel_supplierNew'),
-	path('Fuel/Submit', views.Fuelsupplier_submit, name='Fuel_submit'),
+	path('Fuel/New', FuelCreateView.as_view(), name='Fuel_supplierNew'),
+	path('Fuel/Update/<int:pk>', FuelUpdateView.as_view(), name='Fuel_update'),
 	path('Fuel/Detail/<int:pk>', FuelDetailView.as_view(), name='Fuel-summary')
 
 ]

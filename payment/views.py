@@ -12,8 +12,8 @@ from django.views.generic import (
      UpdateView,
  )
 from . forms import (
-    VehiclePaymentform
-    # CarRentalForm
+    VehiclePaymentform,
+    FuelsupplierForm
 )
 
 # class CarrentalCreateView(CreateView):
@@ -109,10 +109,15 @@ class FuelListView(ListView):
 	model = Fuel_supplier
 	template_name = 'payment/fuel/fuel_supplierList.html'
 
-def Fuel_supplierCreate(request):
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-    return render(request, 'payment/fuel/fuel_supplier.html')
+class FuelCreateView(CreateView):
+    model = Fuel_supplier
+    form_class = FuelsupplierForm
+    template_name = 'payment/fuel/fuel_supplier.html'
+
+class FuelUpdateView(UpdateView):
+    model = Fuel_supplier
+    form_class = FuelsupplierForm
+    template_name = 'payment/fuel/fuel_supplier.html'
 
 def Fuelsupplier_submit(request):
 	if request.method == 'POST':

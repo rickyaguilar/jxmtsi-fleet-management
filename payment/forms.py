@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
-from .models import VehiclePayment
+from .models import VehiclePayment,Fuel_supplier
 
 
 
@@ -33,12 +33,12 @@ class VehiclePaymentform(forms.ModelForm):
 		    'LTO_stickers': forms.TextInput(attrs={'class':'form-control'}),
 		    'Sticker_fields': forms.TextInput(attrs={'class':'form-control'}),
 		    'Date_initial': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
-		    'First_payment': forms.TextInput(attrs={'class':'form-control'}),
-		    'LTO_charges': forms.TextInput(attrs={'class':'form-control'}),
-		    'Outstanding_balance': forms.TextInput(attrs={'class':'form-control'}),
+		    'First_payment': forms.TextInput(attrs={'class':'form-control','type':'number'}),
+		    'LTO_charges': forms.TextInput(attrs={'class':'form-control','type':'number'}),
+		    'Outstanding_balance': forms.TextInput(attrs={'class':'form-control','type':'number'}),
 		    'Date_final': forms.TextInput(attrs={'class':'form-control','type':'date'}),
 		    'Routing_remarks': forms.TextInput(attrs={'class':'form-control'}),
-		    'V_SLA': forms.TextInput(attrs={'class':'form-control'})
+		    'V_SLA': forms.TextInput(attrs={'class':'form-control','type':'number'})
 		}
 
 # class CarRentalForm(forms.ModelForm):
@@ -82,3 +82,47 @@ class VehiclePaymentform(forms.ModelForm):
 # 			'R_purpose':forms.TextInput(attrs={'class':'form-control'}),
 # 			'C_SLA':forms.TextInput(attrs={'class':'form-control'})
 # 		}
+class FuelsupplierForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(FuelsupplierForm, self).__init__(*args, **kwargs)
+		self.fields['Fuel_provider'].required = False
+		self.fields['SOA_current_amount'].required = False
+		self.fields['SOA_outstanding_amount'].required = False
+		self.fields['Payee'].required = False
+		self.fields['SOA_attached'].required = False
+		self.fields['Payment_deadline'].required = False
+		self.fields['Date_forwarded'].required = False
+		self.fields['F_SLA'].required = False
+
+	class Meta:
+		model = Fuel_supplier
+		fields = [
+		'SOA_Date_received','Fuel_provider','SOA_billdate','SOA_current_amount','SOA_outstanding_amount'
+		,'Payee','SOA_attached','Payment_deadline','Date_forwarded','F_SLA'
+		]
+
+		CHOICES= (
+				('GLOBE', 'GLOBE'),
+				('INNOVE', 'INNOVE'),
+				('BAYAN', 'BAYAN'),
+		)
+		widgets = {
+
+		'SOA_Date_received': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+		'Fuel_provider': forms.TextInput(attrs={'class':'form-control'}),
+		'SOA_billdate': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+		'SOA_current_amount': forms.TextInput(attrs={'class':'form-control','type':'number'}),
+		'SOA_outstanding_amount': forms.TextInput(attrs={'class':'form-control','type':'number'}),
+		'Payee': forms.Select(attrs={'class':'form-control','choices':'CHOICES'}),
+		'SOA_attached': forms.Textarea(attrs={'cols': 80, 'rows': 5}),
+		'Payment_deadline': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+		'Date_forwarded': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+		'F_SLA': forms.TextInput(attrs={'class':'form-control','type':'number'})
+		}
+
+
+
+
+
+
+

@@ -141,9 +141,9 @@ def increment_Activity_id():
 
 class Fuel_supplier(models.Model):
 	PAYEE = (
-		('1', 'Globe'),
-		('2', 'Innove'),
-		('3', 'Bayan'),
+		('Globe', 'Globe'),
+		('Innove', 'Innove'),
+		('Byan', 'Bayan'),
 	)
 
 	Activity_id = models.CharField(max_length=20,null=True, default=increment_Activity_id)
@@ -152,9 +152,9 @@ class Fuel_supplier(models.Model):
 	SOA_billdate = models.DateField(auto_now=False, null=True)
 	SOA_current_amount = models.CharField(max_length=50, null=True)
 	SOA_outstanding_amount = models.CharField(max_length=50, null=True)
-	Payee = models.CharField(max_length=1, null=True, choices=PAYEE)
+	Payee = models.CharField(max_length=10, null=True, choices=PAYEE)
 	SOA_attached = models.CharField(max_length=100, null=True)
-	Date_initiated = models.DateField(auto_now=False, null=True)
+	Date_initiated = models.DateField(auto_now=True)
 	Payment_deadline = models.DateField(auto_now=False, null=True)
 	Date_forwarded = models.DateField(auto_now=False, null=True)
 	F_SLA = models.CharField(max_length=10, null=True)
@@ -163,7 +163,7 @@ class Fuel_supplier(models.Model):
 		return self.Activity_id
 
 	def get_absolute_url(self):
-		return reverse('Fuel_supplierList', kwargs={'pk':self.pk})
+		return reverse('Fuel_supplierList')
 
 
 
