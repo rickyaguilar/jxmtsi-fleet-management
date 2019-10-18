@@ -1,4 +1,5 @@
 from django.shortcuts import render,HttpResponseRedirect,reverse
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import (
     CarRental,
@@ -114,7 +115,6 @@ def Carrental_update(request, pk):
 		Meal_cost = request.POST.get('M_cost')
 		Other_exp = request.POST.get('Other_exp')
 		Total = request.POST.get('Total')
-		C_SLA = request.POST.get('SLA')
 
 
 		CarRental.objects.filter(id=pk).update(Bill_date=Bill_date,Employee_id=employee_id, L_name=lastname, F_name=firstname,
@@ -122,14 +122,18 @@ def Carrental_update(request, pk):
 			O_cost_center=Other_cost, Plate_no=Plate_no, V_provider=V_provider, V_brand=V_brand, V_make=V_make,
 			D_vehicle=Delivered_V, S_rental=S_rental, E_rental=E_rental, R_duration=Rduration, R_Cost=R_cost,
 			G_cost=Gas_cost, T_fee=Toll_fee, P_fee=Park_fee, Del_fee=Del_fee, Dri_fee=Driverfee, M_cost=Meal_cost,
-			O_expenses=Other_exp, T_expenses=Total, C_SLA=C_SLA)
+			O_expenses=Other_exp, T_expenses=Total)
 
 		return HttpResponseRedirect('/Payment/Car/')
 
-class VehicleCreateView(CreateView):
+class VehicleCreateView(SuccessMessageMixin, CreateView):
     model = VehiclePayment
     form_class = VehiclePaymentform
     template_name = 'payment/vehicle/vehiclepayment_new.html'
+
+    def get_success_message(self, cleaned_data):
+    	print(cleaned_data)
+    	return "New Vehicle Payment's Has been Created!"
 
 class VehicleListView(ListView):
 	model = VehiclePayment
@@ -139,10 +143,14 @@ class VehicleDetailView(DetailView):
 	model = VehiclePayment
 	template_name = 'payment/vehicle/vehiclepayment_summary.html'
 
-class VehicleUpdateView(UpdateView):
+class VehicleUpdateView(SuccessMessageMixin, UpdateView):
     model = VehiclePayment
     form_class = VehiclePaymentform
     template_name = 'payment/vehicle/vehiclepayment_new.html'
+
+    def get_success_message(self, cleaned_data):
+    	print(cleaned_data)
+    	return "New Vehicle Payment's Update Successfully!"
 			
 
 class FuelDetailView(DetailView):
@@ -153,15 +161,23 @@ class FuelListView(ListView):
 	model = Fuel_supplier
 	template_name = 'payment/fuel/fuel_supplierList.html'
 
-class FuelCreateView(CreateView):
+class FuelCreateView(SuccessMessageMixin, CreateView):
     model = Fuel_supplier
     form_class = FuelsupplierForm
     template_name = 'payment/fuel/fuel_supplier.html'
 
-class FuelUpdateView(UpdateView):
+    def get_success_message(self, cleaned_data):
+    	print(cleaned_data)
+    	return "Fuel Supplier Has been Created!"
+
+class FuelUpdateView(SuccessMessageMixin, UpdateView):
     model = Fuel_supplier
     form_class = FuelsupplierForm
     template_name = 'payment/fuel/fuel_supplier.html'
+
+    def get_success_message(self, cleaned_data):
+    	print(cleaned_data)
+    	return "Fuel Supplier Update Successfully!"
 
 
 

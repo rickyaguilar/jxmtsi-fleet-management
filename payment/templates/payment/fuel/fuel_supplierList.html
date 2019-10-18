@@ -21,6 +21,7 @@
                             <th>Fuel Provider:</th>
                             <th>Next Process:</th>
                             <th>Current Amount:</th>
+                            <th>Oustanding Balance</th>
                             <th>SLA Working days:</th>
                             <th>Date Initiated</th>
                             <th>Deadline:</th>
@@ -34,6 +35,7 @@
                             <td>{{ Fuel_supplier.Fuel_provider }} </td>
                             <td></td>
                             <td>(₱){{ Fuel_supplier.SOA_current_amount }}</td>
+                            <td>{{ Fuel_supplier.SOA_outstanding_amount }}</td>
                             <td>{{ Fuel_supplier.F_SLA }}/Days</td>
                             <td>{{ Fuel_supplier.Date_initiated }}</td>
                             <td>{{ Fuel_supplier.Payment_deadline }}</td>

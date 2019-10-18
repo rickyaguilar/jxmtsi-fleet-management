@@ -29,7 +29,7 @@ def increment_I_number():
 class CarRental(models.Model):
 	#<-- assignee details---->
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
-	Bill_date = models.DateField(auto_now=False, null=True)
+	Bill_date = models.CharField(max_length=100, null=True)
 	# Employee_Id = models.ForeignKey('masterlist.Employee_Id', on_delete=models.CASCADE, related_name='Employee_id')
 	Employee_id = models.CharField(max_length=100, null=True)
 	L_name = models.CharField(max_length=100, null=True)

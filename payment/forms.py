@@ -38,7 +38,7 @@ class VehiclePaymentform(forms.ModelForm):
 		    'Outstanding_balance': forms.TextInput(attrs={'class':'form-control','type':'number'}),
 		    'Date_final': forms.TextInput(attrs={'class':'form-control','type':'date'}),
 		    'Routing_remarks': forms.TextInput(attrs={'class':'form-control'}),
-		    'V_SLA': forms.TextInput(attrs={'class':'form-control','type':'number'})
+		    'V_SLA': forms.TextInput(attrs={'class':'form-control','type':'number','value':'15','hidden':'True'})
 		}
 
 # class CarRentalForm(forms.ModelForm):
@@ -117,7 +117,7 @@ class FuelsupplierForm(forms.ModelForm):
 		'SOA_attached': forms.Textarea(attrs={'cols': 80, 'rows': 5}),
 		'Payment_deadline': forms.TextInput(attrs={'class':'form-control','type':'date'}),
 		'Date_forwarded': forms.TextInput(attrs={'class':'form-control','type':'date'}),
-		'F_SLA': forms.TextInput(attrs={'class':'form-control','type':'number'})
+		'F_SLA': forms.TextInput(attrs={'class':'form-control','type':'number','value':'15','hidden':'True'})
 		}
 
 
