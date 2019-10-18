@@ -23,6 +23,7 @@ urlpatterns = [
 	# path('Car/New', CarrentalCreateView.as_view(), name='Car-rental'),
 	path('Carrental/Submit', views.Carrental_submit, name='Car_submit'),
 	path('CarSummary/Detail/<int:pk>', CarRentalDetailView.as_view(), name='Carrental_summary'),
+	path('CarUpdate/Update/<int:pk>', views.Carrental_update, name='Car_update'),
 	path('Fuel/', FuelListView.as_view(), name = 'Fuel_supplierList'),
 	path('Fuel/New', FuelCreateView.as_view(), name='Fuel_supplierNew'),
 	path('Fuel/Update/<int:pk>', FuelUpdateView.as_view(), name='Fuel_update'),

@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 import datetime
 from datetime import date
+from django.contrib.auth.models import User
 
 #<---CarRental Payment-->
 def increment_Activity_id():
@@ -29,6 +30,7 @@ class CarRental(models.Model):
 	#<-- assignee details---->
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
 	Bill_date = models.DateField(auto_now=False, null=True)
+	# Employee_Id = models.ForeignKey('masterlist.Employee_Id', on_delete=models.CASCADE, related_name='Employee_id')
 	Employee_id = models.CharField(max_length=100, null=True)
 	L_name = models.CharField(max_length=100, null=True)
 	F_name = models.CharField(max_length=100, null=True)

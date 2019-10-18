@@ -1,38 +1,64 @@
 from django.shortcuts import render,HttpResponseRedirect
+from django.urls import reverse_lazy
+# from django.core.urlresolvers import reverse_lazy
 from django.views.generic import (
      ListView,
+     CreateView,
+     DetailView,
+     UpdateView,
  )
 from .models import (
 	EmployeeMasterlist,
-	VehicleMasterList,
+	VehicleMasterList
 	)
 
-def employeeMasterlist(request):
-#    @method_decorator(user_passes_test(in_group))
-    def dispatch(self, *args, **kwargs):
-       return super().dispatch(*args, **kwargs)
-    return render(request, 'employeeMasterlist/employeeMasterlist_form.html')
+from . forms import (
+	EmpMasterlistForm,
+	Vmasterlist
+	)
 
-class employeeListView(ListView):
-	model = EmployeeMasterlist
-	template_name = 'employeeMasterlist/employeeMasterlist.html'
-
-# def employeeList(request):
-# 	model = EmployeeMasterlist
-# 	employee_list = EmployeeMasterlist.objects.all()
-# 	return render(request, 'employeeMasterlist/employeeMasterlist.html', {'title': 'Employee Master List', 'employee_list': employee_list})
-
-def vehicleMasterlist(request):
-#    @method_decorator(user_passes_test(in_group))
-    def dispatch(self, *args, **kwargs):
-       return super().dispatch(*args, **kwargs)
-    return render(request, 'vehicleMasterlist/vehicleMasterlist_form.html')
+class VmasterlistCreateView(CreateView):
+	model = VehicleMasterList
+	form_class = Vmasterlist
+	template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
 
 class vehicleMasterListView(ListView):
 	model = VehicleMasterList
 	template_name = 'vehicleMasterlist/vehicleMasterlist.html'
 
-# def VehicleList(request):
-# 	model = VehicleMasterList
-# 	vehicle_list = VehicleMasterList.objects.all()
-# 	return render(request, 'masterlist/vehicleMasterlist/vehicleMasterlist.html', {'title': 'Vehicle Master List', 'vehicle_list': vehicle_list})
+class vehicleMasterDetails(DetailView):
+	model = VehicleMasterList
+	template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
+
+class vehicleMasterUpdate(UpdateView):
+	model = VehicleMasterList
+	form_class = Vmasterlist
+	template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
+
+class employeeCreateView(CreateView):
+    model = EmployeeMasterlist
+    form_class = EmpMasterlistForm
+    template_name = 'employeeMasterlist/employeeMasterlist_form.html'
+
+class employeeListView(ListView):
+	model = EmployeeMasterlist
+	template_name = 'employeeMasterlist/employeeMasterlist.html'
+
+class employeeDetailView(DetailView):
+	model = EmployeeMasterlist
+	template_name = 'employeeMasterlist/employeeMasterlist_details.html'
+
+class employeeUpdateView(UpdateView):
+    model = EmployeeMasterlist
+    form_class = EmpMasterlistForm
+    template_name = 'employeeMasterlist/employeeMasterlist_form.html'
+
+
+
+
+
+
+
+
+
+

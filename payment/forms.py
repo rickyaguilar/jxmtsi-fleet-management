@@ -102,9 +102,9 @@ class FuelsupplierForm(forms.ModelForm):
 		]
 
 		CHOICES= (
-				('GLOBE', 'GLOBE'),
-				('INNOVE', 'INNOVE'),
-				('BAYAN', 'BAYAN'),
+			('GLOBE', 'GLOBE'),
+			('INNOVE', 'INNOVE'),
+			('BAYAN', 'BAYAN'),
 		)
 		widgets = {
 
