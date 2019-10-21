@@ -88,7 +88,7 @@ class Vmasterlist(forms.ModelForm):
                   'Remarks': forms.TextInput(attrs={'class':'form-control'}),
                   'CR_name': forms.TextInput(attrs={'class':'form-control'}),
                   'Ending': forms.TextInput(attrs={'class':'form-control'}),
-                  # 'Model': forms.TextInput(attrs={'class':'form-control'}),
+                  'Model': forms.TextInput(attrs={'class':'form-control'}),
                   'Brand': forms.Select(attrs={'class':'form-control','choices':'Vbrand'}),
                   'Brand': forms.TextInput(attrs={'class':'form-control'}),
                   'Vehicle_make': forms.TextInput(attrs={'class':'form-control'}),

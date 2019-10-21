@@ -57,7 +57,7 @@ def increment_No():
 	in_id = last_in.No
 	in_int = int(in_id[10:])
 	new_in_int = in_int + 1
-	new_in_id = str(new_in_int).zfill(0)
+	new_in_id = str(new_in_int).zfill(1)
 	return new_in_id
 
 class VehicleMasterList(models.Model):

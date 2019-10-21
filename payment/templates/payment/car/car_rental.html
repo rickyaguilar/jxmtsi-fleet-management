@@ -28,8 +28,8 @@
     $('#Rduration').val(days);
     }
     else {
-      $('#Srental').val("");
-      $('#Erental').val("");
+        $('#Srental').val("");
+        $('#Erental').val("");
         $('#Rduration').val("");
     }
     }); //end change function
@@ -62,6 +62,21 @@
       getDate();
     };
 
+</script>
+<script>
+    function add(){
+    var a,b,c,d,e,f,g,h,i;
+        a=Number(document.getElementById("Rcost").value);
+        b=Number(document.getElementById("Gcost").value);
+        c=Number(document.getElementById("Tfee").value);
+        d=Number(document.getElementById("Pfee").value);
+        e=Number(document.getElementById("Dfee").value);
+        f=Number(document.getElementById("Driverfee").value);
+        g=Number(document.getElementById("M_cost").value);
+        h=Number(document.getElementById("Other_exp").value);
+        i= a + b + c + d + e + f + g + h;
+        document.getElementById("Total").value= i;
+    }
 </script>
 
 <div class="col-md-12">
@@ -196,27 +211,13 @@
          <input align="right" style="width: 150px; text-transform:" type="text" name="Total" id="Total" onclick="add()" readonly>    
         </div>
     </div>
-
+</div>
     <div class="card-footer">
         <button type="submit" class="button">PROCEED</a><button 
        class="button" type="reset" value="Reset">CLEAR FIELDS</button>
     </div>
-</div>
+
 </form>
-<script>
-    function add(){
-    var a,b,c,d,e,f,g,h,i;
-        a=Number(document.getElementById("Rcost").value);
-        b=Number(document.getElementById("Gcost").value);
-        c=Number(document.getElementById("Tfee").value);
-        d=Number(document.getElementById("Pfee").value);
-        e=Number(document.getElementById("Dfee").value);
-        f=Number(document.getElementById("Driverfee").value);
-        g=Number(document.getElementById("M_cost").value);
-        h=Number(document.getElementById("Other_exp").value);
-        i= a + b + c + d + e + f + g + h;
-        document.getElementById("Total").value= i;
-    }
-</script>
+
 
 {% endblock %}
