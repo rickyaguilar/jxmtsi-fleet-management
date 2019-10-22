@@ -1,36 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
 <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" />
 
 <!--Java date computation-->
-<script type="text/javascript">
+<script>
     $(document).ready(function() {
       
-    $( "#startdate,#enddate" ).datepicker({
+    $( "#Startrental,#Endrental" ).datepicker({
     changeMonth: true,
     changeYear: true,
     firstDay: 1,
     dateFormat: 'yy/mm/dd',
     })
 
-    $( "#Srental" ).datepicker({ dateFormat: 'yy/mm/dd' });
-    $( "#Erental" ).datepicker({ dateFormat: 'yy/mm/dd' });
+    $( "#Startrental" ).datepicker({ dateFormat: 'yy/mm/dd' });
+    $( "#Endrental" ).datepicker({ dateFormat: 'yy/mm/dd' });
 
-    $('#Erental').change(function() {
-        var start = $('#Srental').datepicker('getDate');
-        var end   = $('#Erental').datepicker('getDate');
+    $('#Endrental').change(function() {
+        var start = $('#Startrental').datepicker('getDate');
+        var end   = $('#Endrental').datepicker('getDate');
 
     if (start<end) {
         var days   = (end - start)/1000/60/60/24;
-    $('#Rduration').val(days);
+    $('#Rentduration').val(Rentduration);
     }
     else {
-      $('#Srental').val("");
-      $('#Erental').val("");
-      $('#Rduration').val("");
+      $('#Startrental').val("");
+      $('#Endrental').val("");
+      $('#Rentduration').val("");
     }
     }); //end change function
     }); //end ready
@@ -66,16 +67,16 @@
 <script>
     function add(){
     var a,b,c,d,e,f,g,h,i;
-        a=Number(document.getElementById("Rcost").value);
-        b=Number(document.getElementById("Gcost").value);
-        c=Number(document.getElementById("Tfee").value);
-        d=Number(document.getElementById("Pfee").value);
-        e=Number(document.getElementById("Dfee").value);
-        f=Number(document.getElementById("Driverfee").value);
-        g=Number(document.getElementById("M_cost").value);
-        h=Number(document.getElementById("Other_exp").value);
+        a=Number(document.getElementById("Rentcost").value);
+        b=Number(document.getElementById("Gascost").value);
+        c=Number(document.getElementById("Tollfee").value);
+        d=Number(document.getElementById("Parkingfee").value);
+        e=Number(document.getElementById("Delfee").value);
+        f=Number(document.getElementById("Drifee").value);
+        g=Number(document.getElementById("Mealcost").value);
+        h=Number(document.getElementById("Otherexp").value);
         i= a + b + c + d + e + f + g + h;
-        document.getElementById("Total").value= i;
+        document.getElementById("TotalExp").value= i;
     }
 </script>
 
@@ -180,7 +181,6 @@
         </div>
         <div class="modal-body">
         <div class="tab-content">
-<!--         <div id="bs_dept" class="tab-pane fade in active"> -->
         <div class="row">
               <div class="col-sm-4">
                   <label>Bill Date:</label>
@@ -245,64 +245,64 @@
               </div>
               <div class="col-sm-3">
                   <label>Start of Rental:</label>
-                  <input style="text-transform:" type="text" name="Srental" id="Srental" class="form-control" value="{{ object.S_rental }}">
+                  <input style="text-transform:" type="text" name="Srental" id="Startrental" class="form-control" value="{{ object.S_rental }}">
               </div>
               <div class="col-sm-3">
                   <label>End of Rental:</label>
-                  <input style="text-transform:" type="text" name="Erental" id="Erental" class="form-control" value="{{ object.E_rental }}">
+                  <input style="text-transform:" type="text" name="Erental" id="Endrental" class="form-control" value="{{ object.E_rental }}">
               </div>
               <div class="col-sm-3">
                   <label>Rental Duration:</label>
-                  <input style="text-transform:" type="text" name="Rduration" id="Rduration" class="form-control" value="{{ object.R_duration }}" readonly>
+                  <input style="text-transform:" type="text" name="Rduration" id="Rentduration" class="form-control" value="{{ object.R_duration }}" readonly>
               </div>
 
           <!--     <H4><u>Expense Details</u></H4>-->
               <div class="col-sm-3">
                   <div class="form-group">
                   <label>Rental Cost:</label>
-                  <input style="text-transform:" type="Number" name="Rcost" id="Rcost" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.R_Cost }}" />
+                  <input style="text-transform:" type="Number" name="Rcost" id="Rentcost" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.R_Cost }}" />
                   </div>
               </div>
               <div class="col-sm-3">
                   <div class="form-group">
                   <label>Gasoline Cost:</label>
-                  <input style="text-transform:" type="Number" name="Gcost" id="Gcost" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.G_cost }}" />
+                  <input style="text-transform:" type="Number" name="Gcost" id="Gascost" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.G_cost }}" />
                   </div>
               </div>
               <div class="col-sm-3">
                   <div class="form-group">
                   <label>Toll Fee:</label>
-                  <input style="text-transform:" type="Number" name="Tfee" id="Tfee" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.T_fee }}" />
+                  <input style="text-transform:" type="Number" name="Tfee" id="Tollfee" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.T_fee }}" />
                   </div>
               </div>
               <div class="col-sm-3">
                   <div class="form-group">
                   <label>Parking Fee:</label>
-                  <input style="text-transform:" type="Number" name="Pfee" id="Pfee" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.P_fee }}" />
+                  <input style="text-transform:" type="Number" name="Pfee" id="Parkingfee" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.P_fee }}" />
                   </div>
               </div>
               <div class="col-sm-3">
                   <div class="form-group">
                   <label>Delivery Fee:</label>
-                  <input style="text-transform:" type="Number" name="Dfee" id="Dfee" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.Del_fee }}" />
+                  <input style="text-transform:" type="Number" name="Dfee" id="Delfee" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.Del_fee }}" />
                   </div>
               </div>
               <div class="col-sm-3">
                   <div class="form-group">
                   <label>Driver Fee:</label>
-                  <input style="text-transform:" type="Number" name="Driverfee" id="Driverfee" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.Dri_fee }}" />
+                  <input style="text-transform:" type="Number" name="Driverfee" id="Drifee" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.Dri_fee }}" />
                   </div>
               </div>
               <div class="col-sm-3">
                   <div class="form-group">
                   <label>Meal Cost:</label>
-                  <input style="text-transform:" type="Number" name="M_cost" id="M_cost" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.M_cost }}" />
+                  <input style="text-transform:" type="Number" name="M_cost" id="Mealcost" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.M_cost }}" />
                   </div>
               </div>
               <div class="col-sm-3">
                   <div class="form-group">
                   <label>Other Expenses:</label>
-                  <input style="text-transform:" type="Number" name="Other_exp" id="Other_exp" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.O_expenses }}" />
+                  <input style="text-transform:" type="Number" name="Other_exp" id="Otherexp" placeholder="0" class="form-control" onkeyup="add()" value="{{ object.O_expenses }}" />
                   </div><br>
               </div>
               <div class="col-sm-12" align="right">
@@ -314,10 +314,10 @@
               <div class="col-sm-12" align="right">
                   <div class="form-group">
                   <label>Total Expenses:</label>
-                   <input align="right" style="width: 150px; text-transform:" type="text" name="Total" id="Total" onclick="add()" readonly value="{{ object.T_expenses }}">    
+                   <input align="right" style="width: 150px; text-transform:" type="text" name="Total" id="TotalExp" onclick="add()" readonly value="{{ object.T_expenses }}">    
                   </div>
               </div>
-        </div>
+
         </div>
         <br><br>
         <div class="col-lg-12">

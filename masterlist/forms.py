@@ -96,7 +96,7 @@ class Vmasterlist(forms.ModelForm):
                   'MV_file_no': forms.TextInput(attrs={'class':'form-control'}),
                   'vehicle_type': forms.TextInput(attrs={'class':'form-control'}),
                   'Vehicle_category': forms.TextInput(attrs={'class':'form-control'}),
-                  'Employee_Id': forms.TextInput(attrs={'class':'form-control'}),
+                  'Employee_Id': forms.Select(attrs={'class':'form-control'}),
                   'Band_level': forms.TextInput(attrs={'class':'form-control'}),
                   'Band_Benefit': forms.TextInput(attrs={'class':'form-control'}),
                   'Contact_no': forms.TextInput(attrs={'class':'form-control','type':'number'}),

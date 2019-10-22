@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'payment.apps.paymentConfig',
     'masterlist.apps.MasterlistConfig',
     'monitoring.apps.MonitoringConfig',
+    'request.apps.RequestConfig',
 
 ]
 

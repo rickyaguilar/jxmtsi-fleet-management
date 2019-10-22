@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 import datetime
 from datetime import date
-from django.contrib.auth.models import User
+from masterlist.models import EmployeeMasterlist,VehicleMasterList
 
 #<---CarRental Payment-->
 def increment_Activity_id():
@@ -30,8 +30,8 @@ class CarRental(models.Model):
 	#<-- assignee details---->
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
 	Bill_date = models.CharField(max_length=100, null=True)
-	# Employee_Id = models.ForeignKey('masterlist.Employee_Id', on_delete=models.CASCADE, related_name='Employee_id')
-	Employee_id = models.CharField(max_length=100, null=True)
+	A_employee_Id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING)
+	# Employee_id = models.CharField(max_length=100, null=True)
 	L_name = models.CharField(max_length=100, null=True)
 	F_name = models.CharField(max_length=100, null=True)
 	Assignee_company = models.CharField(max_length=100, null=True)
@@ -100,11 +100,13 @@ def increment_PO_no():
 class VehiclePayment(models.Model):
 	Activity_id = models.CharField(max_length=20, default=increment_Activity_id)
 	PO_no = models.CharField(max_length=100, default=increment_PO_no)
-	A_employee_ID = models.CharField(max_length=100, null=True)
+	A_employee_ID = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING)
+	# A_employee_ID = models.CharField(max_length=100, null=True)
 	E_First_name = models.CharField(max_length=50, blank=True)
 	E_Last_name = models.CharField(max_length=50, blank=True)
 	V_deliverDate = models.DateField(auto_now=False, null=True)
-	V_plateNo = models.CharField(max_length=20, blank=True)
+	Plate_no = models.ForeignKey('masterlist.VehicleMasterList', on_delete=models.DO_NOTHING)
+	# V_plateNo = models.CharField(max_length=20, blank=True)
 	V_model = models.CharField(max_length=100, blank=True)
 	V_brand = models.CharField(max_length=100, blank=True)
 	V_make = models.CharField(max_length=100, blank=True)

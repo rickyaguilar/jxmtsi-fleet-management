@@ -28,7 +28,7 @@ class FATAmonitoringForm(forms.ModelForm):
             "Fata_no": forms.TextInput(attrs={'class':'form-control','type':'number'}),
             "Date_transfer": forms.TextInput(attrs={'class':'form-control','type':'date'}),
             "Date_received": forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            "Plate_no": forms.TextInput(attrs={'class':'form-control'}),
+            "Plate_no": forms.Select(attrs={'class':'form-control'}),
             "Vehicle_make": forms.TextInput(attrs={'class':'form-control'}),
             "Vehicle_brand": forms.TextInput(attrs={'class':'form-control'}),
             "Certificate_of_Reg": forms.TextInput(attrs={'class':'form-control'}),

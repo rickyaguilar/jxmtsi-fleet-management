@@ -1,41 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
 <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" />
 
 <!--Java date computation-->
-<script type="text/javascript">
+<script>
     $(document).ready(function() {
-      
-    $( "#startdate,#enddate" ).datepicker({
+
+    $( "#Srental,#Erental" ).datepicker({
     changeMonth: true,
     changeYear: true,
     firstDay: 1,
-    dateFormat: 'yy/mm/dd',
+    dateFormat: 'dd/mm/yy',
     })
 
-    $( "#Srental" ).datepicker({ dateFormat: 'yy/mm/dd' });
-    $( "#Erental" ).datepicker({ dateFormat: 'yy/mm/dd' });
+    $( "#Srental" ).datepicker({ dateFormat: 'dd-mm-yy' });
+    $( "#Erental" ).datepicker({ dateFormat: 'dd-mm-yy' });
 
     $('#Erental').change(function() {
-        var start = $('#Srental').datepicker('getDate');
-        var end   = $('#Erental').datepicker('getDate');
+    var start = $('#Srental').datepicker('getDate');
+    var end   = $('#Erental').datepicker('getDate');
 
     if (start<end) {
-        var days   = (end - start)/1000/60/60/24;
+    var days   = (end - start)/1000/60/60/24;
     $('#Rduration').val(days);
     }
     else {
-        $('#Srental').val("");
-        $('#Erental').val("");
-        $('#Rduration').val("");
+    alert ("You cant come back before you have been!");
+    $('#Srental').val("");
+    $('#Erental').val("");
+    $('#Rduration').val("");
     }
     }); //end change function
     }); //end ready
-
 </script>
+
 <!--Java Autofill date-->
 <script>
     function getDate() {
@@ -84,6 +86,7 @@
     <div class="card-header">
         <h3>Car Rental Payment's</h3>&nbsp;
     </div>
+
 <form method="POST" action="{% url 'Car_submit' %}">
 {% csrf_token %}
 <input type="text" name="SLA" id="SLA" value="15" hidden>
@@ -94,8 +97,11 @@
     </div>
     <div class="col-sm-4">
         <label>Assignee Employee ID</label>
-        <input style= "text-transform:" type="text" name="Eid" id="Eid" class="form-control">
-    </div>
+        <input style= "text-transform:" type="select" name="Eid" id="Eid" class="form-control" value="{{ object.A_employee_Id}}">
+<!--         <select class="form-control">
+            <option>{{ CarRental.A_employee_Id }}</option>
+        </select>
+ -->    </div>
     <div class="col-sm-4">
         <label>Employee First Name:</label>
         <input style= "text-transform:" type="text" name="Efm" id="Efm" class="form-control">
@@ -151,15 +157,15 @@
     </div>
     <div class="col-sm-3">
         <label>Start of Rental:</label>
-        <input style="text-transform:" type="text" name="Srental" id="Srental" class="form-control">
+        <input  type="text" name="Srental" id="Srental" class="form-control">
     </div>
     <div class="col-sm-3">
         <label>End of Rental:</label>
-        <input style="text-transform:" type="text" name="Erental" id="Erental" class="form-control">
+        <input  type="text" name="Erental" id="Erental" class="form-control">
     </div>
     <div class="col-sm-3">
         <label>Rental Duration:</label>
-        <input style="text-transform:" type="text" name="Rduration" id="Rduration" class="form-control" readonly>
+        <input  type="text" name="Rduration" id="Rduration" class="form-control" readonly>
     </div>
 
 <!--     <H4><u>Expense Details</u></H4>-->
@@ -211,12 +217,12 @@
          <input align="right" style="width: 150px; text-transform:" type="text" name="Total" id="Total" onclick="add()" readonly>    
         </div>
     </div>
+
 </div>
     <div class="card-footer">
-        <button type="submit" class="button">PROCEED</a><button 
+        <button type="submit" class="button">PROCEED</button><button 
        class="button" type="reset" value="Reset">CLEAR FIELDS</button>
     </div>
-
 </form>
 
 

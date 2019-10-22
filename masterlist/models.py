@@ -3,14 +3,13 @@ from django.urls import reverse
 from django.utils import timezone
 import datetime
 from datetime import date
-from django.contrib.auth.models import User
+
 
 
 
 
 class EmployeeMasterlist(models.Model):
 	Company = models.CharField(max_length=100, null=True)
-	# Employee_Id = models.ForeignKey('payment.Employee_Id', on_delete=models.SET_DEFAULT, related_name='Employee_id')
 	Employee_Id = models.CharField(max_length=100, null=True)
 	Last_name = models.CharField(max_length=50, null=True)
 	First_name = models.CharField(max_length=50, null=True)
@@ -37,6 +36,9 @@ class EmployeeMasterlist(models.Model):
 	Area2 = models.CharField(max_length=100, null=True)
 	Benefit = models.CharField(max_length=100, null=True)
 
+	def __str__(self):
+		return self.Employee_Id
+		
 	def get_absolute_url(self):
 		return reverse('employee-list')
 
@@ -90,7 +92,7 @@ class VehicleMasterList(models.Model):
 	MV_file_no = models.CharField(max_length=100, null=True)
 	vehicle_type = models.CharField(max_length=100, null=True)
 	Vehicle_category = models.CharField(max_length=100, null=True)
-	Employee_Id = models.CharField(max_length=50, null=True)
+	Employee_Id = models.ForeignKey('EmployeeMasterlist', on_delete=models.DO_NOTHING)
 	Band_level = models.CharField(max_length=50, null=True)
 	Band_Benefit = models.CharField(max_length=50, null=True)
 	Contact_no = models.CharField(max_length=50, null=True)
@@ -118,8 +120,10 @@ class VehicleMasterList(models.Model):
 	Fname_assignee = models.CharField(max_length=50, null=True)
 
 	def __str__(self):
-		return self.Activity_id
-
+		return self.Plate_no
+	# def __str__(self):
+	# 	return self.Employee_Id
+		
 	def get_absolute_url(self):
 		return reverse('vehicle-list')
 

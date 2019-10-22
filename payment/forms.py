@@ -14,16 +14,16 @@ class VehiclePaymentform(forms.ModelForm):
 		
 	class Meta:
 		model = VehiclePayment
-		fields = ['A_employee_ID', 'E_First_name', 'E_Last_name', 'V_deliverDate','V_plateNo',
+		fields = ['A_employee_ID', 'E_First_name', 'E_Last_name', 'V_deliverDate','Plate_no',
 		            'V_model','V_brand','V_make','V_dealer','LTO_documents',
 		            'Docs_plate_no','LTO_stickers','Sticker_fields','Date_initial', 'First_payment', 'LTO_charges',
 		            'Outstanding_balance','Date_final','Routing_remarks','V_SLA']
 		widgets = {
-			'A_employee_ID': forms.TextInput(attrs={'class':'form-control'}),
+			'A_employee_ID': forms.Select(attrs={'class':'form-control'}),
 			'E_First_name': forms.TextInput(attrs={'class':'form-control'}),
 			'E_Last_name': forms.TextInput(attrs={'class':'form-control'}),
 			'V_deliverDate': forms.TextInput(attrs={'class':'form-control','type':'date'}),
-			'V_plateNo': forms.TextInput(attrs={'class':'form-control'}),
+			'Plate_no': forms.TextInput(attrs={'class':'form-control'}),
 		    'V_model': forms.TextInput(attrs={'class':'form-control'}),
 		    'V_brand': forms.TextInput(attrs={'class':'form-control'}),
 		    'V_make': forms.TextInput(attrs={'class':'form-control'}),
