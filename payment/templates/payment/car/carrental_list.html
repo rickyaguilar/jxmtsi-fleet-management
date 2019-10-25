@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+<script type="text/javascript">
+  $(function () {
+    // Delete book buttons
+    $(".delete-carrequest").each(function () {
+      $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+  });
+</script>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
 
 <div class="breadcrumbs">
     <div class="col-sm-12">
@@ -37,6 +53,14 @@
                             <td>{{ CarRental.Plate_no }}</td>
                             <td>{{ CarRental.C_SLA }}/Days</td>
                             <td>{{ CarRental.Date_initiated }}</td>
+                            {% comment %} <td><button type="button" class="delete-carrequest btn btn-sm btn-danger" data-id="{% url 'carrental_delete' CarRental.id %}">
+                            <span class="fa fa-trash"></span>
+                            </button></td> {% endcomment %}
+                            <form action="{% url 'carrental_delete' CarRental.id %}" method="POST">
+                                {% csrf_token %}
+                                <td><button class="btn btn-danger btn-sm" type="submit" name="button">
+                                <span class="fa fa-trash"></span>
+                                </button></td>
                         </tr>
                         {% endfor %}
                     </tbody>

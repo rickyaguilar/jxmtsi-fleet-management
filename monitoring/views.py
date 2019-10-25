@@ -1,5 +1,7 @@
 from django.shortcuts import render,HttpResponseRedirect
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views import generic
+from django.urls import reverse_lazy
 from .models import (
    	Fata_monitoring,
 )
@@ -12,6 +14,9 @@ from django.views.generic import (
                 				UpdateView,
                 				DetailView,
                 				)
+from bootstrap_modal_forms.generic import (
+                                           BSModalDeleteView
+                                           )
 
 class monitoringListView(ListView):
 	model = Fata_monitoring
@@ -40,3 +45,9 @@ class monitoringUpdate(SuccessMessageMixin, UpdateView):
 class monitoringDetails(DetailView):
 	model = Fata_monitoring
 	template_name = 'fata_monitoring_details.html'
+	
+class monitoringDeleteView(BSModalDeleteView):
+    model = Fata_monitoring
+    template_name = 'monitoring/fata_monitoring_delete.html'
+    success_message = 'Success: Item was deleted.'
+    success_url = reverse_lazy('Monitoring_list')

@@ -39,6 +39,11 @@
                             <td>{{ Fata_monitoring.Vehicle_make }}</td>
                             <td>{{ Fata_monitoring.Transferor_Fname }} {{ Fata_monitoring.Transferor_Lname }}</td>
                             <td>{{ Fata_monitoring.Recipient_Fname }} {{ Fata_monitoring.Recipient_Lname }}</td>
+                            <form action="{% url 'Monitoring_delete' Fata_monitoring.id %}" method="POST">
+                                {% csrf_token %}
+                                <td><button class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
+                            </form>
+                           
                         </tr>
                         {% endfor %}
                     </tbody>

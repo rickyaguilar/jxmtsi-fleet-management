@@ -33,12 +33,16 @@
                             <td><a href="{% url 'Vehicle-summary' VehiclePayment.id %}">{{ VehiclePayment.Activity_id }}</a></td>
                             <td>{{ VehiclePayment.E_First_name }} {{ VehiclePayment.E_Last_name }}</td>
                             <td></td>
-                            <td>{{ VehiclePayment.V_plateNo }}</td>
+                            <td>{{ VehiclePayment.Plate_no }}</td>
                             <td>{{ VehiclePayment.PO_no }}</td>
                             <td>{{ VehiclePayment.V_SLA }}/Days</td>
                             <td>{{ VehiclePayment.Date_initiated}}</td>
                             <td></td>
                             <td></td>
+                            <form action="{% url 'Vehicle_delete' VehiclePayment.id %}" method="POST">
+                                {% csrf_token %}
+                                <td><button class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
+                            </form>
                            
                         </tr>
                         {% endfor %}

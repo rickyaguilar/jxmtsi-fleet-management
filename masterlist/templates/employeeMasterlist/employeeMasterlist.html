@@ -40,6 +40,10 @@
                             <td>{{ emp.Group }}</td>
                             <td>{{ emp.Department }}</td>
                             <td>{{ emp.Location }}</td>
+                            <form action="{% url 'employeeMasterlist_delete' emp.id %}" method="POST">
+                                {% csrf_token %}
+                                <td><button class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
+                            </form>
                         </tr>
                         {% endfor %}
                     </tbody>

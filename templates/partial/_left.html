@@ -98,16 +98,17 @@ body {font-family: Arial;}
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Payment's</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="{% url 'Vehicle_list' %}">New Vehicle Payment's</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'carrental_list'%}">Car Rental Payment's</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'carrental_list' %}">Car Rental Payment's</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="{% url 'Fuel_supplierList' %}">Fuel Supplier Payment's</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Request</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-dashboard"></i><a href="{% url 'Repair_list'}">Repair</a></li>
-                            <li><i class="fa fa-dashboard"></i><a href="#">Fuel And Emissions</a></li>
-                            <li><i class="fa fa-laptop"></i><a href="#">Bidding</a></li>
+                            <li><i class="fa fa-dashboard"></i><a href="{% url 'carrequest_list' %}">Car Rental Request</a></li>
+                            <li><i class="fa fa-dashboard"></i><a href="#">Gas Card Request</a></li>
+                            <li><i class="fa fa-laptop"></i><a href="#">Service Vehicle Request</a></li>
+                            <li><i class="fa fa-dashboard"></i><a href="#">Vehicle Repair Request</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 import datetime
 from datetime import date
-# from .models import EmployeeMasterlist
+from masterlist.models import EmployeeMasterlist
 
 def increment_Activity_id():
 	last_in = CarRentalRequest.objects.all().order_by('id').last()
@@ -17,8 +17,23 @@ def increment_Activity_id():
 
 
 class CarRentalRequest(models.Model):
+
+	CHOICES= (
+		('Ser Roy DelaCruz', 'Ser Roy DelaCruz'),
+		('Adolfo Carlos Umali', 'Adolfo Carlos Umali'),
+		)
+	Rental= (
+		('Daily', 'Daily'),
+		('Monthly', 'Monthly'),
+		)
+	Vtype= (
+		('Sedan', 'Sedan'),
+		('SUV', 'SUV'),
+		('VAN', 'VAN'),
+	)
+
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
-	A_Employee_Id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.CASCADE, related_name='Employee_id')
+	A_Employee_Id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.CASCADE)
 	Date_received = models.DateField(auto_now=False, null=True)
 	Assignee_Fname = models.CharField(max_length=100, null=True)
 	Assignee_Lname = models.CharField(max_length=100, null=True)
@@ -37,16 +52,16 @@ class CarRentalRequest(models.Model):
 	Up_to = models.CharField(max_length=100, null=True)
 	Time = models.TimeField(auto_now=False, auto_now_add=False, null=True)
 	Place_of_del = models.CharField(max_length=100, null=True)
-	type_rental = models.CharField(max_length=50, null=True)
+	type_rental = models.CharField(max_length=50, null=True, choices=Rental)
 	Cost_center = models.FloatField(null=True)
 	Rental_period = models.FloatField(null=True)
 	Destination = models.CharField(max_length=100, null=True)
 	Delivery_date = models.DateField(auto_now=False, null=True)
 	End_user = models.CharField(max_length=100, null=True)
-	Type_of_vehicle = models.CharField(max_length=50, null=True)
+	Type_of_vehicle = models.CharField(max_length=50, null=True, choices=Vtype)
 	Plate_no = models.CharField(max_length=50, null=True)
-	Immediate_supervisor = models.CharField(max_length=50, null=True)
-	CR_SLA = models.FloatField(null=True)
+	Immediate_supervisor = models.CharField(max_length=50, null=True, choices=CHOICES)
+	CR_SLA = models.CharField(max_length=10, null=True)
 	Date_initiated = models.DateField(auto_now=True)
 
 
@@ -54,7 +69,7 @@ class CarRentalRequest(models.Model):
 		return self.Activity_id
 
 	def get_absolute_url(self):
-		return reverse('carrental_report-list')
+		return reverse('carrequest_list')
 
 
 

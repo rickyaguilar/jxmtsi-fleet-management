@@ -12,41 +12,16 @@
     document.getElementById(cityName).style.display = "block";  
   }
   </script>
-<!-- <script>
-    function getDate() {
-      var today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth()+1; //January is 0!
-      var yyyy = today.getFullYear();
 
-      if(dd<10) {
-          dd = '0'+dd
-      } 
-
-      if(mm<10) {
-          mm = '0'+mm
-      } 
-
-      today = yyyy + '-' + mm + '-' + dd;
-      console.log(today);
-      document.getElementById("Date").value = today;
-    }
-
-
-    window.onload = function() {
-      getDate();
-    };
-
-</script> -->
 <div class="row">
     <div class="col-lg-12">
         <h3 class="page-header">New Vehicle Payments</h3>&nbsp;
     </div>
 </div>
-<div class="w3-bar w3-gray">
-  <button class="w3-bar-item w3-button" onclick="vehiclePayment('New vehicle Payment')">New vehicle Payment</button>
-  <button class="w3-bar-item w3-button" onclick="vehiclePayment('OutBound Process')">OutBound Process</button>
-  <button class="w3-bar-item w3-button" onclick="vehiclePayment('Inbound Process')">Inbound Process</button>
+<div class="w3-bar w3-black">
+  <button class="w3-bar-item w3-button" onclick="vehiclePayment('New vehicle Payment')"><u>New vehicle Payment</u></button>
+  <button class="w3-bar-item w3-button" onclick="vehiclePayment('OutBound Process')"><u>OutBound Process</u></button>
+  <button class="w3-bar-item w3-button" onclick="vehiclePayment('Inbound Process')"><u>Inbound Process</u></button>
 </div>
 <form method="POST">
 {% csrf_token %}

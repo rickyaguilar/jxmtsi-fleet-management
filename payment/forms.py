@@ -2,15 +2,20 @@ from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from .models import VehiclePayment,Fuel_supplier
 
-
-
-
+2
 class VehiclePaymentform(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(VehiclePaymentform, self).__init__(*args, **kwargs)
 		self.fields['LTO_documents'].required = False
-		self.fields['Date_final'].required = False
+		self.fields['Docs_plate_no'].required = False
+		self.fields['LTO_stickers'].required = False
+		self.fields['Sticker_fields'].required = False
 		self.fields['Date_initial'].required = False
+		self.fields['First_payment'].required = False
+		self.fields['LTO_charges'].required = False
+		self.fields['Outstanding_balance'].required = False
+		self.fields['Date_final'].required = False
+		self.fields['Routing_remarks'].required = False
 		
 	class Meta:
 		model = VehiclePayment
@@ -29,7 +34,7 @@ class VehiclePaymentform(forms.ModelForm):
 		    'V_make': forms.TextInput(attrs={'class':'form-control'}),
 		    'V_dealer': forms.TextInput(attrs={'class':'form-control'}),
 		    'LTO_documents': forms.TextInput(attrs={'class':'form-control','type':'date'}),
-		    'Docs_plate_no': forms.TextInput(attrs={'class':'form-control'}),
+		    'Docs_plate_no': forms.Select(attrs={'class':'form-control'}),
 		    'LTO_stickers': forms.TextInput(attrs={'class':'form-control'}),
 		    'Sticker_fields': forms.TextInput(attrs={'class':'form-control'}),
 		    'Date_initial': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
@@ -41,47 +46,6 @@ class VehiclePaymentform(forms.ModelForm):
 		    'V_SLA': forms.TextInput(attrs={'class':'form-control','type':'number','value':'15','hidden':'True'})
 		}
 
-# class CarRentalForm(forms.ModelForm):
-# 	class Meta:
-# 		model = CarRental
-
-# 		fields = ['Bill_date','Employee_id','L_name','F_name','Cost_center','Date_initiated',
-# 				'O_Fname','O_Lname','O_cost_center','Plate_no','V_provider','V_brand','V_make',
-# 				'D_vehicle','S_rental','E_rental','R_duration','R_Cost','G_cost','T_fee',
-# 				'P_fee','Del_fee','Dri_fee','M_cost','O_expenses','T_expenses','I_amount',
-# 				'R_purpose','C_SLA'
-# 		]
-# 		widgets = {
-# 			'Bill_date': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
-# 			'Employee_id':forms.TextInput(attrs={'class':'form-control'}),
-# 			'L_name':forms.TextInput(attrs={'class':'form-control'}),
-# 			'F_name':forms.TextInput(attrs={'class':'form-control'}),
-# 			'Cost_center':forms.TextInput(attrs={'class':'form-control'}),
-# 			'Date_initiated':forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
-# 			'O_Fname':forms.TextInput(attrs={'class':'form-control'}),
-# 			'O_Lname':forms.TextInput(attrs={'class':'form-control'}),
-# 			'O_cost_center':forms.TextInput(attrs={'class':'form-control'}),
-# 			'Plate_no':forms.TextInput(attrs={'class':'form-control'}),
-# 			'V_provider':forms.TextInput(attrs={'class':'form-control'}),
-# 			'V_brand':forms.TextInput(attrs={'class':'form-control'}),
-# 			'V_make':forms.TextInput(attrs={'class':'form-control'}),
-# 			'D_vehicle':forms.TextInput(attrs={'class':'form-control'}),
-# 			'S_rental':forms.TextInput(attrs={'class':'form-control'}),
-# 			'E_rental':forms.TextInput(attrs={'class':'form-control'}),
-# 			'R_duration':forms.TextInput(attrs={'class':'form-control'}),
-# 			'R_Cost':forms.TextInput(attrs={'class':'form-control'}),
-# 			'G_cost':forms.TextInput(attrs={'class':'form-control'}),
-# 			'T_fee':forms.TextInput(attrs={'class':'form-control'}),
-# 			'P_fee':forms.TextInput(attrs={'class':'form-control'}),
-# 			'Del_fee':forms.TextInput(attrs={'class':'form-control'}),
-# 			'Dri_fee':forms.TextInput(attrs={'class':'form-control'}),
-# 			'M_cost':forms.TextInput(attrs={'class':'form-control'}),
-# 			'O_expenses':forms.TextInput(attrs={'class':'form-control'}),
-# 			'T_expenses':forms.TextInput(attrs={'class':'form-control'}),
-# 			'I_amount':forms.TextInput(attrs={'class':'form-control'}),
-# 			'R_purpose':forms.TextInput(attrs={'class':'form-control'}),
-# 			'C_SLA':forms.TextInput(attrs={'class':'form-control'})
-# 		}
 class FuelsupplierForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(FuelsupplierForm, self).__init__(*args, **kwargs)

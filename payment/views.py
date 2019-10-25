@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponseRedirect,reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.views import generic
 from .models import (
     CarRental,
     VehiclePayment,
@@ -16,6 +17,9 @@ from . forms import (
     VehiclePaymentform,
     FuelsupplierForm
 )
+from bootstrap_modal_forms.generic import (
+                                           BSModalDeleteView
+                                           )
 
 # class CarrentalCreateView(CreateView):
 #     model = CarRental
@@ -126,6 +130,12 @@ def Carrental_update(request, pk):
 
 		return HttpResponseRedirect('/Payment/Car/')
 
+class carrentalDeleteView(BSModalDeleteView):
+    model = CarRental
+    template_name = 'payment/carrental_delete.html'
+    success_message = 'Success: Item was deleted.'
+    success_url = reverse_lazy('carrental_list')
+
 class VehicleCreateView(SuccessMessageMixin, CreateView):
     model = VehiclePayment
     form_class = VehiclePaymentform
@@ -151,8 +161,13 @@ class VehicleUpdateView(SuccessMessageMixin, UpdateView):
     def get_success_message(self, cleaned_data):
     	print(cleaned_data)
     	return "New Vehicle Payment's Update Successfully!"
-			
 
+class VehicleDeleteView(BSModalDeleteView):
+    model = VehiclePayment
+    template_name = 'vehicle/vehicle_delete.html'
+    success_message = 'Success: Item was deleted.'
+    success_url = reverse_lazy('Vehicle_list')
+			
 class FuelDetailView(DetailView):
 	model = Fuel_supplier
 	template_name = 'payment/fuel/fuel_supplierSummary.html'
@@ -179,6 +194,11 @@ class FuelUpdateView(SuccessMessageMixin, UpdateView):
     	print(cleaned_data)
     	return "Fuel Supplier Update Successfully!"
 
+class FuelDeleteView(BSModalDeleteView):
+    model = Fuel_supplier
+    template_name = 'fuel/fuel_supplier_delete.html'
+    success_message = 'Success: Item was deleted.'
+    success_url = reverse_lazy('Fuel_supplierList')
 
 
 

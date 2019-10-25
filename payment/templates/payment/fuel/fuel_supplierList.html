@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<script type="text/javascript">
+  $(function () {
+    // Delete book buttons
+    $(".delete-carrequest").each(function () {
+      $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+  });
+</script>
+
 <div class="breadcrumbs">
     <div class="col-sm-12">
         <h1 class="page-header">Fuel Supplier Payment List</h1>
@@ -40,6 +50,12 @@
                             <td>{{ Fuel_supplier.Date_initiated }}</td>
                             <td>{{ Fuel_supplier.Payment_deadline }}</td>
                             <td>{{ Fuel_supplier.Date_forwarded }}</td>
+                            <form action="{% url 'Fuel_delete' Fuel_supplier.id %}" method="POST">
+                                {% csrf_token %}
+                                <td><button class="btn btn-danger btn-sm" type="submit" name="button">
+                                <span class="fa fa-trash"></span>
+                                </button></td>
+                            </form>
                         </tr>
                         {% endfor %}
                     </tbody>
