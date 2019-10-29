@@ -21,7 +21,7 @@
 
 <div class="breadcrumbs">
     <div class="col-sm-12">
-        <h3 class="page-header"><b>Car Rental Request</b></h3>
+        <h2 class="page-header"><b>Gas Card Request</b></h2>
     </div>
 </div>
 
@@ -31,31 +31,34 @@
             <div class="col-md-12">
                 <div class="card">
                 <div class="card-header">
-                    <a href="{% url 'car_request' %}"style="float:right "><u>Add Car Rental Request:</u></a>
+                    <a href="{% url 'gascard_new' %}" style="float:right "><u>Add Gas Card Request</u></a>
                 </div>                         
                 <table id="bootstrap-data-table-export"a class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Activity ID:</th>
-                            <th>Assignee Full Name:</th>
-                            <th>Plate NUmber:</th>
-                            <th>SLA Working Days:</th>
+                            <th>Requisitioner Name:</th>
+                            <th>Plate Number:</th>
+                            <th>Fleet Card Provider:</th>
+                            <th>SLA Working Days</th>
                             <th>Date Initiated:</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for CarRentalRequest in object_list %}
+                        {% for Gas_card in object_list %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'carrequest_details' CarRentalRequest.id %}"><u>{{ CarRentalRequest.Activity_id }}</u></a></td>
-                            <td>{{ CarRentalRequest.Assignee_Fname }} {{ CarRentalRequest.Assignee_Lname }}</td>
-                            <td>{{ CarRentalRequest.Plate_no }}</td>
-                            <td>{{ CarRentalRequest.CR_SLA }}/Days</td>
-                            <td>{{ CarRentalRequest.Date_initiated }}</td>
-                            <form action="{% url 'carrequest_delete' CarRentalRequest.id %}" method="POST">
+                            <td><a href="{% url 'gascard_details' Gas_card.id %}"><u>{{ Gas_card.Activity_id }}</u></a></td>
+                            <td>{{ Gas_card.req_fname }} {{ Gas_card.req_lname }}</td>
+                            <td>{{ Gas_card.plate_no }}</td>
+                            <td>{{ Gas_card.fleet_provider }}</td>
+                            <td>{{ Gas_card.GCR_SLA }}/Days</td>
+                            <td>{{ Gas_card.date_initiated }}</td>
+                            <form action="{% url 'gascard_delete' Gas_card.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
                             </form>
-                            {% comment %} <td><button type="button" class="delete-carrequest btn btn-sm btn-danger" data-id="{% url 'carrequest_delete' CarRentalRequest.id %}"><span class="fa fa-trash"></span></button></td> {% endcomment %}
+                            {% comment %} <td><button type="button" class="delete-carrequest btn btn-sm btn-danger" data-id="{% url 'carrequest_delete' CarRentalRequest.id %}">
+                            <span class="fa fa-trash"></span></button></td> {% endcomment %}
                         </tr>
                         {% endfor %}
                     </tbody>
