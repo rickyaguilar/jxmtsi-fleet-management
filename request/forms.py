@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
-from .models import CarRentalRequest, Gas_card
+from .models import CarRentalRequest, Gas_card, service_vehicle
 
 
 
@@ -16,7 +16,7 @@ class carrequestform(forms.ModelForm):
 		self.fields['Plate_no'].required = False
 		self.fields['Immediate_supervisor'].required = False
 		self.fields['Up_to'].required = False
-		
+
 	class Meta:
 		model = CarRentalRequest
 		fields = [
@@ -40,36 +40,36 @@ class carrequestform(forms.ModelForm):
 				('VAN', 'VAN'),
 			)
 		widgets = {
-				'A_Employee_Id' : forms.Select(attrs={'class':'form-control'}),
-				'Date_received': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
-				'Assignee_Fname': forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_Lname': forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_No': forms.TextInput(attrs={'class':'form-control','type':'tel'}),
-				'Assignee_Company': forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_band': forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_Dept': forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_Cost': forms.TextInput(attrs={'class':'form-control','type':'number'}),
-				'Assignee_Div' : forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_Loc': forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_Section': forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_Designation': forms.TextInput(attrs={'class':'form-control'}),
-				'Assignee_ATD': forms.TextInput(attrs={'class':'form-control'}),
-				'Vendor_name': forms.TextInput(attrs={'class':'form-control'}),
-				'Date' : forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
-				'Up_to': forms.TextInput(attrs={'class':'form-control'}),
-				'Time' : forms.TextInput(attrs={'class':'form-control', 'type':'time'}),
-				'Place_of_del': forms.TextInput(attrs={'class':'form-control'}),
-				'type_rental': forms.Select(attrs={'class':'form-control','choices':'Rental'}),
-				# 'type_rental': forms.ChoiceField(widget=forms.RadioSelect, 'choices':'rental'),
-				'Cost_center': forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
-				'Rental_period' : forms.TextInput(attrs={'class':'form-control'}),
-				'Destination' : forms.TextInput(attrs={'class':'form-control'}),
-				'Delivery_date': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
-				'End_user': forms.TextInput(attrs={'class':'form-control'}),
-				'Type_of_vehicle': forms.Select(attrs={'class':'form-control', 'choices':'Vtype'}),
-				'Plate_no': forms.TextInput(attrs={'class':'form-control'}),
-				'Immediate_supervisor': forms.Select(attrs={'class':'form-control','choices':'CHOICES'}),
-				'CR_SLA' : forms.TextInput(attrs={'class':'form-control','value':'2','hidden':'true'})
+			'A_Employee_Id' : forms.Select(attrs={'class':'form-control'}),
+			'Date_received': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+			'Assignee_Fname': forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_Lname': forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_No': forms.TextInput(attrs={'class':'form-control','type':'tel'}),
+			'Assignee_Company': forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_band': forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_Dept': forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_Cost': forms.TextInput(attrs={'class':'form-control','type':'number'}),
+			'Assignee_Div' : forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_Loc': forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_Section': forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_Designation': forms.TextInput(attrs={'class':'form-control'}),
+			'Assignee_ATD': forms.TextInput(attrs={'class':'form-control'}),
+			'Vendor_name': forms.TextInput(attrs={'class':'form-control'}),
+			'Date' : forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+			'Up_to': forms.TextInput(attrs={'class':'form-control'}),
+			'Time' : forms.TextInput(attrs={'class':'form-control', 'type':'time'}),
+			'Place_of_del': forms.TextInput(attrs={'class':'form-control'}),
+			'type_rental': forms.Select(attrs={'class':'form-control','choices':'Rental'}),
+			# 'type_rental': forms.ChoiceField(widget=forms.RadioSelect, 'choices':'rental'),
+			'Cost_center': forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
+			'Rental_period' : forms.TextInput(attrs={'class':'form-control'}),
+			'Destination' : forms.TextInput(attrs={'class':'form-control'}),
+			'Delivery_date': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+			'End_user': forms.TextInput(attrs={'class':'form-control'}),
+			'Type_of_vehicle': forms.Select(attrs={'class':'form-control', 'choices':'Vtype'}),
+			'Plate_no': forms.TextInput(attrs={'class':'form-control'}),
+			'Immediate_supervisor': forms.Select(attrs={'class':'form-control','choices':'CHOICES'}),
+			'CR_SLA' : forms.TextInput(attrs={'class':'form-control','value':'2','hidden':'true'})
 		}
 
 
@@ -128,7 +128,7 @@ class gascardform(forms.ModelForm):
 			('Shell','Shell'),
 		)
 		app_type= (
-			('New Card', 'Daily'),
+			('Daily', 'Daily'),
 			('Transfer Acountability', 'Transfer Acountability'),
 			('Cancel - Disposal of Vehicle', 'Cancel - Disposal of Vehicle'),
 			('Cancel - Resignation of User', 'Cancel - Resignation of User'),
@@ -200,8 +200,114 @@ class gascardform(forms.ModelForm):
 		}
 
 
+class serviceform(forms.ModelForm):
 
+	def __init__(self, *args, **kwargs):
+		super(serviceform, self).__init__(*args, **kwargs)
+		self.fields['req_employee_id'].required = False
+		self.fields['assignee_employee_id'].required = False
+		self.fields['assignee_group'].required = False
+		self.fields['assignee_fname'].required = False
+		self.fields['assignee_lname'].required = False
+		self.fields['assignee_costcenter'].required = False
+		self.fields['assignee_section'].required = False
+		self.fields['assignee_location'].required = False
+		self.fields['assignee_atd'].required = False
+		self.fields['new_employee_id'].required = False
+		self.fields['new_employee_fname'].required = False
+		self.fields['new_employee_lname'].required = False
+		self.fields['new_employee_cost'].required = False
+		self.fields['new_temporary_atd'].required = False
+		self.fields['prefered_vehicle'].required = False
+		self.fields['E_con_sticker'].required = False
+		self.fields['E_model_year'].required = False
+		self.fields['E_brand'].required = False
+		self.fields['E_type'].required = False
+		self.fields['approved_by'].required = False
+		self.fields['approved_date'].required = False
+		self.fields['vehicle_provider'].required = False
+		self.fields['vehicle_plate_no'].required = False
+		self.fields['vehicle_CS_no'].required = False
+		self.fields['vehicle_model'].required = False
+		self.fields['vehicle_brand'].required = False
+		self.fields['vehicle_make'].required = False
+		self.fields['vehicle_fuel_type'].required = False
+		self.fields['SVV_SLA'].required = False
 
+	class Meta:
+		model = service_vehicle
+		fields = [
+			'request_date','req_employee_id','req_lname','req_fname','assignee_employee_id','assignee_group',
+			'assignee_fname','assignee_lname','assignee_costcenter','assignee_section','assignee_location', 
+			'assignee_atd','new_employee_id','new_employee_fname','new_employee_lname','new_employee_cost',
+			'new_temporary_atd','prefered_vehicle','E_plate_no','E_con_sticker','E_model_year','E_brand',
+			'E_make','E_type','approved_by','approved_date','vehicle_provider','vehicle_plate_no','vehicle_CS_no',
+			'vehicle_model','vehicle_brand','vehicle_make','vehicle_fuel_type','SVV_SLA'
+		]
+		vtype= (
+			('Sedan', 'Sedan'),
+			('SUV', 'SUV '),
+			('Pick up 4x2', 'Pick up 4x2'),
+			('Pick Up 4x4', 'Pick Up 4x4'),
+			)
+		approvedby= (
+			('Ser Roy Dela Cruz', 'Ser Roy Dela Cruz'),
+			('Adolfo Carlos Umali', 'Adolfo Carlos Umali '),
+			)
+		vprovider= (
+			('Orix', 'Orix'),
+			('Diamond', 'Diamond '),
+			('Safari', 'Safari'),
+			)
+		vbrand= (
+			('BMW', 'BMW'),
+			('Chevrolet', 'Chevrolet '),
+			('chrysler', 'chrysler'),
+			('Ford', 'Ford'),
+			('Honda', 'Honda '),
+			('Hyundai', 'Hyundai'),
+			('Isuzu', 'Isuzu'),
+			('Kia', 'Kia '),
+			('Masda', 'Masda'),
+			('Mitsubishi', 'Mitsubishi'),
+			('Nissan', 'Nissan '),
+			('Peugeot', 'Peugeot'),
+			('Subaro', 'Subaro'),
+			)
 
-
-
+		widgets = {	
+			'request_date': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+			'req_employee_id': forms.TextInput(attrs={'class':'form-control'}),
+			'req_lname': forms.TextInput(attrs={'class':'form-control'}),
+			'req_fname': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_employee_id': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_group': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_fname': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_lname': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_costcenter': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_section': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_location': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_atd': forms.TextInput(attrs={'class':'form-control'}),
+			'new_employee_id': forms.TextInput(attrs={'class':'form-control'}),
+			'new_employee_fname': forms.TextInput(attrs={'class':'form-control'}),
+			'new_employee_lname': forms.TextInput(attrs={'class':'form-control'}),
+			'new_employee_cost': forms.TextInput(attrs={'class':'form-control'}),
+			'new_temporary_atd': forms.TextInput(attrs={'class':'form-control'}),
+			'prefered_vehicle': forms.Select(attrs={'class':'form-control', 'choices':'vtype'}),
+			'E_plate_no': forms.TextInput(attrs={'class':'form-control'}),
+			'E_con_sticker': forms.TextInput(attrs={'class':'form-control'}),
+			'E_model_year': forms.TextInput(attrs={'class':'form-control'}),
+			'E_brand': forms.TextInput(attrs={'class':'form-control'}),
+			'E_make': forms.TextInput(attrs={'class':'form-control'}),
+			'E_type': forms.TextInput(attrs={'class':'form-control'}),
+			'approved_by': forms.Select(attrs={'class':'form-control','choices':'approvedby'}),
+			'approved_date': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+			'vehicle_provider': forms.TextInput(attrs={'class':'form-control','choices':'vprovider'}),
+			'vehicle_plate_no': forms.TextInput(attrs={'class':'form-control'}),
+			'vehicle_CS_no': forms.TextInput(attrs={'class':'form-control'}),
+			'vehicle_model': forms.TextInput(attrs={'class':'form-control'}),
+			'vehicle_brand': forms.Select(attrs={'class':'form-control','choices':'vbrand'}),
+			'vehicle_make': forms.TextInput(attrs={'class':'form-control'}),
+			'vehicle_fuel_type': forms.TextInput(attrs={'class':'form-control'}),
+			'SVV_SLA': forms.TextInput(attrs={'class':'form-control','value':'60','hidden':'true'})
+		}

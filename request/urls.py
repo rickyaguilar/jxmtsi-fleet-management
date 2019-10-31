@@ -11,6 +11,10 @@ from .views import (
 	gasUpdateView,
 	gasDetailView,
 	gasDeleteView,
+	serviceListView,
+	serviceCreateView,
+	serviceUpdateView,
+	serviceDetailView,
  )
 
 urlpatterns = [
@@ -23,6 +27,10 @@ urlpatterns = [
 	path('Gas/New', gasCreateView.as_view(), name='gascard_new'),
 	path('Gas/Update/<int:pk>', gasUpdateView.as_view(), name='gascard_update'),
 	path('Gas/Details/<int:pk>', gasDetailView.as_view(), name='gascard_details'),
-	path('Gas/Delete/<int:pk>', gasDeleteView.as_view(), name='gascard_delete')
+	path('Gas/Delete/<int:pk>', gasDeleteView.as_view(), name='gascard_delete'),
+	path('Service/', serviceListView.as_view(), name='service_list'),
+	path('Service/New', serviceCreateView.as_view(), name='service_new'),
+	path('Service/Details/<int:pk>', serviceDetailView.as_view(), name='service_details'),
+	path('Service/Update/<int:pk>', serviceUpdateView.as_view(), name='service_update')
 
-]
+	]

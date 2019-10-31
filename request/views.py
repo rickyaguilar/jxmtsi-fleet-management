@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .models import (
 		CarRentalRequest,
         Gas_card,
+        service_vehicle,
 )
 from django.views.generic import (
      DetailView,
@@ -18,6 +19,7 @@ from django.views.generic import (
 from . forms import (
     carrequestform,
     gascardform,
+    serviceform,
 
     )
 
@@ -72,8 +74,8 @@ class gasCreateView(SuccessMessageMixin, CreateView):
     template_name = 'gas_card/gascard_form.html'
 
     def get_success_message(self, cleaned_data):
-    	print(cleaned_data)
-    	return "New Gas Card Details Has been Created!"
+        print(cleaned_data)
+        return "New Gas Card Details Has been Created!"
 
 class gasUpdateView(SuccessMessageMixin, UpdateView):
     model = Gas_card
@@ -93,3 +95,35 @@ class gasDeleteView(BSModalDeleteView):
     template_name = 'gas_card/gascard_delete.html'
     success_message = 'Success: Gas Gard Request was deleted.'
     success_url = reverse_lazy('gascard_list')
+
+
+class serviceListView(ListView):
+    model = service_vehicle
+    template_name = 'service_vehicle/service_list.html'
+
+class serviceCreateView(SuccessMessageMixin, CreateView):
+    model = service_vehicle
+    form_class = serviceform
+    template_name = 'service_vehicle/service_form.html'
+
+    def get_success_message(self, cleaned_data):
+        print(cleaned_data)
+        return "New Service Vehicle Request Has been Created!"
+
+class serviceUpdateView(SuccessMessageMixin, UpdateView):
+    model = service_vehicle
+    form_class = serviceform
+    template_name = 'service_vehicle/service_form.html'
+    
+    def get_success_message(self, cleaned_data):
+    	print(cleaned_data)
+    	return "Service Vehicle Request Update Successfully!"
+
+class serviceDetailView(DetailView):
+    model = service_vehicle
+    template_name = 'service_vehicle/service_details.html'
+
+
+
+
+

@@ -1,7 +1,5 @@
 {% load static %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="{% static 'assets/js/bootstrap.js' %}"></script>
-<script src="{% static 'assets/js/jquery.js' %}"></script>
 <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
 <!-- You can alternatively load the minified version -->
 <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
@@ -97,18 +95,19 @@ body {font-family: Arial;}
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Payment's</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'Vehicle_list' %}">New Vehicle Payment's</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'carrental_list' %}">Car Rental Payment's</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'Fuel_supplierList' %}">Fuel Supplier Payment's</a></li>
+                            <li><i class="menu-icon fa fa-newspaper-o"></i><a href="{% url 'Vehicle_list' %}">New Vehicle Payment's</a></li>
+                            <li><i class="menu-icon fa fa-newspaper-o"></i><a href="{% url 'carrental_list' %}">Car Rental Payment's</a></li>
+                            <li><i class="menu-icon fa fa-newspaper-o"></i><a href="{% url 'Fuel_supplierList' %}">Fuel Supplier Payment's</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Request</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-send-o	
+"></i>Request</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-dashboard"></i><a href="{% url 'carrequest_list' %}">Car Rental Request</a></li>
-                            <li><i class="fa fa-dashboard"></i><a href="{% url 'gascard_list' %}">Gas Card Request</a></li>
-                            <li><i class="fa fa-laptop"></i><a href="#">Service Vehicle Request</a></li>
-                            <li><i class="fa fa-dashboard"></i><a href="#">Vehicle Repair Request</a></li>
+                            <li><i class="fa fa-send-o"></i><a href="{% url 'carrequest_list' %}">Car Rental Request</a></li>
+                            <li><i class="fa fa-send-o"></i><a href="{% url 'gascard_list' %}">Gas Card Request</a></li>
+                            <li><i class="fa fa-send-o"></i><a href="{% url 'service_list' %}">Service Vehicle Request</a></li>
+                            <li><i class="fa fa-wrench"></i><a href="#">Vehicle Repair Request</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -119,9 +118,9 @@ body {font-family: Arial;}
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Monitoring</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder-o"></i>Monitoring</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'Monitoring_list' %}">FATA Monitoring</a></li>
+                            <li><i class="menu-icon fa fa-folder-o"></i><a href="{% url 'Monitoring_list' %}">FATA Monitoring</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -139,10 +138,10 @@ body {font-family: Arial;}
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>MasterList</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder-open-o"></i>MasterList</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'vehicle-list' %}">Vehicle Masterlist</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'employee-list' %}">Employee Masterlist</a></li>
+                            <li><i class="menu-icon fa fa-folder-open-o"></i><a href="{% url 'vehicle-list' %}">Vehicle Masterlist</a></li>
+                            <li><i class="menu-icon fa fa-folder-open-o"></i><a href="{% url 'employee-list' %}">Employee Masterlist</a></li>
                         </ul>
                     </li>
                 </ul>
