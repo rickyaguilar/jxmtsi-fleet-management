@@ -6,6 +6,7 @@ from .models import (
 		CarRentalRequest,
         Gas_card,
         service_vehicle,
+        Vehicle_Repair,
 )
 from django.views.generic import (
      DetailView,
@@ -20,6 +21,7 @@ from . forms import (
     carrequestform,
     gascardform,
     serviceform,
+    repairform,
 
     )
 
@@ -123,7 +125,43 @@ class serviceDetailView(DetailView):
     model = service_vehicle
     template_name = 'service_vehicle/service_details.html'
 
+class serviceDeleteView(BSModalDeleteView):
+    model = service_vehicle
+    template_name = 'service_vehicle/service_delete.html'
+    success_message = 'Success: Service Vehicle Request was deleted.'
+    success_url = reverse_lazy('service_list')
 
+class repairListView(ListView):
+    model = Vehicle_Repair
+    template_name='vehicle_repair/repair_list.html'
+
+class repairCreateView(SuccessMessageMixin, CreateView):
+    model = Vehicle_Repair
+    form_class = repairform
+    template_name = 'vehicle_repair/repair_form.html'
+
+    def get_success_message(self, cleaned_data):
+        print(cleaned_data)
+        return "New Vehicle Repair Request Has been Created!"
+
+class repairDetailView(DetailView):
+    model = Vehicle_Repair
+    template_name = 'vehicle_repair/repair_details.html'
+
+class repairUpdateView(SuccessMessageMixin, UpdateView):
+    model = Vehicle_Repair
+    form_class = repairform
+    template_name = 'vehicle_repair/repair_form.html'
+    
+    def get_success_message(self, cleaned_data):
+    	print(cleaned_data)
+    	return "Vehicle Repair Request Updated Successfully!"
+
+class repairDeleteView(BSModalDeleteView):
+    model = Vehicle_Repair
+    template_name = 'vehicle_repair/repair_delete.html'
+    success_message = 'Success: Vehicle Repair Request was deleted.'
+    success_url = reverse_lazy('repair_list')
 
 
 

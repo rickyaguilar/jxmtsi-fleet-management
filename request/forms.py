@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
-from .models import CarRentalRequest, Gas_card, service_vehicle
+from .models import CarRentalRequest, Gas_card, service_vehicle, Vehicle_Repair
 
 
 
@@ -277,10 +277,10 @@ class serviceform(forms.ModelForm):
 
 		widgets = {	
 			'request_date': forms.TextInput(attrs={'class':'form-control','type':'date'}),
-			'req_employee_id': forms.TextInput(attrs={'class':'form-control'}),
+			'req_employee_id': forms.Select(attrs={'class':'form-control'}),
 			'req_lname': forms.TextInput(attrs={'class':'form-control'}),
 			'req_fname': forms.TextInput(attrs={'class':'form-control'}),
-			'assignee_employee_id': forms.TextInput(attrs={'class':'form-control'}),
+			'assignee_employee_id': forms.Select(attrs={'class':'form-control'}),
 			'assignee_group': forms.TextInput(attrs={'class':'form-control'}),
 			'assignee_fname': forms.TextInput(attrs={'class':'form-control'}),
 			'assignee_lname': forms.TextInput(attrs={'class':'form-control'}),
@@ -310,4 +310,84 @@ class serviceform(forms.ModelForm):
 			'vehicle_make': forms.TextInput(attrs={'class':'form-control'}),
 			'vehicle_fuel_type': forms.TextInput(attrs={'class':'form-control'}),
 			'SVV_SLA': forms.TextInput(attrs={'class':'form-control','value':'60','hidden':'true'})
+		}
+
+class repairform(forms.ModelForm):
+	
+	class Meta:
+		model = Vehicle_Repair
+		fields = [
+		'request_date','employee_Id','cost_center','first_name','last_name','contact_no','company','department','group_section',
+		'plate_no','v_brand','engine','v_make','v_model','chassis','band','cond_sticker','equipment_no','fleet_area',
+		'maintenance_type1','scope_work1','maintenance_type2','scope_work2','recommendations','service_reminder','verified_by', 
+		'particulars','category','work_order1','work_order2','work_order3','datework_created','Shop_vendor','date_forwarded','estimate_no',
+		'maintenance_amount','less_discount','estimate_remarks','estimate_attached','approvedby','meter_reading','VRR_SLA'
+		]
+		area= (
+			('The Globe Tower', 'The Globe Tower'),
+			('Visayas-Mindanao', 'Visayas-Mindanao '),
+		)
+		
+		verified= (
+			('Shane Santos','Shane Santos'),
+		)
+		shop= (
+			('GR8','GR8'),
+			('Rapide','Rapide'),
+			('EV','EV')
+		)
+		maintenance= (
+			('Preventive Maintenance','Preventive Maintenance'),
+			('Corective Maitenance','Corective Maitenance'),
+			('Battery','Battery'),
+			('Tire','Tire'),
+		)
+		approvedby= (
+			('Ser Roy Perluval Dela Cruz','Ser Roy Perluval Dela Cruz'),
+			('Adolfo Carlos Umali','Adolfo Carlos Umali'),
+		)
+
+		widgets ={
+			'request_date': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+			'employee_Id' : forms.TextInput(attrs={'class':'form-control'}),
+			'cost_center' : forms.TextInput(attrs={'class':'form-control'}),
+			'first_name' : forms.TextInput(attrs={'class':'form-control'}),
+			'last_name' : forms.TextInput(attrs={'class':'form-control'}),
+			'contact_no' : forms.TextInput(attrs={'class':'form-control'}),
+			'company' : forms.TextInput(attrs={'class':'form-control'}),
+			'department' : forms.TextInput(attrs={'class':'form-control'}),
+			'group_section' : forms.TextInput(attrs={'class':'form-control'}),
+			'plate_no' : forms.TextInput(attrs={'class':'form-control'}),
+			'v_brand' : forms.TextInput(attrs={'class':'form-control'}),
+			'engine' : forms.TextInput(attrs={'class':'form-control'}),
+			'v_make' : forms.TextInput(attrs={'class':'form-control'}),
+			'v_model' : forms.TextInput(attrs={'class':'form-control'}),
+			'chassis' : forms.TextInput(attrs={'class':'form-control'}),
+			'band' : forms.TextInput(attrs={'class':'form-control'}),
+			'cond_sticker' : forms.TextInput(attrs={'class':'form-control'}),
+			'equipment_no' : forms.TextInput(attrs={'class':'form-control'}),
+			'fleet_area' : forms.Select(attrs={'class':'form-control','choices':'area'}),
+			'particulars' : forms.TextInput(attrs={'class':'form-control'}),
+			'category' : forms.TextInput(attrs={'class':'form-control'}),
+			'maintenance_type1' : forms.Select(attrs={'class':'form-control','choices':'maintenance'}),
+			'scope_work1' : forms.TextInput(attrs={'class':'form-control'}),
+			'maintenance_type2' : forms.Select(attrs={'class':'form-control','choices':'maintenance'}),
+			'scope_work2' : forms.TextInput(attrs={'class':'form-control'}),
+			'recommendations' : forms.TextInput(attrs={'class':'form-control'}),
+			'service_reminder' : forms.TextInput(attrs={'class':'form-control'}),
+			'verified_by' : forms.Select(attrs={'class':'form-control','choices':'verified'}),
+			'work_order1' : forms.TextInput(attrs={'class':'form-control'}),
+			'work_order2' : forms.TextInput(attrs={'class':'form-control'}),
+			'work_order3' : forms.TextInput(attrs={'class':'form-control'}),
+			'datework_created': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+			'Shop_vendor' : forms.Select(attrs={'class':'form-control','choices':'shop'}),
+			'date_forwarded' : forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+			'estimate_no' : forms.TextInput(attrs={'class':'form-control'}),
+			'maintenance_amount' : forms.TextInput(attrs={'class':'form-control'}),
+			'less_discount' : forms.TextInput(attrs={'class':'form-control'}),
+			'estimate_remarks' : forms.TextInput(attrs={'class':'form-control'}),
+			'estimate_attached' : forms.TextInput(attrs={'class':'form-control'}),
+			'approvedby' : forms.Select(attrs={'class':'form-control','choices':'approvedby'}),
+			'meter_reading' : forms.TextInput(attrs={'class':'form-control'}),
+			'VRR_SLA': forms.TextInput(attrs={'class':'form-control','value':'30','hidden':'true'})
 		}

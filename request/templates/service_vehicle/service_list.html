@@ -24,6 +24,7 @@
                             <th>CS Number:</th>
                             <th>SLA Working Days</th>
                             <th>Date Initiated:</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,7 +36,7 @@
                             <td>{{ service_vehicle.vehicle_CS_no }}</td>
                             <td>{{ service_vehicle.SVV_SLA }}/Days</td>
                             <td>{{ service_vehicle.date_initiated }}</td>
-                            <form action="{% url 'gascard_delete' service_vehicle.id %}" method="POST">
+                            <form action="{% url 'service_delete' service_vehicle.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
                             </form>

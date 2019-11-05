@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 import datetime
 from datetime import date
-from masterlist.models import EmployeeMasterlist
+from masterlist.models import EmployeeMasterlist,VehicleMasterList
 
 def increment_Activity_id():
 	last_in = CarRentalRequest.objects.all().order_by('id').last()
@@ -213,10 +213,10 @@ class service_vehicle(models.Model):
 		)
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
 	request_date = models.DateField(auto_now=False, null=True)
-	req_employee_id = models.CharField(max_length=100, null=True)
+	req_employee_id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING, related_name='req_employee_id')
 	req_lname = models.CharField(max_length=100, null=True)
 	req_fname = models.CharField(max_length=100, null=True)
-	assignee_employee_id = models.CharField(max_length=100, null=True)
+	assignee_employee_id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING,related_name='assignee_employee_id')
 	assignee_group = models.CharField(max_length=100, null=True)
 	assignee_fname = models.CharField(max_length=100, null=True)
 	assignee_lname = models.CharField(max_length=100, null=True)
@@ -248,7 +248,6 @@ class service_vehicle(models.Model):
 	SVV_SLA = models.CharField(max_length=10, null=True)
 	date_initiated = models.DateField(auto_now=True, null=True)
 
-
 	def __str__(self):
     		return self.Activity_id
 
@@ -256,6 +255,89 @@ class service_vehicle(models.Model):
 		return reverse('service_list')
 
 
+def increment_Activity_id():
+	last_in = Vehicle_Repair.objects.all().order_by('id').last()
+	if not last_in:
+		return 'VRR' + str(datetime.datetime.today().strftime('%Y')) + '-' + '000001'
+	in_id = last_in.Activity_id
+	in_int = int(in_id[10:])
+	new_in_int = in_int + 1
+	new_in_id = 'VRR' + str(datetime.datetime.today().strftime('%Y')) + '-' + str(new_in_int).zfill(6)
+	return new_in_id
 
+class Vehicle_Repair(models.Model):
+	area= (
+	('The Globe Tower', 'The Globe Tower'),
+	('Visayas-Mindanao', 'Visayas-Mindanao '),
+	)
+	
+	verified= (
+		('Shane Santos','Shane Santos'),
+	)
+	shop= (
+		('GR8','GR8'),
+		('Rapide','Rapide'),
+		('EV','EV')
+	)
+	maintenance= (
+		('Preventive Maintenance','Preventive Maintenance'),
+		('Corective Maitenance','Corective Maitenance'),
+		('Battery','Battery'),
+		('Tire','Tire'),
+	)
+	approvedby= (
+		('Ser Roy Perluval Dela Cruz','Ser Roy Perluval Dela Cruz'),
+		('Adolfo Carlos Umali','Adolfo Carlos Umali'),
+	)
+	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
+	request_date = models.DateField(auto_now=False, null=True)
+	employee_Id = models.CharField(max_length=100, null=True)
+	cost_center = models.CharField(max_length=100, null=True)
+	first_name = models.CharField(max_length=100, null=True)
+	last_name = models.CharField(max_length=100, null=True)
+	contact_no = models.CharField(max_length=100, null=True)
+	company = models.CharField(max_length=100, null=True)
+	department = models.CharField(max_length=100, null=True)
+	group_section = models.CharField(max_length=100, null=True)
+	plate_no = models.CharField(max_length=100, null=True)
+	v_brand = models.CharField(max_length=100, null=True)
+	engine = models.CharField(max_length=100, null=True)
+	v_make = models.CharField(max_length=100, null=True)
+	v_model = models.CharField(max_length=100, null=True)
+	chassis = models.CharField(max_length=100, null=True)
+	band = models.CharField(max_length=100, null=True)
+	cond_sticker = models.CharField(max_length=100, null=True)
+	equipment_no = models.CharField(max_length=100, null=True)
+	fleet_area = models.CharField(max_length=100, null=True, choices=area)
+	particulars = models.CharField(max_length=100, null=True)
+	category = models.CharField(max_length=100, null=True)
+	maintenance_type1 = models.CharField(max_length=100, null=True, choices=maintenance)
+	scope_work1 = models.CharField(max_length=100, null=True)
+	maintenance_type2 = models.CharField(max_length=100, null=True, choices=maintenance)
+	scope_work2 = models.CharField(max_length=100, null=True)
+	recommendations = models.CharField(max_length=100, null=True)
+	service_reminder = models.CharField(max_length=100, null=True)
+	verified_by = models.CharField(max_length=100, null=True, choices=verified)
+	work_order1 = models.CharField(max_length=100, null=True)
+	work_order2 = models.CharField(max_length=100, null=True)
+	work_order3 = models.CharField(max_length=100, null=True)
+	datework_created = models.DateField(auto_now=False, null=True)
+	Shop_vendor = models.CharField(max_length=100, null=True, choices=shop)
+	date_forwarded = models.CharField(max_length=100, null=True)
+	estimate_no = models.CharField(max_length=100, null=True)
+	maintenance_amount = models.CharField(max_length=100, null=True)
+	less_discount = models.CharField(max_length=100, null=True)
+	estimate_remarks = models.CharField(max_length=100, null=True)
+	estimate_attached = models.CharField(max_length=100, null=True)
+	approvedby = models.CharField(max_length=100, null=True, choices=approvedby)
+	meter_reading = models.CharField(max_length=100, null=True)
+	VRR_SLA = models.CharField(max_length=10, null=True)
+	date_initiated = models.DateField(auto_now=True, null=True)
+
+	def __str__(self):
+    		return self.Activity_id
+
+	def get_absolute_url(self):
+		return reverse('repair_list')
 
 
