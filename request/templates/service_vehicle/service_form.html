@@ -28,21 +28,21 @@ function servicevehicle(service) {
     <div id="Service Vehicle Request" class="w3-container vehicle">
     <fieldset>
         <legend align="left">Requisitioner Details</legend><br>
-        <div style="display: flex; justify-content: flex-end">
-        <div class="col-sm-4">
+        
+        <div class="col-sm-6">
             <label>Requisitioner Employee ID:</label>
             {{ form.req_employee_id }}
         </div>
-        </div>
-        <div class="col-sm-4">
+        
+        <div class="col-sm-6">
             <label>Request Received Date</label>
             {{ form.request_date }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Requisitioner Last Name:</label>
             {{ form.req_lname}}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Requisitioner First Name</label>
             {{ form.req_fname }}
         </div>
@@ -56,7 +56,7 @@ function servicevehicle(service) {
             <label>Assignee Employee ID:</label>
             {{ form.assignee_employee_id }}
         </div>
-        </br>
+        
         <div class="col-sm-4">
             <label>Assignee Group:</label>
             {{ form.assignee_group }}

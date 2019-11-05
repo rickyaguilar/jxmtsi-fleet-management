@@ -44,7 +44,7 @@
                             <td>{{ Vmaster.vehicle_type }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
-                                <td><button class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
+                                <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
                             </form>
                         </tr>
                         {% endfor %}

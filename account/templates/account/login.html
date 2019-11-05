@@ -13,14 +13,7 @@
 
     <title>FLEET Management</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{% static 'vendors/metisMenu/metisMenu.min.css' %}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{% static 'dist/css/sb-admin-2.css' %}" rel="stylesheet">
+ 
 
     <!-- Custom Fonts -->
     <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
@@ -31,75 +24,132 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no,user-scalable=0"/>
+    
+    <meta name="description" content="nodes.js is a nodes/particles animation useable for backgrounds">
+    <meta name="keywords" content="nodes, animation, particlees, web, html5, canvas, backgorund">
 
+    <style type="text/css">
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            font-family: 'Arial';
+            font-size: 14px;
+            line-height: 20px;
+            color: white;
+            background: black;
+        }
+
+        .a,
+        .a:visited {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .a:hover {
+        }
+
+        .btn,
+        a.btn,
+        a.btn:visited {
+            text-decoration: none;
+            color: 255,255,255,0.3;
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #c1c1c1;
+            border-bottom: 2px solid #c1c1c1;
+            padding: 5px; border-radius: 2px;
+            transition: all 250ms;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            box-shadow: 0px 0px 12px 0px rgba(255,255,255, 0.5);
+            background: rgba(255,255,255,0.3);
+        }
+
+        .mainBox {
+            width: 700px;
+            display: inline-block;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.2);
+            margin-top: 200px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .mainBox {
+                width: 300px;
+            }
+        }
+
+        @media only screen and (max-height: 700px) {
+            .mainBox {
+                margin-top: 50px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<style type="text/css">
- body, html {
-        height: 100%;
-        background-repeat: no-repeat;
-    }
+<!-- <nodes.js embedding> -->
+    <script type="text/javascript" src="{% static 'nodes/js/nodes.js' %}"></script>
+    <script type="text/javascript">
+        var nodesjs = new NodesJs({
+            id: 'nodes',
+            width: window.innerWidth,
+            height: window.innerHeight,
+            particleSize: 2,
+            lineSize: 1,
+            particleColor: [255, 255, 255, 0.3],
+            lineColor: [255, 255, 255],
+            backgroundFrom: [10, 25, 100],
+            backgroundTo: [25, 50, 150],
+            backgroundDuration: 4000,
+            nobg: false,
+            number: window.hasOwnProperty('orientation') ? 30: 100,
+            speed: 15
+        });
+    </script>
+    <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%;">
+        <canvas id="nodes"></canvas>
+    </div>
+    <!-- </nodes.js embedding> -->
 
-    .wrapper {
-        margin-top: 50px;
-        margin-bottom: 20px;
-    }
-
-    .form-signin {
-        max-width: 700px;
-        padding: 30px 38px 66px;
-        margin: 0 auto;
-        background-color: #A6ACAF;
-        border: 5px solid rgba(0,0,0,0.1);
-        border-radius: 50px;
-    }
-
-    .form-signin-heading {
-        text-align: center;
-        margin-bottom: 0px;
-    }
-
-    .form-control {
-        position: relative;
-        font-size: 14px;
-        height: 8px;
-        padding: 10px;
-    }
-</style>
-
-
-<div class="wrapper">
+    <script type="text/javascript">
+        window.onresize = function () {
+            nodesjs.setWidth(window.innerWidth);
+            nodesjs.setHeight(window.innerHeight);
+        };
+    </script>
+<div style="position: relative; z-index: 100;">
     <form class="form-signin" method="POST">
-        <h2 align="center">Fleet Management System</h2>
-        <h1 class="form-signin-heading">
-        <img src="{% static 'images/fleet.jpg' %}" style="width:700px;height:250px" />
-        <br><br>
-        </h1>
+    {% csrf_token %}
+        <div style="text-align: center; font-family: 'Arial';">
+            <div class="mainBox">
+                <div style="font-size: 30px; margin-bottom: 5px; margin-top: 10px; position: relative; display: inline-block; margin-bottom: 10px;">
+                    FLEET MANAGEMENT SYSTEM</div>
+                <div style="background: rgba(0,0,0, 0.75); margin-bottom: 25px; text-align: left; padding: 5px; overflow">
+                <img src="{% static 'images/fleet.jpg' %}" />
+                </div>
 
-            {% csrf_token %}
-            {{ form|crispy }}
+                <div style="padding: 0px; text-align: left;">
+                    {% csrf_token %}
+                    {{ form|crispy }}
 
-        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-        <label for="remember"> Remember Me</label>
-        <button class="btn btn-primary" style="width:150px;height: 30px;float:right" type="submit">LOGIN</button>
+                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                    <label for="remember"> Remember Me</label>
+                    <button class="btn" style="width:150px;height: 30px;float:right" type="submit">LOGIN</button>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
-
-
     
 
-    <!-- jQuery -->
-    <script src="{% static 'vendors/jquery/jquery.min.js' %}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{% static 'vendors/metisMenu/metisMenu.min.js' %}"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static 'dist/js/sb-admin-2.js' %}"></script>
 
 </body>
 

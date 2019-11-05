@@ -349,7 +349,7 @@ class repairform(forms.ModelForm):
 
 		widgets ={
 			'request_date': forms.TextInput(attrs={'class':'form-control','type':'date'}),
-			'employee_Id' : forms.TextInput(attrs={'class':'form-control'}),
+			'employee_Id' : forms.Select(attrs={'class':'form-control'}),
 			'cost_center' : forms.TextInput(attrs={'class':'form-control'}),
 			'first_name' : forms.TextInput(attrs={'class':'form-control'}),
 			'last_name' : forms.TextInput(attrs={'class':'form-control'}),
@@ -357,7 +357,7 @@ class repairform(forms.ModelForm):
 			'company' : forms.TextInput(attrs={'class':'form-control'}),
 			'department' : forms.TextInput(attrs={'class':'form-control'}),
 			'group_section' : forms.TextInput(attrs={'class':'form-control'}),
-			'plate_no' : forms.TextInput(attrs={'class':'form-control'}),
+			'plate_no' : forms.Select(attrs={'class':'form-control'}),
 			'v_brand' : forms.TextInput(attrs={'class':'form-control'}),
 			'engine' : forms.TextInput(attrs={'class':'form-control'}),
 			'v_make' : forms.TextInput(attrs={'class':'form-control'}),

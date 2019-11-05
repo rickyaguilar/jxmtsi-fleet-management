@@ -28,39 +28,42 @@ function vrepair(repair) {
     <div id="Vehicle Repair Request" class="w3-container vr">
     <fieldset>
         <legend align="left">Requisitioner Details</legend><br>
-        <div class="col-sm-4">
-            <label>Request Date</label>
-            {{ form.request_date }}
-        </div>
-        <div class="col-sm-4">
+        
+        <div class="col-sm-6">
             <label>Employee ID</label>
             {{ form.employee_Id }}
         </div>
-        <div class="col-sm-4">
+        
+        <div class="col-sm-6">
+            <label>Request Date</label>
+            {{ form.request_date }}
+        </div>
+        
+        <div class="col-sm-6">
             <label>Cost Center Code</label>
             {{ form.cost_center }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>First Name:</label>
             {{ form.first_name}}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Last Name</label>
             {{ form.last_name }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Contact Number</label>
             {{ form.contact_no }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Company</label>
             {{ form.company }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Department:</label>
             {{ form.department}}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Group/Section</label>
             {{ form.group_section }}
         </div>
@@ -69,51 +72,53 @@ function vrepair(repair) {
     <hr>
     <fieldset>
     <legend align="left">Vehicle Details</legend>
-        <div class="col-sm-4">
+        
+        <div class="col-sm-6">
             <label>Plate Number:</label>
             {{ form.plate_no }}
         </div>
-        <div class="col-sm-4">
+        
+        <div class="col-sm-6">
             <label>Vehicle Brand:</label>
             {{ form.v_brand }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Engine:</label>
             {{ form.engine }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Vehicle Model Year:</label>
             {{ form.v_model }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Vehicle Make:</label>
             {{ form.v_make }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Chassis:</label>
             {{ form.chassis }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Band:</label>
             {{ form.band }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Conduction Stikers:</label>
             {{ form.cond_sticker }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Equipment Number:</label>
             {{ form.equipment_no }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Fleet Area:</label>
             {{ form.fleet_area }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Particulars:</label>
             {{ form.particulars }}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Category:</label>
             {{ form.category }}
         </div>
