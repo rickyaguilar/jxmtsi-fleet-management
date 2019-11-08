@@ -87,7 +87,8 @@ body {font-family: Arial;}
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <img src="{% static 'images/fleet2.jpg' %}" height="60" width="400">
+                    <br>
+                        <img src="{% static 'images/f2.png' %}">
                     </li>
                     <h3 class="menu-title"></h3><br><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
@@ -124,15 +125,13 @@ body {font-family: Arial;}
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Voucher</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Shuttle</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Service</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="#">Expense Voucher</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>OwnerShip</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Ownership</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Shuttle</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Service</a></li>
+                            <li><i class="fa fa-user"></i><a href="{% url 'ownership_list' %}">Transfer of Ownership</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

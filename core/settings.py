@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'masterlist.apps.MasterlistConfig',
     'monitoring.apps.MonitoringConfig',
     'request.apps.RequestConfig',
+    'ownership.apps.OwnershipConfig',
 
 ]
 
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'ENGINE':'django.db.backends.postgresql_psycopg2',
         'NAME': 'fleet',
         'USER': 'fleet',
         'PASSWORD': 'fleet@27',
@@ -133,9 +134,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 LOGIN_REDIRECT_URL = 'FLEET-index'
-
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
