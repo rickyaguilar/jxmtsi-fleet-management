@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'request.apps.RequestConfig',
     'ownership.apps.OwnershipConfig',
     'voucher.apps.VoucherConfig',
+    'report.apps.ReportConfig',
 
 ]
 

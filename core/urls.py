@@ -28,6 +28,7 @@ urlpatterns = [
     path('Request/', include('request.urls')),
     path('Ownership/', include('ownership.urls')),
     path('Voucher/', include('voucher.urls')),
+    path('Report/', include('report.urls')),
     path('', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name='logout'),
 
