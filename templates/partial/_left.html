@@ -91,6 +91,9 @@ body {font-family: Arial;}
                         <img src="{% static 'images/f2.png' %}">
                     </li>
                     <h3 class="menu-title"></h3><br><!-- /.menu-title -->
+                    <li>
+                        <a href="#"><i class="menu-icon fa fa-tachometer-o"></i>Dasboard</a>
+                    </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Payment's</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -110,10 +113,9 @@ body {font-family: Arial;}
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Report</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Report</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Shuttle</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Service</a></li>
+                            <li><i class="menu-icon fa fa-file"></i><a href="#">Motor Vehicle Accident Report</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -123,9 +125,9 @@ body {font-family: Arial;}
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Voucher</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-id-card"></i>Voucher</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Expense Voucher</a></li>
+                            <li><i class="menu-icon fa fa-id-card"></i><a href="{% url 'voucher_list' %}">Expense Voucher</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
