@@ -37,213 +37,165 @@ $('#emp_id').on('change', function () {
     <button class="w3-bar-item w3-button" onclick="vehiclereport('Inbound Process')">Inbound Process</button>
     <button class="w3-bar-item w3-button" onclick="vehiclereport('Outbound Process')">Outbound Process</button>
     </div>
-<form method="POST" action="">
+<form method="POST">
 {% csrf_token %}
     <div id="Motor Vehicle Accident Report" class="w3-container report">
     <fieldset>
         <legend align="left">Motor Vehicle Accident Report</legend><br>
         <div class="col-sm-6">
             <label>MVAR Recieved Date</label>
-            <input name="mvar_date" type="date" id="mvar_date" class="form-control"/>
+            <!--<input name="mvar_date" type="date" id="mvar_date" class="form-control" required/>-->
+            {{ form.received_date }}
         </div>
         <div class="col-sm-6">
             <label>Vehicle Accident Type</label>
-            <input name="acc_type" type="text" id="acc_type" class="form-control"/>
+            <!--<input name="acc_type" type="text" id="acc_type" class="form-control"/>-->
+            {{ form.v_accident_type }}
         </div>
         <div class="col-sm-6">
             <label>Supporting Documents Attached</label>
-            <input name="supp_docs" type="text" id="supp_docs" class="form-control"/>
+            <!--<input name="supp_docs" type="text" id="supp_docs" class="form-control"/>-->
+            {{ form.support_docs }}
         </div>
     <br><br>
     </fieldset>
     <fieldset>
     <legend align="left">Vehicle Details</legend>
         <div class="col-sm-6">
-            <label>New Employee ID</label>
-            {{ form.new_employee_id }}
-        </div>
-        <div class="col-sm-6">
-            <label>New Employee First Name:</label>
-            {{ form.new_employee_fname}}
-        </div>
-        <div class="col-sm-6">
-            <label>New Employee Last Name</label>
-            {{ form.new_employee_lname }}
-        </div>
-        <div class="col-sm-6">
-            <label>New Employee Group</label>
-            {{ form.new_employee_group }}
-        </div>
-        <div class="col-sm-6">
-            <label>New Cost Center</label>
-            {{ form.new_employee_cost }}
-        </div>
-    </fieldset>
-    <fieldset>
-    <legend align="left">Voucher Details</legend>
-        <div class="col-sm-6">
-            <label>Fleet Area</label>
-            {{ form.fleet_area }}
-        </div>
-        <div class="col-sm-6">
-            <label>Date Received Voucher:</label>
-            {{ form.received_voucher}}
-        </div>
-        <div class="col-sm-6">
-            <label>Transaction Type</label>
-            {{ form.trans_type }}
-        </div>
-        <div class="col-sm-6">
-            <label>Voucher Number</label>
-            {{ form.voucher_no }}
-        </div>
-        <div class="col-sm-6">
-            <label>Indicated Voucher Amount</label>
-            {{ form.voucher_amount }}
-        </div>
-        <div class="col-sm-6">
-            <label>Voucher Type</label>
-            {{ form.voucher_type }}
-        </div>
-    </fieldset>
-    <fieldset>
-    <legend align="left">Fuel Voucher Details</legend>
-        <div class="col-sm-6">
-            <label>Fuel Amount</label>
-            {{ form.fuel_amount }}
-        </div>
-        <div class="col-sm-6">
-            <label>Fuel Products:</label>
-            {{ form.fuel_products}}
-        </div>
-        <div class="col-sm-6">
-            <label>Fuel Liters</label>
-            {{ form.fuel_liters }}
-        </div>
-    </fieldset>
-    <fieldset>
-    <legend align="left">Service Voucher Details</legend>
-        <div class="col-sm-6">
-            <label>Service Amount</label>
-            {{ form.service_amount }}
-        </div>
-        <div class="col-sm-6">
-            <label>Work Order Number:</label>
-            {{ form.work_order}}
-        </div>
-    </fieldset>
-    <fieldset>
-    <legend align="left">Vehicle Details</legend>
-        <div class="col-sm-6">
             <label>Plate Number</label>
+            <!--<input name="plate_number" type="text" id="plate_number" class="form-control" required/>-->
             {{ form.plate_number }}
         </div>
         <div class="col-sm-6">
-            <label>Odometer Reading Start:</label>
-            {{ form.odometer_start}}
-        </div>
-        <div class="col-sm-6">
-            <label>Odometer Reading End</label>
-            {{ form.odometer_end }}
-        </div>
-        <div class="col-sm-6">
-            <label>Vehicle Brand</label>
-            {{ form.v_brand }}
+            <label>Vehicle Model Year</label>
+            <!--<input name="v_model" type="text" id="v_model" class="form-control"/>-->
+            {{ form.v_model }}
         </div>
         <div class="col-sm-6">
             <label>Vehicle Make</label>
+            <!--<input name="v_make" type="text" id="v_make" class="form-control"/>-->
             {{ form.v_make }}
         </div>
         <div class="col-sm-6">
-            <label>Vehicle Fuel Type</label>
-            {{ form.v_fuel_type }}
-        </div>
-        <div class="col-sm-6">
-            <label>Vehicle Model Year</label>
-            {{ form.v_model }}
+            <label>Conduction Sticker</label>
+            <!--<input name="c_sticker" type="text" id="c_sticker" class="form-control"/>-->
+            {{ form.cond_sticker }}
         </div>
     </fieldset>
     <fieldset>
-    <legend align="left">New Vehicle Details</legend>
+    <legend align="left">Assignee Details</legend>
         <div class="col-sm-6">
-            <label>New Plate Number</label>
-            {{ form.new_plate_number }}
+            <label>Assignee Employee ID</label>
+            <!--<input name="a_emp_id" type="text" id="a_emp_id" class="form-control"/>-->
+            {{ form.a_employee_id }}
         </div>
         <div class="col-sm-6">
-            <label>New Odometer Reading Start:</label>
-            {{ form.new_odometer_start}}
+            <label>Assignee First Name</label>
+            <!--<input name="a_emp_fname" type="text" id="a_emp_fname" class="form-control"/>-->
+            {{ form.a_employee_fname }}
         </div>
         <div class="col-sm-6">
-            <label>New Odometer Reading End</label>
-            {{ form.new_odometer_end }}
+            <label>Assignee Last Name</label>
+            <!--<input name="a_emp_lname" type="text" id="a_emp_lname" class="form-control"/>-->
+            {{ form.a_employee_lname }}
         </div>
         <div class="col-sm-6">
-            <label>New Vehicle Brand</label>
-            {{ form.new_v_brand }}
+            <label>Assignee Contact Number</label>
+            <!--<input name="a_emp_number" type="text" id="a_emp_number" class="form-control"/>-->
+            {{ form.a_employee_no }}
         </div>
         <div class="col-sm-6">
-            <label>New Vehicle Make</label>
-            {{ form.new_v_make }}
+            <label>Company</label>
+            <!--<input name="a_emp_company" type="text" id="a_emp_company" class="form-control"/>-->
+            {{ form.a_employee_company }}
         </div>
         <div class="col-sm-6">
-            <label>New Vehicle Fuel Type</label>
-            {{ form.new_v_fuel_type }}
+            <label>Assignee Group</label>
+            <!--<input name="a_emp_group" type="text" id="a_emp_group" class="form-control"/>-->
+            {{ form.a_employee_group }}
         </div>
         <div class="col-sm-6">
-            <label>New Vehicle Model Year</label>
-            {{ form.new_v_model }}
+            <label>Assignee Division</label>
+            <!--<input name="a_emp_div" type="text" id="a_emp_div" class="form-control"/>-->
+            {{ form.a_employee_division }}
+        </div>
+        <div class="col-sm-6">
+            <label>Assignee Department</label>
+            <!--<input name="a_emp_dept" type="text" id="a_emp_dept" class="form-control"/>-->
+            {{ form.a_employee_dept }}
+            <br><hr>
+        </div>
+        
+        <div class="col-sm-6">
+            <label>Assignee Immediate Supervisor Employee ID</label>
+            <!--<input name="ai_emp_id" type="text" id="ai_emp_id" class="form-control"/>-->
+            {{ form.sup_employee_id }}
+        </div>
+        <div class="col-sm-6">
+            <label>Assignee Immediate Supervisor Employee First Name</label>
+            <!--<input name="ai_emp_fname" type="text" id="ai_emp_fname" class="form-control"/>-->
+            {{ form.sup_employee_fname }}
+        </div>
+        <div class="col-sm-6">
+            <label>Assignee Immediate Supervisor Employee Last Name</label>
+            <!--<input name="ai_emp_lname" type="text" id="ai_emp_lname" class="form-control"/>-->
+            {{ form.sup_employee_lname }}
         </div>
     </fieldset>
     <div class="card-footer">
       <button type="submit" class="button">SUBMIT</button>
     </div>
     </div>
-    <div id="Approval Process" class="w3-container voucher" style="display:none">
+    <div id="Inbound Process" class="w3-container report" style="display:none">
     <fieldset>
-        <legend align="left">GT Admin</legend>
+        <legend align="left">Accident Processing 1</legend>
         <div class="col-sm-6">
-            <label>GT Admin:</label>
-            {{ form.gt_admin }}
+            <label>Inform Assignee of Vehicle Inspection:</label>
+            <!--<input name="inform_inspection" type="text" id="inform_inspection" class="form-control"/>-->
+            {{ form.inform_assignee }}
         </div>
         <div class="col-sm-6">
-            <label>Approval Date:</label>
-            {{ form.approval_date }}
-        </div>
-    </fieldset>
-    <fieldset>
-    <legend align="left">Immediate Supervisor</legend>
-        <div class="col-sm-6">
-            <label>Immediate Supervisor:</label>
-            {{ form.immediate_supervisor }}
+            <label>Date of Vehicle Inspection:</label>
+            <!--<input name="date_inspection" type="date" id="date_inspection" class="form-control"/>-->
+            {{ form.date_of_inspection }}
         </div>
         <div class="col-sm-6">
-            <label>Approval Date:</label>
-            {{ form.im_approval_date }}
+            <label>Inspection Remarks:</label>
+            <!--<input name="inspection_remarks" type="text" id="inspection_remarks" class="form-control"/>-->
+            {{ form.inspection_remarks }}
         </div>
     </fieldset>
     <div class="card-footer">
         <button type="submit" class="button">UPDATE</button>
     </div>
     </div>
-    <div id="Inbound Process" class="w3-container voucher" style="display:none">
+    <div id="Outbound Process" class="w3-container report" style="display:none">
     <fieldset>
-        <legend align="left">VOucher Routing</legend>
-        <div class="col-sm-4">
-            <label>Voucher Documents Attached List:</label>
-            {{ form.voucher_docs1 }}
-            {{ form.voucher_docs2 }}
-            {{ form.voucher_docs3 }}
+        <legend align="left">Carnap Claim Processing 1</legend>
+        <div class="col-sm-6">
+            <label>Date Filed Alarm Sheet at PNP TMG:</label>
+            <!--<input name="date_filed" type="date" id="date_filed" class="form-control"/>-->
+            {{ form.date_filed_alarm }}
         </div>
-        <div class="col-sm-4">
-            <label>Voucher Remarks:</label>
-            {{ form.voucher_remarks }}
-        </div>
-        <div class="col-sm-4">
-            <label>Date Forwarded Voucher to Accounting:</label>
-            {{ form.voucher_forwarded }}
-        </div>
-    {{ form.EVO_SLA}}
     </fieldset>
+    <fieldset>
+        <legend align="left">Accident Processing 2</legend>
+        <div class="col-sm-6">
+            <label>Date Received Certificateof Non-Recovery:</label>
+            <!--<input name="date_received" type="date" id="date_received" class="form-control"/>-->
+            {{ form.date_cert_received }}
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend align="left">Insurance Processing 1</legend>
+        <div class="col-sm-6">
+            <label>Date Forward Documents to Insurance Company:</label>
+            <!--<input name="date_forward" type="date" id="date_forward" class="form-control"/>-->
+            {{ form.date_forwarded }}
+        </div>
+    </fieldset>
+    <!--<input name="SLA" type="text" id="SLA" value="5" hidden/>-->
+    {{ form.MVAR_SLA }}
     <div class="card-footer">
         <button type="submit" class="button">UPDATE</button>
     </div>

@@ -14,42 +14,7 @@ def increment_Activity_id():
 	return new_in_id
 
 class vehicle_report(models.Model):
-	# fleet_area= (
-	# 	('The Globe Tower','The Globe Tower'),
-	# 	('Visayas-Mindanao','Visayas-Mindanao'),
-	# )
-	# trans= (
-	# 	('Gas Reimbursements','Gas Reimbursements'),
-	# 	('Car Parts Replacement','Car Parts Replacement'),
-	# 	('GR and CPR','GR and CPR'),
-	# )
-	# voucher_type= (
-	# 	('Expense Voucher','Expense Voucher'),
-	# 	('Petty Cash Voucher','Petty Cash Voucher'),
-	# 	('EV and PCV','EV and PCV'),
-	# )
-	# brand= (
-	# 	('BMW','BMW'),
-	# 	('Chevrolet','Chevrolet'),
-	# 	('Chrysler','Chrysler'),
-	# 	('Ford','Ford'),
-	# 	('Honda','Honda'),
-	# 	('Hyundai','Hyundai'),
-	# 	('Isuzu','Isuzu'),
-	# 	('Kia','Kia'),
-	# 	('Masda','Masda'),
-	# 	('Mitsubishi','Mitsubishi'),
-	# 	('Nissan','Nissan'),
-	# 	('Peugeot','Peugeot'),
-	# 	('Subaro','Subaro'),
-	# )
-	# sup= (
-	# 	('Ser Roy Dela Cruz','Ser Roy Dela Cruz'),
-	# 	('Adolfo Carlos Umali','Adolfo Carlos Umali'),
-	# )
-	# admin= (
-	# 	('Approved','Approved'),
-	# )
+
     Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
     received_date = models.DateField(auto_now=False, null=True)
     v_accident_type = models.CharField(max_length=100, null=True)
@@ -82,5 +47,5 @@ class vehicle_report(models.Model):
         return self.Activity_id
 
     def get_absolute_url(self):
-        return reverse('')
+        return reverse('report_list')
     

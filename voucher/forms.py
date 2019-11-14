@@ -13,9 +13,12 @@ class voucherform(forms.ModelForm):
         self.fields['new_employee_lname'].required = False
         self.fields['new_employee_group'].required = False
         self.fields['new_employee_cost'].required = False
+        self.fields['employee_fname'].required = False
+        self.fields['employee_lname'].required = False
+        self.fields['employee_group'].required = False
+        self.fields['employee_cost'].required = False
         self.fields['service_amount'].required = False
         self.fields['work_order'].required = False
-        self.fields['plate_number'].required = False
         self.fields['odometer_start'].required = False
         self.fields['odometer_end'].required = False
         self.fields['v_brand'].required = False

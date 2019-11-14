@@ -48,6 +48,14 @@ class voucherUpdate(SuccessMessageMixin, UpdateView):
 	def get_success_message(self, cleaned_data):
 		print(cleaned_data)
 		return "Expense Voucher Updated Successfully!"
+#Auto-fill fields form models
+	# def post(self, request, **kwargs):
+	# 	api = get_well_api(self.request)
+	# 	emp_id = EmployeeMasterlist.objects.filter(id=get_Activity_id(self.request))[0]
+	# 	form = voucherform(request.POST, instance=EmployeeMasterlist.objects.filter(employee_id__well__api=api, employee_id=employee_id, employee_fname=employee_fname, employee_lname=employee_lname)[0])
+	# 	if form.is_valid():
+	# 		form.save()
+	# 	return super().post(request, **kwargs)
 		
 class voucherDetails(DetailView):
 	model = expense_voucher
