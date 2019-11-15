@@ -4,10 +4,6 @@ from django.utils import timezone
 import datetime
 from datetime import date
 
-
-
-
-
 class EmployeeMasterlist(models.Model):
 	Company = models.CharField(max_length=100, null=True)
 	Employee_Id = models.CharField(max_length=100, null=True)
@@ -57,25 +53,12 @@ def increment_No():
 	if not last_in:
 	    return '1'
 	in_id = last_in.No
-	in_int = int(in_id[10:])
+	in_int = int(in_id[5:])
 	new_in_int = in_int + 1
-	new_in_id = str(new_in_int).zfill(1)
+	new_in_id = str(new_in_int).zfill(9)
 	return new_in_id
 
 class VehicleMasterList(models.Model):
-
-	# Vbrand= (
-	#       ('Honda','Honda'),
-	#       ('Toyota','Toyota'),
-	#       ('Mitsubishi','Mitsubishi'),
-	#       ('Ford','Ford'),
-	#       ('Masda','Masda'),
-	#       ('Isuzu','Isuzu'),
-	#       ('Hyundai','Hyundai'),
-	#       ('Nissan','Nissan'),
-	#       ('SuZuki','Suzuki'),
-	#       ('Chevrolet','Chevrolet'),
-	# )
 
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
 	No = models.CharField(max_length=50, null=True, default=increment_No)

@@ -4,7 +4,7 @@ from django.utils import timezone
 import datetime
 from datetime import date
 from django.urls import reverse
-from masterlist.models import VehicleMasterList
+from masterlist.models import VehicleMasterList, EmployeeMasterlist
 
 def increment_Activity_id():
 	last_in = Fata_monitoring.objects.all().order_by('id').last()
@@ -27,11 +27,10 @@ class Fata_monitoring(models.Model):
 	Vehicle_brand = models.CharField(max_length=100, null=True)
 	Certificate_of_Reg = models.CharField(max_length=100, null=True)
 	Vehicle_model = models.CharField(max_length=100, null=True)
-	# Transferor_employee = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING)
-	Transferor_employee = models.CharField(max_length=100, null=True)
+	Transferor_employee = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING, related_name='Transferor_employee')
 	Transferor_Fname = models.CharField(max_length=100, null=True)
 	Transferor_Lname =  models.CharField(max_length=100, null=True)
-	Recipient_Employee = models.CharField(max_length=100, null=True)
+	Recipient_Employee = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING, related_name='Recipient_Employee')
 	Recipient_Fname = models.CharField(max_length=100, null=True)
 	Recipient_Lname = models.CharField(max_length=100, null=True)
 	Date_endorsed_Globe = models.DateField(auto_now=False, null=True)

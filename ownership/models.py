@@ -2,6 +2,7 @@
 from django.db import models
 import datetime
 from django.urls import reverse
+from masterlist.models import VehicleMasterList
 
 def increment_Activity_id():
 	last_in = Ownership.objects.all().order_by('id').last()
@@ -43,7 +44,7 @@ class Ownership(models.Model):
     req_band = models.CharField(max_length=100, null=True)
     req_cost =  models.CharField(max_length=100, null=True)
     req_title = models.CharField(max_length=100, null=True)
-    plate_no = models.CharField(max_length=100, null=True)
+    plate_no= models.ForeignKey('masterlist.VehicleMasterList', on_delete=models.DO_NOTHING)
     cond_sticker = models.CharField(max_length=100, null=True)
     vehicle_model = models.CharField(max_length=100, null=True)
     vehicle_brand = models.CharField(max_length=100, null=True)

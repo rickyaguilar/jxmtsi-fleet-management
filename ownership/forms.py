@@ -93,7 +93,7 @@ class ownershipForm(forms.ModelForm):
             'req_band': forms.TextInput(attrs={'class':'form-control'}),
             'req_cost': forms.TextInput(attrs={'class':'form-control'}),
             'req_title': forms.TextInput(attrs={'class':'form-control'}),
-            'plate_no': forms.TextInput(attrs={'class':'form-control'}),
+            'plate_no': forms.Select(attrs={'class':'form-control'}),
             'cond_sticker' : forms.TextInput(attrs={'class':'form-control'}),
             'vehicle_model' : forms.TextInput(attrs={'class':'form-control'}),
             'vehicle_brand' : forms.TextInput(attrs={'class':'form-control'}),
