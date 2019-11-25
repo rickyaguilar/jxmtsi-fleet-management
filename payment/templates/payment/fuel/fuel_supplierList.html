@@ -29,7 +29,6 @@
                         <tr>
                             <th>Activity ID:</th>
                             <th>Fuel Provider:</th>
-                            <th>Next Process:</th>
                             <th>Current Amount:</th>
                             <th>Oustanding Balance</th>
                             <th>SLA Working days:</th>
@@ -44,7 +43,6 @@
                         <tr class="odd gradeX">
                             <td><a href="{% url 'Fuel-summary' Fuel_supplier.id %}">{{ Fuel_supplier.Activity_id }}</a></td>
                             <td>{{ Fuel_supplier.Fuel_provider }} </td>
-                            <td></td>
                             <td>(₱){{ Fuel_supplier.SOA_current_amount }}</td>
                             <td>{{ Fuel_supplier.SOA_outstanding_amount }}</td>
                             <td>{{ Fuel_supplier.F_SLA }}/Days</td>

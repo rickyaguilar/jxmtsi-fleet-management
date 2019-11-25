@@ -313,7 +313,33 @@ class serviceform(forms.ModelForm):
 		}
 
 class repairform(forms.ModelForm):
-	
+
+	def __init__(self, *args, **kwargs):
+		super(repairform, self).__init__(*args, **kwargs)
+		self.fields['contact_no'].required = False
+		self.fields['particulars'].required = False
+		self.fields['maintenance_type1'].required = False
+		self.fields['scope_work1'].required = False
+		self.fields['maintenance_type2'].required = False
+		self.fields['scope_work2'].required = False
+		self.fields['recommendations'].required = False
+		self.fields['service_reminder'].required = False
+		self.fields['verified_by'].required = False
+		self.fields['work_order1'].required = False
+		self.fields['work_order2'].required = False
+		self.fields['work_order3'].required = False
+		self.fields['datework_created'].required = False
+		self.fields['Shop_vendor'].required = False
+		self.fields['date_forwarded'].required = False
+		self.fields['estimate_no'].required = False
+		self.fields['maintenance_amount'].required = False
+		self.fields['less_discount'].required = False
+		self.fields['estimate_remarks'].required = False
+		self.fields['estimate_attached'].required = False
+		self.fields['approvedby'].required = False
+		self.fields['meter_reading'].required = False
+		self.fields['VRR_SLA'].required = False
+
 	class Meta:
 		model = Vehicle_Repair
 		fields = [

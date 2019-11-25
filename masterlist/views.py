@@ -70,7 +70,20 @@ class employeeMasterlistDeleteView(BSModalDeleteView):
     success_url = reverse_lazy('employee-list')
 
 
-
+def registration(request):
+    model = VehicleMasterList
+    reg1 = VehicleMasterList.objects.filter(Plate_no__endswith="1")
+    reg2 = VehicleMasterList.objects.filter(Plate_no__endswith="2")
+    reg3 = VehicleMasterList.objects.filter(Plate_no__endswith="3")
+    reg4 = VehicleMasterList.objects.filter(Plate_no__endswith="4")
+    reg5 = VehicleMasterList.objects.filter(Plate_no__endswith="5")
+    reg6 = VehicleMasterList.objects.filter(Plate_no__endswith="6")
+    reg7 = VehicleMasterList.objects.filter(Plate_no__endswith="7")
+    reg8 = VehicleMasterList.objects.filter(Plate_no__endswith="8")
+    reg9 = VehicleMasterList.objects.filter(Plate_no__endswith="9")
+    reg0 = VehicleMasterList.objects.filter(Plate_no__endswith="0")
+    return render(request, 'registration/registration.html', {'title': 'Vehicle - Vehicle Filter', 'reg1': reg1,'reg2': reg2, 'reg3': reg3,
+    'reg4': reg4, 'reg5': reg5, 'reg6': reg6, 'reg7': reg7, 'reg8': reg8, 'reg9': reg9, 'reg0': reg0})
 
 
 

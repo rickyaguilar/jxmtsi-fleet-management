@@ -7,6 +7,7 @@ from .models import (
     VehiclePayment,
     Fuel_supplier,
 )
+from masterlist.models import EmployeeMasterlist,VehicleMasterList
 from django.views.generic import (
      DetailView,
      ListView,
@@ -135,6 +136,12 @@ class carrentalDeleteView(BSModalDeleteView):
     template_name = 'payment/carrental_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('carrental_list')
+
+def rent(request):
+	emp = EmployeeMasterlist.objects.all()
+	vechicle = VehicleMasterList.objects.all()
+	return render(request, 'payment/car_rental.html', {'title': 'CarRental - Create New Car Rental Request', 'emp': emp, 
+	'vechicle': vechicle})
 
 class VehicleCreateView(SuccessMessageMixin, CreateView):
     model = VehiclePayment

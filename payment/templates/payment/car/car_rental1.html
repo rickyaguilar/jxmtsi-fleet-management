@@ -1,40 +1,98 @@
 {% extends 'base.html' %}
 {% block content %}
-<script src="https://code.jquery.com/jquery-1.8.3.js"></script><!--JAVA Auto compute date-->
-<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script><!--JAVA Auto compute date-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" />
-<!--JAVA Auto compute date-->
+
+<!--Java date computation-->
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
 
-$( "#Srental,#Erental" ).datepicker({
-changeMonth: true,
-changeYear: true,
-firstDay: 1,
-dateFormat: 'dd/mm/yy',
-})
+    $( "#Srental,#Erental" ).datepicker({
+    changeMonth: true,
+    changeYear: true,
+    firstDay: 1,
+    dateFormat: 'dd/mm/yy',
+    })
 
-$( "#Srental" ).datepicker({ dateFormat: 'dd-mm-yy' });
-$( "#Erental" ).datepicker({ dateFormat: 'dd-mm-yy' });
+    $( "#Srental" ).datepicker({ dateFormat: 'dd-mm-yy' });
+    $( "#Erental" ).datepicker({ dateFormat: 'dd-mm-yy' });
 
-$('#Erental').change(function() {
-var start = $('#Srental').datepicker('getDate');
-var end   = $('#Erental').datepicker('getDate');
+    $('#Erental').change(function() {
+    var start = $('#Srental').datepicker('getDate');
+    var end   = $('#Erental').datepicker('getDate');
 
-if (start<end) {
-var days   = (end - start)/1000/60/60/24;
-$('#Rduration').val(days);
-}
-else {
-alert ("You cant come back before you have been!");
-$('#Srental').val("");
-$('#Erental').val("");
-$('#Rduration').val("");
-}
-}); //end change function
-}); //end ready
+    if (start<end) {
+    var days   = (end - start)/1000/60/60/24;
+    $('#Rduration').val(days);
+    }
+    else {
+    alert ("You cant come back before you have been!");
+    $('#Srental').val("");
+    $('#Erental').val("");
+    $('#Rduration').val("");
+    }
+    }); //end change function
+    }); //end ready
 </script>
 
+<!--Java Autofill date-->
+<script>
+    function getDate() {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+
+      if(dd<10) {
+          dd = '0'+dd
+      } 
+
+      if(mm<10) {
+          mm = '0'+mm
+      } 
+
+      today = yyyy + '-' + mm + '-' + dd;
+      console.log(today);
+      document.getElementById("date").value = today;
+    }
+
+
+    window.onload = function() {
+      getDate();
+    };
+
+</script>
+<!---Autocompute number-->
+<script>
+    function add(){
+    var a,b,c,d,e,f,g,h,i;
+        a=Number(document.getElementById("Rcost").value);
+        b=Number(document.getElementById("Gcost").value);
+        c=Number(document.getElementById("Tfee").value);
+        d=Number(document.getElementById("Pfee").value);
+        e=Number(document.getElementById("Dfee").value);
+        f=Number(document.getElementById("Driverfee").value);
+        g=Number(document.getElementById("M_cost").value);
+        h=Number(document.getElementById("Other_exp").value);
+        i= a + b + c + d + e + f + g + h;
+        document.getElementById("Total").value= i;
+    }
+</script>
+<!--for employee auto-fill-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$('#Eid').on('change', function () {
+    var value = $('#Eid').val();
+    $('#Eid').val(parts[0]);
+    $('#Efm').val(parts[1]);
+    $('#Elm').val(parts[2]);
+    $('#Acom').val(parts[3]);
+    $('#Acost').val(parts[3]);
+});
+</script>
 <div class="col-md-12">
     <div class="card">
     <div class="card-header">
@@ -44,14 +102,22 @@ $('#Rduration').val("");
 <form method="POST" action="{% url 'Car_submit' %}">
 {% csrf_token %}
 <input type="text" name="SLA" id="SLA" value="15" hidden>
-<input type="text" name="date" id="date" hidden />
+ <input type="text" name="date" id="date" hidden />
     <div class="col-sm-4">
         <label>Bill Date:</label>
         <input style= "text-transform:" type="date" name="Bdate" id="Bdate" class="form-control" required>
     </div>
     <div class="col-sm-4">
         <label>Assignee Employee ID</label>
-        <input style= "text-transform:" type="select" name="Eid" id="Eid" class="form-control" required>
+        <!--<input style= "text-transform:" type="select" name="Eid" id="Eid" class="form-control" required>-->
+        <input id="Eid" name="Eid" class="form-control" list="emp_list" required>
+            <datalist id="emp_list">               
+                {% for Eid in emp %}
+                <option data-value="{{ Eid.A_employee_Id }} | {{ Eid.F_name }} | {{ Eid.L_name}} | {{ Eid.Assignee_company }} | {{ Eid.Cost_center}}" 
+                value="{{ Eid.A_employee_Id }}">
+                  </option>
+                {% endfor %}
+            </datalist>
     </div>
     <div class="col-sm-4">
         <label>Employee First Name:</label>
@@ -72,7 +138,7 @@ $('#Rduration').val("");
    
     <div class="col-sm-4">
         <label>Other Assignee First Name:</label>
-        <input style="text-transform:" type="text" name="Ofname" id="Ofname" class="form-control">
+        <input style="text-transform:" type="Ofname" name="Ofname" id="Ofname" class="form-control">
     </div>
     <div class="col-sm-4">
         <label>Other Assignee Last Name:</label>
@@ -100,6 +166,8 @@ $('#Rduration').val("");
         <label>Vehicle Make:</label>
         <input style="text-transform:" type="text" name="Vmake" id="Vmake" class="form-control">
     </div>
+
+    <!-- <h4><u>Rental Details</u></h4> -->
     <div class="col-sm-3">
         <label>Date Delivered Vehicle:</label>
         <input style="text-transform:" type="date" name="Ddelivered" id="Ddelivered" class="form-control">
@@ -121,49 +189,49 @@ $('#Rduration').val("");
     <div class="col-sm-3">
         <div class="form-group">
         <label>Rental Cost:</label>
-        <input style="text-transform:" type="Number" name="Rcost" id="Rcost" placeholder="0" class="form-control" />
+        <input style="text-transform:" type="Number" name="Rcost" id="Rcost" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Gasoline Cost:</label>
-        <input style="text-transform:" type="Number" name="Gcost" id="Gcost" placeholder="0" class="form-control"/>
+        <input style="text-transform:" type="Number" name="Gcost" id="Gcost" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Toll Fee:</label>
-        <input style="text-transform:" type="Number" name="Tfee" id="Tfee" placeholder="0" class="form-control"/>
+        <input style="text-transform:" type="Number" name="Tfee" id="Tfee" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Parking Fee:</label>
-        <input style="text-transform:" type="Number" name="Pfee" id="Pfee" placeholder="0" class="form-control"/>
+        <input style="text-transform:" type="Number" name="Pfee" id="Pfee" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Delivery Fee:</label>
-        <input style="text-transform:" type="Number" name="Dfee" id="Dfee" placeholder="0" class="form-control"/>
+        <input style="text-transform:" type="Number" name="Dfee" id="Dfee" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Driver Fee:</label>
-        <input style="text-transform:" type="Number" name="Driverfee" id="Driverfee" placeholder="0" class="form-control"/>
+        <input style="text-transform:" type="Number" name="Driverfee" id="Driverfee" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
         <label>Meal Cost:</label>
-        <input style="text-transform:" type="Number" name="M_cost" id="M_cost" placeholder="0" class="form-control"/>
+        <input style="text-transform:" type="Number" name="M_cost" id="M_cost" placeholder="0" class="form-control" onkeyup="add()"/>
         </div>
     </div>
     <div class="col-sm-12" align="right">
         <div class="form-group">
         <label>Total Expenses:</label>
-         <input align="right" style="width: 150px; text-transform:" type="text" name="Total" id="Total" readonly>    
+         <input align="right" style="width: 150px; text-transform:" type="text" name="Total" id="Total" onclick="add()" readonly>    
         </div>
     </div>
 

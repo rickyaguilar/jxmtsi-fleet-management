@@ -38,7 +38,6 @@
                         <tr>
                             <th>Activity ID:</th>
                             <th>Assignee Full Name:</th>
-                            <th>Next Process:</th>
                             <th>Plate Number:</th>
                             <th>PO Number:</th>
                             <th>SLA Working Days</th>
@@ -53,7 +52,6 @@
                         <tr class="odd gradeX">
                             <td><a href="{% url 'Vehicle-summary' VehiclePayment.id %}">{{ VehiclePayment.Activity_id }}</a></td>
                             <td>{{ VehiclePayment.E_First_name }} {{ VehiclePayment.E_Last_name }}</td>
-                            <td></td>
                             <td>{{ VehiclePayment.Plate_no }}</td>
                             <td>{{ VehiclePayment.PO_no }}</td>
                             <td>{{ VehiclePayment.V_SLA }}/Days</td>

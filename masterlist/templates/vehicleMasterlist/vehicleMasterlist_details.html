@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <div class="col-md-12">
     <div class="card">
     <div class="card-header">
@@ -100,7 +99,6 @@
 
 </table>
     <div class="card-footer">
-      <a href="{% url 'vehicle-update' object.id %}" class="button" style="color:white">UPDATE</a>
+      <a href="{% url 'vehicle-update' object.id %}" class="button" style="color:white">UPDATE</a><a href="" class="button" style="color:white">REGISTER</a><a href="{% url 'vehicle-list'%}" class="button" style="color:white">CLOSE</a>
     </div>
-
 {% endblock %}
