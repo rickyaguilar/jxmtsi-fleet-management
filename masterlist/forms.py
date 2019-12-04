@@ -57,6 +57,9 @@ class Vmasterlist(forms.ModelForm):
             self.fields['Vehicle_IVN_no'].required = False
             self.fields['Unit_MATDOC'].required = False
             self.fields['Grdd_date'].required = False
+            self.fields['reg_month'].required = False
+            self.fields['original_OR_date'].required = False
+            self.fields['plateNo_release'].required = False
 
       class Meta:
             model = VehicleMasterList
@@ -65,7 +68,8 @@ class Vmasterlist(forms.ModelForm):
                   'MV_file_no','vehicle_type','Vehicle_category','Employee_Id','Band_level',
                   'Band_Benefit','Contact_no','Cost_center','Group','Division','Department' ,'Section','IS_employee_ID','IS_firstname',
                   'IS_lastname','Location','Aquisition_date','Aquisition_cost','Asset_no','PO_no','SAP_PR','Vehicle_IVN_no',
-                  'Unit_MATDOC','Grdd_date','Equipment_no','Latest_registration','Lates_remark','Lname_assignee','Fname_assignee'
+                  'Unit_MATDOC','Grdd_date','Equipment_no','Latest_registration','Lates_remark','Lname_assignee','Fname_assignee','reg_month',
+                  'original_OR_date','plateNo_release'
 
             ]
 
@@ -121,7 +125,10 @@ class Vmasterlist(forms.ModelForm):
                   'Latest_registration': forms.TextInput(attrs={'class':'form-control','type':'date'}),
                   'Lates_remark': forms.TextInput(attrs={'class':'form-control'}),
                   'Lname_assignee': forms.TextInput(attrs={'class':'form-control'}),
-                  'Fname_assignee': forms.TextInput(attrs={'class':'form-control'})
+                  'Fname_assignee': forms.TextInput(attrs={'class':'form-control'}),
+                  'reg_month': forms.TextInput(attrs={'class':'form-control', 'hidden':'true'}),
+                  'original_OR_date': forms.TextInput(attrs={'class':'form-control', 'hidden':'true'}),
+                  'plateNo_release': forms.TextInput(attrs={'class':'form-control', 'hidden':'true'})
             }
 
 

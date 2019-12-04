@@ -25,7 +25,6 @@ urlpatterns = [
 	path('Vehicle/Delete/<int:pk>', VehicleDeleteView.as_view(), name='Vehicle_delete'),
 	path('Car/', CarListView.as_view(), name='carrental_list'),
 	path('Car/New', views.Carrentalpayment, name='Car-rental'),
-	# path('Car/New', CarrentalCreateView.as_view(), name='Car-rental'),
 	path('Car/Submit', views.Carrental_submit, name='Car_submit'),
 	path('Car/Detail/<int:pk>', CarRentalDetailView.as_view(), name='Carrental_summary'),
 	path('Car/Update/<int:pk>', views.Carrental_update, name='Car_update'),

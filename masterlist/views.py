@@ -26,13 +26,33 @@ class VmasterlistCreateView(CreateView):
 	form_class = Vmasterlist
 	template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
 
+def Vmaster(request):
+    model = VehicleMasterList
+    vlist = VehicleMasterList.objects.all()
+    return render(request, 'registration/release_date.html', {'title': 'Registration - Registration', 'vlist': vlist})
+
+
+def vmaster_update(request, pk):
+    if request.method == 'POST':
+        plate_release = request.POST.get('plate_release')
+
+        VehicleMasterList.objects.filter(id=pk).update(plateNo_release=plate_release)
+        return HttpResponseRedirect('/Masterlist/Vehicle/')
+
 class vehicleMasterListView(ListView):
 	model = VehicleMasterList
 	template_name = 'vehicleMasterlist/vehicleMasterlist.html'
 
 class vehicleMasterDetails(DetailView):
-	model = VehicleMasterList
-	template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    model = VehicleMasterList
+    template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['VML'] = VehicleMasterList.objects.filter(Activity_id=self.object.pk)
+        return context
 
 class vehicleMasterUpdate(UpdateView):
 	model = VehicleMasterList

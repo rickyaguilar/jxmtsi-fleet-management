@@ -3,8 +3,6 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from .models import vehicle_report
 
 
-
-
 class reportform(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(reportform, self).__init__(*args, **kwargs)
@@ -33,10 +31,11 @@ class reportform(forms.ModelForm):
 
     class Meta:
         model = vehicle_report
-        fields = ['received_date','v_accident_type', 'support_docs', 'plate_number', 'v_model','v_make',
-                    'cond_sticker','a_employee_id','a_employee_fname','a_employee_lname','a_employee_no',
-                    'a_employee_company','a_employee_group','a_employee_division','a_employee_dept','sup_employee_id','sup_employee_fname','sup_employee_lname',
-                    'inform_assignee','date_of_inspection','inspection_remarks','date_filed_alarm','date_cert_received','date_forwarded','MVAR_SLA']
+        # fields = AutoCompleteSelectMultipleField('plate_number', 'v_model','v_make','cond_sticker')
+        fields =['received_date','v_accident_type', 'support_docs', 'plate_number', 'v_model','v_make',
+        'cond_sticker','a_employee_id','a_employee_fname','a_employee_lname','a_employee_no',
+        'a_employee_company','a_employee_group','a_employee_division','a_employee_dept','sup_employee_id','sup_employee_fname','sup_employee_lname',
+        'inform_assignee','date_of_inspection','inspection_remarks','date_filed_alarm','date_cert_received','date_forwarded','MVAR_SLA']
 
 
         widgets= {

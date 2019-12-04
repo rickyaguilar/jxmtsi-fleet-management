@@ -1,38 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <script src="https://code.jquery.com/jquery-1.8.3.js"></script><!--JAVA Auto compute date-->
 <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script><!--JAVA Auto compute date-->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" />
 <!--JAVA Auto compute date-->
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
 
-$( "#Srental,#Erental" ).datepicker({
-changeMonth: true,
-changeYear: true,
-firstDay: 1,
-dateFormat: 'dd/mm/yy',
-})
+    $( "#Srental,#Erental" ).datepicker({
+    changeMonth: true,
+    changeYear: true,
+    firstDay: 1,
+    dateFormat: 'dd/mm/yy',
+    })
 
-$( "#Srental" ).datepicker({ dateFormat: 'dd-mm-yy' });
-$( "#Erental" ).datepicker({ dateFormat: 'dd-mm-yy' });
+    $( "#Srental" ).datepicker({ dateFormat: 'dd-mm-yy' });
+    $( "#Erental" ).datepicker({ dateFormat: 'dd-mm-yy' });
 
-$('#Erental').change(function() {
-var start = $('#Srental').datepicker('getDate');
-var end   = $('#Erental').datepicker('getDate');
+    $('#Erental').change(function() {
+        var start = $('#Srental').datepicker('getDate');
+        var end   = $('#Erental').datepicker('getDate');
 
-if (start<end) {
-var days   = (end - start)/1000/60/60/24;
-$('#Rduration').val(days);
-}
-else {
-alert ("You cant come back before you have been!");
-$('#Srental').val("");
-$('#Erental').val("");
-$('#Rduration').val("");
-}
-}); //end change function
-}); //end ready
+    if (start<end) {
+        var days   = (end - start)/1000/60/60/24;
+    $('#Rduration').val(days);
+    }
+    else {
+        alert ("You cant come back before you have been!");
+        $('#Srental').val("");
+        $('#Erental').val("");
+        $('#Rduration').val("");
+    }
+    }); //end change function
+    }); //end ready
 </script>
 
 <div class="col-md-12">

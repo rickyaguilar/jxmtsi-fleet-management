@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<script>
+function myFunction() {
+  var txt = document.getElementById("Plate_no").innerText;
+            console.log(txt);
+  var res = txt.charAt(txt.length-1);
+  document.getElementById("Ending").innerHTML = res;
+}
+</script>
+
 <div class="col-md-12">
     <div class="card">
     <div class="card-header">
@@ -8,8 +18,11 @@
 
 <form method="POST">
 {% csrf_token %}
+    {{ form.reg_month }}
+    {{ form.original_OR_date }}
+    {{ form.plateNo_release }}
     <div class="col-sm-4">
-        <label>Plate Number:</label>{{ form.Plate_no }}
+        <label>Plate Number:</label><span id="Plate_no" onclick="myFunction()">{{ form.Plate_no }}</span>
     </div>
     <div class="col-sm-4">
         <label>Conduction Sticker Number:</label>{{ form.Conduction_Sticker }}
@@ -21,7 +34,7 @@
         <label>CR Name:</label>{{ form.CR_name }}
     </div>
     <div class="col-sm-4">
-        <label>Ending:</label>{{ form.Ending }}
+        <label >Ending:</label><span id="Ending" >{{ form.Ending }}</span>
     </div>
     <div class="col-sm-4">
         <label>Model:</label>{{ form.Model }}
@@ -125,7 +138,7 @@
 </div>
     <div class="card-footer">
         <button type="submit" class="button">PROCEED</a></button><button 
-       class="button" type="reset" value="Reset">CLEAR ALL FIELDS</button>
+       class="button" type="reset" value="Reset">CLEAR FIELDS</button>
     </div>
 
 </form>

@@ -4,7 +4,6 @@
 <html class="no-js" lang="en">
 
 <head>
-    {% comment %} <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}"> {% endcomment %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Fleet Managements</title>
@@ -33,11 +32,15 @@
 
 <body>
     <!-- Left Panel -->
+
     {% include 'partial/_left.html' %}
+
     <!-- Left Panel -->
 
     <!-- Header-->
+
     {% include 'partial/_header.html' %}
+
         <!-- Header-->
 
     <!--Right Panel-->
@@ -87,24 +90,24 @@
     <!-- You can alternatively load the minified version -->
     <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
 
-    <script>
-        (function($) {
-            "use strict";
+<script>
+    (function($) {
+        "use strict";
 
-            jQuery('#vmap').vectorMap({
-                map: 'world_en',
-                backgroundColor: null,
-                color: '#ffffff',
-                hoverOpacity: 0.7,
-                selectedColor: '#1de9b6',
-                enableZoom: true,
-                showTooltip: true,
-                values: sample_data,
-                scaleColors: ['#1de9b6', '#03a9f5'],
-                normalizeFunction: 'polynomial'
-            });
-        })(jQuery);
-    </script>
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: null,
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#1de9b6',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#1de9b6', '#03a9f5'],
+            normalizeFunction: 'polynomial'
+        });
+    })(jQuery);
+</script>
 
 </body>
 

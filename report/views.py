@@ -3,8 +3,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views import generic
 from django.urls import reverse_lazy
 import datetime
+from ajax_select import register, LookupChannel
 from .models import (
    	vehicle_report,
+	VehicleMasterList,
 )
 from . forms import (
     reportform,
@@ -89,3 +91,15 @@ class reportDeleteView(BSModalDeleteView):
     template_name = 'report_delete.html'
     success_message = 'Success: Report Vehicle was deleted.'
     success_url = reverse_lazy('report_list')
+
+
+@register('VehicleMasterList')
+class vehicleLookup(LookupChannel):
+    
+    model = VehicleMasterList
+
+    def get_query(self, q, request):
+        return self.model.objects.filter(Plate_no__icontains=q).order_by('Plate_no')[:50]
+
+    def format_item_display(self, item):
+        return u"<span class='tag'>%s</span>" % item.Plate_no

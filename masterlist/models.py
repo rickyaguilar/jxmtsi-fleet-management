@@ -101,6 +101,9 @@ class VehicleMasterList(models.Model):
 	Lates_remark = models.CharField(max_length=100, null=True)
 	Lname_assignee = models.CharField(max_length=50, null=True)
 	Fname_assignee = models.CharField(max_length=50, null=True)
+	reg_month = models.CharField(max_length=50, null=True)
+	original_OR_date = models.DateField(auto_now=False, null=True)
+	plateNo_release = models.DateField(auto_now=False, null=True)
 
 	def __str__(self):
 		return self.Plate_no
@@ -109,8 +112,6 @@ class VehicleMasterList(models.Model):
 		
 	def get_absolute_url(self):
 		return reverse('vehicle-list')
-
-
 
 
 

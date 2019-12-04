@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ajax_select',
     'bootstrap_modal_forms',
     'widget_tweaks',
     'django.contrib.admin',

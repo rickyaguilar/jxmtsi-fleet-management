@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-10" center>
+    <div class="card">
+    <div class="card-header">
+        <h3 class="page-header"><b><u>Update Vehicle Release Date </b></h3>&nbsp;
+    </div>
+
+<form method="POST" action="{% url 'vehicledate_update' object.id %}">
+{% csrf_token %}
+  <div class="col-sm-6">
+    <label>Plate Number:</label>
+    <input name="plate_no" id="plate_no" class="form-control" list=plate_list>
+      <datalist id="plate_list">               
+        {% for plate_no in vlist %}
+          <option data-value="{{ plate_no.Plate_no }} | {{ plate_no.Conduction_Sticker }} | {{ plate_no.CR_name}} | {{ plate_no.Ending }} | {{ plate_no.Model }} | {{ plate_no.Brand }}" value="{{ plate_no.Plate_no }} | {{ plate_no.Conduction_Sticker }}">
+          </option>
+        {% endfor %}
+      </datalist>
+  </div>
+  <div class="col-sm-6">
+    <label>Conduction Sticker Number:</label>
+    <input type="text" name="c_no" id="c_no" class="form-control" disabled>
+  </div>
+  <div class="col-sm-6">
+    <label>CR Name:</label>
+    <input type="text" name="cr_name" id="cr_name" class="form-control" disabled>
+  </div>
+  <div class="col-sm-6">
+    <label >Ending:</label>
+    <input type="text" name="ending" id="ending" class="form-control" disabled>
+  </div>
+  <div class="col-sm-6">
+    <label>Model:</label>
+    <input type="text" name="model" id="model" class="form-control" disabled>
+  </div>
+  <div class="col-sm-6">
+    <label>Brand:</label>
+    <input type="text" name="brand" id="brand" class="form-control" disabled>
+  </div>
+  <div class="col-sm-6">
+    <label>Plate Number Release Date</label>
+    <input type="Date" name="plate_release" id="plate_release" class="form-control" required>
+  </div>
+</div>
+</div>
+<div class="col-lg-12">
+    <button class="button" type="submit">PROCEED</button><a href="{% url 'vehicle-list' %}" class="button">CLOSE</a>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+
+<!--for plate number auto-fill-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$('#plate_no').on('change', function () {
+    var value = $('#plate_no').val();
+    var val = ($('#plate_list [value="' + value + '"]').data('value'));
+    var parts = val.split(" | ");
+    $('#plate_no').val(parts[0]);
+    $('#c_no').val(parts[1]);
+    $('#cr_name').val(parts[2]);
+    $('#ending').val(parts[3]);
+    $('#model').val(parts[4]);
+    $('#brand').val(parts[5]);
+
+});
+</script>
+<style type="text/css">
+  .col-md-10 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 1vh;
+}
+</style>
+{% endblock %}

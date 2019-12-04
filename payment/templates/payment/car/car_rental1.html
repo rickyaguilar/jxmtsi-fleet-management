@@ -9,62 +9,34 @@
 <!--Java date computation-->
 <script>
     $(document).ready(function() {
-
     $( "#Srental,#Erental" ).datepicker({
     changeMonth: true,
     changeYear: true,
     firstDay: 1,
-    dateFormat: 'dd/mm/yy',
+    dateFormat: 'yy/mm/dd',
     })
 
-    $( "#Srental" ).datepicker({ dateFormat: 'dd-mm-yy' });
-    $( "#Erental" ).datepicker({ dateFormat: 'dd-mm-yy' });
+    $( "#Srental" ).datepicker({ dateFormat: 'yy/mm/dd' });
+    $( "#Erental" ).datepicker({ dateFormat: 'yy/mm/dd' });
 
     $('#Erental').change(function() {
-    var start = $('#Srental').datepicker('getDate');
-    var end   = $('#Erental').datepicker('getDate');
+        var start = $('#Srental').datepicker('getDate');
+        var end   = $('#Erental').datepicker('getDate');
 
     if (start<end) {
-    var days   = (end - start)/1000/60/60/24;
+        var days   = (end - start)/1000/60/60/24;
     $('#Rduration').val(days);
     }
     else {
-    alert ("You cant come back before you have been!");
-    $('#Srental').val("");
-    $('#Erental').val("");
-    $('#Rduration').val("");
+        alert ("You cant come back before you have been!");
+        $('#Srental').val("");
+        $('#Erental').val("");
+        $('#Rduration').val("");
     }
     }); //end change function
     }); //end ready
 </script>
 
-<!--Java Autofill date-->
-<script>
-    function getDate() {
-      var today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth()+1; //January is 0!
-      var yyyy = today.getFullYear();
-
-      if(dd<10) {
-          dd = '0'+dd
-      } 
-
-      if(mm<10) {
-          mm = '0'+mm
-      } 
-
-      today = yyyy + '-' + mm + '-' + dd;
-      console.log(today);
-      document.getElementById("date").value = today;
-    }
-
-
-    window.onload = function() {
-      getDate();
-    };
-
-</script>
 <!---Autocompute number-->
 <script>
     function add(){
@@ -102,22 +74,14 @@ $('#Eid').on('change', function () {
 <form method="POST" action="{% url 'Car_submit' %}">
 {% csrf_token %}
 <input type="text" name="SLA" id="SLA" value="15" hidden>
- <input type="text" name="date" id="date" hidden />
+<input type="text" name="date" id="date" hidden />
     <div class="col-sm-4">
         <label>Bill Date:</label>
         <input style= "text-transform:" type="date" name="Bdate" id="Bdate" class="form-control" required>
     </div>
     <div class="col-sm-4">
         <label>Assignee Employee ID</label>
-        <!--<input style= "text-transform:" type="select" name="Eid" id="Eid" class="form-control" required>-->
-        <input id="Eid" name="Eid" class="form-control" list="emp_list" required>
-            <datalist id="emp_list">               
-                {% for Eid in emp %}
-                <option data-value="{{ Eid.A_employee_Id }} | {{ Eid.F_name }} | {{ Eid.L_name}} | {{ Eid.Assignee_company }} | {{ Eid.Cost_center}}" 
-                value="{{ Eid.A_employee_Id }}">
-                  </option>
-                {% endfor %}
-            </datalist>
+        <input style= "text-transform:" type="select" name="Eid" id="Eid" class="form-control" required>
     </div>
     <div class="col-sm-4">
         <label>Employee First Name:</label>
@@ -237,8 +201,7 @@ $('#Eid').on('change', function () {
 
 </div>
     <div class="card-footer">
-        <button type="submit" class="button">PROCEED</button><button 
-       class="button" type="reset" value="Reset">CLEAR FIELDS</button>
+        <button type="submit" class="button">PROCEED</button><button class="button" type="reset" value="Reset">CLEAR FIELDS</button>
     </div>
 </form>
 

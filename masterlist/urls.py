@@ -26,4 +26,6 @@ urlpatterns = [
 	path('VehicleMasterlist/Update/<int:pk>', vehicleMasterUpdate.as_view(),name='vehicle-update'),
 	path('VehicleMasterlist/Delete/<int:pk>', vehicleMasterlistDeleteView.as_view(), name='vehicleMasterlist_delete'),
 	path('Vehicle/filter', views.registration, name='vehiclefilter'),
+	path('Vehicle/new', views.Vmaster, name='vehicle_new'),
+	path('Vehicle/<int:pk>', views.vmaster_update, name='vehicledate_update'),
 ]

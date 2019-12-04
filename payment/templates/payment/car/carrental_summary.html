@@ -26,7 +26,7 @@
 
     if (start<end) {
         var days   = (end - start)/1000/60/60/24;
-    $('#Rentduration').val(Rentduration);
+    $('#Rentduration').val(days);
     }
     else {
       $('#Startrental').val("");
@@ -245,15 +245,15 @@
               </div>
               <div class="col-sm-3">
                   <label>Start of Rental:</label>
-                  <input style="text-transform:" type="text" name="Srental" id="Startrental" class="form-control" value="{{ object.S_rental }}">
+                  <input style="text-transform:" type="text" name="Startrental" id="Startrental" class="form-control" value="{{ object.S_rental }}">
               </div>
               <div class="col-sm-3">
                   <label>End of Rental:</label>
-                  <input style="text-transform:" type="text" name="Erental" id="Endrental" class="form-control" value="{{ object.E_rental }}">
+                  <input style="text-transform:" type="text" name="Endrental" id="Endrental" class="form-control" value="{{ object.E_rental }}">
               </div>
               <div class="col-sm-3">
                   <label>Rental Duration:</label>
-                  <input style="text-transform:" type="text" name="Rduration" id="Rentduration" class="form-control" value="{{ object.R_duration }}" readonly>
+                  <input style="text-transform:" type="text" name="Rentduration" id="Rentduration" class="form-control" value="{{ object.R_duration }}" readonly>
               </div>
 
           <!--     <H4><u>Expense Details</u></H4>-->

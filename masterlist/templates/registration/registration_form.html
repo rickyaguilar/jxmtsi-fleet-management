@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+        <h3 class="page-header"><b>Vehicle Registration</b></h3>&nbsp;
+    </div>
+
+<form method="POST" action="">
+{% csrf_token %}
+ 
+    <div class="col-sm-4">
+        <label>Plate Number:</label>{{ form.Plate_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>Conduction Sticker Number:</label>{{ form.Conduction_Sticker }}
+    </div>
+    <div class="col-sm-4">
+        <label>Remarks:</label>{{ form.Remarks }}
+    </div>
+    <div class="col-sm-4">
+        <label>CR Name:</label>{{ form.CR_name }}
+    </div>
+    <div class="col-sm-4">
+        <label >Ending:</label><span id="Ending" >{{ form.Ending }}</span>
+    </div>
+    <div class="col-sm-4">
+        <label>Model:</label>{{ form.Model }}
+    </div>
+    <div class="col-sm-4">
+        <label>Brand:</label>{{ form.Brand }}
+    </div>
+    <div class="col-sm-4">
+        <label>Vehicle Make:</label>{{ form.Vehicle_make }}
+    </div>
+    <div class="col-sm-4">
+        <label>Engine Number:</label>{{ form.Engine_No }}
+    </div>
+    <div class="col-sm-4">
+        <label>MV File Number:</label>{{ form.MV_file_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>Vehicle Type:</label>{{ form.vehicle_type }}
+    </div>
+    <div class="col-sm-4">
+        <label>Vehicle Category:</label>{{ form.Vehicle_category }}
+    </div>
+    <div class="col-sm-4">
+        <label>Employee Id:</label>{{ form.Employee_Id }}
+    </div>
+    <div class="col-sm-4">
+        <label>Band Level:</label>{{ form.Band_level }}
+    </div>
+    <div class="col-sm-4">
+        <label>Band Benefit:</label>{{ form.Band_Benefit }}
+    </div>
+    <div class="col-sm-4">
+        <label>Contact Number:</label>{{ form.Contact_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>Cost Center:</label>{{ form.Cost_center }}
+    </div>
+    <div class="col-sm-4">
+        <label>Group:</label>{{ form.Group }}
+    </div>
+    <div class="col-sm-4">
+        <label>Division:</label>{{ form.Division }}
+    </div>
+    <div class="col-sm-4">
+        <label>Department:</label>{{ form.Department }}
+    </div>
+    <div class="col-sm-4">
+        <label>Section:</label>{{ form.Section }}
+    </div>
+    <div class="col-sm-4">
+        <label>IS (Employee ID):</label>{{ form.IS_employee_ID }}
+    </div>
+    <div class="col-sm-4">
+        <label>IS (Firstname):</label>{{ form.IS_firstname }}
+    </div>
+    <div class="col-sm-4">
+        <label>IS (Lastname):</label>{{ form.IS_lastname }}
+    </div>
+    <div class="col-sm-4">
+        <label>Location:</label>{{ form.Location }}
+    </div>
+    <div class="col-sm-4">
+        <label>Aquisition_date:</label>{{ form.Aquisition_date }}
+    </div>
+        <div class="col-sm-4">
+        <label>Aquisition Cost:</label>{{ form.Aquisition_cost }}
+    </div>
+    <div class="col-sm-4">
+        <label>Asset No:</label>{{ form.Asset_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>PO No:</label>{{ form.PO_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>SAP PR Number:</label>{{ form.SAP_PR }}
+    </div>
+    <div class="col-sm-4">
+        <label>Vehicle IVN No:</label>{{ form.Vehicle_IVN_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>Unit_MATDOC:</label>{{ form.Unit_MATDOC }}
+    </div>
+    <div class="col-sm-4">
+        <label>Grd'd date:</label>{{ form.Grdd_date }}
+    </div>
+    <div class="col-sm-4">
+        <label>Equipment No:</label>{{ form.Equipment_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>Latest Registration Date:</label>{{ form.Latest_registration }}
+    </div>
+    <div class="col-sm-4">
+        <label>Lates Remark:</label>{{ form.Lates_remark }}
+    </div>
+    <div class="col-sm-4">
+        <label>Last Name Assignee:</label>{{ form.Lname_assignee }}
+    </div>
+    <div class="col-sm-4">
+        <label>First Name Assignee:</label>{{ form.Fname_assignee }}
+    </div>
+</div>
+    <div class="card-footer">
+        <button type="submit" class="button">PROCEED</a></button><button 
+       class="button" type="reset" value="Reset">CLEAR FIELDS</button>
+    </div>
+
+</form>
+{% endblock %}

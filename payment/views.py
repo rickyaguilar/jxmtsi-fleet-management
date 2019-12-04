@@ -38,7 +38,7 @@ class CarRentalDetailView(DetailView):
 def Carrentalpayment(request):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
-    return render(request, 'payment/car/car_rental.html')
+    return render(request, 'payment/car/car_rental1.html')
 
 def Carrental_submit(request):
 	if request.method == 'POST':

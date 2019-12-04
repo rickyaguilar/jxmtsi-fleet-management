@@ -36,7 +36,7 @@ class CarRental(models.Model):
 	F_name = models.CharField(max_length=100, null=True)
 	Assignee_company = models.CharField(max_length=100, null=True)
 	Cost_center = models.CharField(max_length=100, null=True)
-	Date_initiated = models.DateField(auto_now=False)
+	Date_initiated = models.DateField(auto_now=True)
 	#<--other assignee---->
 	O_Fname = models.CharField(max_length=100, null=True)
 	O_Lname = models.CharField(max_length=100, null=True)
