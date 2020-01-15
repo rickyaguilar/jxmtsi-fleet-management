@@ -8,7 +8,7 @@ from .views import (
 	employeeMasterlistDeleteView,
 	vehicleMasterListView,
 	VmasterlistCreateView,
-	vehicleMasterDetails,
+	# vehicleMasterDetails,
 	vehicleMasterUpdate,
 	vehicleMasterlistDeleteView,
 
@@ -22,10 +22,14 @@ urlpatterns = [
 	path('EmployeeMasterlist/Delete/<int:pk>', employeeMasterlistDeleteView.as_view(), name='employeeMasterlist_delete'),
 	path('VehicleMasterlist/', vehicleMasterListView.as_view(), name='vehicle-list'),
 	path('VehicleMasterlist/New', VmasterlistCreateView.as_view(), name='vehicleMasterlist-new'),
-	path('VehicleMasterlist/Details/<int:pk>', vehicleMasterDetails.as_view(), name='vehicle-details'),
+	# path('VehicleMasterlist/Details/<int:pk>', vehicleMasterDetails.as_view(), name='vehicle-details'),
 	path('VehicleMasterlist/Update/<int:pk>', vehicleMasterUpdate.as_view(),name='vehicle-update'),
 	path('VehicleMasterlist/Delete/<int:pk>', vehicleMasterlistDeleteView.as_view(), name='vehicleMasterlist_delete'),
+	path('Vehicle/<int:pk>', views.releaseUpdate.as_view(), name='vupdate'),
+	path('Masterlist/export', views.employee_excel, name='masterlist_dl'),
+	path('Vehiclelist/export', views.vehicle_excel, name='vehiclelist_export'),
+
 	path('Vehicle/filter', views.registration, name='vehiclefilter'),
-	path('Vehicle/new', views.Vmaster, name='vehicle_new'),
-	path('Vehicle/<int:pk>', views.vmaster_update, name='vehicledate_update'),
+	# path('Vehicle/<int:pk>', views.vmaster_update, name='vehicledate_update'),
+	# path('Vehicle/New', views.Vmaster, name='vnew'),
 ]

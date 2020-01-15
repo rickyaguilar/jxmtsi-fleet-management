@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <script>
 function myFunction() {
   var txt = document.getElementById("Plate_no").innerText;
@@ -18,97 +20,91 @@ function myFunction() {
 
 <form method="POST">
 {% csrf_token %}
-    {{ form.reg_month }}
+<!--     {{ form.reg_month }}
     {{ form.original_OR_date }}
-    {{ form.plateNo_release }}
+    {{ form.plateNo_release }} -->
     <div class="col-sm-4">
-        <label>Plate Number:</label><span id="Plate_no" onclick="myFunction()">{{ form.Plate_no }}</span>
+        <label>Plate Number:</label><span id="Plate_no" onclick="myFunction()">{{ form.PLATE_NO }}</span>
     </div>
     <div class="col-sm-4">
-        <label>Conduction Sticker Number:</label>{{ form.Conduction_Sticker }}
+        <label>Conduction Sticker Number:</label>{{ form.CS_NO }}
     </div>
     <div class="col-sm-4">
-        <label>Remarks:</label>{{ form.Remarks }}
+        <label>CR Name:</label>{{ form.CR_NAME }}
     </div>
     <div class="col-sm-4">
-        <label>CR Name:</label>{{ form.CR_name }}
+        <label >Ending:</label><span id="Ending" >{{ form.PLATE_ENDING }}</span>
     </div>
     <div class="col-sm-4">
-        <label >Ending:</label><span id="Ending" >{{ form.Ending }}</span>
+        <label>Model:</label>{{ form.MODEL }}
     </div>
     <div class="col-sm-4">
-        <label>Model:</label>{{ form.Model }}
+        <label>Brand:</label>{{ form.BRAND }}
     </div>
     <div class="col-sm-4">
-        <label>Brand:</label>{{ form.Brand }}
+        <label>Vehicle Make:</label>{{ form.VEHICLE_MAKE }}
     </div>
     <div class="col-sm-4">
-        <label>Vehicle Make:</label>{{ form.Vehicle_make }}
+        <label>Engine Number:</label>{{ form.ENGINE_NO }}
     </div>
     <div class="col-sm-4">
-        <label>Engine Number:</label>{{ form.Engine_No }}
+        <label>MV File Number:</label>{{ form.MV_FILE_NO }}
     </div>
     <div class="col-sm-4">
-        <label>MV File Number:</label>{{ form.MV_file_no }}
+        <label>Vehicle Type:</label>{{ form.VEHICLE_TYPE }}
     </div>
     <div class="col-sm-4">
-        <label>Vehicle Type:</label>{{ form.vehicle_type }}
-    </div>
-    <div class="col-sm-4">
-        <label>Vehicle Category:</label>{{ form.Vehicle_category }}
+        <label>Vehicle Category:</label>{{ form.VEHICLE_CATEGORY }}
     </div>
     <div class="col-sm-4">
         <label>Employee Id:</label>{{ form.Employee_Id }}
     </div>
     <div class="col-sm-4">
-        <label>Band Level:</label>{{ form.Band_level }}
+        <label>Band Level:</label>{{ form.BAND_LEVEL }}
     </div>
     <div class="col-sm-4">
-        <label>Band Benefit:</label>{{ form.Band_Benefit }}
+        <label>Band Benefit:</label>{{ form.BENEFIT_GROUP }}
     </div>
     <div class="col-sm-4">
-        <label>Contact Number:</label>{{ form.Contact_no }}
+        <label>Cost Center:</label>{{ form.COST_CENTER }}
     </div>
     <div class="col-sm-4">
-        <label>Cost Center:</label>{{ form.Cost_center }}
+        <label>Group:</label>{{ form.GROUP }}
     </div>
     <div class="col-sm-4">
-        <label>Group:</label>{{ form.Group }}
+        <label>Division:</label>{{ form.DIVISION }}
     </div>
     <div class="col-sm-4">
-        <label>Division:</label>{{ form.Division }}
+        <label>Department:</label>{{ form.DEPARTMENT }}
     </div>
     <div class="col-sm-4">
-        <label>Department:</label>{{ form.Department }}
+        <label>Section:</label>{{ form.SECTION }}
     </div>
     <div class="col-sm-4">
-        <label>Section:</label>{{ form.Section }}
+        <label>IS (Employee ID):</label>{{ form.IS_ID }}
     </div>
     <div class="col-sm-4">
-        <label>IS (Employee ID):</label>{{ form.IS_employee_ID }}
+        <label>IS (Firstname):</label>{{ form.IS_FIRST_NAME }}
     </div>
     <div class="col-sm-4">
-        <label>IS (Firstname):</label>{{ form.IS_firstname }}
+        <label>IS (Lastname):</label>{{ form.IS_LAST_NAME }}
     </div>
     <div class="col-sm-4">
-        <label>IS (Lastname):</label>{{ form.IS_lastname }}
+        <label>Location:</label>{{ form.LOCATION }}
     </div>
     <div class="col-sm-4">
-        <label>Location:</label>{{ form.Location }}
-    </div>
-    <div class="col-sm-4">
-        <label>Aquisition_date:</label>{{ form.Aquisition_date }}
+        <label>Aquisition_date:</label>{{ form.ACQ_DATE }}
     </div>
         <div class="col-sm-4">
-        <label>Aquisition Cost:</label>{{ form.Aquisition_cost }}
+        <label>Aquisition Cost:</label>{{ form.ACQ_COST }}
     </div>
     <div class="col-sm-4">
-        <label>Asset No:</label>{{ form.Asset_no }}
+        <label>Asset No:</label>{{ form.ASSET_NO }}
     </div>
     <div class="col-sm-4">
-        <label>PO No:</label>{{ form.PO_no }}
+        <label>PO No:</label>{{ form.PO_NO }}
     </div>
-    <div class="col-sm-4">
+<!--     <div class="col-sm-4">
         <label>SAP PR Number:</label>{{ form.SAP_PR }}
     </div>
     <div class="col-sm-4">
@@ -119,8 +115,8 @@ function myFunction() {
     </div>
     <div class="col-sm-4">
         <label>Grd'd date:</label>{{ form.Grdd_date }}
-    </div>
-    <div class="col-sm-4">
+    </div> -->
+    <!-- <div class="col-sm-4">
         <label>Equipment No:</label>{{ form.Equipment_no }}
     </div>
     <div class="col-sm-4">
@@ -131,10 +127,10 @@ function myFunction() {
     </div>
     <div class="col-sm-4">
         <label>Last Name Assignee:</label>{{ form.Lname_assignee }}
-    </div>
+    </div>-->
     <div class="col-sm-4">
-        <label>First Name Assignee:</label>{{ form.Fname_assignee }}
-    </div>
+        <label>Plate Release Date:</label>{{ form.PLATE_NUMBER_RELEASE_DATE }}
+    </div> 
 </div>
     <div class="card-footer">
         <button type="submit" class="button">PROCEED</a></button><button 

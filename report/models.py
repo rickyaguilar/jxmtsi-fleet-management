@@ -48,4 +48,8 @@ class vehicle_report(models.Model):
 
     def get_absolute_url(self):
         return reverse('report_list')
+
+
+
+
     

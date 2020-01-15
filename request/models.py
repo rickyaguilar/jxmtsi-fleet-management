@@ -64,7 +64,6 @@ class CarRentalRequest(models.Model):
 	CR_SLA = models.CharField(max_length=10, null=True)
 	Date_initiated = models.DateField(auto_now=True)
 
-
 	def __str__(self):
 		return self.Activity_id
 
@@ -83,38 +82,39 @@ def increment_Activity_id():
 
 class Gas_card(models.Model):
 	card_type= (
-	('Single', 'Single'),
-	('Driver','Driver'),
-	('Vehicle','Vehicle'),
+		('Single', 'Single'),
+		('Driver','Driver'),
+		('Vehicle','Vehicle'),
 	)
 	fleet_card= (
-	('Petron', 'Petron'),
-	('Shell','Shell'),
+		('Petron', 'Petron'),
+		('Shell','Shell'),
 	)
 	app_type= (
-	('Daily', 'Daily'),
-	('Transfer Acountability', 'Transfer Acountability'),
-	('Cancel - Disposal of Vehicle', 'Cancel - Disposal of Vehicle'),
-	('Cancel - Resignation of User', 'Cancel - Resignation of User'),
-	('Replacement - Damage', 'Replacement - Damage'),
-	('Replacement - Lose', 'Replacement - Lose'),
-	('Others - Adjust Credit Limit', 'Others - Adjust Credit Limit'),
-	('Others - Change of Product Restriction', 'Others - Change of Product Restriction'),
-	('Others - Update Cost Center', 'Others - Update Cost Center'),
+		('Daily', 'Daily'),
+		('Transfer Acountability', 'Transfer Acountability'),
+		('Cancel - Disposal of Vehicle', 'Cancel - Disposal of Vehicle'),
+		('Cancel - Resignation of User', 'Cancel - Resignation of User'),
+		('Replacement - Damage', 'Replacement - Damage'),
+		('Replacement - Lose', 'Replacement - Lose'),
+		('Others - Adjust Credit Limit', 'Others - Adjust Credit Limit'),
+		('Others - Change of Product Restriction', 'Others - Change of Product Restriction'),
+		('Others - Update Cost Center', 'Others - Update Cost Center'),
 	)
 	restrictions= (
-	('S: Super Only', 'S: Super Only'),
-	('U: Super Unleaded Only', 'U: Super Unleaded Only'),
-	('R: Regular Only', 'R: Regular Only'),
-	('X: Velocity', 'X: Velocity'),
-	('D: Diesoline Only', 'D: Diesoline Only'),
-	('L: Lubricant Only', 'L: Lubricant Only'),
-	('V: Service Only', 'V: Service Only'),
-	('C: Convenience store items, sundries, accesories', 'C: Convenience store items, sundries, accesories'),
+		('S: Super Only', 'S: Super Only'),
+		('U: Super Unleaded Only', 'U: Super Unleaded Only'),
+		('R: Regular Only', 'R: Regular Only'),
+		('X: Velocity', 'X: Velocity'),
+		('D: Diesoline Only', 'D: Diesoline Only'),
+		('L: Lubricant Only', 'L: Lubricant Only'),
+		('V: Service Only', 'V: Service Only'),
+		('C: Convenience store items, sundries, accesories', 'C: Convenience store items, sundries, accesories'),
 	)
 	approved= (
 		('Ser Roy Perluval Dela Cruz','Ser Roy Perluval Dela Cruz'),
 	)
+
 	cancellation= (
 		('Disposal Of Vehicle','Disposal Of Vehicle'),
 		('Resignation of User','Resignation of User'),
@@ -165,7 +165,7 @@ class Gas_card(models.Model):
 	GCR_SLA = models.CharField(max_length=20, null=True)
 
 	def __str__(self):
-    		return self.Activity_id
+		return self.Activity_id
 
 	def get_absolute_url(self):
 		return reverse('gascard_list')
@@ -186,16 +186,16 @@ class service_vehicle(models.Model):
 		('SUV', 'SUV '),
 		('Pick up 4x2', 'Pick up 4x2'),
 		('Pick Up 4x4', 'Pick Up 4x4'),
-		)
+	)
 	approvedby= (
 		('Ser Roy Dela Cruz', 'Ser Roy Dela Cruz'),
 		('Adolfo Carlos Umali', 'Adolfo Carlos Umali '),
-		)
+	)
 	vprovider= (
 		('Orix', 'Orix'),
 		('Diamond', 'Diamond '),
 		('Safari', 'Safari'),
-		)
+	)
 	vbrand= (
 		('BMW', 'BMW'),
 		('Chevrolet', 'Chevrolet '),
@@ -210,7 +210,8 @@ class service_vehicle(models.Model):
 		('Nissan', 'Nissan '),
 		('Peugeot', 'Peugeot'),
 		('Subaro', 'Subaro'),
-		)
+	)
+
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
 	request_date = models.DateField(auto_now=False, null=True)
 	req_employee_id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING, related_name='req_employee_id')
@@ -249,7 +250,7 @@ class service_vehicle(models.Model):
 	date_initiated = models.DateField(auto_now=True, null=True)
 
 	def __str__(self):
-    		return self.Activity_id
+		return self.Activity_id
 
 	def get_absolute_url(self):
 		return reverse('service_list')
@@ -267,8 +268,8 @@ def increment_Activity_id():
 
 class Vehicle_Repair(models.Model):
 	area= (
-	('The Globe Tower', 'The Globe Tower'),
-	('Visayas-Mindanao', 'Visayas-Mindanao '),
+		('The Globe Tower', 'The Globe Tower'),
+		('Visayas-Mindanao', 'Visayas-Mindanao'),
 	)
 	
 	verified= (
@@ -335,7 +336,7 @@ class Vehicle_Repair(models.Model):
 	date_initiated = models.DateField(auto_now=True, null=True)
 
 	def __str__(self):
-    		return self.Activity_id
+		return self.Activity_id
 
 	def get_absolute_url(self):
 		return reverse('repair_list')
