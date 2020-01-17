@@ -103,3 +103,6 @@ class vehicleLookup(LookupChannel):
 
     def format_item_display(self, item):
         return u"<span class='tag'>%s</span>" % item.Plate_no
+
+
+        

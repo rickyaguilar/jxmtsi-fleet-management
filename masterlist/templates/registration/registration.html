@@ -36,7 +36,6 @@
                             <th>No.:</th>
                             <th>Plate Number:</th>
                             <th>Conductions Sticker No.:</th>
-                            <th>Remarks:</th>
                             <th>CR Name:</th>
                             <th>Model:</th>
                             <th>Brand:</th>
@@ -47,15 +46,14 @@
                     <tbody id="plate1">
                         {% for Vmaster in reg1 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
-                            <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
+                            <td>{{ Vmaster.NO }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -66,15 +64,14 @@
                     <tbody id="plate2">
                         {% for Vmaster in reg2 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -85,15 +82,14 @@
                     <tbody id="plate3">
                         {% for Vmaster in reg3 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -104,15 +100,14 @@
                     <tbody id="plate4">
                         {% for Vmaster in reg4 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -123,15 +118,14 @@
                     <tbody id="plate5">
                         {% for Vmaster in reg5 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -142,15 +136,14 @@
                     <tbody id="plate6">
                         {% for Vmaster in reg6 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -161,15 +154,14 @@
                     <tbody id="plate7">
                         {% for Vmaster in reg7 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -180,15 +172,14 @@
                     <tbody id="plate8">
                         {% for Vmaster in reg8 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -199,15 +190,14 @@
                     <tbody id="plate9">
                         {% for Vmaster in reg9 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
@@ -218,15 +208,14 @@
                     <tbody id="plate0">
                         {% for Vmaster in reg0 %}
                         <tr class="odd gradeX">
-                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.No }}</td>
-                            <td>{{ Vmaster.Plate_no }}</td>
-                            <td>{{ Vmaster.Conduction_Sticker }}</td>
-                            <td>{{ Vmaster.Remarks }}</td>
-                            <td>{{ Vmaster.CR_name }}</td>
-                            <td>{{ Vmaster.Model }}</td>
-                            <td>{{ Vmaster.Brand }}</td>
-                            <td>{{ Vmaster.vehicle_type }}</td>
+                            <td>{{ Vmaster.PLATE_NO }}</td>
+                            <td>{{ Vmaster.CS_NO }}</td>
+                            <td>{{ Vmaster.CR_NAME }}</td>
+                            <td>{{ Vmaster.MODEL }}</td>
+                            <td>{{ Vmaster.BRAND }}</td>
+                            <td>{{ Vmaster.VEHICLE_TYPE }}</td>
                             <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>

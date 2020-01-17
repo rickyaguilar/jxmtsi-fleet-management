@@ -32,7 +32,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                     <!-- <a data-toggle="modal" data-target="#updateModal" style="float:right"> | <u>UPDATE RELEASE DATE</u></a> -->
                     <a href="{% url 'vehicleMasterlist-new' %}" style="float:right"><u>Add Vehicle Masterlist</u></a>
                 </div> 
-                <div style="overflow-x:auto;">                        
+                <!-- <div style="overflow-x:auto;">                         -->
                 <table id="bootstrap-data-table-export"a class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -54,7 +54,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                     <tbody>
                         {% for Vmaster in object_list %}
                         <tr class="odd gradeX">
-                            <td><a href=""><u>{{ Vmaster.Activity_Id }}</u></a></td>
+                            <td><a href="{% url 'vehicle-details' Vmaster.id %}"><u>{{ Vmaster.Activity_Id }}</u></a></td>
                             <td>{{ Vmaster.NO }}</td>
                             <td>{{ Vmaster.PLATE_NO }}</td>
                             <td>{{ Vmaster.CS_NO }}</td>
@@ -66,7 +66,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                             <td>{{ Vmaster.VEHICLE_MAKE}}</td>
                             <td>{{ Vmaster.ENGINE_NO}}</td>
                             <td>{{ Vmaster.VEHICLE_TYPE }}</td>
-                            <form action="" method="POST">
+                            <form action="{% url 'vehicleMasterlist_delete' Vmaster.id %}" method="POST">
                                 {% csrf_token %}
                                 <td><button title= "Delete"  class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
                             </form>

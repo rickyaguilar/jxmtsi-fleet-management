@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponseRedirect,HttpResponse
+from django.shortcuts import render,HttpResponseRedirect,HttpResponse,reverse
 from openpyxl import Workbook
 from django.urls import reverse_lazy
 from django.views import generic
@@ -23,46 +23,38 @@ from bootstrap_modal_forms.generic import (
                                            BSModalDeleteView
                                            )
 
+# def vlistmaster(request):
+#     def dispatch(self, *args, **kwargs):
+#         return super().dispatch(*args, **kwargs)
+#     return render(request, 'vehicleMasterlist/vmasterlist.html')
+
+
 class VmasterlistCreateView(CreateView):
-	model = VehicleMasterList
-	form_class = Vmasterlist
-	template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    model = VehicleMasterList
+    form_class = Vmasterlist
+    template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
 
-    # def post(self, request):
-    #     plate = VehicleMasterList.objects.Filter('Plate_no')
-    #     if  plate == '0':
-    #         reg = "Oct"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg)
-    #     else if plate =='1'
-    #         reg1 = "Jan"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg1)
-    #     else if plate =='2'
-    #         reg2 = "Feb"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg2)
-    #     else if plate =='3'
-    #         reg3 = "March"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg3)
-    #     else if plate =='4'
-    #         reg4 = "April"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg4)
-    #     else if plate =='5'
-    #         reg5 = "May"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg5)
-    #     else if plate =='6'
-    #         reg6 = "June"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg6)
-    #     else if plate =='7'
-    #         reg7 = "July"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg7)
-    #     else if plate =='8'
-    #         reg8 = "Aug"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg8)
-    #     else
-    #         reg9 = "Sept"
-    #         save_to_vechile = VehicleMasterList(reg_month=reg9)
+    def ending(self, request, *args, **kwargs):
+        v_id = self.request.POST.get('Activity_Id')
 
+        if request.method == 'POST':
+            plate = request.POST.get('PLATE_NO')
+            # def getSumOfLastDigits(plate): 
+            #     ending = 0 
+            #     for num in plate:
+            #         ending += num % 10
+            #     return ending
+            def increment(string):
+                plate = int(string[:-1])
+                plate += 1
+                return string[:-1]
+            saveto_end = VehicleMasterList(PLATE_ENDING=ending)
+            saveto_end.save()
 
-    #     return super().post(request)
+        return super().post(request)
+
 # def Vmaster(request):
 #     vlist = VehicleMasterList.objects.all()
 #     return render(request, 'registration/release_date.html', {'title': 'Registration - Update Registration', 'vlist': vlist})
@@ -78,16 +70,16 @@ class vehicleMasterListView(ListView):
 	model = VehicleMasterList
 	template_name = 'vehicleMasterlist/vehicleMasterlist.html'
 
-# class vehicleMasterDetails(DetailView):
-#     def dispatch(self, *args, **kwargs):
-#         return super().dispatch(*args, **kwargs)
-#     model = VehicleMasterList
-#     template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
+class vehicleMasterDetails(DetailView):
+    # def dispatch(self, *args, **kwargs):
+    #      return super().dispatch(*args, **kwargs)
+    model = VehicleMasterList
+    template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['VML'] = VehicleMasterList.objects.filter(Activity_id=self.object.pk)
-#         return context
+    # def get_context_data(self, **kwargs):
+    #      context = super().get_context_data(**kwargs)
+    #      context['VML'] = VehicleMasterList.objects.filter(Activity_id=self.object.pk)
+    #      return context
 
 class vehicleMasterUpdate(UpdateView):
 	model = VehicleMasterList
@@ -132,16 +124,16 @@ class employeeMasterlistDeleteView(BSModalDeleteView):
 
 def registration(request):
     model = VehicleMasterList
-    reg1 = VehicleMasterList.objects.filter(Plate_no__endswith="1")
-    reg2 = VehicleMasterList.objects.filter(Plate_no__endswith="2")
-    reg3 = VehicleMasterList.objects.filter(Plate_no__endswith="3")
-    reg4 = VehicleMasterList.objects.filter(Plate_no__endswith="4")
-    reg5 = VehicleMasterList.objects.filter(Plate_no__endswith="5")
-    reg6 = VehicleMasterList.objects.filter(Plate_no__endswith="6")
-    reg7 = VehicleMasterList.objects.filter(Plate_no__endswith="7")
-    reg8 = VehicleMasterList.objects.filter(Plate_no__endswith="8")
-    reg9 = VehicleMasterList.objects.filter(Plate_no__endswith="9")
-    reg0 = VehicleMasterList.objects.filter(Plate_no__endswith="0")
+    reg1 = VehicleMasterList.objects.filter(PLATE_NO__endswith="1")
+    reg2 = VehicleMasterList.objects.filter(PLATE_NO__endswith="2")
+    reg3 = VehicleMasterList.objects.filter(PLATE_NO__endswith="3")
+    reg4 = VehicleMasterList.objects.filter(PLATE_NO__endswith="4")
+    reg5 = VehicleMasterList.objects.filter(PLATE_NO__endswith="5")
+    reg6 = VehicleMasterList.objects.filter(PLATE_NO__endswith="6")
+    reg7 = VehicleMasterList.objects.filter(PLATE_NO__endswith="7")
+    reg8 = VehicleMasterList.objects.filter(PLATE_NO__endswith="8")
+    reg9 = VehicleMasterList.objects.filter(PLATE_NO__endswith="9")
+    reg0 = VehicleMasterList.objects.filter(PLATE_NO__endswith="0")
     return render(request, 'registration/registration.html', {'title': 'Vehicle - Vehicle Filter', 'reg1': reg1,'reg2': reg2, 'reg3': reg3,
     'reg4': reg4, 'reg5': reg5, 'reg6': reg6, 'reg7': reg7, 'reg8': reg8, 'reg9': reg9, 'reg0': reg0})
 
@@ -157,49 +149,41 @@ def vehicle_excel(request):
     worksheet.title = 'Vehicle Masterlist'
 
     columns = [
-            'No',
-            'Plate_no',
-            'Conduction_Sticker',
-            'Remarks',
-            'CR_name',
-            'Ending',
-            'Model',
-            'Brand',
-            'Vehicle_make',
-            'Engine_No',
-            'Chassis_no',
-            'MV_file_no',
-            'vehicle_type',
-            'Vehicle_category',
+            'NO',
+            'PLATE_NO',
+            'CS_NO',
+            'CR_NAME',
+            'PLATE_ENDING',
+            'MODEL',
+            'BRAND',
+            'VEHICLE_MAKE',
+            'ENGINE_NO',
+            'CHASSIS_NO',
+            'MV_FILE_NO',
+            'VEHICLE_TYPE',
+            'VEHICLE_CATEGORY',
             'Employee_Id',
-            'Band_level',
-            'Band_Benefit',
-            'Contact_no',
-            'Cost_center',
-            'Group',
-            'Division',
-            'Department',
-            'Section',
-            'IS_employee_ID',
-            'IS_firstname',
-            'IS_lastname',
-            'Location',
-            'Aquisition_date',
-            'Aquisition_cost',
-            'Asset_no',
-            'PO_no',
-            'SAP_PR',
-            'Vehicle_IVN_no',
-            'Unit_MATDOC',
-            'Grdd_date',
-            'Equipment_no',
-            'Latest_registration',
-            'Lates_remark',
-            'Lname_assignee',
-            'Fname_assignee',
-            'reg_month',
-            'original_OR_date',
-            'plateNo_release',
+            'BAND_LEVEL',
+            'BENEFIT_GROUP',
+            'COST_CENTER',
+            'GROUP',
+            'DIVISION',
+            'DEPARTMENT',
+            'SECTION',
+            'IS_ID',
+            'IS_FIRST_NAME',
+            'IS_LAST_NAME',
+            'LOCATION',
+            'ACQ_DATE',
+            'ACQ_COST',
+            'ASSET_NO',
+            'PO_NO',
+            'EQUIPMENT_NO',
+            'ASSIGNEE_LAST_NAME',
+            'ASSIGNEE_FIRST_NAME',
+            'REGISTRATION_MONTH',
+            'ORIGINAL_OR_DATE',
+            'PLATE_NUMBER_RELEASE_DATE',
     ]
     row_num = 1
 
@@ -209,52 +193,44 @@ def vehicle_excel(request):
 
     for vehicle in v_queryset:
         row_num += 1
-        ordate = vehicle.original_OR_date.strftime('%m/%d/%Y')
-        platerelease = vehicle.plateNo_release.strftime('%m/%d/%Y')
+        # ordate = vehicle.ORIGINAL_OR_DATE.strftime('%m/%d/%Y')
+        # platerelease = vehicle.PLATE_NUMBER_RELEASE_DATE.strftime('%m/%d/%Y')
         row = [
-                vehicle.No,
-                vehicle.Plate_no,
-                vehicle.Conduction_Sticker,
-                vehicle.Remarks,
-                vehicle.CR_name,
-                vehicle.Ending,
-                vehicle.Model,
-                vehicle.Brand,
-                vehicle.Vehicle_make,
-                vehicle.Engine_No,
-                vehicle.Chassis_no,
-                vehicle.MV_file_no,
-                vehicle.vehicle_type,
-                vehicle.Vehicle_category,
+                vehicle.NO,
+                vehicle.PLATE_NO,
+                vehicle.CS_NO,
+                vehicle.CR_NAME,
+                vehicle.PLATE_ENDING,
+                vehicle.MODEL,
+                vehicle.BRAND,
+                vehicle.VEHICLE_MAKE,
+                vehicle.ENGINE_NO,
+                vehicle.CHASSIS_NO,
+                vehicle.MV_FILE_NO,
+                vehicle.VEHICLE_TYPE,
+                vehicle.VEHICLE_CATEGORY,
                 vehicle.Employee_Id,
-                vehicle.Band_level,
-                vehicle.Band_Benefit,
-                vehicle.Contact_no,
-                vehicle.Cost_center,
-                vehicle.Group,
-                vehicle.Division,
-                vehicle.Department,
-                vehicle.Section,
-                vehicle.IS_employee_ID,
-                vehicle.IS_firstname,
-                vehicle.IS_lastname,
-                vehicle.Location,
-                vehicle.Aquisition_date,
-                vehicle.Aquisition_cost,
-                vehicle.Asset_no,
-                vehicle.PO_no,
-                vehicle.SAP_PR,
-                vehicle.Vehicle_IVN_no,
-                vehicle.Unit_MATDOC,
-                vehicle.Grdd_date,
-                vehicle.Equipment_no,
-                vehicle.Latest_registration,
-                vehicle.Lates_remark,
-                vehicle.Lname_assignee,
-                vehicle.Fname_assignee,
-                vehicle.reg_month,
-                ordate,
-                platerelease,
+                vehicle.BAND_LEVEL,
+                vehicle.BENEFIT_GROUP,
+                vehicle.COST_CENTER,
+                vehicle.GROUP,
+                vehicle.DIVISION,
+                vehicle.DEPARTMENT,
+                vehicle.SECTION,
+                vehicle.IS_ID,
+                vehicle.IS_FIRST_NAME,
+                vehicle.IS_LAST_NAME,
+                vehicle.LOCATION,
+                vehicle.ACQ_DATE,
+                vehicle.ACQ_COST,
+                vehicle.ASSET_NO,
+                vehicle.PO_NO,
+                vehicle.EQUIPMENT_NO,
+                vehicle.ASSIGNEE_LAST_NAME,
+                vehicle.ASSIGNEE_FIRST_NAME,
+                vehicle.REGISTRATION_MONTH,
+                vehicle.ORIGINAL_OR_DATE,
+                vehicle.PLATE_NUMBER_RELEASE_DATE,
         ]
         
         for col_num, cell_value in enumerate(row, 1):

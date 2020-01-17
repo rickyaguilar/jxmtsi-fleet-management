@@ -5,7 +5,7 @@
 
 <script>
 function myFunction() {
-  var txt = document.getElementById("Plate_no").innerText;
+  var txt = document.getElementById("Plate_no")[0].value;
             console.log(txt);
   var res = txt.charAt(txt.length-1);
   document.getElementById("Ending").innerHTML = res;
@@ -24,7 +24,7 @@ function myFunction() {
     {{ form.original_OR_date }}
     {{ form.plateNo_release }} -->
     <div class="col-sm-4">
-        <label>Plate Number:</label><span id="Plate_no" onclick="myFunction()">{{ form.PLATE_NO }}</span>
+        <label>Plate Number:</label><!-- <span id="Plate_no" onclick="myFunction()"> -->{{ form.PLATE_NO }}<!-- </span> -->
     </div>
     <div class="col-sm-4">
         <label>Conduction Sticker Number:</label>{{ form.CS_NO }}
@@ -33,7 +33,8 @@ function myFunction() {
         <label>CR Name:</label>{{ form.CR_NAME }}
     </div>
     <div class="col-sm-4">
-        <label >Ending:</label><span id="Ending" >{{ form.PLATE_ENDING }}</span>
+        <label >Ending:</label>{{ form.PLATE_ENDING }}
+        <!-- <div id="Ending">{{ form.Ending }}</div> -->
     </div>
     <div class="col-sm-4">
         <label>Model:</label>{{ form.MODEL }}
