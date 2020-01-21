@@ -36,21 +36,35 @@ class VmasterlistCreateView(CreateView):
     form_class = Vmasterlist
     template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
 
-    def ending(self, request, *args, **kwargs):
-        v_id = self.request.POST.get('Activity_Id')
+    def post(self, request, *args, **kwargs):
+        # v_id = self.request.POST.get('Activity_Id')
 
         if request.method == 'POST':
+            reg = ''
             plate = request.POST.get('PLATE_NO')
-            # def getSumOfLastDigits(plate): 
-            #     ending = 0 
-            #     for num in plate:
-            #         ending += num % 10
-            #     return ending
-            def increment(string):
-                plate = int(string[:-1])
-                plate += 1
-                return string[:-1]
-            saveto_end = VehicleMasterList(PLATE_ENDING=ending)
+            endplate = int(plate[-1])
+            
+            if endplate == 1 :
+                reg = 'Jan'
+            elif endplate == 2:
+                reg = 'Feb'
+            elif endplate == 3:
+                reg = 'Mar'
+            elif endplate == 4:
+                reg = 'Apr'
+            elif endplate == 5:
+                reg = 'May'
+            elif endplate == 6:
+                reg = 'Jun'
+            elif endplate == 7:
+                reg = 'Jul'
+            elif endplate == 8:
+                reg = 'Aug'
+            elif endplate == 9:
+                reg = 'Sep'
+            else:
+                reg = 'Oct'
+            saveto_end = VehicleMasterList(PLATE_ENDING=endplate, REGISTRATION_MONTH=reg)
             saveto_end.save()
 
         return super().post(request)
