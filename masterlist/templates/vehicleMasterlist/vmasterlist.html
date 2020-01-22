@@ -18,12 +18,11 @@ function myFunction() {
         <h3 class="page-header"><b>Vehicle MasterList</b></h3>&nbsp;
     </div>
 
-<form method="POST" action="">
+<form method="POST" action="{% url 'vehicleMasterlist-new' %}">
 {% csrf_token %}
     <div class="col-sm-4">
         <label>Plate Number:</label>
         <input type="text" name="plate_no" id="plate_no" class="form-control">
-        <button onclick="myFunction()">Get Ending</button>
     </div>
     <div class="col-sm-4">
         <label>Conduction Sticker Number:</label>
@@ -31,7 +30,11 @@ function myFunction() {
     </div>
     <div class="col-sm-4">
         <label>CR Name:</label>
-        <input type="text" name="cr_name" id="cr_name" class="form-control">
+        <select name="cars" class="form-control">
+            <option value="">--------</option>
+            <option value="Globe">GLOBE</option>
+            <option value="Bayan">BAYAN</option>
+        </select>
     </div>
     <div class="col-sm-4">
         <label >Ending:</label>
@@ -43,7 +46,20 @@ function myFunction() {
     </div>
     <div class="col-sm-4">
         <label>Brand:</label>
-        <input type="text" name="brand" id="brand" class="form-control">
+        <select name="cars" class="form-control">
+            <option value="">--------</option>
+            <option value="Honda">Honda</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Mitsubishi">Mitsubishi</option>
+            <option value="Ford">Ford</option>
+            <option value="Masda">Masda</option>
+            <option value="Isuzu">Isuzu</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Suzuki">Suzuki</option>
+            <option value="Chevrolet">Chevrolet</option>
+
+        </select>
     </div>
     <div class="col-sm-4">
         <label>Vehicle Make:</label>
@@ -115,7 +131,7 @@ function myFunction() {
     </div>
     <div class="col-sm-4">
         <label>Aquisition_date:</label>
-        <input type="text" name="aqui_date" id="aqui_date" class="form-control">
+        <input type="date" name="aqui_date" id="aqui_date" class="form-control">
     </div>
         <div class="col-sm-4">
         <label>Aquisition Cost:</label>
@@ -131,7 +147,7 @@ function myFunction() {
     </div>
     <div class="col-sm-4">
         <label>Plate Release Date:</label>
-        <input type="text" name="plate_date" id="plate_date" class="form-control">
+        <input type="date" name="plate_date" id="plate_date" class="form-control">
     </div> 
 </div>
     <div class="card-footer">

@@ -113,7 +113,7 @@ class Vmasterlist(forms.ModelForm):
                   'PLATE_NO': forms.TextInput(attrs={'class':'form-control'}),
                   'CS_NO': forms.TextInput(attrs={'class':'form-control'}),
                   'CR_NAME': forms.TextInput(attrs={'class':'form-control'}),
-                  'PLATE_ENDING': forms.TextInput(attrs={'class':'form-control'}),
+                  'PLATE_ENDING': forms.TextInput(attrs={'class':'form-control', 'hidden':'true'}),
                   'REGISTRATION_MONTH': forms.TextInput(attrs={'class':'form-control'}),
                   'MODEL': forms.TextInput(attrs={'class':'form-control'}),
                   'BRAND': forms.Select(attrs={'class':'form-control','choices':'Vbrand'}),
@@ -144,7 +144,8 @@ class Vmasterlist(forms.ModelForm):
                   'EQUIPMENT_NO': forms.TextInput(attrs={'class':'form-control'}),
                   'PO_NO': forms.TextInput(attrs={'class':'form-control'}),
                   'PLATE_NUMBER_RELEASE_DATE': forms.TextInput(attrs={'class':'form-control'})
-
+            }
+            
                   # 'Plate_no': forms.TextInput(attrs={'class':'form-control'}),
                   # 'Conduction_Sticker': forms.TextInput(attrs={'class':'form-control'}),
                   # 'Remarks': forms.TextInput(attrs={'class':'form-control'}),
@@ -186,7 +187,7 @@ class Vmasterlist(forms.ModelForm):
                   # 'reg_month': forms.TextInput(attrs={'class':'form-control', 'hidden':'true'}),
                   # 'original_OR_date': forms.TextInput(attrs={'class':'form-control', 'hidden':'true'}),
                   # 'plateNo_release': forms.TextInput(attrs={'class':'form-control', 'hidden':'true'})
-            }
+            
 
 class Vmaster(forms.ModelForm):
       def __init__(self, *args, **kwargs):

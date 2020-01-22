@@ -29,49 +29,72 @@ from bootstrap_modal_forms.generic import (
 #     return render(request, 'vehicleMasterlist/vmasterlist.html')
 
 
-class VmasterlistCreateView(CreateView):
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-    model = VehicleMasterList
-    form_class = Vmasterlist
-    template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
+def VmasterlistCreateView(request):
 
-    def post(self, request, *args, **kwargs):
-        # v_id = self.request.POST.get('Activity_Id')
+    if request.method == 'POST':
+        plate = request.POST.get('plate_no')
+        cs = request.POST.get('cs')
+        cr_name = request.POST.get('cr_name')
+        model = request.POST.get('model')
+        brand = request.POST.get('brand')
+        vmake = request.POST.get('vmake')
+        eng_no = request.POST.get('eng_no')
+        mvfile = request.POST.get('mvfile')
+        vtype = request.POST.get('vtype')
+        vcat = request.POST.get('vcat')
+        emp_id = request.POST.get('emp_id')
+        band = request.POST.get('band')
+        benefit = request.POST.get('benefit')
+        cost = request.POST.get('cost')
+        group = request.POST.get('group')
+        div = request.POST.get('div')
+        dept = request.POST.get('dept')
+        sec = request.POST.get('sec')
+        is_emp = request.POST.get('is_emp')
+        is_fname = request.POST.get('is_fname')
+        is_lname = request.POST.get('is_fname')
+        loc = request.POST.get('loc')
+        aqui_date = request.POST.get('aqui_date')
+        aqui_cost = request.POST.get('aqui_cost')
+        asset = request.POST.get('asset')
+        po_no = request.POST.get('po_no')
+        plate_date = request.POST.get('plate_date')
 
-        if request.method == 'POST':
-            reg = ''
-            plate = request.POST.get('PLATE_NO')
-            endplate = int(plate[-1])
-            
-            if endplate == 1 :
-                reg = 'Jan'
-            elif endplate == 2:
-                reg = 'Feb'
-            elif endplate == 3:
-                reg = 'Mar'
-            elif endplate == 4:
-                reg = 'Apr'
-            elif endplate == 5:
-                reg = 'May'
-            elif endplate == 6:
-                reg = 'Jun'
-            elif endplate == 7:
-                reg = 'Jul'
-            elif endplate == 8:
-                reg = 'Aug'
-            elif endplate == 9:
-                reg = 'Sep'
-            else:
-                reg = 'Oct'
-            saveto_end = VehicleMasterList(PLATE_ENDING=endplate, REGISTRATION_MONTH=reg)
-            saveto_end.save()
+        reg = ''
+        endplate = int(plate[-1])
 
-        return super().post(request)
+        if endplate == 1:
+            reg = 'Jan'
+        elif endplate == 2:
+            reg = 'Feb'
+        elif endplate == 3:
+            reg = 'Mar'
+        elif endplate == 4:
+            reg = 'Apr'
+        elif endplate == 5:
+            reg = 'May'
+        elif endplate == 6:
+            reg = 'Jun'
+        elif endplate == 7:
+            reg = 'Jul'
+        elif endplate == 8:
+            reg = 'Aug'
+        elif endplate == 9:
+            reg = 'Sep'
+        else:
+            reg = 'Oct'
+        saveto_end = VehicleMasterList(PLATE_NO=plate, CS_NO=cs, CR_NAME=cr_name, MODEL=model, BRAND=brand,PLATE_ENDING=endplate, REGISTRATION_MONTH=reg,
+            VEHICLE_MAKE=vmake, ENGINE_NO=eng_no, MV_FILE_NO=mvfile, VEHICLE_TYPE=vtype, VEHICLE_CATEGORY=vcat,
+            Employee_Id=emp_id, BAND_LEVEL=band, BENEFIT_GROUP=benefit, COST_CENTER=cost, GROUP=group, DIVISION=div,
+            DEPARTMENT=dept, SECTION=sec, IS_ID=is_emp, IS_FIRST_NAME=is_fname, IS_LAST_NAME=is_lname, LOCATION=loc,
+            ACQ_DATE=aqui_date, ACQ_COST=aqui_cost,ASSET_NO=asset, PO_NO=po_no, PLATE_NUMBER_RELEASE_DATE= plate_date)
+        saveto_end.save()
 
-# def Vmaster(request):
-#     vlist = VehicleMasterList.objects.all()
-#     return render(request, 'registration/release_date.html', {'title': 'Registration - Update Registration', 'vlist': vlist})
+    return HttpResponseRedirect('/Masterlist/VehicleMasterlist/')
+
+def Vmaster(request):
+    vlist = VehicleMasterList.objects.all()
+    return render(request, 'vehicleMasterlist/vmasterlist.html', {'title': 'Masterlist - Vehicle Masterlist', 'vlist': vlist})
 
 # def vmaster_update(request, pk):
 #     if request.method == 'POST':

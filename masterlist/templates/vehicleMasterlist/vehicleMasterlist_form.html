@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script>
 function myFunction() {
@@ -10,7 +10,7 @@ function myFunction() {
   var res = txt.charAt(txt.length-1);
   document.getElementById("Ending").innerHTML = res;
 }
-</script>
+</script> -->
 
 <div class="col-md-12">
     <div class="card">
@@ -23,8 +23,9 @@ function myFunction() {
 <!--     {{ form.reg_month }}
     {{ form.original_OR_date }}
     {{ form.plateNo_release }} -->
+    {{ form.PLATE_ENDING }}
     <div class="col-sm-4">
-        <label>Plate Number:</label><!-- <span id="Plate_no" onclick="myFunction()"> -->{{ form.PLATE_NO }}<!-- </span> -->
+        <label>Plate Number:</label>{{ form.PLATE_NO }}
     </div>
     <div class="col-sm-4">
         <label>Conduction Sticker Number:</label>{{ form.CS_NO }}
@@ -32,10 +33,7 @@ function myFunction() {
     <div class="col-sm-4">
         <label>CR Name:</label>{{ form.CR_NAME }}
     </div>
-    <div class="col-sm-4">
-        <label >Ending:</label>{{ form.PLATE_ENDING }}
-        <!-- <div id="Ending">{{ form.Ending }}</div> -->
-    </div>
+
     <div class="col-sm-4">
         <label>Model:</label>{{ form.MODEL }}
     </div>
@@ -96,7 +94,7 @@ function myFunction() {
     <div class="col-sm-4">
         <label>Aquisition_date:</label>{{ form.ACQ_DATE }}
     </div>
-        <div class="col-sm-4">
+    <div class="col-sm-4">
         <label>Aquisition Cost:</label>{{ form.ACQ_COST }}
     </div>
     <div class="col-sm-4">
