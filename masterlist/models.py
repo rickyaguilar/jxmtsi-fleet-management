@@ -89,7 +89,7 @@ class VehicleMasterList(models.Model):
 	ASSIGNEE_LAST_NAME = models.CharField(max_length=100, null=True)
 	ASSIGNEE_FIRST_NAME = models.CharField(max_length=100, null=True)
 	VEHICLE_CATEGORY = models.CharField(max_length=100, null=True)
-	#Employee_Id = models.ForeignKey('EmployeeMasterlist', on_delete=models.DO_NOTHING)
+	Employee_Id = models.ForeignKey('EmployeeMasterlist', on_delete=models.DO_NOTHING)
 	#Employee_Id = models.CharField(max_length=100, null=True)
 	BAND_LEVEL  = models.CharField(max_length=100, null=True)
 	BENEFIT_GROUP = models.CharField(max_length=100, null=True)
@@ -109,7 +109,7 @@ class VehicleMasterList(models.Model):
 	EQUIPMENT_NO = models.CharField(max_length=100, null=True)
 	PO_NO = models.CharField(max_length=100, null=True)
 	PLATE_NUMBER_RELEASE_DATE = models.DateField(auto_now=False, null=True)
-	Employee_Id = models.CharField(max_length=100, null=True)
+	# Employee_Id = models.CharField(max_length=100, null=True)
 
 	# Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
 	# No = models.CharField(max_length=50, null=True, default=increment_No)

@@ -31,7 +31,7 @@ class EmpMasterlistForm(forms.ModelForm):
                   'External_role':forms.TextInput(attrs={'class':'form-control'}),
                   'Job_category':forms.TextInput(attrs={'class':'form-control'}),
                   'Hiring_date':forms.TextInput(attrs={'class':'form-control','type':'date'}),
-                  'Tenure':forms.TextInput(attrs={'class':'form-control'}),
+                  'Tenure':forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
                   'Band':forms.TextInput(attrs={'class':'form-control'}),
                   'Cost_center':forms.TextInput(attrs={'class':'form-control','type':'number'}),
                   'DIV_code':forms.TextInput(attrs={'class':'form-control'}),
@@ -145,7 +145,7 @@ class Vmasterlist(forms.ModelForm):
                   'PO_NO': forms.TextInput(attrs={'class':'form-control'}),
                   'PLATE_NUMBER_RELEASE_DATE': forms.TextInput(attrs={'class':'form-control'})
             }
-            
+
                   # 'Plate_no': forms.TextInput(attrs={'class':'form-control'}),
                   # 'Conduction_Sticker': forms.TextInput(attrs={'class':'form-control'}),
                   # 'Remarks': forms.TextInput(attrs={'class':'form-control'}),
