@@ -59,6 +59,31 @@ def VmasterlistCreateView(request):
         asset = request.POST.get('asset')
         po_no = request.POST.get('po_no')
         plate_date = request.POST.get('plate_date')
+        or_date = request.POST.get('or_date')
+        
+        if or_date == '':
+            or_date = None
+        else:
+            or_date = datetime.datetime.strptime(or_date,'%Y-%m-%d')
+
+        if aqui_date == '':
+            aqui_date = None
+        else:
+            aqui_date = datetime.datetime.strptime(aqui_date,'%Y-%m-%d')
+
+        if plate_date == '':
+            plate_date = None
+        else:
+            plate_date = datetime.datetime.strptime(plate_date,'%Y-%m-%d')
+
+
+        employee_list = EmployeeMasterlist.objects.all()
+        for e_id in employee_list:
+            if e_id.Employee_Id == emp_id:
+                emp_save = e_id.id
+            
+        if emp_id == '':
+            emp_save = None
 
         reg = ''
         endplate = int(plate[-1])
@@ -85,15 +110,15 @@ def VmasterlistCreateView(request):
             reg = 'Oct'
         saveto_end = VehicleMasterList(PLATE_NO=plate, CS_NO=cs, CR_NAME=cr_name, MODEL=model, BRAND=brand,PLATE_ENDING=endplate, REGISTRATION_MONTH=reg,
             VEHICLE_MAKE=vmake, ENGINE_NO=eng_no, MV_FILE_NO=mvfile, VEHICLE_TYPE=vtype, VEHICLE_CATEGORY=vcat,
-            Employee_Id=emp_id, BAND_LEVEL=band, BENEFIT_GROUP=benefit, COST_CENTER=cost, GROUP=group, DIVISION=div,
+            Employee=emp_save, BAND_LEVEL=band, BENEFIT_GROUP=benefit, COST_CENTER=cost, GROUP=group, DIVISION=div,
             DEPARTMENT=dept, SECTION=sec, IS_ID=is_emp, IS_FIRST_NAME=is_fname, IS_LAST_NAME=is_lname, LOCATION=loc,
-            ACQ_DATE=aqui_date, ACQ_COST=aqui_cost,ASSET_NO=asset, PO_NO=po_no, PLATE_NUMBER_RELEASE_DATE= plate_date)
+            ACQ_DATE=aqui_date, ACQ_COST=aqui_cost, ASSET_NO=asset, PO_NO=po_no, PLATE_NUMBER_RELEASE_DATE=plate_date, ORIGINAL_OR_DATE=or_date)
         saveto_end.save()
 
     return HttpResponseRedirect('/Masterlist/VehicleMasterlist/')
 
 def Vmaster(request):
-    vlist = VehicleMasterList.objects.all()
+    vlist = EmployeeMasterlist.objects.all()
     return render(request, 'vehicleMasterlist/vmasterlist.html', {'title': 'Masterlist - Vehicle Masterlist', 'vlist': vlist})
 
 # def vmaster_update(request, pk):
@@ -161,16 +186,16 @@ class employeeMasterlistDeleteView(BSModalDeleteView):
 
 def registration(request):
     model = VehicleMasterList
-    reg1 = VehicleMasterList.objects.filter(PLATE_NO__endswith="1")
-    reg2 = VehicleMasterList.objects.filter(PLATE_NO__endswith="2")
-    reg3 = VehicleMasterList.objects.filter(PLATE_NO__endswith="3")
-    reg4 = VehicleMasterList.objects.filter(PLATE_NO__endswith="4")
-    reg5 = VehicleMasterList.objects.filter(PLATE_NO__endswith="5")
-    reg6 = VehicleMasterList.objects.filter(PLATE_NO__endswith="6")
-    reg7 = VehicleMasterList.objects.filter(PLATE_NO__endswith="7")
-    reg8 = VehicleMasterList.objects.filter(PLATE_NO__endswith="8")
-    reg9 = VehicleMasterList.objects.filter(PLATE_NO__endswith="9")
-    reg0 = VehicleMasterList.objects.filter(PLATE_NO__endswith="0")
+    reg1 = VehicleMasterList.objects.filter(PLATE_ENDING="1")
+    reg2 = VehicleMasterList.objects.filter(PLATE_ENDING="2")
+    reg3 = VehicleMasterList.objects.filter(PLATE_ENDING="3")
+    reg4 = VehicleMasterList.objects.filter(PLATE_ENDING="4")
+    reg5 = VehicleMasterList.objects.filter(PLATE_ENDING="5")
+    reg6 = VehicleMasterList.objects.filter(PLATE_ENDING="6")
+    reg7 = VehicleMasterList.objects.filter(PLATE_ENDING="7")
+    reg8 = VehicleMasterList.objects.filter(PLATE_ENDING="8")
+    reg9 = VehicleMasterList.objects.filter(PLATE_ENDING="9")
+    reg0 = VehicleMasterList.objects.filter(PLATE_ENDING="0")
     return render(request, 'registration/registration.html', {'title': 'Vehicle - Vehicle Filter', 'reg1': reg1,'reg2': reg2, 'reg3': reg3,
     'reg4': reg4, 'reg5': reg5, 'reg6': reg6, 'reg7': reg7, 'reg8': reg8, 'reg9': reg9, 'reg0': reg0})
 

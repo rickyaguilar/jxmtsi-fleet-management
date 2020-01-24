@@ -9,11 +9,13 @@
         lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
     });
 
+    $(document).ready(function() {
     $('#bootstrap-data-table-export').DataTable({
         lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        "scrollX": true
     });
-
+    
 	$('#row-select').DataTable( {
         initComplete: function () {
 				this.api().columns().every( function () {

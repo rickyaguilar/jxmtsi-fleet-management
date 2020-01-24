@@ -24,7 +24,40 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    
+    <!---Data table Horizontal scroll-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <!--table responsive-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css"> -->
+
+            <!-- #######################################
+                 ########### DATA TABLE CSS ############
+                 #######################################   -->  
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+<style type="text/css">
+  div.dataTables_wrapper {
+        width: 1300px;
+        margin: 0 auto;
+    }
+</style>
 
     
 
@@ -81,14 +114,32 @@
     <script src="{% static 'vendors/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
     <script src="{% static 'assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
     <script src="{% static 'vendors/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+    <!--table responsive js-->
+<!--     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script> -->
     
-    {% comment %} <script src="{% static 'vendors/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js' %}"></script> {% endcomment %}
+    <!-- {% comment %} <script src="{% static 'vendors/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js' %}"></script> {% endcomment %}
     {% comment %} <script src="{% static 'js/dashboard.js' %}"></script> {% endcomment %}
     {% comment %} <script src="{% static 'js/main.js' %}"></script> {% endcomment %}
-    {% comment %} <script src="{% static 'assets/js/jquery.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'assets/js/jquery.js' %}"></script> {% endcomment %} -->
     <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
     <!-- You can alternatively load the minified version -->
     <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
+    <!---Data table Horizontal scroll-->
+    <link href='https://code.jquery.com/jquery-3.3.1.js'>
+    <link href= 'https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'>
 
 <script>
     (function($) {
@@ -108,7 +159,42 @@
         });
     })(jQuery);
 </script>
+            <!-- #######################################
+                 ########### DATA TABLE JS #############
+                 #######################################   -->  
 
-</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollX": true
+        
+    } );
+} );
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+    var table = $('#example').DataTable();
+ 
+    $('#example tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') );
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
+} );
+</script>
+<!-- <script>
+    $(document).ready(function() {
+        var table = $('#example').DataTable( {
+            lengthChange: true,
+            buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+        } );
+     
+        table.buttons().container()
+            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+    } );
+     </script>
+</body> -->
 
 </html>

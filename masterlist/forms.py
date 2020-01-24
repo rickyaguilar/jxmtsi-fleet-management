@@ -67,7 +67,7 @@ class Vmasterlist(forms.ModelForm):
             self.fields['ASSIGNEE_LAST_NAME'].required = False
             self.fields['ASSIGNEE_FIRST_NAME'].required = False
             self.fields['VEHICLE_CATEGORY'].required = False
-            self.fields['Employee_Id'].required = False
+            self.fields['Employee'].required = False
             self.fields['BAND_LEVEL'].required = False
             self.fields['BENEFIT_GROUP'].required = False
             self.fields['COST_CENTER'].required = False
@@ -91,7 +91,7 @@ class Vmasterlist(forms.ModelForm):
             model = VehicleMasterList
             fields = [
                   'PLATE_NO','CS_NO','CR_NAME','PLATE_ENDING','REGISTRATION_MONTH','MODEL','BRAND',
-                  'VEHICLE_MAKE','ENGINE_NO','CHASSIS_NO','MV_FILE_NO','VEHICLE_TYPE','ASSIGNEE_LAST_NAME','ASSIGNEE_FIRST_NAME','VEHICLE_CATEGORY','Employee_Id',
+                  'VEHICLE_MAKE','ENGINE_NO','CHASSIS_NO','MV_FILE_NO','VEHICLE_TYPE','ASSIGNEE_LAST_NAME','ASSIGNEE_FIRST_NAME','VEHICLE_CATEGORY','Employee',
                   'BAND_LEVEL','BENEFIT_GROUP','COST_CENTER','GROUP','DIVISION','DEPARTMENT','SECTION','IS_ID','IS_LAST_NAME','IS_FIRST_NAME','LOCATION','ORIGINAL_OR_DATE',
                   'ACQ_DATE','ACQ_COST','ASSET_NO','EQUIPMENT_NO','PO_NO','PLATE_NUMBER_RELEASE_DATE'
             ]
@@ -125,7 +125,7 @@ class Vmasterlist(forms.ModelForm):
                   'ASSIGNEE_LAST_NAME': forms.TextInput(attrs={'class':'form-control'}),
                   'ASSIGNEE_FIRST_NAME': forms.TextInput(attrs={'class':'form-control'}),
                   'VEHICLE_CATEGORY': forms.TextInput(attrs={'class':'form-control'}),
-                  'Employee_Id' : forms.Select(attrs={'class':'form-control'}),
+                  'Employee' : forms.Select(attrs={'class':'form-control'}),
                   'BAND_LEVEL' : forms.TextInput(attrs={'class':'form-control'}),
                   'BENEFIT_GROUP': forms.TextInput(attrs={'class':'form-control'}),
                   'COST_CENTER': forms.TextInput(attrs={'class':'form-control'}),
