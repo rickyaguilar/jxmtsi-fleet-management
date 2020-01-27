@@ -2,6 +2,8 @@ from django.shortcuts import render,HttpResponseRedirect,reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views import generic
+import datetime
+from datetime import date
 from .models import (
     CarRental,
     VehiclePayment,
@@ -38,7 +40,10 @@ class CarRentalDetailView(DetailView):
 def Carrentalpayment(request):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
-    return render(request, 'payment/car/car_rental1.html')
+    e_list = EmployeeMasterlist.objects.all()
+    v_list = VehicleMasterList.objects.all()
+    return render(request, 'payment/car/car_rental1.html',{'title': 'Car - Car Rental', 'e_list': e_list, 'v_list': v_list})
+
 
 def Carrental_submit(request):
 	if request.method == 'POST':
@@ -57,13 +62,12 @@ def Carrental_submit(request):
 		#<--Vehicle Details-->
 		Plate_no = request.POST.get('Pnumber')
 		V_provider = request.POST.get('Vprovider')
-		V_brand = request.POST.get('Vbrand')
+		V_model = request.POST.get('Vmodel')
 		V_make = request.POST.get('Vmake')
 		#<--Rental Details-->
 		Delivered_V = request.POST.get('Ddelivered')
 		S_rental = request.POST.get('Srental')
 		E_rental = request.POST.get('Erental')
-		Rduration = request.POST.get('Rduration')
 		#<--Expense Details-->
 		R_cost = request.POST.get('Rcost')
 		Gas_cost = request.POST.get('Gcost')
@@ -76,6 +80,15 @@ def Carrental_submit(request):
 		Total = request.POST.get('Total')
 		C_SLA = request.POST.get('SLA')
 
+		#############################
+		######Date calculator########
+		#############################
+
+		d1 = datetime.datetime.strptime(S_rental, '%Y-%m-%d').date()
+		d2 = datetime.datetime.strptime(E_rental, '%Y-%m-%d').date()
+		Rduration = (d2 - d1)
+		
+		
 
 		saveto_CRP = CarRental(Bill_date=Bill_date,Employee_id=employee_id, L_name=lastname, F_name=firstname,
 			Assignee_company=Ass_company, Cost_center=Cost_center, O_Fname=Other_assigneeFM, O_Lname=Other_assigneeLM,

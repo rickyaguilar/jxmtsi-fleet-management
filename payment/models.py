@@ -43,7 +43,7 @@ class CarRental(models.Model):
 	O_cost_center = models.CharField(max_length=100, null=True)
 	#<---Vehicle Details-->
 	Plate_no = models.CharField(max_length=100, null=True)
-	V_provider = models.CharField(max_length=100, null=True)
+	V_model = models.CharField(max_length=100, null=True)
 	V_brand = models.CharField(max_length=100, null=True)
 	V_make = models.CharField(max_length=100, null=True)
 	#<---Rental Details--->
