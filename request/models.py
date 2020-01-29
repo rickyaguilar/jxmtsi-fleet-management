@@ -33,7 +33,7 @@ class CarRentalRequest(models.Model):
 	)
 
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
-	A_Employee_Id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.CASCADE)
+	A_Employee = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.CASCADE)
 	Date_received = models.DateField(auto_now=False, null=True)
 	Assignee_Fname = models.CharField(max_length=100, null=True)
 	Assignee_Lname = models.CharField(max_length=100, null=True)
@@ -128,7 +128,7 @@ class Gas_card(models.Model):
 	fuel_limit_amount = models.CharField(max_length=100, null=True)
 	fuel_limit_quantity = models.CharField(max_length=100, null=True)
 	products_restriction = models.CharField(max_length=100, null=True, choices=restrictions)
-	req_employee_id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.CASCADE)
+	req_employee = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.CASCADE)
 	req_fname = models.CharField(max_length=100, null=True)
 	req_lname = models.CharField(max_length=100, null=True)
 	req_title = models.CharField(max_length=100, null=True)

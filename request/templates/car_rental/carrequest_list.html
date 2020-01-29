@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% block content %}
 
-{% comment %} <script type="text/javascript">
+<!-- {% comment %} <script type="text/javascript">
   $(function () {
     // Delete book buttons
     $(".delete-carrequest").each(function () {
@@ -10,14 +10,14 @@
     });
 
   });
-</script> {% endcomment %}
+</script> {% endcomment %} -->
 
 
-<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+<!-- <div class="modal fade" tabindex="-1" role="dialog" id="modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content"></div>
   </div>
-</div>
+</div> -->
 
 <div class="breadcrumbs">
     <div class="col-sm-12">
@@ -33,7 +33,7 @@
                 <div class="card-header">
                     <a href="{% url 'car_request' %}"style="float:right "><u>Add Car Rental Request:</u></a>
                 </div>                         
-                <table id="bootstrap-data-table-export"a class="table table-striped table-bordered">
+                <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th>Activity ID:</th>

@@ -3,12 +3,16 @@ from . import views
 
 urlpatterns = [
 	path('Request/', views.requestListView.as_view(), name='carrequest_list'),
-	path('Request/New', views.requestCreateView.as_view(), name='car_request'),
+	# path('Request/New', views.requestCreateView.as_view(), name='car_request'),
+	path('Request/New', views.requestCreate, name='car_request'),
+	path('Request/Submit', views.requestsubmit, name='carrequest_submit'),
 	path('Request/Details/<int:pk>/', views.requestDetailView.as_view(), name='carrequest_details'),
 	path('Request/Update/<int:pk>/', views.requestUpdateView.as_view(), name='carrequest_update'),
 	path('Request/Delete/<int:pk>/', views.requestDeleteView.as_view(), name='carrequest_delete'),
 	path('Gas/', views.gasListView.as_view(),name='gascard_list'),
-	path('Gas/New', views.gasCreateView.as_view(), name='gascard_new'),
+	# path('Gas/New', views.gasCreateView.as_view(), name='gascard_new'),
+	path('Gas/New', views.gascreate, name='gascard_new'),
+	path('Gas/Submit', views.gassubmit, name='gas_submit'),
 	path('Gas/Update/<int:pk>', views.gasUpdateView.as_view(), name='gascard_update'),
 	path('Gas/Details/<int:pk>', views.gasDetailView.as_view(), name='gascard_details'),
 	path('Gas/Delete/<int:pk>', views.gasDeleteView.as_view(), name='gascard_delete'),

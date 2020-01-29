@@ -20,7 +20,7 @@ class carrequestform(forms.ModelForm):
 	class Meta:
 		model = CarRentalRequest
 		fields = [
-				'A_Employee_Id','Date_received','Assignee_Fname','Assignee_Lname','Assignee_No',
+				'A_Employee','Date_received','Assignee_Fname','Assignee_Lname','Assignee_No',
 				'Assignee_Company','Assignee_band','Assignee_Dept','Assignee_Cost','Assignee_Div','Assignee_Loc',
 				'Assignee_Section','Assignee_Designation','Assignee_ATD','Vendor_name','Date','Up_to','Time',
 				'Place_of_del','type_rental','Cost_center','Rental_period','Destination','Delivery_date',
@@ -40,7 +40,7 @@ class carrequestform(forms.ModelForm):
 				('VAN', 'VAN'),
 			)
 		widgets = {
-			'A_Employee_Id' : forms.Select(attrs={'class':'form-control'}),
+			'A_Employee' : forms.Select(attrs={'class':'form-control'}),
 			'Date_received': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
 			'Assignee_Fname': forms.TextInput(attrs={'class':'form-control'}),
 			'Assignee_Lname': forms.TextInput(attrs={'class':'form-control'}),
@@ -60,7 +60,6 @@ class carrequestform(forms.ModelForm):
 			'Time' : forms.TextInput(attrs={'class':'form-control', 'type':'time'}),
 			'Place_of_del': forms.TextInput(attrs={'class':'form-control'}),
 			'type_rental': forms.Select(attrs={'class':'form-control','choices':'Rental'}),
-			# 'type_rental': forms.ChoiceField(widget=forms.RadioSelect, 'choices':'rental'),
 			'Cost_center': forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
 			'Rental_period' : forms.TextInput(attrs={'class':'form-control'}),
 			'Destination' : forms.TextInput(attrs={'class':'form-control'}),
@@ -111,7 +110,7 @@ class gascardform(forms.ModelForm):
 		model = Gas_card
 		fields = [
 				'date_received','application_type','fleet_provider','fleetcard_type',
-				'fuel_limit_amount','fuel_limit_quantity','products_restriction','req_employee_id','req_fname','req_lname','req_title',
+				'fuel_limit_amount','fuel_limit_quantity','products_restriction','req_employee','req_fname','req_lname','req_title',
 				'req_cost_center','atd_no','temporary_atd','new_emp_id','new_emp_fname','new_emp_lname','new_emp_cost',
 				'new_temp_atd','new_assignee','cost_center_code','cancellation','plate_no','con_sticker','model_year','brand','make',
 				'fuel_type','new_plate_no','new_cond_sticker','new_model_year','new_vbrand','new_vmake','new_vfuel_type',
@@ -163,11 +162,11 @@ class gascardform(forms.ModelForm):
 			'fuel_limit_amount': forms.TextInput(attrs={'class':'form-control','type':'number'}),
 			'fuel_limit_quantity': forms.TextInput(attrs={'class':'form-control','type':'number'}),
 			'products_restriction': forms.Select(attrs={'class':'form-control','choices':'restrictions'}),
-			'req_employee_id': forms.Select(attrs={'class':'form-control'}),
-			'req_fname': forms.TextInput(attrs={'class':'form-control'}),
-			'req_lname': forms.TextInput(attrs={'class':'form-control'}),
+			'req_employee': forms.Select(attrs={'class':'form-control', 'readonly':'true'}),
+			'req_fname': forms.TextInput(attrs={'class':'form-control', 'readonly':'true'}),
+			'req_lname': forms.TextInput(attrs={'class':'form-control', 'readonly':'true'}),
 			'req_title': forms.TextInput(attrs={'class':'form-control'}),
-			'req_cost_center': forms.TextInput(attrs={'class':'form-control','type':'number'}),
+			'req_cost_center': forms.TextInput(attrs={'class':'form-control','type':'number', 'readonly':'true'}),
 			'atd_no': forms.TextInput(attrs={'class':'form-control'}),
 			'temporary_atd': forms.TextInput(attrs={'class':'form-control'}),
 			'new_emp_id': forms.TextInput(attrs={'class':'form-control'}),
@@ -178,11 +177,11 @@ class gascardform(forms.ModelForm):
 			'new_assignee': forms.TextInput(attrs={'class':'form-control'}),
 			'cost_center_code': forms.TextInput(attrs={'class':'form-control','type':'number'}),
 			'cancellation': forms.Select(attrs={'class':'form-control', 'choices':'cancellation'}),
-			'plate_no': forms.Select(attrs={'class':'form-control'}),
-			'con_sticker': forms.TextInput(attrs={'class':'form-control'}),
-			'model_year': forms.TextInput(attrs={'class':'form-control','type':'number'}),
-			'brand': forms.TextInput(attrs={'class':'form-control'}),
-			'make': forms.TextInput(attrs={'class':'form-control'}),
+			'plate_no': forms.Select(attrs={'class':'form-control', 'readonly':'true'}),
+			'con_sticker': forms.TextInput(attrs={'class':'form-control', 'readonly':'true'}),
+			'model_year': forms.TextInput(attrs={'class':'form-control','type':'number', 'readonly':'true'}),
+			'brand': forms.TextInput(attrs={'class':'form-control', 'readonly':'true'}),
+			'make': forms.TextInput(attrs={'class':'form-control', 'readonly':'true'}),
 			'fuel_type': forms.TextInput(attrs={'class':'form-control'}),
 			'new_plate_no': forms.TextInput(attrs={'class':'form-control'}),
 			'new_cond_sticker': forms.TextInput(attrs={'class':'form-control'}),

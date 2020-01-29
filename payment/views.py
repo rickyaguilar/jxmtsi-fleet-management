@@ -61,7 +61,7 @@ def Carrental_submit(request):
 		Other_cost = request.POST.get('Ocost')
 		#<--Vehicle Details-->
 		Plate_no = request.POST.get('Pnumber')
-		V_provider = request.POST.get('Vprovider')
+		V_brand = request.POST.get('Vbrand')
 		V_model = request.POST.get('Vmodel')
 		V_make = request.POST.get('Vmake')
 		#<--Rental Details-->
@@ -84,15 +84,15 @@ def Carrental_submit(request):
 		######Date calculator########
 		#############################
 
-		d1 = datetime.datetime.strptime(S_rental, '%Y-%m-%d').date()
-		d2 = datetime.datetime.strptime(E_rental, '%Y-%m-%d').date()
+		d1 = datetime.datetime.strptime(S_rental, '%Y-%m-%d')
+		d2 = datetime.datetime.strptime(E_rental, '%Y-%m-%d')
 		Rduration = (d2 - d1)
 		
 		
 
 		saveto_CRP = CarRental(Bill_date=Bill_date,Employee_id=employee_id, L_name=lastname, F_name=firstname,
 			Assignee_company=Ass_company, Cost_center=Cost_center, O_Fname=Other_assigneeFM, O_Lname=Other_assigneeLM,
-			O_cost_center=Other_cost, Plate_no=Plate_no, V_provider=V_provider, V_brand=V_brand, V_make=V_make,
+			O_cost_center=Other_cost, Plate_no=Plate_no, V_brand=V_brand, V_make=V_make,
 			D_vehicle=Delivered_V, S_rental=S_rental, E_rental=E_rental, R_duration=Rduration, R_Cost=R_cost,
 			G_cost=Gas_cost, T_fee=Toll_fee, P_fee=Park_fee, Del_fee=Del_fee, Dri_fee=Driverfee, M_cost=Meal_cost,
 			O_expenses=Other_exp, T_expenses=Total, Date_initiated=Date_initiated, C_SLA=C_SLA)
@@ -115,14 +115,12 @@ def Carrental_update(request, pk):
 		Other_cost = request.POST.get('Ocost')
 		#<--Vehicle Details-->
 		Plate_no = request.POST.get('Pnumber')
-		V_provider = request.POST.get('Vprovider')
 		V_brand = request.POST.get('Vbrand')
 		V_make = request.POST.get('Vmake')
 		#<--Rental Details-->
 		Delivered_V = request.POST.get('Ddelivered')
 		S_rental = request.POST.get('Startrental')
 		E_rental = request.POST.get('Endrental')
-		Rduration = request.POST.get('Rentduration')
 		#<--Expense Details-->
 		R_cost = request.POST.get('Rentcost')
 		Gas_cost = request.POST.get('Gascost')
@@ -134,10 +132,17 @@ def Carrental_update(request, pk):
 		Other_exp = request.POST.get('Otherexp')
 		Total = request.POST.get('TotalExp')
 
+		#############################
+		######Date calculator########
+		#############################
+
+		d1 = datetime.datetime.strptime(S_rental, '%Y-%m-%d').date()
+		d2 = datetime.datetime.strptime(E_rental, '%Y-%m-%d').date()
+		Rduration = (d2 - d1)
 
 		CarRental.objects.filter(id=pk).update(Bill_date=Bill_date,Employee_id=employee_id, L_name=lastname, F_name=firstname,
 			Assignee_company=Ass_company, Cost_center=Cost_center, O_Fname=Other_assigneeFM, O_Lname=Other_assigneeLM,
-			O_cost_center=Other_cost, Plate_no=Plate_no, V_provider=V_provider, V_brand=V_brand, V_make=V_make,
+			O_cost_center=Other_cost, Plate_no=Plate_no, V_brand=V_brand, V_make=V_make,
 			D_vehicle=Delivered_V, S_rental=S_rental, E_rental=E_rental, R_duration=Rduration, R_Cost=R_cost,
 			G_cost=Gas_cost, T_fee=Toll_fee, P_fee=Park_fee, Del_fee=Del_fee, Dri_fee=Driverfee, M_cost=Meal_cost,
 			O_expenses=Other_exp, T_expenses=Total)
@@ -156,14 +161,56 @@ def rent(request):
 	return render(request, 'payment/car_rental.html', {'title': 'CarRental - Create New Car Rental Request', 'emp': emp, 
 	'vechicle': vechicle})
 
-class VehicleCreateView(SuccessMessageMixin, CreateView):
-    model = VehiclePayment
-    form_class = VehiclePaymentform
-    template_name = 'payment/vehicle/vehiclepayment_new.html'
 
-    def get_success_message(self, cleaned_data):
-    	print(cleaned_data)
-    	return "New Vehicle Payment's Has been Created!"
+# class VehicleCreateView(SuccessMessageMixin, CreateView):
+#     model = VehiclePayment
+#     form_class = VehiclePaymentform
+#     template_name = 'payment/vehicle/vehiclepayment_new.html'
+
+#     def get_success_message(self, cleaned_data):
+#     	print(cleaned_data)
+#     	return "New Vehicle Payment's Has been Created!"
+
+def vehiclecreate(request):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    elist = EmployeeMasterlist.objects.all()
+    vlist = VehicleMasterList.objects.all()
+    return render(request, 'payment/vehicle/vehiclepayment_form.html',{'elist':elist,'vlist':vlist})
+
+def vehicle_submit(request):
+	if request.method == 'POST':
+		#<---Assign Details--->
+		a_emp_id = request.POST.get('a_emp_id')
+		emp_fname = request.POST.get('emp_fname')
+		emp_lname = request.POST.get('emp_lname')
+		Delivery_Date = request.POST.get('Delivery_Date')
+		Plate_Number = request.POST.get('Plate_Number')
+		Model_Year = request.POST.get('Model_Year')
+		Brand = request.POST.get('Brand')
+		Make = request.POST.get('Make')
+		Dealer = request.POST.get('Dealer')
+		date_received = request.POST.get('Date_Received_LTO_Documents')
+		Docs_plate_no = request.POST.get('Docs_plate_no')
+		LTO_stickers = request.POST.get('LTO_stickers')
+		Sticker_fields = request.POST.get('Sticker_fields')
+		Date_initial = request.POST.get('Date_initial')
+		First_payment = request.POST.get('First_payment')
+		LTO_Charges = request.POST.get('LTO_Charges')
+		Outstanding_Balance = request.POST.get('Outstanding_Balance')
+		Date_final = request.POST.get('Date_final')
+		Routing_Remarks = request.POST.get('Routing_Remarks')
+		v_sla = request.POST.get('v_sla')
+		
+
+		saveto_v = VehiclePayment(A_employee_ID = a_emp_id,E_First_name = emp_fname,E_Last_name = emp_lname,V_deliverDate = Delivery_Date,
+			Plate_no = Plate_Number,V_model = Model_Year,V_brand = Brand,V_make = Make,V_dealer = Dealer,LTO_documents = date_received,
+			Docs_plate_no = Docs_plate_no,LTO_stickers = LTO_stickers,Sticker_fields = Sticker_fields,Date_initial = Date_initial,
+			First_payment = First_payment,LTO_charges = LTO_Charges,Outstanding_balance = Outstanding_Balance,Date_final = Date_final,
+			Routing_remarks = Routing_Remarks,V_SLA = v_sla)
+		saveto_v.save()
+
+		return HttpResponseRedirect('/Payment/Vehicle/')
 
 class VehicleListView(ListView):
 	model = VehiclePayment

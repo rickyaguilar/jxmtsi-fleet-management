@@ -6,7 +6,6 @@ from .views import (
 	CarListView,
   	VehicleListView,
   	VehicleDetailView,
-  	VehicleCreateView,
   	VehicleUpdateView,
 	VehicleDeleteView,
   	FuelCreateView,
@@ -19,7 +18,9 @@ from .views import (
 
 urlpatterns = [
 	path('Vehicle/', VehicleListView.as_view(), name = 'Vehicle_list'),
-	path('Vehicle/New', VehicleCreateView.as_view(),name='Vehicle-new'),
+	# path('Vehicle/New', VehicleCreateView.as_view(),name='Vehicle-new'),
+	path('Vehicle/New', views.vehiclecreate, name='Vehicle-new'),
+	path('Vehicle/submit', views.vehicle_submit, name='Vehicle_submit'),
 	path('Vehicle/Detail/<int:pk>', VehicleDetailView.as_view(), name='Vehicle-summary'),
 	path('Vehicle/Update/<int:pk>', VehicleUpdateView.as_view(), name='Vehicle-update'),
 	path('Vehicle/Delete/<int:pk>', VehicleDeleteView.as_view(), name='Vehicle_delete'),
