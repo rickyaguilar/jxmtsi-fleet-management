@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .models import (
    	Ownership,
 )
+from masterlist.models import EmployeeMasterlist,VehicleMasterList
 from . forms import (
     ownershipForm
 )
@@ -35,9 +36,9 @@ class ownershipListView(ListView):
 def ownershipcreate(request):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
-    # e_list = EmployeeMasterlist.objects.all()
-    # v_list = VehicleMasterList.objects.all()
-    return render(request, 'transfer_new.html')
+    e_list = EmployeeMasterlist.objects.all()
+    v_list = VehicleMasterList.objects.all()
+    return render(request, 'transfer_new.html',{'Title':'Ownership - Transfer of Ownership', 'e_list':e_list,'v_list':v_list})
 
 
 def ownership_submit(request):

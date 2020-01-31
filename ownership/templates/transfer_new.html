@@ -15,7 +15,7 @@ function transferownership(trans) {
 
 <div class="row">
     <div class="col-lg-12">
-        <h3 class="page-header"><b>Transfer of Ownership</b></h3>&nbsp;
+        <h2 align="center"><b>Transfer of Ownership</b></h2>&nbsp;
     </div>
 </div>
  <div class="w3-bar w3-black">
@@ -34,18 +34,25 @@ function transferownership(trans) {
             <label>Date Application Received</label>
             {{ form.date_application }}
         </div> -->
+        <div style="display: flex; justify-content: flex-end">
         <div class="col-sm-6">
             <label>Date Application Received:</label>
             <input style= "text-transform:" type="date" name="date_application" id="date_application" class="form-control">
         </div>
-
+        </div>
         <!-- <div class="col-sm-6">
             <label>Requisitioner Employee ID:</label>
             {{ form.req_employee_id }}
         </div> -->
         <div class="col-sm-6">
             <label>Requisitioner Employee ID:</label>
-            <input style= "text-transform:" type="text" name="req_employee_id" id="req_employee_id" class="form-control">
+            <input name="req_employee_id" id="req_employee_id" list="emp_list" class="form-control" required>
+            <datalist id="emp_list">               
+            {% for emp_id in e_list %}
+              <option data-value="{{ emp_id.Employee_Id }} | {{ emp_id.Last_name}} | {{ emp_id.First_name }} | {{ emp_id.Band }} | {{ emp_id.Cost_center }}" value="{{ emp_id.Employee_Id }}">
+              </option>
+            {% endfor %}
+            </datalist>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -54,7 +61,7 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Requisitioner Last Name:</label>
-            <input style= "text-transform:" type="text" name="req_Lname" id="req_Lname" class="form-control">
+            <input style= "text-transform:" type="text" name="req_Lname" id="req_Lname" class="form-control" readonly>
         </div>
 
 
@@ -65,7 +72,7 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Requisitioner First Name:</label>
-            <input style= "text-transform:" type="text" name="req_Fname" id="req_Fname" class="form-control">
+            <input style= "text-transform:" type="text" name="req_Fname" id="req_Fname" class="form-control" readonly>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -75,7 +82,7 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Requisitioner Band:</label>
-            <input style= "text-transform:" type="text" name="req_band" id="req_band" class="form-control">
+            <input style= "text-transform:" type="text" name="req_band" id="req_band" class="form-control" readonly>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -85,7 +92,7 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Requisitioner Cost Center:</label>
-            <input style= "text-transform:" type="text" name="req_cost" id="req_cost" class="form-control">
+            <input style= "text-transform:" type="text" name="req_cost" id="req_cost" class="form-control" readonly>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -109,7 +116,12 @@ function transferownership(trans) {
         </div> -->
         <div class="col-sm-6">
             <label>Plate Number:</label>
-            <input style= "text-transform:" type="number" name="plate_no" id="plate_no" class="form-control">
+            <input name="plate_no" id="plate_no" list="vehicle_list" class="form-control" required>
+            <datalist id="vehicle_list">               
+            {% for plate in v_list %}
+              <option data-value="{{ plate.PLATE_NO }} | {{ plate.CS_NO }} | {{ plate.MODEL }} | {{ plate.BRAND }}| {{ plate.VEHICLE_MAKE }}" value="{{ plate.PLATE_NO }}"></option>
+            {% endfor %}
+            </datalist>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -119,7 +131,7 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Conduction Sticker:</label>
-            <input style= "text-transform:" type="text" name="cond_sticker" id="cond_sticker" class="form-control">
+            <input style= "text-transform:" type="text" name="cond_sticker" id="cond_sticker" class="form-control" readonly>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -129,7 +141,7 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Vehicle Model Year:</label>
-            <input style= "text-transform:" type="number" name="vehicle_model" id="vehicle_model" class="form-control">
+            <input style= "text-transform:" type="number" name="vehicle_model" id="vehicle_model" class="form-control" readonly>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -139,7 +151,7 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Vehicle Brand:</label>
-            <input style= "text-transform:" type="text" name="Vehicle_Brand" id="Vehicle_Brand" class="form-control">
+            <input style= "text-transform:" type="text" name="Vehicle_Brand" id="Vehicle_Brand" class="form-control" readonly>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -149,7 +161,7 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Vehicle Make:</label>
-            <input style= "text-transform:" type="text" name="vehicle_make" id="vehicle_make" class="form-control">
+            <input style= "text-transform:" type="text" name="vehicle_make" id="vehicle_make" class="form-control" readonly>
         </div>
 
     </fieldset>
@@ -554,4 +566,32 @@ function transferownership(trans) {
     </div>
 </div>
 </form>
+
+<!--for employee auto-fill-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$('#req_employee_id').on('change', function () {
+    var value = $('#req_employee_id').val();
+    var val = ($('#emp_list [value="' + value + '"]').data('value'));
+    var parts = val.split(" | ");
+    $('#req_employee_id').val(parts[0]);
+    $('#req_Lname').val(parts[1]);
+    $('#req_Fname').val(parts[2]);
+    $('#req_band').val(parts[3]);
+    $('#req_cost').val(parts[4]);
+});
+</script>
+<!--for vehicle auto-fill-->
+<script>
+$('#plate_no').on('change', function () {
+    var value = $('#plate_no').val();
+    var val = ($('#vehicle_list [value="' + value + '"]').data('value'));
+    var parts = val.split(" | ");
+    $('#plate_no').val(parts[0]);
+    $('#cond_sticker').val(parts[1]);
+    $('#vehicle_model').val(parts[2]);
+    $('#Vehicle_Brand').val(parts[3]);
+    $('#vehicle_make').val(parts[4]);
+});
+</script>
 {% endblock %}

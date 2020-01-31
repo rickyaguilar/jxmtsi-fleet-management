@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from .models import VehiclePayment,Fuel_supplier
 
-2
+
 class VehiclePaymentform(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(VehiclePaymentform, self).__init__(*args, **kwargs)
