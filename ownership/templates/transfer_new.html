@@ -25,7 +25,7 @@ function transferownership(trans) {
     <button class="w3-bar-item w3-button" onclick="transferownership('Inbound Process')">Inbound Process</button>
     <button class="w3-bar-item w3-button" onclick="transferownership('TOO Completion')">TOO Completion</button>
     </div>
-<form method="POST">
+<form method="POST" action="{% url 'ownership_submit' %}">
 {% csrf_token %}
     <div id="Transfer of Ownership" class="w3-container ownership">
     <fieldset>
@@ -37,7 +37,7 @@ function transferownership(trans) {
         <div style="display: flex; justify-content: flex-end">
         <div class="col-sm-6">
             <label>Date Application Received:</label>
-            <input style= "text-transform:" type="date" name="date_application" id="date_application" class="form-control">
+            <input style= "text-transform:" type="date" name="date_application" id="date_application" class="form-control" required>
         </div>
         </div>
         <!-- <div class="col-sm-6">
@@ -174,7 +174,12 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Vendor:</label>
-            <input style= "text-transform:" type="text" name="Vendor" id="Vendor" class="form-control">
+            <select class="form-control" name="Vendor" id="Vendor">
+                <option value="">----------</option>
+                <option value="Globe Telecome">Globe Telecome</option>
+                <option value="Innove">Innove</option>
+                <option value="Bayantel Communication">Bayantel Communication</option>
+            </select>
         </div>
 
         <!-- <div class="col-sm-6">
@@ -234,7 +239,19 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>TOO Purpose:</label>
-            <input style= "text-transform:" type="text" name="TOO_Purpose" id="TOO_Purpose" class="form-control">
+            <select name="TOO_Purpose" id="TOO_Purpose" class="form-control">
+                <option value="">----------</option>
+                <option value="Deceased">Deceased</option>
+                <option value="Early Availment">Early Availment</option>
+                <option value="End of Car Plan">End of Car Plan</option>
+                <option value="FSSV Availment">FSSV Availment</option>
+                <option value="Promotion">Promotion</option>
+                <option value="Resigned">Resigned</option>
+                <option value="Shift from Non-Sales to Sales">Shift from Non-Sales to Sales</option>
+                <option value="Shift from Sales to Non-Sales">Shift from Sales to Non-Sales</option>
+                <option value="Winning Bidder">Winning Bidder</option>
+
+            </select>
         </div>
 
     </fieldset>
@@ -285,9 +302,12 @@ function transferownership(trans) {
 
         <div class="col-sm-6">
             <label>Confirmation Status:</label>
-            <input style= "text-transform:" type="text" name="confirmation_status" id="confirmation_status" class="form-control">
+            <select name="confirmation_status" id="confirmation_status" class="form-control">
+                <option value="">----------</option>
+                <option value="Final Pay">Final Pay</option>
+                <option value="Confirmed">Confirmed</option>
+            </select>
         </div>
-
         <!-- <div class="col-sm-6">
             <label>Date OR Emailed to Casher:</label>
             {{ form.emailed_to_casher }}
@@ -559,7 +579,7 @@ function transferownership(trans) {
         </div>
 
     </fieldset>
-    {{ form.TOO_SLA}}
+    <input style= "text-transform:" type="text" name="TOO_SLA" id="TOO_SLA" value="30" hidden class="form-control">
     <div class="card-footer">
         <button type="submit" class="button">UPDATE</button>
     </div>

@@ -1,5 +1,6 @@
-from django.shortcuts import render,HttpResponseRedirect,reverse
+from django.shortcuts import render,HttpResponseRedirect,reverse,HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
+from openpyxl import Workbook
 from django.urls import reverse_lazy
 from django.views import generic
 import datetime
@@ -90,7 +91,7 @@ def Carrental_submit(request):
 		
 		
 
-		saveto_CRP = CarRental(Bill_date=Bill_date,Employee_id=employee_id, L_name=lastname, F_name=firstname,
+		saveto_CRP = CarRental(Bill_date=Bill_date, Employee_id=employee_id, L_name=lastname, F_name=firstname,
 			Assignee_company=Ass_company, Cost_center=Cost_center, O_Fname=Other_assigneeFM, O_Lname=Other_assigneeLM,
 			O_cost_center=Other_cost, Plate_no=Plate_no, V_brand=V_brand, V_make=V_make,
 			D_vehicle=Delivered_V, S_rental=S_rental, E_rental=E_rental, R_duration=Rduration, R_Cost=R_cost,
@@ -266,6 +267,222 @@ class FuelDeleteView(BSModalDeleteView):
     template_name = 'fuel/fuel_supplier_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('Fuel_supplierList')
+
+
+def car_excel(request):
+    car_queryset = CarRental.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Car Rental Payment.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Car Rental Payment'
+
+    columns = [
+            'Bill date',
+            'Employee Id',
+            'Last Name',
+            'First Name',
+            'Company',
+            'Cost Center',
+            'Date Created',
+            'Other Assignee First Name',
+            'Other Assignee Last Name',
+            'Other Cost Center',
+            'Plate No',
+            'Model',
+            'Brand',
+            'Make',
+            'Date Rental',
+            'Start Date Rental',
+            'End Date Rental',
+            'Rent Duration',
+            'Rent Cost',
+            'Gasoline Cost',
+            'Toll Fee',
+            'Parking Fee',
+            'Delivery Fee',
+            'Driver Fee',
+            'Meal Cost',
+            'Other Expense',
+            'Total Expense',
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for car in car_queryset:
+        row_num += 1
+        # ordate = car.ORIGINAL_OR_DATE.strftime('%m/%d/%Y')
+        # platerelease = car.PLATE_NUMBER_RELEASE_DATE.strftime('%m/%d/%Y')
+        row = [
+                car.Bill_date,
+                car.Employee_id,
+                car.L_name,
+                car.F_name,
+                car.Assignee_company,
+                car.Cost_center,
+                car.Date_initiated,
+                car.O_Fname,
+                car.O_Lname,
+                car.O_cost_center,
+                car.Plate_no,
+                car.V_model,
+                car.V_brand,
+                car.V_make,
+                car.D_vehicle,
+                car.S_rental,
+                car.E_rental,
+                car.R_duration,
+                car.R_Cost,
+                car.G_cost,
+                car.T_fee,
+                car.P_fee,
+                car.Del_fee,
+                car.Dri_fee,
+                car.M_cost,
+                car.O_expenses,
+                car.T_expenses,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def vehicle_excel(request):
+    vehicle_queryset = VehiclePayment.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Vehicle Payment.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Vehicle Payment'
+
+    columns = [
+            'PO Number',
+            'Employee Id',
+            'First Name',
+            'Last Name',
+            'Delivery Date',
+            'Plate No',
+            'Model',
+            'Brand',
+            'Make',
+            'Dealer',
+            'LTO Documents',
+            'Documents Plate No',
+            'LTO Conduction Stickers',
+            'Date Initial',
+            'First Payment',
+            'LTO Charges',
+            'Outstanding Balance',
+            'Date Final',
+            'Remarks',
+            'Date Initiated',
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for vehicle in vehicle_queryset:
+        row_num += 1
+        # ordate = car.ORIGINAL_OR_DATE.strftime('%m/%d/%Y')
+        # platerelease = car.PLATE_NUMBER_RELEASE_DATE.strftime('%m/%d/%Y')
+        row = [
+                vehicle.PO_no,
+                vehicle.A_employee_ID,
+                vehicle.E_First_name,
+                vehicle.E_Last_name,
+                vehicle.V_deliverDate,
+                vehicle.Plate_no,
+                vehicle.V_model,
+                vehicle.V_brand,
+                vehicle.V_make,
+                vehicle.V_dealer,
+                vehicle.LTO_documents,
+                vehicle.Docs_plate_no,
+                vehicle.LTO_stickers,
+                vehicle.Date_initial,
+                vehicle.First_payment,
+                vehicle.LTO_charges,
+                vehicle.Outstanding_balance,
+                vehicle.Date_final,
+                vehicle.Routing_remarks,
+                vehicle.Date_initiated,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def fuel_excel(request):
+    fuel_queryset = Fuel_supplier.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Fuel Supplier Payment.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Fuel Supplier Payment'
+
+    columns = [
+    'Date Received',
+	'Fuel Provider',
+	'Bill Date',
+	'Current Amount',
+	'Outstanding Amount',
+	'Payee',
+	'Attached',
+	'Payment Deadline',
+	'Date Forwarded',
+	'Date Initiated',
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for fuel in fuel_queryset:
+        row_num += 1
+        # ordate = car.ORIGINAL_OR_DATE.strftime('%m/%d/%Y')
+        # platerelease = car.PLATE_NUMBER_RELEASE_DATE.strftime('%m/%d/%Y')
+        row = [
+				fuel.SOA_Date_received,
+				fuel.Fuel_provider,
+				fuel.SOA_billdate,
+				fuel.SOA_current_amount,
+				fuel.SOA_outstanding_amount,
+				fuel.Payee,
+				fuel.SOA_attached,
+				fuel.Payment_deadline,
+				fuel.Date_forwarded,
+				fuel.Date_initiated,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+
 
 
 

@@ -99,7 +99,7 @@ def ownership_submit(request):
 			date_notarized = date_notarized,endorosed_to_insurance =endorosed_to_insurance ,requested_for_pullout = requested_for_pullout,date_pulled = date_pulled,
 			return_endorsementfleet = return_endorsementfleet,forwarded_fleet_liason = forwarded_fleet_liason,tmg_date_in =tmg_date_in ,tmg_date_out = tmg_date_out,
 			tmg_date_return = tmg_date_return,lto_date_in = lto_date_in,lto_date_out = lto_date_out,lto_date_return =lto_date_return ,date_docs_return = date_docs_return,
-			date_transfered_completed = date_transfered_completed,date_comletion_vismin = date_comletion_vismin,)
+			date_transfered_completed = date_transfered_completed,date_comletion_vismin = date_comletion_vismin)
 		saveto_own.save()
 
 		return HttpResponseRedirect('/Ownership/Ownership/')

@@ -23,11 +23,29 @@ from bootstrap_modal_forms.generic import (
                                            BSModalDeleteView
                                            )
 
-# def vlistmaster(request):
-#     def dispatch(self, *args, **kwargs):
-#         return super().dispatch(*args, **kwargs)
-#     return render(request, 'vehicleMasterlist/vmasterlist.html')
+from django.views.generic import TemplateView
+from django_datatables_view.base_datatable_view import BaseDatatableView
 
+class vehiclelist(BaseDatatableView):
+    model = VehicleMasterList
+    columns = ['Activity_Id' ,'NO' ,'PLATE_NO' ,'CS_NO' ,'CR_NAME' ,'PLATE_ENDING' ,'REGISTRATION_MONTH' ,'MODEL' ,'BRAND' ,
+    'VEHICLE_MAKE' ,'ENGINE_NO' ,'CHASSIS_NO' ,'MV_FILE_NO' ,'VEHICLE_TYPE' ,'ASSIGNEE_LAST_NAME' ,'ASSIGNEE_FIRST_NAME' ,
+    'HICLE_CATEGORY' ,'BAND_LEVEL'  ,'BENEFIT_GROUP' ,'COST_CENTER' ,'GROUP' ,'DIVISION' ,'DEPARTMENT' ,'SECTION' ,'IS_ID' ,
+    'IS_LAST_NAME' ,'IS_FIRST_NAME' ,'LOCATION' ,'ORIGINAL_OR_DATE'  ,'ACQ_DATE'  ,'ASSET_NO' ,'EQUIPMENT_NO' ,'PO_NO' ,
+    'PLATE_NUMBER_RELEASE_DATE' ,'Employee' ,]
+    order_columns = ['Activity_Id' ,'NO' ,'PLATE_NO' ,'CS_NO' ,'CR_NAME' ,'PLATE_ENDING' ,'REGISTRATION_MONTH' ,'MODEL' ,'BRAND' ,
+    'VEHICLE_MAKE' ,'ENGINE_NO' ,'CHASSIS_NO' ,'MV_FILE_NO' ,'VEHICLE_TYPE' ,'ASSIGNEE_LAST_NAME' ,'ASSIGNEE_FIRST_NAME' ,
+    'HICLE_CATEGORY' ,'BAND_LEVEL'  ,'BENEFIT_GROUP' ,'COST_CENTER' ,'GROUP' ,'DIVISION' ,'DEPARTMENT' ,'SECTION' ,'IS_ID' ,
+    'IS_LAST_NAME' ,'IS_FIRST_NAME' ,'LOCATION' ,'ORIGINAL_OR_DATE'  ,'ACQ_DATE'  ,'ASSET_NO' ,'EQUIPMENT_NO' ,'PO_NO' ,
+    'PLATE_NUMBER_RELEASE_DATE' ,'Employee' ,]
+
+    def filter_queryset(self, qs):
+        sSearch = self.request.GET.get('sSearch', None)
+        if sSearch:
+            qs = qs.filter(Q(Activity_Id__istartswith=sSearch) | Q(PLATE_NO__istartswith=sSearch | Q(CS_NO__istartswith=sSearch)))
+        return qs
+class TestModelList(TemplateView):
+    template_name = 'vehicleMasterlist/datatable.html'
 
 def VmasterlistCreateView(request):
 

@@ -1,7 +1,8 @@
 from django.views import generic
-from django.shortcuts import render,HttpResponseRedirect, get_list_or_404
+from django.shortcuts import render,HttpResponseRedirect, get_list_or_404,HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from openpyxl import Workbook
 from .models import (
 		CarRentalRequest,
         Gas_card,
@@ -38,22 +39,13 @@ from bootstrap_modal_forms.generic import (
                      ######################################
 
 
-# class requestCreateView(SuccessMessageMixin, CreateView):
-#     model = CarRentalRequest
-#     form_class = carrequestform
-#     template_name = 'car_rental/carrequest_form.html'
 
-#     def get_success_message(self, cleaned_data):
-#     	print(cleaned_data)
-#     	return "New Car Rental Request Has been Created!"
 def requestCreate(request):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     emplist = EmployeeMasterlist.objects.all()
     return render(request, 'car_rental/carrequest_new.html',{'Title':'Car - Car Request', 'emplist':emplist})
-    # def get_success_message(self, cleaned_data):
-    #    print(cleaned_data)
-    #    return "New Car Rental Request Has been Created!"
+
 def requestsubmit(request):
     if request.method == 'POST':
         emp_id = request.POST.get('emp_id')
@@ -86,8 +78,7 @@ def requestsubmit(request):
         supervisor = request.POST.get('supervisor')
         cr_sla = request.POST.get('cr_sla')
 
-        saveto_req = CarRentalRequest(
-                A_Employee_Id =emp_id, Date_received = date_received,Assignee_Fname = fname,Assignee_Lname = lname,Assignee_No = cnumber,Assignee_Company = company,
+        saveto_req = CarRentalRequest(A_Employee=emp_id, Date_received = date_received,Assignee_Fname = fname,Assignee_Lname = lname,Assignee_No = cnumber,Assignee_Company = company,
                 Assignee_band = band,Assignee_Dept = dept,Assignee_Cost = cost,Assignee_Div = div,Assignee_Loc = loc,Assignee_Section = section,
                 Assignee_Designation = designation,Assignee_ATD = atd,Vendor_name = vname,Date = date,Up_to = up_to,Time = time,Place_of_del = del_place,
                 type_rental = type_rental,Cost_center = costcenter,Rental_period = rent_period,Destination = destination,Delivery_date = del_date,End_user = end_user,Type_of_vehicle = vehicle_type,
@@ -112,16 +103,102 @@ class requestUpdateView(SuccessMessageMixin, UpdateView):
     	print(cleaned_data)
     	return "Car Rental Request Updated Successfully!"
 
-# class requestDeleteView(DeleteView):
-#     model = CarRentalRequest
-#     template_name = 'car_rental/car_delete.html'
-#     success_url = reverse_lazy('carrequest_list')
-
 class requestDeleteView(BSModalDeleteView):
     model = CarRentalRequest
     template_name = 'car_rental/car_delete.html'
     success_message = 'Success: Report was deleted.'
     success_url = reverse_lazy('carrequest_list')
+
+def car_request_excel(request):
+    rental_queryset = CarRentalRequest.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Car Rental Request.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Car Rental Request'
+
+    columns = [
+                'Assignee Employee' ,
+                'Date Received' ,
+                'Assignee First name' ,
+                'Assignee Last name' ,
+                'Assignee No' ,
+                'Assignee Company' ,
+                'Assignee Band' ,
+                'Assignee Department' ,
+                'Assignee Cost Center' ,
+                'Assignee Division' ,
+                'Assignee Loccation' ,
+                'Assignee Section' ,
+                'Assignee Designation' ,
+                'Assignee ATD' ,
+                'Vendor Name' ,
+                'Date' ,
+                'Up to' ,
+                'Time' ,
+                'Place of Delivery' ,
+                'Type of Rental' ,
+                'Cost Center' ,
+                'Rental Reriod' ,
+                'Destination' ,
+                'Delivery Date' ,
+                'End User' ,
+                'Type of Vehicle' ,
+                'Plate no' ,
+                'Immediate Supervisor' ,
+                'SLA' ,
+                'Date Initiated' ,
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for car in rental_queryset:
+        row_num += 1
+        row = [
+                car.A_Employee ,
+                car.Date_received ,
+                car.Assignee_Fname ,
+                car.Assignee_Lname ,
+                car.Assignee_No ,
+                car.Assignee_Company ,
+                car.Assignee_band ,
+                car.Assignee_Dept ,
+                car.Assignee_Cost ,
+                car.Assignee_Div ,
+                car.Assignee_Loc ,
+                car.Assignee_Section ,
+                car.Assignee_Designation ,
+                car.Assignee_ATD ,
+                car.Vendor_name ,
+                car.Date ,
+                car.Up_to ,
+                car.Time ,
+                car.Place_of_del ,
+                car.type_rental ,
+                car.Cost_center ,
+                car.Rental_period ,
+                car.Destination ,
+                car.Delivery_date ,
+                car.End_user ,
+                car.Type_of_vehicle ,
+                car.Plate_no ,
+                car.Immediate_supervisor ,
+                car.CR_SLA ,
+                car.Date_initiated ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
 
 
                       #####################################  
@@ -188,8 +265,8 @@ def gassubmit(request):
 
         saveto_gas = Gas_card(date_received = date_app,application_type = app_type,fleet_provider= fleet_card,fleetcard_type =fleet_card_type ,
             fuel_limit_amount = fuel_amount,fuel_limit_quantity = fuel_quantity,products_restriction = products_restriction,req_employee = req_emp_id,
-            req_fname = r_fname,req_lname = r_lname ,req_title = r_title,req_cost_center = r_costcenter, atd_no = atd_no,temporary_atd = temp_atd,
-            new_emp_id = new_empId,new_emp_fname = new_fname,new_emp_lname =new_lname ,new_emp_cost = new_costcenter,new_temp_atd = new_tempATD,
+            req_fname = r_fname,req_lname = r_lname ,req_title = r_title,req_cost_center = r_costcenter, atd_no=atd_no, temporary_atd=temp_atd,
+            new_emp_id=new_empId, new_emp_fname=new_fname, new_emp_lname=new_lname, new_emp_cost = new_costcenter,new_temp_atd = new_tempATD,
             new_assignee = new_assignee,cost_center_code = cost_code,cancellation = gcr_cancel,plate_no = plate_no,con_sticker = c_sticker,
             model_year = v_model,brand = v_brand,make = v_make,fuel_type = v_fueltype,new_plate_no = new_plate_no,new_cond_sticker = new_cs,
             new_model_year = new_model,new_vbrand = new_brand,new_vmake = new_make,new_vfuel_type = new_fueltype,approved_by = approved_by,
@@ -288,7 +365,7 @@ def servicesubmit(request):
         svv_sla = request.POST.get('svv_sla')
 
         saveto_service = service_vehicle(request_date=request_date, req_employee_id=req_employee_id, req_lname=req_lname, req_fname =req_fname,
-            asignee_employee_id=assignee_employee_id, assignee_group=Assignee_Group, assignee_fname=assignee_fname, assignee_lname=assignee_lname,
+            assignee_employee_id=assignee_employee_id, assignee_group=Assignee_Group, assignee_fname=assignee_fname, assignee_lname=assignee_lname,
             assignee_costcenter=assignee_costcenter, assignee_section=assignee_section, assignee_location=assignee_location, assignee_atd=assignee_atd,
             new_employee_id=new_employee_id, new_employee_fname=new_employee_fname, new_employee_lname=new_employee_lname, new_employee_cost=new_employee_cost,
             new_temporary_atd=new_temporary_atd, prefered_vehicle=prefered_vehicle, E_plate_no=E_plate_no, E_con_sticker=E_con_sticker,
@@ -345,15 +422,6 @@ def repairCreate(request):
     emplist = EmployeeMasterlist.objects.all()
     vlist = VehicleMasterList.objects.all()
     return render(request, 'vehicle_repair/repair_new.html',{'Title':'Vehicle - Vehicle Repair','emplist':emplist,'vlist':vlist})
-
-# class repairCreateView(SuccessMessageMixin, CreateView):
-#     model = Vehicle_Repair
-#     form_class = repairform
-#     template_name = 'vehicle_repair/repair_form.html'
-
-#     def get_success_message(self, cleaned_data):
-#         print(cleaned_data)
-#         return "New Vehicle Repair Request Has been Created!"
 
 def repairsubmit(request):
     if request.method == 'POST':

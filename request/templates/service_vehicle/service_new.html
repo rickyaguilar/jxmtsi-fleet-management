@@ -240,7 +240,7 @@ function servicevehicle(service) {
 
         <div class="col-sm-4">
             <label>Plate Number:</label>
-            <input style= "text-transform:" type="text" name="E_plate_no" id="E_plate_no" list="v_list" class="form-control">
+            <input style= "text-transform:" type="text" name="E_plate_no" id="E_plate_no" list="v_list" class="form-control" required>
             <datalist id="v_list">               
             {% for v_id in vlist %}
               <option data-value="{{ v_id.PLATE_NO }} | {{ v_id.CS_NO }} | {{ v_id.MODEL }} | {{ v_id.BRAND }} | {{ v_id.VEHICLE_MAKE }} | {{ v_id.VEHICLE_TYPE }}" value="{{ v_id.PLATE_NO }}">

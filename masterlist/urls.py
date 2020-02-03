@@ -34,4 +34,7 @@ urlpatterns = [
 	# path('Vehicle/<int:pk>', views.vmaster_update, name='vehicledate_update'),
 	path('Vehicle/New', views.Vmaster, name='vnew'),
 	# path('V/masterlist', views.vlistmaster, name='vlist'),
+
+	path('Vehicle/refresh', views.vehiclelist.as_view(), name="sample"),
+	path('Vehicle/', views.vehiclelist.as_view(), name="TestModelList"),
 ]

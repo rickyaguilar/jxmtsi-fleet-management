@@ -9,6 +9,7 @@ urlpatterns = [
 	path('Request/Details/<int:pk>/', views.requestDetailView.as_view(), name='carrequest_details'),
 	path('Request/Update/<int:pk>/', views.requestUpdateView.as_view(), name='carrequest_update'),
 	path('Request/Delete/<int:pk>/', views.requestDeleteView.as_view(), name='carrequest_delete'),
+	path('Request/Export', views.car_request_excel, name='carrequest_export'),
 	path('Gas/', views.gasListView.as_view(),name='gascard_list'),
 	# path('Gas/New', views.gasCreateView.as_view(), name='gascard_new'),
 	path('Gas/New', views.gascreate, name='gascard_new'),

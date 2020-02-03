@@ -5,7 +5,16 @@ import datetime
 from datetime import date
 from masterlist.models import EmployeeMasterlist,VehicleMasterList
 
-#<---CarRental Payment-->
+
+
+
+							########################################
+						   ##########################################
+						  #######    CarRental Payment Table  ########
+						   ##########################################
+						    ########################################
+
+
 def increment_Activity_id():
 	last_in = CarRental.objects.all().order_by('id').last()
 	if not last_in:
@@ -75,7 +84,13 @@ class CarRental(models.Model):
 		return reverse('carrental_list', kwargs={'pk':self.pk})
 
 
-#<---Vehicle Payment--->
+							########################################
+						   ##########################################
+						  #######    Vehicle Payment Table    ########
+						   ##########################################
+						    ########################################
+
+
 def increment_Activity_id():
 	last_in = VehiclePayment.objects.all().order_by('id').last()
 	if not last_in:
@@ -100,28 +115,28 @@ def increment_PO_no():
 class VehiclePayment(models.Model):
 	Activity_id = models.CharField(max_length=20, default=increment_Activity_id)
 	PO_no = models.CharField(max_length=100, default=increment_PO_no)
-	A_employee_ID = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING)
-	E_First_name = models.CharField(max_length=50, blank=True)
-	# A_employee_ID = models.CharField(max_length=50, blank=True)
-	E_Last_name = models.CharField(max_length=50, blank=True)
-	V_deliverDate = models.DateField(auto_now=False, null=True)
-	Plate_no = models.CharField(max_length=20, blank=True)
-	V_model = models.CharField(max_length=100, blank=True)
-	V_brand = models.CharField(max_length=100, blank=True)
-	V_make = models.CharField(max_length=100, blank=True)
-	V_dealer = models.CharField(max_length=100, blank=True)
-	LTO_documents = models.DateField(auto_now=False, null=True)
-	Docs_plate_no = models.CharField(max_length=50, blank=True)
-	LTO_stickers = models.CharField(max_length=100, blank=True)
-	Sticker_fields = models.CharField(max_length=100, blank=True)
-	Date_initial = models.DateField(auto_now=False, null=True)
-	First_payment = models.CharField(max_length=100, blank=True)
-	LTO_charges = models.CharField(max_length=100, blank=True)
-	Outstanding_balance = models.CharField(max_length=100, blank=True)
-	Date_final = models.DateField(auto_now=False, null=True)
-	Routing_remarks = models.CharField(max_length=100, blank=True)
-	V_SLA = models.CharField(max_length=10, blank=True)
-	Next_process = models.CharField(max_length=100, blank=True)
+	# A_employee_ID = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING)
+	A_employee_ID = models.CharField(max_length=50, null=True, blank=True)
+	E_First_name = models.CharField(max_length=50, null=True, blank=True)
+	E_Last_name = models.CharField(max_length=50, null=True, blank=True)
+	V_deliverDate = models.CharField(max_length=100, null=True,blank=True)
+	Plate_no = models.CharField(max_length=20, null=True, blank=True)
+	V_model = models.CharField(max_length=100, null=True, blank=True)
+	V_brand = models.CharField(max_length=100, null=True, blank=True)
+	V_make = models.CharField(max_length=100, null=True, blank=True)
+	V_dealer = models.CharField(max_length=100, null=True, blank=True)
+	LTO_documents = models.CharField(max_length=100, null=True, blank=True)
+	Docs_plate_no = models.CharField(max_length=50, null=True, blank=True)
+	LTO_stickers = models.CharField(max_length=100, null=True, blank=True)
+	Sticker_fields = models.CharField(max_length=100, null=True, blank=True)
+	Date_initial = models.CharField(max_length=100, null=True, blank=True)
+	First_payment = models.CharField(max_length=100, null=True, blank=True)
+	LTO_charges = models.CharField(max_length=100, null=True, blank=True)
+	Outstanding_balance = models.CharField(max_length=100, null=True, blank=True)
+	Date_final = models.CharField(max_length=100, null=True, blank=True)
+	Routing_remarks = models.CharField(max_length=100, null=True, blank=True)
+	V_SLA = models.CharField(max_length=10, null=True, blank=True)
+	Next_process = models.CharField(max_length=100, null=True, blank=True)
 	Date_initiated = models.DateField(auto_now=True)
 
 	def __str__(self):
@@ -130,7 +145,13 @@ class VehiclePayment(models.Model):
 	def get_absolute_url(self):
 		return reverse('Vehicle_list')
 
-#<---Fuel Supplier Payment--->
+
+							########################################
+						   ##########################################
+						  #######    Fuel Supplier Table      ########
+						   ##########################################
+						    ########################################
+
 def increment_Activity_id():
 	last_in = Fuel_supplier.objects.all().order_by('id').last()
 	if not last_in:
@@ -150,16 +171,16 @@ class Fuel_supplier(models.Model):
 	)
 
 	Activity_id = models.CharField(max_length=20,null=True, default=increment_Activity_id)
-	SOA_Date_received = models.DateField(auto_now=False, null=True, blank=True)
+	SOA_Date_received = models.CharField(max_length=100, blank=True)
 	Fuel_provider = models.CharField(max_length=50, null=True, blank=True)
-	SOA_billdate = models.DateField(auto_now=False, null=True, blank=True)
+	SOA_billdate = models.CharField(max_length=100, blank=True)
 	SOA_current_amount = models.CharField(max_length=50, null=True, blank=True)
 	SOA_outstanding_amount = models.CharField(max_length=50, null=True, blank=True)
 	Payee = models.CharField(max_length=10, null=True, choices=PAYEE, blank=True)
 	SOA_attached = models.CharField(max_length=100, null=True, blank=True)
 	Date_initiated = models.DateField(auto_now=True, blank=True)
-	Payment_deadline = models.DateField(auto_now=False, null=True, blank=True)
-	Date_forwarded = models.DateField(auto_now=False, null=True, blank=True)
+	Payment_deadline = models.CharField(max_length=100, blank=True)
+	Date_forwarded = models.CharField(max_length=100, blank=True)
 	F_SLA = models.CharField(max_length=10, null=True, blank=True)
 
 	def __str__(self):

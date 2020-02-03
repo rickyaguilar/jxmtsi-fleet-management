@@ -42,7 +42,7 @@ function carrequest(car) {
       <br><br>
       <div class="col-sm-4">
           <label>Date Received:</label>
-          <input type="Date" name="date_received" id="date_received" class="form-control">
+          <input type="Date" name="date_received" id="date_received" class="form-control" required>
       </div>
       <div class="col-sm-4">
           <label>First Name:</label>
@@ -121,7 +121,7 @@ function carrequest(car) {
     <div class="col-sm-4">
         <label>Type Of Rental:</label>
         <select class="form-control" name="type_rental" id="type_rental">
-          <option>-------</option>
+          <option value="">-------</option>
           <option value="Daily">Daily</option>
           <option value="Monthly">Monthly</option>
         </select>
@@ -159,7 +159,7 @@ function carrequest(car) {
     <div class="col-sm-6">
       <label>Type Of Vehicle:</label>
       <select class="form-control" name="vehicle_type" id="vehicle_type">
-        <option>----------</option>
+        <option value="">----------</option>
         <option value="Sedan">Sedan</option>
         <option value="SUV">SUV</option>
         <option value="Van">Van</option>
@@ -182,7 +182,7 @@ function carrequest(car) {
   <div class="col-sm-6">
       <label>Immediate Supervisor:</label>
       <select class="form-control" name="supervisor" id="supervisor">
-        <option>----------</option>
+        <option value="">----------</option>
         <option value="Ser Roy Dela Cruz">Ser Roy Dela Cruz</option>
         <option value="Adolfo Carlos Umali">Adolfo Carlos Umali</option>
       </div>
