@@ -280,15 +280,6 @@ class gasListView(ListView):
     model = Gas_card
     template_name = 'gas_card/gascard_list.html'
 
-# class gasCreateView(SuccessMessageMixin, CreateView):
-#     model = Gas_card
-#     form_class = gascardform
-#     template_name = 'gas_card/gascard_form.html'
-
-#     def get_success_message(self, cleaned_data):
-#         print(cleaned_data)
-#         return "New Gas Card Details Has been Created!"
-
 class gasUpdateView(SuccessMessageMixin, UpdateView):
     model = Gas_card
     form_class = gascardform
@@ -307,6 +298,122 @@ class gasDeleteView(BSModalDeleteView):
     template_name = 'gas_card/gascard_delete.html'
     success_message = 'Success: Gas Gard Request was deleted.'
     success_url = reverse_lazy('gascard_list')
+
+def gas_request_excel(request):
+    rental_queryset = Gas_card.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Car Rental Request.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Car Rental Request'
+
+    columns = [
+            'Date Received' ,
+            'Application Type' ,
+            'Fleet Provider' ,
+            'Fleet Card Type' ,
+            'Fuel Limit Amount' ,
+            'Fuel Limit Quantity' ,
+            'Products Restriction' ,
+            'Employee' ,
+            'First Name' ,
+            'Last Name' ,
+            'Title' ,
+            'Cost Center' ,
+            'ATD No' ,
+            'Temporary ATD' ,
+            'New Employee ID' ,
+            'New employee First Name' ,
+            'New employee Last Name' ,
+            'New employee Cost Center' ,
+            'New employee ATD' ,
+            'New Assignee' ,
+            'Cost Center Code' ,
+            'Cancellation' ,
+            'Plate No' ,
+            'Conduction Sticker' ,
+            'Model Year' ,
+            'Brand' ,
+            'Make' ,
+            'Fuel Type' ,
+            'New Plate No' ,
+            'New Conduction Sticker' ,
+            'New Model Year' ,
+            'New Vehicle Brand' ,
+            'New Vehicle Make' ,
+            'New Vehicle fuel type' ,
+            'Approved By' ,
+            'Date Summitted' ,
+            'Fleet Received' ,
+            'Fleet Card No' ,
+            'Fleet Date Release' ,
+            'Person Release' ,
+            'Date Initiated' ,
+            'SLA' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for rental in rental_queryset:
+        row_num += 1
+        row = [
+            rental.date_received ,
+            rental.application_type ,
+            rental.fleet_provider ,
+            rental.fleetcard_type ,
+            rental.fuel_limit_amount ,
+            rental.fuel_limit_quantity ,
+            rental.products_restriction ,
+            rental.req_employee ,
+            rental.req_fname ,
+            rental.req_lname ,
+            rental.req_title ,
+            rental.req_cost_center ,
+            rental.atd_no ,
+            rental.temporary_atd ,
+            rental.new_emp_id ,
+            rental.new_emp_fname ,
+            rental.new_emp_lname ,
+            rental.new_emp_cost ,
+            rental.new_temp_atd ,
+            rental.new_assignee ,
+            rental.cost_center_code ,
+            rental.cancellation ,
+            rental.plate_no ,
+            rental.con_sticker ,
+            rental.model_year ,
+            rental.brand ,
+            rental.make ,
+            rental.fuel_type ,
+            rental.new_plate_no ,
+            rental.new_cond_sticker ,
+            rental.new_model_year ,
+            rental.new_vbrand ,
+            rental.new_vmake ,
+            rental.new_vfuel_type ,
+            rental.approved_by ,
+            rental.date_summitted ,
+            rental.fleet_received ,
+            rental.fleet_card_no ,
+            rental.fleet_date_release ,
+            rental.person_release ,
+            rental.date_initiated ,
+            rental.GCR_SLA ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
 
 
                       #####################################  
