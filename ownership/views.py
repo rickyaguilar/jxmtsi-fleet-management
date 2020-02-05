@@ -1,6 +1,7 @@
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views import generic
+from openpyxl import Workbook
 from django.urls import reverse_lazy
 from .models import (
    	Ownership,
@@ -23,16 +24,6 @@ class ownershipListView(ListView):
 	model = Ownership
 	template_name = 'transfer_list.html'
 
-
-# class ownershipCreateView(SuccessMessageMixin, CreateView):
-# 	def dispatch(self, *args, **kwargs):
-# 	    return super().dispatch(*args, **kwargs)
-# 	template_name = 'transfer_form.html'
-# 	form_class = ownershipForm
-
-# 	def get_success_message(self, cleaned_data):
-# 		print(cleaned_data)
-# 		return "New Transfer of Ownership Has been Created!"
 def ownershipcreate(request):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -122,3 +113,131 @@ class ownershipDeleteView(BSModalDeleteView):
     template_name = 'transfer_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('ownership_list')
+
+def ownership_excel(request):
+    own_queryset = Ownership.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Transfer of Ownership.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Transfer of Ownership'
+
+    columns = [
+			'Date Application Received' ,
+		    'Requisitioner Employee ID' ,
+		    'Requisitioner First Name' ,
+		    'Requisitioner Last Name' ,
+		    'Requisitioner Band' ,
+		    'Requisitioner Cost Center' ,
+		    'Requisitioner Title' ,
+		    'Plate No' ,
+		    'Conduction Sticker' ,
+		    'Vehicle Model' ,
+		    'Vehicle Brand' ,
+		    'Vehicle Make' ,
+		    'Vendor' ,
+		    'Other Vendor Name' ,
+		    'Vendee Employee ID' ,
+		    'Vendee First Name' ,
+		    'Vendee Last Name' ,
+		    'Vendee Band' ,
+		    'Purpose' ,
+		    'Transfer Fee' ,
+		    'Document Completed Date' 
+		    'Date Created Deed of Sales' ,
+		    'Confirmation Status' ,
+		    'Date OR Emailed to Cashier' ,
+		    'Date OR Received from Cashier' ,
+		    'Signed Deed Of Sale Completed Date' ,
+		    'Date Routed to JD/ECS' ,
+		    'Date Approved by JD/ECS' ,
+		    'Date Return to Fleet Admin Assistant' ,
+		    'Date Forwarded to Liason Officer' ,
+		    'Date Notarized' ,
+		    'Date Endorsed to Insurance Company' ,
+		    'Date Received Pull-Out of OR/CR' ,
+		    'Date Pulled OR/CR' ,
+		    'Date Return Endorsed to Fleet Admin' ,
+		    'Date Forwarded to Fleet Liason for TMG' ,
+		    'TMG Date Input' ,
+		    'TMG Date Out' ,
+		    'TMG Date Return to Fleet Liason' ,
+		    'LTO Date In' ,
+		    'LTO Date Out' ,
+		    'LTO Date Return' ,
+		    'Date Documents Return' ,
+		    'Date Transfer Completed' ,
+		    'Date Transfer Completed for Visayas/Mindanao' ,
+		    'SLA' ,
+		    'Date Initiated' ,
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for own in own_queryset:
+        row_num += 1
+        row = [
+			own.date_application ,
+		    own.req_employee_id ,
+		    own.req_Fname ,
+		    own.req_Lname ,
+		    own.req_band ,
+		    own.req_cost ,
+		    own.req_title ,
+		    own.plate_no ,
+		    own.cond_sticker ,
+		    own.vehicle_model ,
+		    own.vehicle_brand ,
+		    own.vehicle_make ,
+		    own.vendor ,
+		    own.vendor_name ,
+		    own.v_employee_id ,
+		    own.v_fname ,
+		    own.v_lname ,
+		    own.v_band ,
+		    own.purpose ,
+		    own.transfer_fee ,
+		    own.doc_date_completed ,
+		    own.deedofsale_date ,
+		    own.confirmation_status ,
+		    own.emailed_to_casher ,
+		    own.received_from_casher ,
+		    own.deed_signed ,
+		    own.routed_to_jd ,
+		    own.approved_by_jd ,
+		    own.return_fleet_admin ,
+		    own.forwarded_to_liason ,
+		    own.date_notarized ,
+		    own.endorosed_to_insurance ,
+		    own.requested_for_pullout ,
+		    own.date_pulled ,
+		    own.return_endorsementfleet ,
+		    own.forwarded_fleet_liason ,
+		    own.tmg_date_in ,
+		    own.tmg_date_out ,
+		    own.tmg_date_return ,
+		    own.lto_date_in ,
+		    own.lto_date_out ,
+		    own.lto_date_return ,
+		    own.date_docs_return ,
+		    own.date_transfered_completed ,
+		    own.date_comletion_vismin ,
+		    own.TOO_SLA ,
+		    own.date_initiated ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+
+

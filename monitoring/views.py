@@ -1,6 +1,7 @@
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views import generic
+from openpyxl import Workbook
 from django.urls import reverse_lazy
 from .models import (
    	Fata_monitoring,
@@ -90,3 +91,80 @@ class monitoringDeleteView(BSModalDeleteView):
     template_name = 'monitoring/fata_monitoring_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('Monitoring_list')
+
+
+def fata_excel(request):
+    fata_queryset = Fata_monitoring.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= FATA Monitoring.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'FATA Monitoring'
+
+    columns = [
+				'FATA Number' ,
+				'Date Transfer' ,
+				'Date Received' ,
+				'Plate No' ,
+				'Vehicle Make' ,
+				'Vehicle Brand' ,
+				'Certificate Of Registrations Name' ,
+				'Vehicle Model' ,
+				'Transferor Employee' ,
+				'Transferor First Name' ,
+				'Transferor Last Name' ,
+				'Recipient Employee' ,
+				'Recipient Fist Name' ,
+				'Recipient Last Name' ,
+				'Date Endorsed Globe' ,
+				'Date Endorsed Innove' ,
+				'Clearing of Accountability' ,
+				'Globe Fixed Asset Recepient' ,
+				'Innove Fixed Asset Recepient' ,
+				'Date Initiated' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for fata in fata_queryset:
+        row_num += 1
+        row = [
+				fata.Fata_no ,
+				fata.Date_transfer ,
+				fata.Date_received ,
+				fata.Plate_no ,
+				fata.Vehicle_make ,
+				fata.Vehicle_brand ,
+				fata.Certificate_of_Reg ,
+				fata.Vehicle_model ,
+				fata.Transferor_employee ,
+				fata.Transferor_Fname ,
+				fata.Transferor_Lname ,
+				fata.Recipient_Employee ,
+				fata.Recipient_Fname ,
+				fata.Recipient_Lname ,
+				fata.Date_endorsed_Globe ,
+				fata.Date_endorsed_Innove ,
+				fata.Clearing_accountability ,
+				fata.Globe_fixed_asset ,
+				fata.Innove_fixed_asset ,
+				fata.Date_initiated ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+
+
+        

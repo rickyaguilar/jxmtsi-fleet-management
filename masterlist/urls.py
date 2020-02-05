@@ -1,3 +1,4 @@
+
 from django.urls import path
 from . import views
 from .views import (
@@ -6,13 +7,14 @@ from .views import (
 	employeeDetailView,
 	employeeUpdateView,
 	employeeMasterlistDeleteView,
-	vehicleMasterListView,
-	VmasterlistCreateView,
+	# vehicleMasterListView,
+	# VmasterlistCreateView,
 	vehicleMasterDetails,
 	vehicleMasterUpdate,
 	vehicleMasterlistDeleteView,
 
 	)
+
 
 urlpatterns = [
 	path('EmployeeMasterlist/', employeeListView.as_view(), name='employee-list'),
@@ -20,21 +22,22 @@ urlpatterns = [
 	path('EmployeeMasterlist/Detail/<int:pk>', employeeDetailView.as_view(), name='employee-details'),
 	path('EmployeeMasterlist/Update/<int:pk>', employeeUpdateView.as_view(), name='employeeMasterlist-update'),
 	path('EmployeeMasterlist/Delete/<int:pk>', employeeMasterlistDeleteView.as_view(), name='employeeMasterlist_delete'),
-	path('VehicleMasterlist/', vehicleMasterListView.as_view(), name='vehicle-list'),
-	# path('VehicleMasterlist/New', VmasterlistCreateView.as_view(), name='vehicleMasterlist-new'),
-	path('VehicleMasterlist/submit', views.VmasterlistCreateView, name='vehicleMasterlist-new'),
+	path('Masterlist/export', views.employee_excel, name='masterlist_dl'),
+	# path('VehicleMasterlist/', vehicleMasterListView.as_view(), name='vehicle-list'),
+	path('VehicleMasterlist/', views.Vmastertables, name='vehicle-list'),
+	path('VehicleMasterlist/New', views.vehicle, name='vehicle_new'),
+	path('VehicleMasterlist/submit', views.VmasterlistCreate, name='vehicleMasterlist_submit'),
 	path('VehicleMasterlist/Details/<int:pk>', vehicleMasterDetails.as_view(), name='vehicle-details'),
 	path('VehicleMasterlist/Update/<int:pk>', vehicleMasterUpdate.as_view(),name='vehicle-update'),
 	path('VehicleMasterlist/Delete/<int:pk>', vehicleMasterlistDeleteView.as_view(), name='vehicleMasterlist_delete'),
 	path('Vehicle/<int:pk>', views.releaseUpdate.as_view(), name='vupdate'),
-	path('Masterlist/export', views.employee_excel, name='masterlist_dl'),
 	path('Vehiclelist/export', views.vehicle_excel, name='vehiclelist_export'),
-
 	path('Vehicle/filter', views.registration, name='vehiclefilter'),
-	# path('Vehicle/<int:pk>', views.vmaster_update, name='vehicledate_update'),
-	path('Vehicle/New', views.Vmaster, name='vnew'),
-	# path('V/masterlist', views.vlistmaster, name='vlist'),
-
-	path('Vehicle/refresh', views.vehiclelist.as_view(), name="sample"),
-	path('Vehicle/', views.vehiclelist.as_view(), name="TestModelList"),
 ]
+
+
+
+
+
+
+

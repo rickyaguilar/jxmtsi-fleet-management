@@ -19,7 +19,7 @@ $('#emp_id').on('change', function () {
         <h3 align="center"><b>Vehicle MasterList</b></h3>&nbsp;
     </div>
 
-<form method="POST" action="{% url 'vehicleMasterlist-new' %}">
+<form method="POST" action="{% url 'vehicleMasterlist_submit' %}">
 {% csrf_token %}
     <div class="col-sm-4">
         <label>Plate Number:</label>
@@ -82,7 +82,7 @@ $('#emp_id').on('change', function () {
         <label>Employee Id:</label>
         <input name="emp_id" id="emp_id" class="form-control" list="emp_list">
             <datalist id="emp_list">               
-            {% for emp_id in vlist %}
+            {% for emp_id in elist %}
               <option data-value="{{ emp_id.Employee_Id }}" value="{{ emp_id.Employee_Id }}">
               </option>
             {% endfor %}

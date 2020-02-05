@@ -147,7 +147,7 @@ function expensevoucher(expe) {
     <legend align="left">Vehicle Details</legend>
         <div class="col-sm-6">
             <label>Plate Number</label>
-            <input name="plate_no" id="plate_no" list="vlist" class="form-control">
+            <input name="plate_no" id="plate_no" list="vlist" class="form-control" required>
             <datalist id="vlist">               
             {% for vid in vehicle_list %}
               <option data-value="{{ vid.PLATE_NO }} | {{ vid.BRAND }} | {{ vid.VEHICLE_MAKE }} | {{ vid.MODEL }}" value="{{ vid.PLATE_NO }}">

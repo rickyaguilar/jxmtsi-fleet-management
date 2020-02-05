@@ -39,7 +39,6 @@ class CarRental(models.Model):
 	#<-- assignee details---->
 	Activity_id = models.CharField(max_length=100,null=True, default=increment_Activity_id)
 	Bill_date = models.CharField(max_length=100, null=True, blank=True)
-	# A_employee_Id = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING, null=True)
 	Employee_id = models.CharField(max_length=100, null=True, blank=True)
 	L_name = models.CharField(max_length=100, null=True, blank=True)
 	F_name = models.CharField(max_length=100, null=True, blank=True)
@@ -115,7 +114,6 @@ def increment_PO_no():
 class VehiclePayment(models.Model):
 	Activity_id = models.CharField(max_length=20, default=increment_Activity_id)
 	PO_no = models.CharField(max_length=100, default=increment_PO_no)
-	# A_employee_ID = models.ForeignKey('masterlist.EmployeeMasterlist', on_delete=models.DO_NOTHING)
 	A_employee_ID = models.CharField(max_length=50, null=True, blank=True)
 	E_First_name = models.CharField(max_length=50, null=True, blank=True)
 	E_Last_name = models.CharField(max_length=50, null=True, blank=True)

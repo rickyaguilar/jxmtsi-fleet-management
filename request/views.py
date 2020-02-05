@@ -214,9 +214,9 @@ def gascreate(request):
     elist = EmployeeMasterlist.objects.all()
     vlist = VehicleMasterList.objects.all()
     return render(request, 'gas_card/gascard_new.html',{'Title':'Gas - Gas Card Request', 'elist':elist, 'vlist':vlist})
-    def get_success_message(self, cleaned_data):
-       print(cleaned_data)
-       return "New Car Rental Request Has been Created!"
+    # def get_success_message(self, cleaned_data):
+    #    print(cleaned_data)
+    #    return "New Car Rental Request Has been Created!"
 
 def gassubmit(request):
     if request.method == 'POST':
@@ -304,11 +304,11 @@ def gas_request_excel(request):
     response = HttpResponse(
         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     )
-    response['Content-Disposition'] = 'attachment; filename=Car Rental Request.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=Gas Card Request.xlsx'
     workbook = Workbook()
 
     worksheet = workbook.active
-    worksheet.title = 'Car Rental Request'
+    worksheet.title = 'Gas Card Request'
 
     columns = [
             'Date Received' ,
@@ -511,6 +511,108 @@ class serviceDeleteView(BSModalDeleteView):
     success_message = 'Success: Service Vehicle Request was deleted.'
     success_url = reverse_lazy('service_list')
 
+def service_request_excel(request):
+    service_queryset = service_vehicle.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Service Vehicle Request.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Service Vehicle Request'
+
+    columns = [
+        'Request Date' ,
+        'Employee Id' ,
+        'Last Name' ,
+        'First Name' ,
+        'Assignee Employee Id' ,
+        'Assignee Group' ,
+        'Assignee First Name' ,
+        'Assignee Last Name' ,
+        'Assignee Cost Center' ,
+        'Assignee Section' ,
+        'Assignee Location' ,
+        'Assignee ATD' ,
+        'New Employee Id' ,
+        'New Employee First Name' ,
+        'New Employee Last Name' ,
+        'New Employee Cost Center' ,
+        'New Temporary ATD' ,
+        'Prefered Vehicle' ,
+        'Plate No' ,
+        'Conduction Sticker' ,
+        'Model' ,
+        'Brand' ,
+        "Make" ,
+        'Type' ,
+        'Approved By' ,
+        'Approved Date' ,
+        'Vehicle Provider' ,
+        'Vehicle Plate No' ,
+        'Vehicle CS No' ,
+        'Vehicle Model' ,
+        'Vehicle Brand' ,
+        'Vehicle Make' ,
+        'Vehicle Fuel Type' ,
+        'SLA' ,
+        'Date Initiated' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for service in service_queryset:
+        row_num += 1
+        row = [
+        service.request_date ,
+        service.req_employee_id ,
+        service.req_lname ,
+        service.req_fname ,
+        service.assignee_employee_id ,
+        service.assignee_group ,
+        service.assignee_fname ,
+        service.assignee_lname ,
+        service.assignee_costcenter ,
+        service.assignee_section ,
+        service.assignee_location ,
+        service.assignee_atd ,
+        service.new_employee_id ,
+        service.new_employee_fname ,
+        service.new_employee_lname ,
+        service.new_employee_cost ,
+        service.new_temporary_atd ,
+        service.prefered_vehicle ,
+        service.E_plate_no ,
+        service.E_con_sticker ,
+        service.E_model_year ,
+        service.E_brand ,
+        service.E_make ,
+        service.E_type ,
+        service.approved_by ,
+        service.approved_date ,
+        service.vehicle_provider ,
+        service.vehicle_plate_no ,
+        service.vehicle_CS_no ,
+        service.vehicle_model ,
+        service.vehicle_brand ,
+        service.vehicle_make ,
+        service.vehicle_fuel_type ,
+        service.SVV_SLA ,
+        service.date_initiated ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
 
                       #####################################  
                     #########################################
@@ -609,5 +711,121 @@ class repairDeleteView(BSModalDeleteView):
     success_message = 'Success: Vehicle Repair Request was deleted.'
     success_url = reverse_lazy('repair_list')
 
+def repair_request_excel(request):
+    repair_queryset = Vehicle_Repair.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Vehicle Repair Request.xlsx'
+    workbook = Workbook()
 
+    worksheet = workbook.active
+    worksheet.title = 'Vehicle Repair Request'
+
+    columns = [
+                'Request Date' ,
+                'Employee' ,
+                'Cost Center' ,
+                'First Name' ,
+                'Last Name' ,
+                'Contact No' ,
+                'Company' ,
+                'Department' ,
+                'Group Section' ,
+                'Plate No' ,
+                'Brand' ,
+                'Engine' ,
+                'Make' ,
+                'Model' ,
+                'Chassis' ,
+                'Band' ,
+                'Conduction Sticker' ,
+                'Equipment No' ,
+                'Fleet Area' ,
+                'Particulars' ,
+                'Category' ,
+                'Maintenance Type 1' ,
+                'Scope Work 1' ,
+                'Maintenance Type 2' ,
+                'Scope Work 2' ,
+                'Recommendations' ,
+                'Service Reminder' ,
+                'Verified By' ,
+                'Work Order 1' ,
+                'Work Order 2' ,
+                'Work Order 3' ,
+                'Date Work Created' ,
+                'Shop Vendor' ,
+                'Date Forwarded' ,
+                'Estimate No' ,
+                'Maintenance Amount' ,
+                'Less Discount' ,
+                'Estimate Remarks' ,
+                'Estimate Attached' ,
+                'Approved By' ,
+                'Meter Reading' ,
+                'SLA' ,
+                'Date Initiated' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for repair in repair_queryset:
+        row_num += 1
+        row = [
+        request_date ,
+                repair.employee ,
+                repair.cost_center ,
+                repair.first_name ,
+                repair.last_name ,
+                repair.contact_no ,
+                repair.company ,
+                repair.department ,
+                repair.group_section ,
+                repair.plate_no ,
+                repair.v_brand ,
+                repair.engine ,
+                repair.v_make ,
+                repair.v_model ,
+                repair.chassis ,
+                repair.band ,
+                repair.cond_sticker ,
+                repair.equipment_no ,
+                repair.fleet_area ,
+                repair.particulars ,
+                repair.category ,
+                repair.maintenance_type1 ,
+                repair.scope_work1 ,
+                repair.maintenance_type2 ,
+                repair.scope_work2 ,
+                repair.recommendations ,
+                repair.service_reminder ,
+                repair.verified_by ,
+                repair.work_order1 ,
+                repair.work_order2 ,
+                repair.work_order3 ,
+                repair.datework_created ,
+                repair.Shop_vendor ,
+                repair.date_forwarded ,
+                repair.estimate_no ,
+                repair.maintenance_amount ,
+                repair.less_discount ,
+                repair.estimate_remarks ,
+                repair.estimate_attached ,
+                repair.approvedby ,
+                repair.meter_reading ,
+                repair.VRR_SLA ,
+                repair.date_initiated ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
 

@@ -1,8 +1,9 @@
-from django.shortcuts import render,HttpResponseRedirect,reverse
+from django.shortcuts import render,HttpResponseRedirect,reverse,HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views import generic
 from django.urls import reverse_lazy
 import datetime
+from openpyxl import Workbook
 from ajax_select import register
 from .models import (
    	vehicle_report,
@@ -70,17 +71,7 @@ def report_submit(request):
 			print(cleaned_data)
 			return "New Vehicle Report Has been Created!"  
 
-		return HttpResponseRedirect('/Report/Report/')
-
-# class reportCreateView(SuccessMessageMixin, CreateView):
-# 	def dispatch(self, *args, **kwargs):
-# 		return super().dispatch(*args, **kwargs)
-# 	template_name = 'report_form.html'
-# 	form_class = reportform
-
-# 	def get_success_message(self, cleaned_data):
-# 		print(cleaned_data)
-# 		return "New Vehicle Report Has been Created!"                                                                                           
+		return HttpResponseRedirect('/Report/Report/')                                                                                         
 
 class reportUpdate(SuccessMessageMixin, UpdateView):
 	model = vehicle_report
@@ -100,6 +91,90 @@ class reportDeleteView(BSModalDeleteView):
     template_name = 'report_delete.html'
     success_message = 'Success: Report Vehicle was deleted.'
     success_url = reverse_lazy('report_list')
+
+def report_excel(request):
+    report_queryset = vehicle_report.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Motor Vehicle Accident Report.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Motor Vehicle Accident Report'
+
+    columns = [
+				'Received Date' ,
+			    'Accident Type' ,
+			    'Support Documents' ,
+			    'Plate Number' ,
+			    'Model' ,
+			    'Make' ,
+			    'Conduction Sticker' ,
+			    'Employee Id' ,
+			    'Employee Fisrt Name' ,
+			    'Employee Last Name' ,
+			    'Employee No' ,
+			    'Employee Company' ,
+			    'Employee Group' ,
+			    'Employee Division' ,
+			    'Employee Department' ,
+			    'Supervisor Employee Id' ,
+			    'Supervisor Employee First Name' ,
+			    'Supervisor Employee Last Name' ,
+			    'Inform Assignee of Vehicle Inspection' ,
+			    'Date of Vehicle Inspection' ,
+			    'Inspection Remarks' ,
+			    'Date Filed Alarm Sheet at PNP TMG' ,
+			    'Date Received Certificateof Non-Recovery' ,
+			    'Date Forward Documents to Insurance Company' ,
+			    'Date Initiated' ,
+			    'SLA' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for report in report_queryset:
+        row_num += 1
+        row = [
+			    reportr.eceived_date ,
+			    reportr.v_accident_type ,
+			    reportr.support_docs ,
+			    reportr.plate_number ,
+			    reportr.v_model ,
+			    reportr.v_make ,
+			    reportr.cond_sticker ,
+			    reportr.a_employee_id ,
+			    reportr.a_employee_fname ,
+			    reportr.a_employee_lname ,
+			    reportr.a_employee_no ,
+			    reportr.a_employee_company ,
+			    reportr.a_employee_group ,
+			    reportr.a_employee_division ,
+			    reportr.a_employee_dept ,
+			    reportr.sup_employee_id ,
+			    reportr.sup_employee_fname ,
+			    reportr.sup_employee_lname ,
+			    reportr.inform_assignee ,
+			    reportr.date_of_inspection ,
+			    reportr.inspection_remarks ,
+			    reportr.date_filed_alarm ,
+			    reportr.date_cert_received ,
+			    reportr.date_forwarded ,
+			    reportr.date_initiated ,
+			    reportr.MVAR_SLA ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
 
 
 

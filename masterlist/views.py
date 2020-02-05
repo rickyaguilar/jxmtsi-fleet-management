@@ -13,42 +13,26 @@ from .models import (
 	EmployeeMasterlist,
 	VehicleMasterList
 	)
-
 from . forms import (
 	EmpMasterlistForm,
 	Vmasterlist,
     Vmaster
 	)
-from bootstrap_modal_forms.generic import (
-                                           BSModalDeleteView
-                                           )
+from bootstrap_modal_forms.generic import BSModalDeleteView
 
-from django.views.generic import TemplateView
-from django_datatables_view.base_datatable_view import BaseDatatableView
+from rest_framework import viewsets
+from rest_framework.response import Response
+from .models import VehicleMasterList
+from .serializers import vehicleSerializer
 
-class vehiclelist(BaseDatatableView):
-    model = VehicleMasterList
-    columns = ['Activity_Id' ,'NO' ,'PLATE_NO' ,'CS_NO' ,'CR_NAME' ,'PLATE_ENDING' ,'REGISTRATION_MONTH' ,'MODEL' ,'BRAND' ,
-    'VEHICLE_MAKE' ,'ENGINE_NO' ,'CHASSIS_NO' ,'MV_FILE_NO' ,'VEHICLE_TYPE' ,'ASSIGNEE_LAST_NAME' ,'ASSIGNEE_FIRST_NAME' ,
-    'HICLE_CATEGORY' ,'BAND_LEVEL'  ,'BENEFIT_GROUP' ,'COST_CENTER' ,'GROUP' ,'DIVISION' ,'DEPARTMENT' ,'SECTION' ,'IS_ID' ,
-    'IS_LAST_NAME' ,'IS_FIRST_NAME' ,'LOCATION' ,'ORIGINAL_OR_DATE'  ,'ACQ_DATE'  ,'ASSET_NO' ,'EQUIPMENT_NO' ,'PO_NO' ,
-    'PLATE_NUMBER_RELEASE_DATE' ,'Employee' ,]
-    order_columns = ['Activity_Id' ,'NO' ,'PLATE_NO' ,'CS_NO' ,'CR_NAME' ,'PLATE_ENDING' ,'REGISTRATION_MONTH' ,'MODEL' ,'BRAND' ,
-    'VEHICLE_MAKE' ,'ENGINE_NO' ,'CHASSIS_NO' ,'MV_FILE_NO' ,'VEHICLE_TYPE' ,'ASSIGNEE_LAST_NAME' ,'ASSIGNEE_FIRST_NAME' ,
-    'HICLE_CATEGORY' ,'BAND_LEVEL'  ,'BENEFIT_GROUP' ,'COST_CENTER' ,'GROUP' ,'DIVISION' ,'DEPARTMENT' ,'SECTION' ,'IS_ID' ,
-    'IS_LAST_NAME' ,'IS_FIRST_NAME' ,'LOCATION' ,'ORIGINAL_OR_DATE'  ,'ACQ_DATE'  ,'ASSET_NO' ,'EQUIPMENT_NO' ,'PO_NO' ,
-    'PLATE_NUMBER_RELEASE_DATE' ,'Employee' ,]
+def Vmastertables(request):
+    return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
 
-    def filter_queryset(self, qs):
-        sSearch = self.request.GET.get('sSearch', None)
-        if sSearch:
-            qs = qs.filter(Q(Activity_Id__istartswith=sSearch) | Q(PLATE_NO__istartswith=sSearch | Q(CS_NO__istartswith=sSearch)))
-        return qs
-class TestModelList(TemplateView):
-    template_name = 'vehicleMasterlist/datatable.html'
+class vehicleViewSet(viewsets.ModelViewSet):
+    queryset = VehicleMasterList.objects.all().order_by('id')
+    serializer_class = vehicleSerializer
 
-def VmasterlistCreateView(request):
-
+def VmasterlistCreate(request):
     if request.method == 'POST':
         plate = request.POST.get('plate_no')
         cs = request.POST.get('cs')
@@ -135,31 +119,18 @@ def VmasterlistCreateView(request):
 
     return HttpResponseRedirect('/Masterlist/VehicleMasterlist/')
 
-def Vmaster(request):
-    vlist = EmployeeMasterlist.objects.all()
-    return render(request, 'vehicleMasterlist/vmasterlist.html', {'title': 'Masterlist - Vehicle Masterlist', 'vlist': vlist})
-
-# def vmaster_update(request, pk):
-#     if request.method == 'POST':
-#         plate_release = request.POST.get('plate_release')
-
-#         VehicleMasterList.objects.filter(id=pk).update(plateNo_release=plate_release)
-#         return HttpResponseRedirect('/Masterlist/VehicleMasterlist/')
+def vehicle(request):
+    elist = EmployeeMasterlist.objects.all()
+    return render(request, 'vehicleMasterlist/vmasterlist.html', {'Title': 'Vehicle Masterlist','elist':elist})
 
 class vehicleMasterListView(ListView):
-	model = VehicleMasterList
-	template_name = 'vehicleMasterlist/vehicleMasterlist.html'
-
+    model = VehicleMasterList
+    template_name = 'vehicleMasterlist/vehicleMasterlist.html'
+        
 class vehicleMasterDetails(DetailView):
-    # def dispatch(self, *args, **kwargs):
-    #      return super().dispatch(*args, **kwargs)
     model = VehicleMasterList
     template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
 
-    # def get_context_data(self, **kwargs):
-    #      context = super().get_context_data(**kwargs)
-    #      context['VML'] = VehicleMasterList.objects.filter(Activity_id=self.object.pk)
-    #      return context
 
 class vehicleMasterUpdate(UpdateView):
 	model = VehicleMasterList

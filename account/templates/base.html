@@ -31,9 +31,13 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootsdtrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css"> -->
-    
-    <!-- datatable refresh--->
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+
+    <!---Django Rest framework--->
+    <meta name="description" content="Rolling Stone magazine's 2012 list of 500 greatest albums of all time with genres.">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+
+
             <!-- #######################################
                  ########### DATA TABLE CSS ############
                  #######################################   -->  
@@ -143,6 +147,12 @@ tr:nth-child(even){background-color: #f2f2f2}
     <link href='https://code.jquery.com/jquery-3.3.1.js'>
     <link href= 'https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'>
 
+
+    <!--django rest framework--->
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
 <script>
     (function($) {
         "use strict";
@@ -199,6 +209,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             .appendTo( '#example_wrapper .col-md-6:eq(0)' );
     } );
      </script>--->
+     {% block extra_js %}{% endblock %}
 </body>
 
 </html>

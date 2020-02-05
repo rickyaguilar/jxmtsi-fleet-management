@@ -22,10 +22,17 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.conf import settings
 from ajax_select import urls as ajax_select_urls
+from django.conf.urls import url, include
+from rest_framework import routers
+from masterlist import views
 
 admin.autodiscover()
+router = routers.DefaultRouter()
+router.register(r'masterlist', views.vehicleViewSet)
+
 
 urlpatterns = [
+    url('^api/', include(router.urls)),
     url(r'^ajax_select/', include(ajax_select_urls)),
     url(r'^admin/', admin.site.urls),
     path('FLEET/', include('account.urls')),

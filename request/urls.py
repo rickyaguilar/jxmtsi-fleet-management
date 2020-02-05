@@ -22,11 +22,13 @@ urlpatterns = [
 	path('Service/Details/<int:pk>', views.serviceDetailView.as_view(), name='service_details'),
 	path('Service/Update/<int:pk>', views.serviceUpdateView.as_view(), name='service_update'),
 	path('Service/Delete/<int:pk>', views.serviceDeleteView.as_view(), name='service_delete'),
+	path('Service/Export', views.service_request_excel, name='service_export'),
 	path('Repair/', views.repairListView.as_view(), name='repair_list'),
 	path('Repair/New', views.repairCreate, name="repair_new"),
 	path('Repair/Submit', views.repairsubmit, name="repair_submit"),
 	path('Repair/Details/<int:pk>', views.repairDetailView.as_view(), name='repair_details'),
 	path('Repair/Update/<int:pk>', views.repairUpdateView.as_view(), name='repair_update'),
-	path('Repair/Delete/<int:pk>', views.repairDeleteView.as_view(), name='repair_delete')
+	path('Repair/Delete/<int:pk>', views.repairDeleteView.as_view(), name='repair_delete'),
+	path('Repair.Export', views.repair_request_excel, name='repair_export')
 
 	]

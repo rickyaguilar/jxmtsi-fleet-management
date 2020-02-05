@@ -1,6 +1,7 @@
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views import generic
+from openpyxl import Workbook
 from django.urls import reverse_lazy
 from .models import (
    	expense_voucher,
@@ -29,16 +30,6 @@ class voucherListView(ListView):
 	model = expense_voucher
 	template_name = 'voucher_list.html'
 
-
-# class voucherCreateView(SuccessMessageMixin, CreateView):
-# 	def dispatch(self, *args, **kwargs):
-# 	    return super().dispatch(*args, **kwargs)
-# 	template_name = 'voucher_form.html'
-# 	form_class = voucherform
-
-# 	def get_success_message(self, cleaned_data):
-# 		print(cleaned_data)
-# 		return "New Expense Voucher Has been Created!"
 def vouchersubmit(request):
     if request.method == 'POST':
         employee_id = request.POST.get('employee_id')
@@ -122,3 +113,131 @@ class voucherDeleteView(BSModalDeleteView):
     template_name = 'voucher_delete.html'
     success_message = 'Success: Expense Voucher was deleted.'
     success_url = reverse_lazy('voucher_list')
+
+def voucher_excel(request):
+    voucher_queryset = expense_voucher.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Expense Voucher.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Expense Voucher'
+
+    columns = [
+    'Employee Id' ,
+    'Employee Fist Name' ,
+    'Employee Last Name' ,
+    'Employee Group' ,
+    'Employee Cost Center' ,
+    'New Employee Id' ,
+    'New Employee First Name' ,
+    'New Employee Last Name' ,
+    'New Employee Group' ,
+    'New Employee Cost Center' ,
+    'Fleet Area' ,
+    'Received Voucher' ,
+    'Transaction Type' ,
+    'Voucher No' ,
+    'Voucher Amount' ,
+    'Voucher Type' ,
+    'Fuel Amount' ,
+    'Fuel Products' ,
+    'Fuel Liters' ,
+    'Service Amount' ,
+    'Work Order' ,
+    'Plate Number' ,
+    'Odometer Start' ,
+    'Odometer End' ,
+    'Brand' ,
+    ' Make' ,
+    'Fuel Type' ,
+    'Model' ,
+    'New Plate Number' ,
+    'New Odometer Start' ,
+    'New Odometer End' ,
+    'New Brand' ,
+    'New Make' ,
+    'New Fuel Type' ,
+    'New Model' ,
+    'Gt Admin' ,
+    'Approval Date' ,
+    'Immediate Supervisor' ,
+    'Approval Date' ,
+    'Voucher Documents 1' ,
+    'Voucher Documents 2' ,
+    'Voucher Documents 3' ,
+    'Voucher Remarks' ,
+    'Voucher Forwarded' ,
+    'SLA' ,
+    'Date Initiated' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for voucher in voucher_queryset:
+        row_num += 1
+        row = [
+            voucher.employee_id ,
+            voucher.employee_fname ,
+            voucher.employee_lname ,
+            voucher.employee_group ,
+            voucher.employee_cost ,
+            voucher.new_employee_id ,
+            voucher.new_employee_fname ,
+            voucher.new_employee_lname ,
+            voucher.new_employee_group ,
+            voucher.new_employee_cost ,
+            voucher.fleet_area ,
+            voucher.received_voucher ,
+            voucher.trans_type ,
+            voucher.voucher_no ,
+            voucher.voucher_amount ,
+            voucher.voucher_type ,
+            voucher.fuel_amount ,
+            voucher.fuel_products ,
+            voucher.fuel_liters ,
+            voucher.service_amount ,
+            voucher.work_order ,
+            voucher.plate_number ,
+            voucher.odometer_start ,
+            voucher.odometer_end ,
+            voucher.v_brand ,
+            voucher.v_make ,
+            voucher.v_fuel_type ,
+            voucher.v_model ,
+            voucher.new_plate_number ,
+            voucher.new_odometer_start ,
+            voucher.new_odometer_end ,
+            voucher.new_v_brand ,
+            voucher.new_v_make ,
+            voucher.new_v_fuel_type ,
+            voucher.new_v_model ,
+            voucher.gt_admin ,
+            voucher.approval_date ,
+            voucher.immediate_supervisor ,
+            voucher.im_approval_date ,
+            voucher.voucher_docs1 ,
+            voucher.voucher_docs2 ,
+            voucher.voucher_docs3 ,
+            voucher.voucher_remarks ,
+            voucher.voucher_forwarded ,
+            voucher.EVO_SLA ,
+            voucher.date_initiated ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+
+
+        

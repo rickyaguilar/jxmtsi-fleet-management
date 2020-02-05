@@ -107,13 +107,12 @@ class VehicleMasterList(models.Model):
 	EQUIPMENT_NO = models.CharField(max_length=100, null=True, blank=True)
 	PO_NO = models.CharField(max_length=100, null=True, blank=True)
 	PLATE_NUMBER_RELEASE_DATE = models.DateField(auto_now=False, null=True, blank=True)
-	# Employee = models.ForeignKey('EmployeeMasterlist', on_delete=models.DO_NOTHING, blank=True, null=True)
 	Employee = models.CharField(max_length=100, null=True)
 
 
 	def __str__(self):
 		return self.PLATE_NO
-		
+				
 	def get_absolute_url(self):
 		return reverse('vehicle-list')
 
