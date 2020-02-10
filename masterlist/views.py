@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponseRedirect,HttpResponse,reverse
 from openpyxl import Workbook
 from django.urls import reverse_lazy
 from django.views import generic
+import datetime
 # from django.core.urlresolvers import reverse_lazy
 from django.views.generic import (
      ListView,
@@ -213,7 +214,7 @@ def vehicle_excel(request):
             'MV_FILE_NO',
             'VEHICLE_TYPE',
             'VEHICLE_CATEGORY',
-            'Employee_Id',
+            'Employee',
             'BAND_LEVEL',
             'BENEFIT_GROUP',
             'COST_CENTER',
@@ -260,7 +261,7 @@ def vehicle_excel(request):
                 vehicle.MV_FILE_NO,
                 vehicle.VEHICLE_TYPE,
                 vehicle.VEHICLE_CATEGORY,
-                vehicle.Employee_Id,
+                vehicle.Employee,
                 vehicle.BAND_LEVEL,
                 vehicle.BENEFIT_GROUP,
                 vehicle.COST_CENTER,

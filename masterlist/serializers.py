@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from .models import VehicleMasterList
 
 
@@ -9,15 +8,9 @@ class vehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = VehicleMasterList
         fields = (
-            'id' ,'Activity_Id' ,'NO' ,'PLATE_NO' ,'CS_NO' ,'CR_NAME' ,'PLATE_ENDING' ,'REGISTRATION_MONTH' ,'MODEL' ,
-            'BRAND' ,'VEHICLE_MAKE' ,'ENGINE_NO' ,'CHASSIS_NO' ,'MV_FILE_NO' ,'VEHICLE_TYPE' ,'ASSIGNEE_LAST_NAME' ,
-            'ASSIGNEE_FIRST_NAME' ,'VEHICLE_CATEGORY' ,'BAND_LEVEL'  ,'BENEFIT_GROUP' ,'COST_CENTER' ,'GROUP' ,
-            'DIVISION' ,'DEPARTMENT' ,'SECTION' ,'IS_ID' ,'IS_LAST_NAME' ,'IS_FIRST_NAME' ,'LOCATION' ,'ORIGINAL_OR_DATE' ,
-            'ACQ_DATE' ,'ACQ_COST' ,'ASSET_NO' ,'EQUIPMENT_NO' ,'PO_NO' ,'PLATE_NUMBER_RELEASE_DATE' ,'Employee'
+            '__all__'
         )
-        # Specifying fields in datatables_always_serialize
-        # will also force them to always be serialized.
-        datatables_always_serialize = ('id','Activity_Id')
+        datatables_always_serialize = ('id')
 
 
 # class AlbumSerializer(serializers.ModelSerializer):
