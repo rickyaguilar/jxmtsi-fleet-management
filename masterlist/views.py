@@ -26,8 +26,31 @@ from rest_framework.response import Response
 from .models import VehicleMasterList
 from .serializers import vehicleSerializer
 
-def Vmastertables(request):
-    return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
+# def Vmastertables(request):
+#     return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
+
+def vehicle_list(request):
+    queryset_list = VehicleMasterList.objects.all()
+    paginator = Paginator(queryset_list, 20) # Show 25 contacts per page.
+
+    page = request.GET.get('page')
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
+
+    # page_obj = paginator.get_page(page_number)
+    context = {
+        "objects_list":queryset,
+        "title":"List"
+    }
+    return render(request, 'vehicleMasterlist/vm.html', context)
+
 
 class vehicleViewSet(viewsets.ModelViewSet):
     queryset = VehicleMasterList.objects.all().order_by('id')
@@ -125,8 +148,9 @@ def vehicle(request):
     return render(request, 'vehicleMasterlist/vmasterlist.html', {'Title': 'Vehicle Masterlist','elist':elist})
 
 class vehicleMasterListView(ListView):
+    paginated_by = 10
     model = VehicleMasterList
-    template_name = 'vehicleMasterlist/vehicleMasterlist.html'
+    template_name = 'vehicleMasterlist/vm.html'
         
 class vehicleMasterDetails(DetailView):
     model = VehicleMasterList

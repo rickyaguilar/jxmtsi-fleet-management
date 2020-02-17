@@ -8,6 +8,7 @@ django-ajax-selects==1.7.1
 django-bootstrap-modal-forms==1.4.4
 django-chosen==0.1
 django-crispy-forms==1.7.2
+django-cursor-pagination==0.1.4
 django-datatables-view==1.19.1
 django-datetimepicker==3.14
 django-filter==2.2.0

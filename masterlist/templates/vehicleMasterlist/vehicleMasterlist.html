@@ -30,7 +30,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             <div class="col-md-12">
                 <div class="card">
                 <div class="card-header">
-                  <a href="{% url 'vehiclelist_export' %}"> <u>Export VehicleList </u></a>
+                    <a href="{% url 'vehiclelist_export' %}"> <u>Export VehicleList </u></a>
                     <a href="{% url 'vehicle_new' %}" style="float:right"><u>Add Vehicle Masterlist</u></a>
                 </div>
                     <table id="vtable" class="table table-striped table-bordered" style="width:100%" data-server-side="true" data-ajax="/api/masterlist/?format=datatables">
@@ -84,23 +84,23 @@ tr:nth-child(even){background-color: #f2f2f2}
 {% endblock %}
 {% block extra_js %}
 <script>
+
 $(document).ready(function() {
     var table = $('#vtable').DataTable({
         "serverSide": true,
         "scrollX": true,
         "ajax": "/api/masterlist/?format=datatables",
+        "primaryKey":"id",
         "columns": [
-        { 
-          "targets": 0,
-          "data": "Activity_Id",
-          // "render": function(data, type, row, meta){
-          // var id = data.row( this ).attr("id");
-          //       if(type === 'display'){
-          //           data = '<a href="/VehicleMasterlist/Details/' + id + '">' + data + '</a>';
-          //       }
-          //       return data;
-          //   }
-        },
+            { 
+            "data": "Activity_Id",
+            "render": function(data, type, row, meta){
+            if(type === 'display'){
+                data = '<a href="/VehicleMasterlist/Details/ '+ data + '">' + data + '</a>';
+                }
+            return data;
+            }
+            },
             {"data":"NO"},
             {"data":"PLATE_NO"},
             {"data":"CS_NO"},
@@ -137,7 +137,9 @@ $(document).ready(function() {
             {"data":"PLATE_NUMBER_RELEASE_DATE"},
             {"data":"Employee"},
         ]
+
     });
+    console.log("id");
     $('#vtable').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');

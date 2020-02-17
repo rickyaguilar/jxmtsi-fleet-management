@@ -12,12 +12,13 @@
 
     <link rel="apple-touch-icon" href="apple-icon.png">
 
+
      <!---DataTable AltEditor--->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+ <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.1.2/css/select.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.dataTables.min.css" /> -->
 
 
     <link rel="stylesheet" href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}">
@@ -28,10 +29,9 @@
     <link rel="stylesheet" href="{% static 'vendors/jqvmap/dist/jqvmap.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}">
-
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    
     <!---Data table Horizontal scroll-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <!--table responsive-->
@@ -41,9 +41,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css"> -->
 
     <!---Django Rest framework--->
-    <meta name="description" content="Rolling Stone magazine's 2012 list of 500 greatest albums of all time with genres.">
+    <!-- <meta name="description" content="Rolling Stone magazine's 2012 list of 500 greatest albums of all time with genres.">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"> -->
 
 
             <!-- #######################################
@@ -66,6 +66,7 @@ th, td {
 
 tr:nth-child(even){background-color: #f2f2f2}
 </style>
+
 <style type="text/css">
   div.dataTables_wrapper {
         width: 1300px;
@@ -156,19 +157,19 @@ tr:nth-child(even){background-color: #f2f2f2}
     <link href= 'https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'>
 
       <!---Datatable AltEditor--->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js" ></script>
+<!--     <script src="https://code.jquery.com/jquery-1.12.0.min.js" ></script>
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" ></script>
     <script src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js" ></script>
     <script src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js" ></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
     <script src="https://cdn.datatables.net/responsive/2.0.2/js/dataTables.responsive.min.js" ></script>
-    <script src="../../static/js/dataTables.altEditor.free.js" ></script>
-    <script src="./example8.js" ></script>
+    <script src="../../static/js/dataTables.altEditor.free.js" ></script> -->
+    <!-- <script src="./example8.js" ></script> -->
 
     <!--django rest framework--->
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
 
 <script>
     (function($) {
@@ -196,12 +197,11 @@ tr:nth-child(even){background-color: #f2f2f2}
     $(document).ready(function() {
     $('#example').DataTable( {
         "scrollX": true,
-        "deferRender": true,
-        "severside":true
-        
+        "scrollCollapse": true
     } );
 } );
 </script>
+
 <script type="text/javascript">
     $(document).ready(function() {
     var table = $('#example').DataTable();
@@ -215,18 +215,8 @@ tr:nth-child(even){background-color: #f2f2f2}
     } );
 } );
 </script>
-<!-- <script>
-    $(document).ready(function() {
-        var table = $('#example').DataTable( {
-            lengthChange: true,
-            buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
-        } );
-     
-        table.buttons().container()
-            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-    } );
-     </script>--->
-     {% block extra_js %}{% endblock %}
+
+     <!-- {% block extra_js %}{% endblock %} -->
 </body>
 
 </html>
