@@ -23,16 +23,18 @@ from bootstrap_modal_forms.generic import BSModalDeleteView
 
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import VehicleMasterList
-from .serializers import vehicleSerializer
-
-# def Vmastertables(request):
-#     return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
+# from .models import VehicleMasterList,
+from .serializers import vehicleSerializer, EmployeeSerializer
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 
+def Vmastertables(request):
+    return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
+
 def vehicle_list(request):
+    # data_list = request.session['data_list']
+    # services = VehicleMasterList.objects.filter(id__in=data_list)
     queryset_list = VehicleMasterList.objects.all()
     paginator = Paginator(queryset_list, 20) # Show 25 contacts per page.
 
@@ -44,7 +46,7 @@ def vehicle_list(request):
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
 
-    # page_obj = paginator.get_page(page_number)
+    page_obj = paginator.get_page(page_number)
     context = {
         "objects_list":queryset,
         "title":"List"
@@ -155,6 +157,26 @@ class vehicleMasterListView(ListView):
 class vehicleMasterDetails(DetailView):
     model = VehicleMasterList
     template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
+# def vehicleMasterDetails(request, pk):
+#     """
+#     Retrieve, update or delete a code snippet.
+#     """
+#     try:
+#         snippet = VehicleMasterList.objects.get(pk=pk)
+#     except VehicleMasterList.DoesNotExist:
+#         return HttpResponse(status=404)
+
+#     if request.method == 'GET':
+#         serializer = vehicleSerializer(snippet)
+#         return JsonResponse(serializer.data)
+
+#     elif request.method == 'PUT':
+#         data = JSONParser().parse(request)
+#         serializer = vehicleSerializer(snippet, data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors, status=400)
 
 
 class vehicleMasterUpdate(UpdateView):
@@ -173,14 +195,22 @@ class vehicleMasterlistDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('vehicle-list')
 
+
+class employeeViewSet(viewsets.ModelViewSet):
+    queryset = EmployeeMasterlist.objects.all().order_by('id')
+    serializer_class = EmployeeSerializer
+
 class employeeCreateView(CreateView):
     model = EmployeeMasterlist
     form_class = EmpMasterlistForm
     template_name = 'employeeMasterlist/employeeMasterlist_form.html'
 
-class employeeListView(ListView):
-	model = EmployeeMasterlist
-	template_name = 'employeeMasterlist/employeeMasterlist.html'
+# class employeeListView(ListView):
+#     model = EmployeeMasterlist
+#     template_name = 'employeeMasterlist/employeeMasterlist.html'
+
+def empmastertables(request):
+    return render(request, 'employeeMasterlist/emp.html')
 
 class employeeDetailView(DetailView):
 	model = EmployeeMasterlist
@@ -334,10 +364,6 @@ def employee_excel(request):
             'First_name',
             'Middle_name',
             'Suffix',
-            'External_role',
-            'Job_category',
-            'Hiring_date',
-            'Tenure',
             'Band',
             'Cost_center',
             'DIV_code',
@@ -371,10 +397,6 @@ def employee_excel(request):
             emp.First_name,
             emp.Middle_name,
             emp.Suffix,
-            emp.External_role,
-            emp.Job_category,
-            emp.Hiring_date,
-            emp.Tenure,
             emp.Band,
             emp.Cost_center,
             emp.DIV_code,

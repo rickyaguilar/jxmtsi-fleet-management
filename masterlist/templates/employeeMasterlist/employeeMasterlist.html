@@ -23,13 +23,9 @@
                             <th>Employee ID:</th>
                             <th>Company:</th>
                             <th>Employee Full Name:</th>
-                            <th>Job Category:</th>
-                            <th>Hiring Date:</th>
                             <th>Group</th>
                             <th>Department</th>
                             <th>Location</th>
-                            <th>External Role</th>
-                            <th>Tenure</th>
                             <th>Band</th>
                             <th>Cost Center</th>
                             <th>DIV code</th>
@@ -50,13 +46,9 @@
                             <td><a href="{% url 'employee-details' emp.id %}"><u>{{ emp.Employee_Id }}</u></a></td>
                             <td>{{ emp.Company }}</td>
                             <td>{{ emp.First_name }} {{ emp.Last_name }}</td>
-                            <td>{{ emp.Job_category }}</td>
-                            <td>{{ emp.Hiring_date }}</td>
                             <td>{{ emp.Group }}</td>
                             <td>{{ emp.Department }}</td>
                             <td>{{ emp.Location }}</td>
-                            <td>{{ emp.External_role }}</td>
-                            <td>{{ emp.Tenure }}</td>
                             <td>{{ emp.Band }}</td>
                             <td>{{ emp.Cost_center }}</td>
                             <td>{{ emp.DIV_code }}</td>
@@ -75,32 +67,6 @@
                         </tr>
                         {% endfor %}
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Employee ID:</th>
-                            <th>Company:</th>
-                            <th>Employee Full Name:</th>
-                            <th>Job Category:</th>
-                            <th>Hiring Date:</th>
-                            <th>Group</th>
-                            <th>Department</th>
-                            <th>Location</th>
-                            <th>External Role</th>
-                            <th>Tenure</th>
-                            <th>Band</th>
-                            <th>Cost Center</th>
-                            <th>DIV code</th>
-                            <th>Division</th>
-                            <th>Section</th>
-                            <th>Unit</th>
-                            <th>Sub Unit</th>
-                            <th>IS ID</th>
-                            <th>IS Full Name</th>
-                            <th>Area</th>
-                            <th>Benefit</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
                     </table>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import VehicleMasterList
+from .models import VehicleMasterList, EmployeeMasterlist
 
 
 class vehicleSerializer(serializers.ModelSerializer):
@@ -7,6 +7,16 @@ class vehicleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = VehicleMasterList
+        fields = (
+            '__all__'
+        )
+        datatables_always_serialize = ('id')
+
+class EmployeeSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = EmployeeMasterlist
         fields = (
             '__all__'
         )

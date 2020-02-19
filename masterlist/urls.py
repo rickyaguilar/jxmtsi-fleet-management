@@ -2,14 +2,14 @@
 from django.urls import path
 from . import views
 from .views import (
-	employeeListView,
+	# employeeListView,
 	employeeCreateView,
 	employeeDetailView,
 	employeeUpdateView,
 	employeeMasterlistDeleteView,
 	# vehicleMasterListView,
 	# VmasterlistCreateView,
-	vehicleMasterDetails,
+	# vehicleMasterDetails,
 	vehicleMasterUpdate,
 	vehicleMasterlistDeleteView,
 
@@ -17,18 +17,20 @@ from .views import (
 
 
 urlpatterns = [
-	path('EmployeeMasterlist/', employeeListView.as_view(), name='employee-list'),
+	# path('EmployeeMasterlist/', employeeListView.as_view(), name='employee-list'),
+	path('EmployeeMasterlist/', views.empmastertables, name='employee-list'),
 	path('EmployeeMasterlist/New', employeeCreateView.as_view(), name='employeeMasterlist-new'),
 	path('EmployeeMasterlist/Detail/<int:pk>', employeeDetailView.as_view(), name='employee-details'),
 	path('EmployeeMasterlist/Update/<int:pk>', employeeUpdateView.as_view(), name='employeeMasterlist-update'),
 	path('EmployeeMasterlist/Delete/<int:pk>', employeeMasterlistDeleteView.as_view(), name='employeeMasterlist_delete'),
 	path('Masterlist/export', views.employee_excel, name='masterlist_dl'),
-	path('VehicleMasterlist/', views.vehicleMasterListView.as_view(), name='vehicle-list'),
+	# path('VehicleMasterlist/', views.vehicleMasterListView.as_view(), name='vehicle-list'),
 	# path('VehicleMasterlist/', views.vehicle_list, name='vehicle-list'),
-	# path('VehicleMasterlist/', views.Vmastertables, name='vehicle-list'),
+	path('VehicleMasterlist/', views.Vmastertables, name='vehicle-list'),
 	path('VehicleMasterlist/New', views.vehicle, name='vehicle_new'),
 	path('VehicleMasterlist/submit', views.VmasterlistCreate, name='vehicleMasterlist_submit'),
-	path('VehicleMasterlist/Details/<int:pk>', vehicleMasterDetails.as_view(), name='vehicle_details'),
+	path('VehicleMasterlist/Details/<int:pk>', views.vehicleMasterDetails.as_view(), name='vehicle_details'),
+	# path('VehicleMasterlist/Details/<int:pk>', views.vehicleMasterDetails, name='vehicle_details'),
 	path('VehicleMasterlist/Update/<int:pk>', vehicleMasterUpdate.as_view(),name='vehicle-update'),
 	path('VehicleMasterlist/Delete/<int:pk>', vehicleMasterlistDeleteView.as_view(), name='vehicleMasterlist_delete'),
 	path('Vehicle/<int:pk>', views.releaseUpdate.as_view(), name='vupdate'),
