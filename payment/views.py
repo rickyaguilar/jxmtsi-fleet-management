@@ -156,6 +156,12 @@ class carrentalDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('carrental_list')
 
+def carrentalHistoryView(request):
+    if request.method == "GET":
+       obj = CarRental.history.all()
+
+       return render(request, 'payment/car/carrental_history.html', context={'object': obj})
+
 def rent(request):
 	emp = EmployeeMasterlist.objects.all()
 	vechicle = VehicleMasterList.objects.all()
@@ -235,6 +241,12 @@ class VehicleDeleteView(BSModalDeleteView):
     template_name = 'vehicle/vehicle_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('Vehicle_list')
+
+def VehicleHistoryView(request):
+    if request.method == "GET":
+       obj = VehiclePayment.history.all()
+
+       return render(request, 'payment/vehicle/vehicle_history.html', context={'object': obj})
 			
 class FuelDetailView(DetailView):
 	model = Fuel_supplier
@@ -267,6 +279,12 @@ class FuelDeleteView(BSModalDeleteView):
     template_name = 'fuel/fuel_supplier_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('Fuel_supplierList')
+
+def FuelHistoryView(request):
+    if request.method == "GET":
+       obj = Fuel_supplier.history.all()
+
+       return render(request, 'payment/fuel/fuel_supplier_history.html', context={'object': obj})
 
 
 def car_excel(request):

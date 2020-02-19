@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'ajax_select',
     'bootstrap_modal_forms',
     'widget_tweaks',
+    'simple_history',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -95,8 +97,8 @@ DATABASES = {
     'ENGINE':'django.db.backends.postgresql_psycopg2',
         'NAME': 'django-cursor-pagination',
         'NAME': 'fleet',
-        'USER': 'fleet',
-        'PASSWORD': 'fleet@27',
+        'USER': 'jxmtsi',
+        'PASSWORD': 'jxmtsi12345',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -127,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 

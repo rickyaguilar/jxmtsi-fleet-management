@@ -5,6 +5,8 @@ import datetime
 from datetime import date
 from django.urls import reverse
 from masterlist.models import VehicleMasterList, EmployeeMasterlist
+# History
+from simple_history.models import HistoricalRecords
 
 def increment_Activity_id():
 	last_in = Fata_monitoring.objects.all().order_by('id').last()
@@ -42,6 +44,7 @@ class Fata_monitoring(models.Model):
 	Globe_fixed_asset = models.CharField(max_length=50, blank=True, null=True)
 	Innove_fixed_asset = models.CharField(max_length=50, blank=True, null=True)
 	Date_initiated = models.DateField(auto_now=True, null=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id

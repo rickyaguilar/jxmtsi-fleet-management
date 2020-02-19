@@ -114,6 +114,12 @@ class ownershipDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('ownership_list')
 
+def ownershipHistoryView(request):
+    if request.method == "GET":
+       obj = Ownership.history.all()
+
+       return render(request, 'transfer_history.html', context={'object': obj})
+
 def ownership_excel(request):
     own_queryset = Ownership.objects.all()   
     response = HttpResponse(

@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.utils import timezone
 import datetime
 from datetime import date
+# History
+from simple_history.models import HistoricalRecords
 
 class EmployeeMasterlist(models.Model):
 	Company = models.CharField(max_length=100, null=True)
@@ -31,6 +33,7 @@ class EmployeeMasterlist(models.Model):
 	Area = models.CharField(max_length=100, null=True)
 	Area2 = models.CharField(max_length=100, null=True)
 	Benefit = models.CharField(max_length=100, null=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Employee_Id
@@ -108,6 +111,7 @@ class VehicleMasterList(models.Model):
 	PO_NO = models.CharField(max_length=100, null=True, blank=True)
 	PLATE_NUMBER_RELEASE_DATE = models.DateField(auto_now=False, null=True, blank=True)
 	Employee = models.CharField(max_length=100, null=True)
+	history = HistoricalRecords()
 
 
 	def __str__(self):

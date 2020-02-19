@@ -92,6 +92,12 @@ class monitoringDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('Monitoring_list')
 
+def monitoringHistoryView(request):
+    if request.method == "GET":
+       obj = Fata_monitoring.history.all()
+
+       return render(request, 'fata_monitoring_history.html', context={'object': obj})
+
 
 def fata_excel(request):
     fata_queryset = Fata_monitoring.objects.all()   

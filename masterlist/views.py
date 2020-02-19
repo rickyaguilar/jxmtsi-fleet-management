@@ -173,6 +173,12 @@ class vehicleMasterlistDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('vehicle-list')
 
+def vehicleMasterlistHistoryView(request):
+    if request.method == "GET":
+       obj = VehicleMasterList.history.all()
+
+       return render(request, 'vehicleMasterlist/vehicleMasterlist_history.html', context={'object': obj})
+
 class employeeCreateView(CreateView):
     model = EmployeeMasterlist
     form_class = EmpMasterlistForm
@@ -196,6 +202,12 @@ class employeeMasterlistDeleteView(BSModalDeleteView):
     template_name = 'employeeMasterlist/employeeMasterlist_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('employee-list')
+
+def employeeMasterlistHistoryView(request):
+    if request.method == "GET":
+       obj = EmployeeMasterlist.history.all()
+
+       return render(request, 'employeeMasterlist/employeeMasterlist_history.html', context={'object': obj})
 
 
 def registration(request):

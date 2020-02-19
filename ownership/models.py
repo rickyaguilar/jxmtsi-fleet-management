@@ -1,8 +1,9 @@
-
 from django.db import models
 import datetime
 from django.urls import reverse
 from masterlist.models import VehicleMasterList
+# History
+from simple_history.models import HistoricalRecords
 
 def increment_Activity_id():
 	last_in = Ownership.objects.all().order_by('id').last()
@@ -86,6 +87,7 @@ class Ownership(models.Model):
 
     TOO_SLA = models.CharField(max_length=10, null=True, blank=True)
     date_initiated = models.DateField(auto_now=True, null=True, blank=True)
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.Activity_id

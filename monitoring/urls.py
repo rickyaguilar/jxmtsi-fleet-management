@@ -8,5 +8,6 @@ urlpatterns = [
 	path('Monitoring/Update/<int:pk>', views.monitoringUpdate.as_view(), name='Monitoring_update'),
 	path('Monitoring/Details/<int:pk>', views.monitoringDetails.as_view(), name='Monitoring_details'),
 	path('Monitoring/Delete/<int:pk>', views.monitoringDeleteView.as_view(), name='Monitoring_delete'),
+	path('Monitoring/History/', views.monitoringHistoryView, name='Monitoring_history'),
 	path('Monitoring/Export', views.fata_excel, name='fata_export'),
 ]

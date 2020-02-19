@@ -4,6 +4,8 @@ from django.utils import timezone
 import datetime
 from datetime import date
 from masterlist.models import EmployeeMasterlist,VehicleMasterList
+# History
+from simple_history.models import HistoricalRecords
 
 
 
@@ -75,6 +77,7 @@ class CarRental(models.Model):
 	I_amount = models.CharField(max_length=100, null=True, blank=True)
 	R_purpose = models.CharField(max_length=100, null=True, blank=True)
 	C_SLA = models.CharField(max_length=10, null=True, blank=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id
@@ -136,6 +139,7 @@ class VehiclePayment(models.Model):
 	V_SLA = models.CharField(max_length=10, null=True, blank=True)
 	Next_process = models.CharField(max_length=100, null=True, blank=True)
 	Date_initiated = models.DateField(auto_now=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id
@@ -180,6 +184,7 @@ class Fuel_supplier(models.Model):
 	Payment_deadline = models.CharField(max_length=100, blank=True)
 	Date_forwarded = models.CharField(max_length=100, blank=True)
 	F_SLA = models.CharField(max_length=10, null=True, blank=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id
