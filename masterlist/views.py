@@ -117,25 +117,25 @@ def VmasterlistCreate(request):
         endplate = int(plate[-1])
 
         if endplate == 1:
-            reg = 'Jan'
+            reg = 'JAN'
         elif endplate == 2:
-            reg = 'Feb'
+            reg = 'FEB'
         elif endplate == 3:
-            reg = 'Mar'
+            reg = 'MAR'
         elif endplate == 4:
-            reg = 'Apr'
+            reg = 'APR'
         elif endplate == 5:
-            reg = 'May'
+            reg = 'MAY'
         elif endplate == 6:
-            reg = 'Jun'
+            reg = 'JUN'
         elif endplate == 7:
-            reg = 'Jul'
+            reg = 'JUL'
         elif endplate == 8:
-            reg = 'Aug'
+            reg = 'AUG'
         elif endplate == 9:
-            reg = 'Sep'
+            reg = 'SEP'
         else:
-            reg = 'Oct'
+            reg = 'OCT'
         saveto_end = VehicleMasterList(PLATE_NO=plate, CS_NO=cs, CR_NAME=cr_name, MODEL=model, BRAND=brand,PLATE_ENDING=endplate, REGISTRATION_MONTH=reg,
             VEHICLE_MAKE=vmake, ENGINE_NO=eng_no, MV_FILE_NO=mvfile, VEHICLE_TYPE=vtype, VEHICLE_CATEGORY=vcat,
             Employee=emp_save, BAND_LEVEL=band, BENEFIT_GROUP=benefit, COST_CENTER=cost, GROUP=group, DIVISION=div,
