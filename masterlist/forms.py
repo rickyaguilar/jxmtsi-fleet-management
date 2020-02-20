@@ -9,15 +9,13 @@ class EmpMasterlistForm(forms.ModelForm):
       def __init__(self, *args, **kwargs):
             super(EmpMasterlistForm, self).__init__(*args, **kwargs)
             self.fields['Suffix'].required = False
-            self.fields['External_role'].required = False
             self.fields['Unit'].required = False
             self.fields['Sub_unit'].required = False
             
       class Meta:
             model = EmployeeMasterlist
             fields = [
-                  'Company','Employee_Id','Last_name','First_name','Middle_name','Suffix','External_role',
-                  'Job_category','Hiring_date','Tenure','Band','Cost_center','DIV_code','Group','Division',
+                  'Company','Employee_Id','Last_name','First_name','Middle_name','Suffix','Band','Cost_center','DIV_code','Group','Division',
                   'Department','Section','Unit','Sub_unit','IS_ID','IS_lastname','IS_firstname','Location',
                   'Area','Area2','Benefit'
             ]
@@ -28,10 +26,6 @@ class EmpMasterlistForm(forms.ModelForm):
                   'First_name':forms.TextInput(attrs={'class':'form-control'}),
                   'Middle_name':forms.TextInput(attrs={'class':'form-control'}),
                   'Suffix':forms.TextInput(attrs={'class':'form-control'}),
-                  'External_role':forms.TextInput(attrs={'class':'form-control'}),
-                  'Job_category':forms.TextInput(attrs={'class':'form-control'}),
-                  'Hiring_date':forms.TextInput(attrs={'class':'form-control','type':'date'}),
-                  'Tenure':forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
                   'Band':forms.TextInput(attrs={'class':'form-control'}),
                   'Cost_center':forms.TextInput(attrs={'class':'form-control','type':'number'}),
                   'DIV_code':forms.TextInput(attrs={'class':'form-control'}),
