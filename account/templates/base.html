@@ -12,15 +12,6 @@
 
     <link rel="apple-touch-icon" href="apple-icon.png">
 
-
-     <!---DataTable AltEditor--->
- <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.1.2/css/select.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.dataTables.min.css" /> -->
-
-
     <link rel="stylesheet" href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
@@ -34,6 +25,8 @@
     
     <!---Data table Horizontal scroll-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+
     <!--table responsive-->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootsdtrap4.min.css">
@@ -50,7 +43,7 @@
                  ########### DATA TABLE CSS ############
                  #######################################   -->  
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <style>
 table {
   border-collapse: collapse;
@@ -153,8 +146,9 @@ tr:nth-child(even){background-color: #f2f2f2}
     <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
 
     <!---Data table Horizontal scroll-->
-    <link href='https://code.jquery.com/jquery-3.3.1.js'>
-    <link href= 'https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
 
       <!---Datatable AltEditor--->
 <!--     <script src="https://code.jquery.com/jquery-1.12.0.min.js" ></script>
@@ -197,7 +191,6 @@ tr:nth-child(even){background-color: #f2f2f2}
     $(document).ready(function() {
     $('#example').DataTable( {
         "scrollX": true,
-        "scrollCollapse": true
     } );
 } );
 </script>
@@ -216,7 +209,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 } );
 </script>
 
-     <!-- {% block extra_js %}{% endblock %} -->
+     {% block extra_js %}{% endblock %}
 </body>
 
 </html>

@@ -11,45 +11,47 @@ from django.views.generic import (
      UpdateView,
  )
 from .models import (
-	EmployeeMasterlist,
-	VehicleMasterList
-	)
+    EmployeeMasterlist,
+    VehicleMasterList
+    )
 from . forms import (
-	EmpMasterlistForm,
-	Vmasterlist,
+    EmpMasterlistForm,
+    Vmasterlist,
     Vmaster
-	)
+    )
 from bootstrap_modal_forms.generic import BSModalDeleteView
 
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import VehicleMasterList
-from .serializers import vehicleSerializer
-
-# def Vmastertables(request):
-#     return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
+# from .models import VehicleMasterList,
+from .serializers import vehicleSerializer, EmployeeSerializer
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 
-def vehicle_list(request):
-    queryset_list = VehicleMasterList.objects.all()
-    paginator = Paginator(queryset_list, 20) # Show 25 contacts per page.
+def Vmastertables(request):
+    return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
 
-    page = request.GET.get('page')
-    try:
-        queryset = paginator.page(page)
-    except PageNotAnInteger:
-        queryset = paginator.page(1)
-    except EmptyPage:
-        queryset = paginator.page(paginator.num_pages)
+# def vehicle_list(request):
+#     # data_list = request.session['data_list']
+#     # services = VehicleMasterList.objects.filter(id__in=data_list)
+#     queryset_list = VehicleMasterList.objects.all()
+#     paginator = Paginator(queryset_list, 20) # Show 25 contacts per page.
 
-    # page_obj = paginator.get_page(page_number)
-    context = {
-        "objects_list":queryset,
-        "title":"List"
-    }
-    return render(request, 'vehicleMasterlist/vm.html', context)
+#     page = request.GET.get('page')
+#     try:
+#         queryset = paginator.page(page)
+#     except PageNotAnInteger:
+#         queryset = paginator.page(1)
+#     except EmptyPage:
+#         queryset = paginator.page(paginator.num_pages)
+
+#     page_obj = paginator.get_page(page_number)
+#     context = {
+#         "objects_list":queryset,
+#         "title":"List"
+#     }
+#     return render(request, 'vehicleMasterlist/vm.html', context)
 
 
 class vehicleViewSet(viewsets.ModelViewSet):
@@ -155,12 +157,32 @@ class vehicleMasterListView(ListView):
 class vehicleMasterDetails(DetailView):
     model = VehicleMasterList
     template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
+# def vehicleMasterDetails(request, pk):
+#     """
+#     Retrieve, update or delete a code snippet.
+#     """
+#     try:
+#         snippet = VehicleMasterList.objects.get(pk=pk)
+#     except VehicleMasterList.DoesNotExist:
+#         return HttpResponse(status=404)
+
+#     if request.method == 'GET':
+#         serializer = vehicleSerializer(snippet)
+#         return JsonResponse(serializer.data)
+
+#     elif request.method == 'PUT':
+#         data = JSONParser().parse(request)
+#         serializer = vehicleSerializer(snippet, data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors, status=400)
 
 
 class vehicleMasterUpdate(UpdateView):
-	model = VehicleMasterList
-	form_class = Vmasterlist
-	template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
+    model = VehicleMasterList
+    form_class = Vmasterlist
+    template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
 
 class releaseUpdate(UpdateView):
     model = VehicleMasterList
@@ -184,13 +206,20 @@ class employeeCreateView(CreateView):
     form_class = EmpMasterlistForm
     template_name = 'employeeMasterlist/employeeMasterlist_form.html'
 
-class employeeListView(ListView):
-	model = EmployeeMasterlist
-	template_name = 'employeeMasterlist/employeeMasterlist.html'
+class employeeViewSet(viewsets.ModelViewSet):
+    queryset = EmployeeMasterlist.objects.all().order_by('id')
+    serializer_class = EmployeeSerializer
+
+# class employeeListView(ListView):
+#     model = EmployeeMasterlist
+#     template_name = 'employeeMasterlist/employeeMasterlist.html'
+
+def empmastertables(request):
+    return render(request, 'employeeMasterlist/emp.html')
 
 class employeeDetailView(DetailView):
-	model = EmployeeMasterlist
-	template_name = 'employeeMasterlist/employeeMasterlist_details.html'
+    model = EmployeeMasterlist
+    template_name = 'employeeMasterlist/employeeMasterlist_details.html'
 
 class employeeUpdateView(UpdateView):
     model = EmployeeMasterlist
@@ -346,10 +375,6 @@ def employee_excel(request):
             'First_name',
             'Middle_name',
             'Suffix',
-            'External_role',
-            'Job_category',
-            'Hiring_date',
-            'Tenure',
             'Band',
             'Cost_center',
             'DIV_code',
@@ -383,10 +408,6 @@ def employee_excel(request):
             emp.First_name,
             emp.Middle_name,
             emp.Suffix,
-            emp.External_role,
-            emp.Job_category,
-            emp.Hiring_date,
-            emp.Tenure,
             emp.Band,
             emp.Cost_center,
             emp.DIV_code,
