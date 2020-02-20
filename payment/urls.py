@@ -40,6 +40,9 @@ urlpatterns = [
 	path('Fuel/Detail/<int:pk>', FuelDetailView.as_view(), name='Fuel-summary'),
 	path('Fuel/Delete/<int:pk>', FuelDeleteView.as_view(), name='Fuel_delete'),
 	path('Fuel/History/', views.FuelHistoryView, name='Fuel_history'),
-	path('Fuel/export', views.fuel_excel, name='fuel_export')
+	path('Fuel/export', views.fuel_excel, name='fuel_export'),
+	path('VehicleRepair/', views.vrepair_payment.as_view(), name='vehiclerepair_payment'),
+	path('VehicleRepair/New', views.vrepair_payment_create, name='vehiclerepair_payment_new'),
+	path('VehicleRepair/Submit', views.vrepairsubmit, name='vehiclerepair_payment_submit')
 
 ]

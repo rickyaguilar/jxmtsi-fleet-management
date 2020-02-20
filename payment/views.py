@@ -9,6 +9,7 @@ from .models import (
     CarRental,
     VehiclePayment,
     Fuel_supplier,
+    Vehicle_Repair_payment,
 )
 from masterlist.models import EmployeeMasterlist,VehicleMasterList
 from django.views.generic import (
@@ -285,6 +286,51 @@ def FuelHistoryView(request):
        obj = Fuel_supplier.history.all()
 
        return render(request, 'payment/fuel/fuel_supplier_history.html', context={'object': obj})
+
+class vrepair_payment(ListView):
+    model = Vehicle_Repair_payment
+    template_name = 'payment/vehicle_repair/vehicle_repair_paymentList.html'
+
+def vrepair_payment_create(request):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    emplist = EmployeeMasterlist.objects.all()
+    vlist = VehicleMasterList.objects.all()
+    return render(request, 'payment/vehicle_repair/vehicle_repair_form.html',{'emplist':emplist,'vlist':vlist})
+
+def vrepairsubmit(request):
+    if request.method == 'POST':
+        request_date = request.POST.get('request_date')
+        emp_id = request.POST.get('emp_id')
+        cost_center = request.POST.get('cost_center')
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        c_no = request.POST.get('c_no')
+        company = request.POST.get('company')
+        department = request.POST.get('department')
+        group = request.POST.get('group')
+        plate_no = request.POST.get('plate_no')
+        v_brand = request.POST.get('v_brand')
+        engine = request.POST.get('engine')
+        v_model = request.POST.get('v_model')
+        v_make = request.POST.get('v_make')
+        chassis = request.POST.get('chassis')
+        v_band = request.POST.get('v_band')
+        cs_no = request.POST.get('cs_no')
+        eq_no = request.POST.get('eq_no')
+        dealership = request.POST.get('dealer')
+        amount = request.POST.get('amount')
+        service_type = request.POST.get('service_type')
+
+
+        saveto_vrp = Vehicle_Repair_payment(request_date=request_date, employee=emp_id, cost_center=cost_center, first_name=fname,
+            last_name=lname, contact_no=c_no, company=company, department=department, group_section=group,
+            plate_no=plate_no, v_brand=v_brand, engine=engine, v_make=v_make, v_model=v_model, chassis=chassis,
+            band=v_band, cond_sticker=cs_no, equipment_no=eq_no, dealership=dealership, amount=amount, service_type=service_type,
+    )
+        saveto_vrp.save()
+
+        return HttpResponseRedirect('/Payment/VehicleRepair/')
 
 
 def car_excel(request):
