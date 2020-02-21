@@ -168,6 +168,13 @@ def octRegView(request):
 
 	return render(request, 'regOct_monitoring.html', context)
 
+def plateMonitoringView(request):
+	context = {
+			'plate_monitoring': VehicleMasterList.objects.filter(PLATE_NO__isnull=True)
+		}
+
+	return render(request, 'plate_monitoring.html', context)
+
 def fata_excel(request):
     fata_queryset = Fata_monitoring.objects.all()   
     response = HttpResponse(

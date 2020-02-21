@@ -20,6 +20,8 @@ urlpatterns = [
 	path('Registration/August', views.augRegView, name='Monitoring_aug_reg'),
 	path('Registration/September', views.sepRegView, name='Monitoring_sep_reg'),
 	path('Registration/October', views.octRegView, name='Monitoring_oct_reg'),
+	# FILTER WITHOUT TEMPLATE
+	path('Plate-monitoring/', views.plateMonitoringView, name='Monitoring_plate'),
 
 	path('Monitoring/Export', views.fata_excel, name='fata_export'),
 ]
