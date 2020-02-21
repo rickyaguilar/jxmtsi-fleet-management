@@ -43,6 +43,11 @@ urlpatterns = [
 	path('Fuel/export', views.fuel_excel, name='fuel_export'),
 	path('VehicleRepair/', views.vrepair_payment.as_view(), name='vehiclerepair_payment'),
 	path('VehicleRepair/New', views.vrepair_payment_create, name='vehiclerepair_payment_new'),
-	path('VehicleRepair/Submit', views.vrepairsubmit, name='vehiclerepair_payment_submit')
+	path('VehicleRepair/Submit', views.vrepairsubmit, name='vehiclerepair_payment_submit'),
+	path('VehicleRepair/Details/<int:pk>', views.vrepairDetailView.as_view(), name='vehicle_repair_details'),
+	path('VehicleRepair/Update/<int:pk>', views.vrepairUpdate.as_view(), name='vehiclerepair_payment_udpate'),
+	path('VehicleRepair/Delete/<int:pk>', views.vrepairDeleteView.as_view(), name='vehiclerepair_payment_delete'),
+	path('VehicleRepair/export', views.vrepair_excel, name='vehiclerepair_payment_export'),
+	path('VehicleRepair/History', views.vrepairlHistoryView, name='vehicle_repair_history')
 
 ]

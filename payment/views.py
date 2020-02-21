@@ -20,16 +20,12 @@ from django.views.generic import (
  )
 from . forms import (
     VehiclePaymentform,
-    FuelsupplierForm
+    FuelsupplierForm,
+    vrepair_form
 )
 from bootstrap_modal_forms.generic import (
                                            BSModalDeleteView
                                            )
-
-# class CarrentalCreateView(CreateView):
-#     model = CarRental
-#     form_class = CarRentalForm
-#     template_name = 'payment/car/carsample.html'
 
 class CarListView(ListView):
 	model = CarRental
@@ -169,16 +165,6 @@ def rent(request):
 	return render(request, 'payment/car_rental.html', {'title': 'CarRental - Create New Car Rental Request', 'emp': emp, 
 	'vechicle': vechicle})
 
-
-# class VehicleCreateView(SuccessMessageMixin, CreateView):
-#     model = VehiclePayment
-#     form_class = VehiclePaymentform
-#     template_name = 'payment/vehicle/vehiclepayment_new.html'
-
-#     def get_success_message(self, cleaned_data):
-#     	print(cleaned_data)
-#     	return "New Vehicle Payment's Has been Created!"
-
 def vehiclecreate(request):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -297,6 +283,31 @@ def vrepair_payment_create(request):
     emplist = EmployeeMasterlist.objects.all()
     vlist = VehicleMasterList.objects.all()
     return render(request, 'payment/vehicle_repair/vehicle_repair_form.html',{'emplist':emplist,'vlist':vlist})
+
+class vrepairDetailView(DetailView):
+    model = Vehicle_Repair_payment
+    template_name = 'payment/vehicle_repair/vehicle_repair_details.html'
+
+class vrepairDeleteView(BSModalDeleteView):
+    model = Vehicle_Repair_payment
+    template_name = 'vehicle_repair/vehicle_repair_delete.html'
+    success_message = 'Success: Item was deleted.'
+    success_url = reverse_lazy('vehiclerepair_payment')
+
+class vrepairUpdate(SuccessMessageMixin, UpdateView):
+    model = Vehicle_Repair_payment
+    form_class = vrepair_form
+    template_name = 'payment/vehicle_repair/vehicle_repair_update.html'
+
+    def get_success_message(self, cleaned_data):
+        print(cleaned_data)
+        return "Vehicle Repair Payment Update Successfully!"
+
+def vrepairlHistoryView(request):
+    if request.method == "GET":
+       obj = Vehicle_Repair_payment.history.all()
+
+       return render(request, 'payment/vehicle_repair/vehicle_repair_history.html', context={'object': obj})
 
 def vrepairsubmit(request):
     if request.method == 'POST':
@@ -537,6 +548,84 @@ def fuel_excel(request):
 				fuel.Payment_deadline,
 				fuel.Date_forwarded,
 				fuel.Date_initiated,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+def vrepair_excel(request):
+    vrepair_queryset = Vehicle_Repair_payment.objects.all()   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Vehicle Repair Payment.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Vehicle Repair Payment'
+
+    columns = [
+            'Activity Id', 
+            'Request Date', 
+            'Employee', 
+            'Cost Center', 
+            'First Name', 
+            'Last Name', 
+            'Contact No', 
+            'Company', 
+            'Department', 
+            'Group Section', 
+            'Plate No', 
+            'Brand', 
+            'Engine', 
+            'Make', 
+            'Model', 
+            'Chassis', 
+            'Band', 
+            'Conduction Sticker', 
+            'Equipment No', 
+            'Dealership', 
+            'Amount', 
+            'Service Type', 
+            'Date Initiated', 
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for vrp in vrepair_queryset:
+        row_num += 1
+        # ordate = car.ORIGINAL_OR_DATE.strftime('%m/%d/%Y')
+        # platerelease = car.PLATE_NUMBER_RELEASE_DATE.strftime('%m/%d/%Y')
+        row = [
+            vrp.Activity_id, 
+            vrp.request_date, 
+            vrp.employee, 
+            vrp.cost_center, 
+            vrp.first_name, 
+            vrp.last_name, 
+            vrp.contact_no, 
+            vrp.company, 
+            vrp.department, 
+            vrp.group_section, 
+            vrp.plate_no, 
+            vrp.v_brand, 
+            vrp.engine, 
+            vrp.v_make, 
+            vrp.v_model, 
+            vrp.chassis, 
+            vrp.band, 
+            vrp.cond_sticker, 
+            vrp.equipment_no, 
+            vrp.dealership, 
+            vrp.amount, 
+            vrp.service_type, 
+            vrp.date_initiated, 
         ]
         
         for col_num, cell_value in enumerate(row, 1):
