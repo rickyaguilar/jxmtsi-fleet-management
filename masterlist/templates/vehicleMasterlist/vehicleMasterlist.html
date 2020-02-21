@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 table {
@@ -76,12 +75,12 @@ tr:nth-child(even){background-color: #f2f2f2}
                         </tr>
                     </thead>
                     </table>
-                  </div>
                 </div>
             </div>
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->
+
 {% endblock %}
 {% block extra_js %}
 <script>
@@ -91,13 +90,13 @@ $(document).ready(function() {
         "serverSide": true,
         "scrollX": true,
         "ajax": "/api/masterlist/?format=datatables",
-        "primaryKey":"id",
         "columns": [
             { 
             "data": "Activity_Id",
-            "render": function(data, type, row, meta){
+            "render": function(data, type, row, meta, id){
             if(type === 'display'){
-                data = '<a href="/VehicleMasterlist/Details/ '+ data + '">' + data + '</a>';
+                // data = '<a href="/VehicleMasterlist/New/ {{ data.id }}">' + data + '</a>';
+                data = '<a href="{%url 'vehicle_new'%}">' + data + '</a>';
                 }
             return data;
             }
@@ -105,7 +104,7 @@ $(document).ready(function() {
             {"data":"NO"},
             {"data":"PLATE_NO"},
             {"data":"CS_NO"},
-            {"data":"CR_NAME", "sortable": false},
+            {"data":"CR_NAME"},
             {"data":"PLATE_ENDING"},
             {"data":"REGISTRATION_MONTH"},
             {"data":"MODEL"},
