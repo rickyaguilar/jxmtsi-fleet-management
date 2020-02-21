@@ -170,7 +170,7 @@ def octRegView(request):
 
 def plateMonitoringView(request):
 	context = {
-			'plate_monitoring': VehicleMasterList.objects.filter(PLATE_NO__isnull=True)
+			'plate_monitoring': VehicleMasterList.objects.filter(PLATE_NO__isnull=False)
 		}
 
 	return render(request, 'plate_monitoring.html', context)

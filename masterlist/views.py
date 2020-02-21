@@ -92,6 +92,7 @@ def VmasterlistCreate(request):
             emp_save = None
             
         reg = ''
+<<<<<<< HEAD
         endplate = int(plate[-1])
 
         if endplate == 1:
@@ -114,6 +115,33 @@ def VmasterlistCreate(request):
             reg = 'SEP'
         else
             reg = 'OCT'
+=======
+        endplate = ''
+
+        if endplate != "":
+            endplate = int(plate[-1])
+
+            if endplate == 1:
+                reg = 'JAN'
+            elif endplate == 2:
+                reg = 'FEB'
+            elif endplate == 3:
+                reg = 'MAR'
+            elif endplate == 4:
+                reg = 'APR'
+            elif endplate == 5:
+                reg = 'MAY'
+            elif endplate == 6:
+                reg = 'JUN'
+            elif endplate == 7:
+                reg = 'JUL'
+            elif endplate == 8:
+                reg = 'AUG'
+            elif endplate == 9:
+                reg = 'SEP'
+            elif endplate == 0:
+                reg = 'OCT'
+>>>>>>> d428da83588f9d8b17f8e47ee5def6530df10285
 
         saveto_end = VehicleMasterList(PLATE_NO=plate, CS_NO=cs, CR_NAME=cr_name, MODEL=model, BRAND=brand,PLATE_ENDING=endplate, REGISTRATION_MONTH=reg,
             VEHICLE_MAKE=vmake, ENGINE_NO=eng_no, MV_FILE_NO=mvfile, VEHICLE_TYPE=vtype, VEHICLE_CATEGORY=vcat,
