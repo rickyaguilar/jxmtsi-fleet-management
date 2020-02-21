@@ -20,33 +20,20 @@ tr:nth-child(even){background-color: #f2f2f2}
 table.dataTable.fixedHeader-floating {
      display: none !important; /* Hide the fixedHeader since we dont need it*/
 }
-<<<<<<< HEAD
 
-=======
- 
- 
->>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
 .dataTables_scrollHeadInner{
     margin-left: 0px;
     width: 100% !important;
     position: fixed;
     display: block;
     overflow: hidden;
-<<<<<<< HEAD
     margin-right: 0px;
-=======
-    margin-right: 30px;
->>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
     background: white;
     z-index: 1000;
 }
  
 .dataTables_scrollBody{
-<<<<<<< HEAD
     padding-top: 80px;
-=======
-    padding-top: 60px;
->>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
 }
 </style>
 
@@ -65,12 +52,7 @@ table.dataTable.fixedHeader-floating {
                     <a href="{% url 'masterlist_dl'%}"> <u>Export Employee Masterlist</u></a>
                     <a href="{% url 'employeeMasterlist-new' %}" style="float:right"><u>Add New Employee</u></a>
                 </div>
-<<<<<<< HEAD
                     <table id="vtable" class="display" style="width:100%" data-server-side="true" data-ajax="/api/empmasterlist/?format=datatables">
-=======
-                <!-- <div style="width: 1300px; height: 500px; overflow-y: scroll;"> -->
-                    <table id="vtable" class="display" style="width:100%" data-server-side="true" data-ajax="/api/empmasterllist/?format=datatables">
->>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
                     <thead>
                         <tr>
                             <th>Employee ID:</th>
@@ -98,10 +80,6 @@ table.dataTable.fixedHeader-floating {
                         </tr>
                     </thead>
                     </table>
-<<<<<<< HEAD
-=======
-                <!-- </div> -->
->>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
                 </div>
             </div>
         </div>
@@ -133,20 +111,12 @@ $(document).ready(function() {
                     if(scroll_pos < margin)
                          var header_pos = margin - scroll_pos;
                     else
-<<<<<<< HEAD
                         header_pos = 20;
-=======
-                        header_pos = 0;
->>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
  
                     $('.dataTables_scrollHeadInner').css({"top" : header_pos});
                 });
             },
-<<<<<<< HEAD
         "ajax": "/api/empmasterlist/?format=datatables",
-=======
-        "ajax": "/api/empmasterllist/?format=datatables",
->>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
         "columns": [
             { 
             "data": "Employee_Id",
@@ -163,13 +133,8 @@ $(document).ready(function() {
             {"data":"First_name"},
             {"data":"Middle_name"},
             {"data":"Suffix"},
-<<<<<<< HEAD
             {"data":"Cost_center"},
             {"data":"Band"},
-=======
-            {"data":"Band"},
-            {"data":"Cost_center"},
->>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
             {"data":"DIV_code"},
             {"data":"Group"},
             {"data":"Division"},

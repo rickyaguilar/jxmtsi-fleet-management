@@ -93,7 +93,7 @@ body {font-family: Arial;}
                     </li>
                     <h3 class="menu-title"></h3><br><!-- /.menu-title -->
                     <li>
-                        <a href="{% url 'FLEET-index' %}"><i class="menu-icon fa fa-tachometer-o"></i>Dashboard</a>
+                        <a href="{% url 'FLEET-index' %}"><i class="menu-icon fa fa-tachometer-o"></i>Dasboard</a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Payment's</a>
@@ -101,6 +101,7 @@ body {font-family: Arial;}
                             <li><i class="menu-icon fa fa-newspaper-o"></i><a href="{% url 'Vehicle_list' %}">New Vehicle Payment's</a></li>
                             <li><i class="menu-icon fa fa-newspaper-o"></i><a href="{% url 'carrental_list' %}">Car Rental Payment's</a></li>
                             <li><i class="menu-icon fa fa-newspaper-o"></i><a href="{% url 'Fuel_supplierList' %}">Fuel Supplier Payment's</a></li>
+                            <li><i class="menu-icon fa fa-newspaper-o"></i><a href="{% url 'vehiclerepair_payment' %}">Vehicle Repair Payment's</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -123,16 +124,18 @@ body {font-family: Arial;}
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder-o"></i>Monitoring</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-folder-o"></i><a href="{% url 'Monitoring_list' %}">FATA Monitoring</a></li>
+                            <li><i class="menu-icon fa fa-folder-o"></i><a href="{% url 'Monitoring_jan_reg' %}">Registration Monitoring</a></li>
+                            <li><i class="menu-icon fa fa-folder-o"></i><a href="{% url 'Monitoring_plate' %}">Plate Monitoring</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item-has-children dropdown">
+                    <!-- <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-id-card"></i>Voucher</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-id-card"></i><a href="{% url 'voucher_list' %}">Expense Voucher</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Ownership</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Transfer Of Ownership</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-user"></i><a href="{% url 'ownership_list' %}">Transfer of Ownership</a></li>
                         </ul>

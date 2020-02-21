@@ -22,7 +22,7 @@ function transferownership(trans) {
     <button class="w3-bar-item w3-button" onclick="transferownership('Transfer of Ownership')">Transfer of Ownership</button>
     <button class="w3-bar-item w3-button" onclick="transferownership('Deed of Sale Creation')">Deed of Sale Creation</button>
     <button class="w3-bar-item w3-button" onclick="transferownership('Outbound Process')">Outbound Process</button>
-    <!-- <button class="w3-bar-item w3-button" onclick="transferownership('Inbound Process')">Inbound Process</button> -->
+    <button class="w3-bar-item w3-button" onclick="transferownership('Inbound Process')">Inbound Process</button>
     <button class="w3-bar-item w3-button" onclick="transferownership('TOO Completion')">TOO Completion</button>
     </div>
 <form method="POST" action="{% url 'ownership_submit' %}">
@@ -432,37 +432,37 @@ function transferownership(trans) {
             {{ form.date_pulled }}
         </div> -->
 
-        <!-- <div class="col-sm-6">
+        <div class="col-sm-6">
             <label>Date Pulled OR/CR:</label>
             <input style= "text-transform:" type="date" name="date_pulled" id="date_pulled" class="form-control">
-        </div> -->
+        </div>
 
 
     </fieldset>
-    <!-- <fieldset> -->
-        <!-- <legend align="left">Insurance Processing</legend> -->
+    <fieldset>
+        <legend align="left">Insurance Processing</legend>
         <!-- <div class="col-sm-6">
             <label>Date Return Endorsed to Fleet Admin:</label>
             {{ form.return_endorsementfleet }}
         </div> -->
 
-        <!-- <div class="col-sm-6">
+        <div class="col-sm-6">
             <label>Date Return Endorsed to Fleet Admin:</label>
             <input style= "text-transform:" type="date" name="return_endorsementfleet" id="return_endorsementfleet" class="form-control">
-        </div> -->
+        </div>
 
         <!-- <div class="col-sm-6">
             <label>Date Forwarded to Fleet Liason for TMG:</label>
             {{ form.forwarded_fleet_liason }}
         </div> -->
 
-      <!--   <div class="col-sm-6">
+        <div class="col-sm-6">
             <label>Date Forwarded to Fleet Liason for TMG:</label>
             <input style= "text-transform:" type="date" name="forwarded_fleet_liason" id="forwarded_fleet_liason" class="form-control">
-        </div> -->
+        </div>
 
 
-    <!-- </fieldset> -->
+    </fieldset>
     <fieldset>
         <legend align="left">TMG Processing</legend>
         <!-- <div class="col-sm-6">
@@ -470,7 +470,7 @@ function transferownership(trans) {
             {{ form.tmg_date_in }} -->
 
         <div class="col-sm-6">
-            <label>TMG Sched:</label>
+            <label>TMG Date Input:</label>
             <input style= "text-transform:" type="date" name="tmg_date_in" id="tmg_date_in" class="form-control">
         </div>
 
@@ -481,13 +481,8 @@ function transferownership(trans) {
         </div> -->
 
         <div class="col-sm-6">
-            <label>TMG Location:</label>
-            <select name="tmg_location" id="tmg_location" class="form-control">
-                <option value="">----------</option>
-                <option value="Caloocan">Caloocan City</option>
-                <option value="Pasay">Pasay City</option>
-            </select>
-
+            <label>TMG Date Out:</label>
+            <input style= "text-transform:" type="date" name="tmg_date_out" id="tmg_date_out" class="form-control">
         </div>
 
         <!-- <div class="col-sm-6">
@@ -496,11 +491,9 @@ function transferownership(trans) {
         </div> -->
 
         <div class="col-sm-6">
-            <label>TMG Released:</label>
+            <label>TMG Date Return to Fleet Liason:</label>
             <input style= "text-transform:" type="date" name="tmg_date_return" id="tmg_date_return" class="form-control">
         </div>
-
-        
 
 
     </fieldset>
@@ -526,26 +519,15 @@ function transferownership(trans) {
             <input style= "text-transform:" type="date" name="lto_date_out" id="lto_date_out" class="form-control">
         </div>
 
-
-        <div class="col-sm-6">
-            <label>LTO Location:</label>
-            <select name="lto_location" id="lto_location" class="form-control">
-                <option value="">----------</option>
-                <option value="Caloocan">Caloocan City</option>
-                <option value="Pasay">Pasay City</option>
-            </select>
-
-        </div>
-
         <!-- <div class="col-sm-6">
             <label>LTO Date Return to Fleet Liason:</label>
             {{ form.lto_date_return }}
         </div> -->
 
-        <!-- <div class="col-sm-6">
+        <div class="col-sm-6">
             <label>LTO Date Return to Fleet Liason:</label>
             <input style= "text-transform:" type="date" name="lto_date_return" id="lto_date_return" class="form-control">
-        </div> -->
+        </div>
 
     </fieldset>
     <div class="card-footer">
@@ -553,20 +535,20 @@ function transferownership(trans) {
     </div>
     </div>
     <div id="Inbound Process" class="w3-container ownership" style="display:none">
-    <!-- <fieldset> -->
-        <!-- <legend align="left">Return Of Documents</legend> -->
+    <fieldset>
+        <legend align="left">Return Of Documents</legend>
         <!-- <div class="col-sm-6">
             <label>Date Documents Return:</label>
             {{ form.date_docs_return }}
         </div> -->
 
-        <!-- <div class="col-sm-6">
+        <div class="col-sm-6">
             <label>Date Documents Return:</label>
             <input style= "text-transform:" type="date" name="date_docs_return" id="date_docs_return" class="form-control">
-        </div> -->
+        </div>
 
 
-    <!-- </fieldset> -->
+    </fieldset>
     <div class="card-footer">
         <button type="submit" class="button">UPDATE</button>
     </div>
@@ -580,13 +562,8 @@ function transferownership(trans) {
         </div> -->
 
         <div class="col-sm-6">
-            <label>Date Received:</label>
+            <label>Date Transfer Completed:</label>
             <input style= "text-transform:" type="date" name="date_transfered_completed" id="date_transfered_completed" class="form-control">
-        </div>
-
-        <div class="col-sm-6">
-            <label>Received By:</label>
-            <input style= "text-transform:" type="text" name="received_by" id="received_by" class="form-control" >
         </div>
 
     </fieldset>

@@ -98,6 +98,82 @@ def monitoringHistoryView(request):
 
        return render(request, 'fata_monitoring_history.html', context={'object': obj})
 
+def janRegView(request):
+	context = {
+			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN")
+		}
+
+	return render(request, 'regJan_monitoring.html', context)
+
+def febRegView(request):
+	context = {
+			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB")
+		}
+
+	return render(request, 'regFeb_monitoring.html', context)
+
+def marRegView(request):
+	context = {
+			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR")
+		}
+
+	return render(request, 'regMar_monitoring.html', context)
+
+def aprRegView(request):
+	context = {
+			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR")
+		}
+
+	return render(request, 'regApr_monitoring.html', context)
+
+def mayRegView(request):
+	context = {
+			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY")
+		}
+
+	return render(request, 'regMay_monitoring.html', context)
+
+def junRegView(request):
+	context = {
+			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN")
+		}
+
+	return render(request, 'regJun_monitoring.html', context)
+
+def julRegView(request):
+	context = {
+			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL")
+		}
+
+	return render(request, 'regJul_monitoring.html', context)
+
+def augRegView(request):
+	context = {
+			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG")
+		}
+
+	return render(request, 'regAug_monitoring.html', context)
+
+def sepRegView(request):
+	context = {
+			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP")
+		}
+
+	return render(request, 'regSep_monitoring.html', context)
+
+def octRegView(request):
+	context = {
+			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT")
+		}
+
+	return render(request, 'regOct_monitoring.html', context)
+
+def plateMonitoringView(request):
+	context = {
+			'plate_monitoring': VehicleMasterList.objects.filter(PLATE_NO__isnull=True)
+		}
+
+	return render(request, 'plate_monitoring.html', context)
 
 def fata_excel(request):
     fata_queryset = Fata_monitoring.objects.all()   
@@ -172,5 +248,5 @@ def fata_excel(request):
     return response
 
 
-
-        
+		
+		

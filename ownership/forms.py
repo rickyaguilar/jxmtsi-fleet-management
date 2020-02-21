@@ -34,26 +34,24 @@ class ownershipForm(forms.ModelForm):
         self.fields['vehicle_brand'].required = False
         self.fields['routed_to_jd'].required = False
         self.fields['approved_by_jd'].required = False
-        # self.fields['return_fleet_admin'].required = False
+        self.fields['return_fleet_admin'].required = False
         self.fields['forwarded_to_liason'].required = False
         self.fields['tmg_date_in'].required = False
-        self.fields['tmg_location'].required = False
-        self.fields['tmg_date_return'].required = False       
+        self.fields['tmg_date_out'].required = False
+        self.fields['tmg_date_return'].required = False
         self.fields['lto_date_in'].required = False
         self.fields['lto_date_out'].required = False
-        self.fields['date_received_by'].required = False
-        # self.fields['lto_date_return'].required = False
-        # self.fields['date_docs_return'].required = False
+        self.fields['lto_date_return'].required = False
+        self.fields['date_docs_return'].required = False
         self.fields['date_transfered_completed'].required = False
         self.fields['date_comletion_vismin'].required = False
         self.fields['TOO_SLA'].required = False
         self.fields['date_notarized'].required = False
         self.fields['endorosed_to_insurance'].required = False
         self.fields['requested_for_pullout'].required = False
-        # self.fields['date_pulled'].required = False
+        self.fields['date_pulled'].required = False
         self.fields['return_endorsementfleet'].required = False
         self.fields['forwarded_fleet_liason'].required = False
-        self.fields['lto_location'].required = False
 
     class Meta:
         model = Ownership
@@ -62,9 +60,9 @@ class ownershipForm(forms.ModelForm):
                     'vendor_name','v_employee_id','v_fname','v_lname','v_band','purpose','transfer_fee','doc_date_completed',
                     'deedofsale_date','confirmation_status','emailed_to_casher','received_from_casher',
                     'deed_signed','routed_to_jd','approved_by_jd','return_fleet_admin','forwarded_to_liason','date_notarized',
-                    'endorosed_to_insurance','requested_for_pullout','forwarded_fleet_liason',
-                    'tmg_date_in','tmg_location','tmg_date_return' ,'lto_date_in','lto_date_out', 'lto_location',
-                    'date_transfered_completed','date_comletion_vismin','TOO_SLA', 'date_received_by',]
+                    'endorosed_to_insurance','requested_for_pullout','date_pulled','return_endorsementfleet','forwarded_fleet_liason',
+                    'tmg_date_in','tmg_date_out','tmg_date_return','lto_date_in','lto_date_out','lto_date_return','date_docs_return',
+                    'date_docs_return','date_transfered_completed','date_comletion_vismin','TOO_SLA']
                     
         vendor=(
             ('Globe Telecome','Globe Telecome'),
@@ -121,20 +119,18 @@ class ownershipForm(forms.ModelForm):
             'date_notarized' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'endorosed_to_insurance': forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'requested_for_pullout' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            # 'date_pulled' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            # 'return_endorsementfleet' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'date_pulled' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'return_endorsementfleet' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'forwarded_fleet_liason' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'tmg_date_in' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            'tmg_location' : forms.TextInput(attrs={'class':'form-control'}),
-            'tmg_date_return' : forms.TextInput(attrs={'class':'form-control','type':'date'}),        
+            'tmg_date_out' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'tmg_date_return' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'lto_date_in' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            'lto_location' : forms.TextInput(attrs={'class':'form-control'}),
-
-            # 'lto_date_return': forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            # 'date_docs_return' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'lto_date_out' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'lto_date_return': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'date_docs_return' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'date_transfered_completed' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'date_comletion_vismin' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            'date_received_by' : forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'TOO_SLA' : forms.TextInput(attrs={'class':'form-control','value':'30','hidden':'true'}),
+            'TOO_SLA' : forms.TextInput(attrs={'class':'form-control','value':'30','hidden':'true'})
 
         }
