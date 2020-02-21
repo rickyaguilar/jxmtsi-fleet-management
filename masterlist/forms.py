@@ -48,10 +48,8 @@ class Vmasterlist(forms.ModelForm):
       def __init__(self, *args, **kwargs):
             super(Vmasterlist, self).__init__(*args, **kwargs)
             self.fields['PLATE_NO'].required = False
-            self.fields['CS_NO'].required = False
             self.fields['PLATE_ENDING'].required = False
             self.fields['REGISTRATION_MONTH'].required = False
-            self.fields['MODEL'].required = False
             self.fields['BRAND'].required = False
             self.fields['VEHICLE_MAKE'].required = False
             self.fields['ENGINE_NO'].required = False

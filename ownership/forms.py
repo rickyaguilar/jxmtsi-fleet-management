@@ -86,6 +86,29 @@ class ownershipForm(forms.ModelForm):
             ('Confirmed','Confirmed'),
             ('Final Pay','Final Pay'),
         )
+        Location = (
+            ('Manila East','Manila East'),
+            ('Manila West','Manila West'),
+            ('Manila South','Manila South'),
+            ('Manila North','Manila North'),
+            ('Navotas','Navotas'),
+            ('Aguinaldo','Aguinaldo'),
+            ('Las Pinas','Las Pinas'),
+            ('Muntinlupa','Muntinlupa'),
+            ('Paranaque','Paranaque'),
+            ('Quezon City','Quezon City'),
+            ('Taguig','Taguig'),
+            ('Pasay','Pasay'),
+            ('Novaliches','Novaliches'),
+            ('Pasig','Pasig'),
+            ('Caloocan','Caloocan'),
+            ('Marikina','Marikina'),
+            ('Mandaluyong','Mandaluyong'),
+            ('San Juan','San Juan'),
+            ('Diliman','Diliman'),
+            ('Others','Others'),
+
+        )
         widgets= {
             
             'date_application': forms.TextInput(attrs={'class':'form-control','type':'date'}),
@@ -128,7 +151,7 @@ class ownershipForm(forms.ModelForm):
             'tmg_location' : forms.TextInput(attrs={'class':'form-control'}),
             'tmg_date_return' : forms.TextInput(attrs={'class':'form-control','type':'date'}),        
             'lto_date_in' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            'lto_location' : forms.TextInput(attrs={'class':'form-control'}),
+            'lto_location' : forms.TextInput(attrs={'class':'form-control','choices':'Location'}),
 
             # 'lto_date_return': forms.TextInput(attrs={'class':'form-control','type':'date'}),
             # 'date_docs_return' : forms.TextInput(attrs={'class':'form-control','type':'date'}),

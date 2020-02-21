@@ -32,28 +32,6 @@ from django.shortcuts import render
 def Vmastertables(request):
     return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
 
-# def vehicle_list(request):
-#     # data_list = request.session['data_list']
-#     # services = VehicleMasterList.objects.filter(id__in=data_list)
-#     queryset_list = VehicleMasterList.objects.all()
-#     paginator = Paginator(queryset_list, 20) # Show 25 contacts per page.
-
-#     page = request.GET.get('page')
-#     try:
-#         queryset = paginator.page(page)
-#     except PageNotAnInteger:
-#         queryset = paginator.page(1)
-#     except EmptyPage:
-#         queryset = paginator.page(paginator.num_pages)
-
-#     page_obj = paginator.get_page(page_number)
-#     context = {
-#         "objects_list":queryset,
-#         "title":"List"
-#     }
-#     return render(request, 'vehicleMasterlist/vm.html', context)
-
-
 class vehicleViewSet(viewsets.ModelViewSet):
     queryset = VehicleMasterList.objects.all().order_by('id')
     serializer_class = vehicleSerializer
@@ -112,7 +90,7 @@ def VmasterlistCreate(request):
             
         if emp_id == '':
             emp_save = None
-
+            
         reg = ''
         endplate = int(plate[-1])
 
@@ -134,8 +112,9 @@ def VmasterlistCreate(request):
             reg = 'AUG'
         elif endplate == 9:
             reg = 'SEP'
-        else:
+        else
             reg = 'OCT'
+
         saveto_end = VehicleMasterList(PLATE_NO=plate, CS_NO=cs, CR_NAME=cr_name, MODEL=model, BRAND=brand,PLATE_ENDING=endplate, REGISTRATION_MONTH=reg,
             VEHICLE_MAKE=vmake, ENGINE_NO=eng_no, MV_FILE_NO=mvfile, VEHICLE_TYPE=vtype, VEHICLE_CATEGORY=vcat,
             Employee=emp_save, BAND_LEVEL=band, BENEFIT_GROUP=benefit, COST_CENTER=cost, GROUP=group, DIVISION=div,

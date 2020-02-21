@@ -37,6 +37,29 @@ class Ownership(models.Model):
         ('Confirmed','Confirmed'),
         ('Final Pay','Final Pay'),
     )
+    Location = (
+        ('Manila East','Manila East'),
+        ('Manila West','Manila West'),
+        ('Manila South','Manila South'),
+        ('Manila North','Manila North'),
+        ('Navotas','Navotas'),
+        ('Aguinaldo','Aguinaldo'),
+        ('Las Pinas','Las Pinas'),
+        ('Muntinlupa','Muntinlupa'),
+        ('Paranaque','Paranaque'),
+        ('Quezon City','Quezon City'),
+        ('Taguig','Taguig'),
+        ('Pasay','Pasay'),
+        ('Novaliches','Novaliches'),
+        ('Pasig','Pasig'),
+        ('Caloocan','Caloocan'),
+        ('Marikina','Marikina'),
+        ('Mandaluyong','Mandaluyong'),
+        ('San Juan','San Juan'),
+        ('Diliman','Diliman'),
+        ('Others','Others'),
+
+    )
     Activity_id = models.CharField(max_length=100, default=increment_Activity_id)
     date_application = models.DateField(auto_now=False, null=True, blank=True)
     req_employee_id = models.CharField(max_length=50, null=True, blank=True)
@@ -78,7 +101,7 @@ class Ownership(models.Model):
     tmg_date_in =models.CharField(max_length=100, null=True, blank=True)
     tmg_location =models.CharField(max_length=100, null=True, blank=True)
     tmg_date_return =models.CharField(max_length=100, null=True, blank=True)
-    lto_location =models.CharField(max_length=100, null=True, blank=True)
+    lto_location =models.CharField(max_length=100, null=True, blank=True, choices=Location)
     lto_date_in =models.CharField(max_length=100, null=True, blank=True)
     lto_date_out =models.CharField(max_length=100, null=True, blank=True)
     # lto_date_return =models.CharField(max_length=100, null=True, blank=True)
