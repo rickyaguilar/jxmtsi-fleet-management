@@ -9,7 +9,7 @@ from .views import (
 	employeeMasterlistDeleteView,
 	# vehicleMasterListView,
 	# VmasterlistCreateView,
-	vehicleMasterDetails,
+	# vehicleMasterDetails,
 	vehicleMasterUpdate,
 	vehicleMasterlistDeleteView,
 
@@ -30,7 +30,8 @@ urlpatterns = [
 	path('VehicleMasterlist/', views.Vmastertables, name='vehicle-list'),
 	path('VehicleMasterlist/New', views.vehicle, name='vehicle_new'),
 	path('VehicleMasterlist/submit', views.VmasterlistCreate, name='vehicleMasterlist_submit'),
-	path('VehicleMasterlist/Details/<int:pk>', vehicleMasterDetails.as_view(), name='vehicle_details'),
+	path('VehicleMasterlist/Details/<int:pk>', views.vehicleMasterDetails.as_view(), name='vehicle_details'),
+	# path('VehicleMasterlist/Details/<int:pk>', views.vehicleMasterDetails, name='vehicle_details'),
 	path('VehicleMasterlist/Update/<int:pk>', vehicleMasterUpdate.as_view(),name='vehicle-update'),
 	path('VehicleMasterlist/Delete/<int:pk>', vehicleMasterlistDeleteView.as_view(), name='vehicleMasterlist_delete'),
 	path('VehicleMasterlist/History/', views.vehicleMasterlistHistoryView, name='vehicleMasterlist_history'),

@@ -31,6 +31,15 @@ from django.shortcuts import render
 
 def Vmastertables(request):
     return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
+<<<<<<< HEAD
+=======
+
+def vehicle_list(request):
+    # data_list = request.session['data_list']
+    # services = VehicleMasterList.objects.filter(id__in=data_list)
+    queryset_list = VehicleMasterList.objects.all()
+    paginator = Paginator(queryset_list, 20) # Show 25 contacts per page.
+>>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
 
 # def vehicle_list(request):
 #     # data_list = request.session['data_list']
@@ -38,6 +47,7 @@ def Vmastertables(request):
 #     queryset_list = VehicleMasterList.objects.all()
 #     paginator = Paginator(queryset_list, 20) # Show 25 contacts per page.
 
+<<<<<<< HEAD
 #     page = request.GET.get('page')
 #     try:
 #         queryset = paginator.page(page)
@@ -52,6 +62,14 @@ def Vmastertables(request):
 #         "title":"List"
 #     }
 #     return render(request, 'vehicleMasterlist/vm.html', context)
+=======
+    page_obj = paginator.get_page(page_number)
+    context = {
+        "objects_list":queryset,
+        "title":"List"
+    }
+    return render(request, 'vehicleMasterlist/vm.html', context)
+>>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
 
 
 class vehicleViewSet(viewsets.ModelViewSet):
@@ -195,21 +213,31 @@ class vehicleMasterlistDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('vehicle-list')
 
+<<<<<<< HEAD
 def vehicleMasterlistHistoryView(request):
     if request.method == "GET":
        obj = VehicleMasterList.history.all()
 
        return render(request, 'vehicleMasterlist/vehicleMasterlist_history.html', context={'object': obj})
+=======
+
+class employeeViewSet(viewsets.ModelViewSet):
+    queryset = EmployeeMasterlist.objects.all().order_by('id')
+    serializer_class = EmployeeSerializer
+>>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
 
 class employeeCreateView(CreateView):
     model = EmployeeMasterlist
     form_class = EmpMasterlistForm
     template_name = 'employeeMasterlist/employeeMasterlist_form.html'
 
+<<<<<<< HEAD
 class employeeViewSet(viewsets.ModelViewSet):
     queryset = EmployeeMasterlist.objects.all().order_by('id')
     serializer_class = EmployeeSerializer
 
+=======
+>>>>>>> 0fe820f95ef701aab8eb1ca5e8f0f738d92058fb
 # class employeeListView(ListView):
 #     model = EmployeeMasterlist
 #     template_name = 'employeeMasterlist/employeeMasterlist.html'
