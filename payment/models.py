@@ -239,7 +239,7 @@ class Vehicle_Repair_payment(models.Model):
 	amount = models.CharField(max_length=20, null=True, blank=True)
 	service_type = models.CharField(max_length=100, null=True, blank=True, choices=maintenance)
 	date_initiated = models.DateField(auto_now=True)
-	
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id
