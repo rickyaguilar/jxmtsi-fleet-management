@@ -52,7 +52,8 @@ class Fata_monitoring(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('Monitoring_list')
-
+	
+		
 
 
 

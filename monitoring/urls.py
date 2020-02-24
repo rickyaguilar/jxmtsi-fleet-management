@@ -22,6 +22,6 @@ urlpatterns = [
 	path('Registration/October', views.octRegView, name='Monitoring_oct_reg'),
 	# FILTER WITHOUT TEMPLATE
 	path('Plate-monitoring/', views.plateMonitoringView, name='Monitoring_plate'),
-
 	path('Monitoring/Export', views.fata_excel, name='fata_export'),
+	path('Registrations/Update/<int:pk>', views.regUpdate.as_view(), name='reg_update'),
 ]

@@ -22,7 +22,6 @@ function transferownership(trans) {
     <button class="w3-bar-item w3-button" onclick="transferownership('Transfer of Ownership')">Transfer of Ownership</button>
     <button class="w3-bar-item w3-button" onclick="transferownership('Deed of Sale Creation')">Deed of Sale Creation</button>
     <button class="w3-bar-item w3-button" onclick="transferownership('Outbound Process')">Outbound Process</button>
-    <button class="w3-bar-item w3-button" onclick="transferownership('Inbound Process')">Inbound Process</button>
     <button class="w3-bar-item w3-button" onclick="transferownership('TOO Completion')">TOO Completion</button>
     </div>
 <form method="POST">
@@ -208,10 +207,6 @@ function transferownership(trans) {
     <fieldset>
         <legend align="left">Insurance Processing</legend>
         <div class="col-sm-6">
-            <label>Date Return Endorsed to Fleet Admin:</label>
-            {{ form.return_endorsementfleet }}
-        </div>
-        <div class="col-sm-6">
             <label>Date Forwarded to Fleet Liason for TMG:</label>
             {{ form.forwarded_fleet_liason }}
         </div>
@@ -219,16 +214,16 @@ function transferownership(trans) {
     <fieldset>
         <legend align="left">TMG Processing</legend>
         <div class="col-sm-6">
-            <label>TMG Date IN:</label>
+            <label>TMG sched:</label>
             {{ form.tmg_date_in }}
         </div>
         <div class="col-sm-6">
-            <label>TMG Date Out:</label>
-            {{ form.tmg_date_out }}
+            <label>TMG Released:</label>
+            {{ form.tmg_date_return }}
         </div>
         <div class="col-sm-6">
-            <label>TMG Date Return to Fleet Liason:</label>
-            {{ form.tmg_date_return }}
+            <label>TMG Location:</label>
+            {{ form.tmg_location }}
         </div>
     </fieldset>
     <fieldset>
@@ -242,20 +237,8 @@ function transferownership(trans) {
             {{ form.lto_date_out }}
         </div>
         <div class="col-sm-6">
-            <label>LTO Date Return to Fleet Liason:</label>
-            {{ form.lto_date_return }}
-        </div>
-    </fieldset>
-    <div class="card-footer">
-        <button type="submit" class="button">UPDATE</button>
-    </div>
-    </div>
-    <div id="Inbound Process" class="w3-container ownership" style="display:none">
-    <fieldset>
-        <legend align="left">Return Of Documents</legend>
-        <div class="col-sm-6">
-            <label>Date Documents Return:</label>
-            {{ form.date_docs_return }}
+            <label>LTO Location:</label>
+            {{ form.lto_location }}
         </div>
     </fieldset>
     <div class="card-footer">
@@ -268,6 +251,10 @@ function transferownership(trans) {
         <div class="col-sm-6">
             <label>Date Transfer Completed:</label>
             {{ form.date_transfered_completed }}
+        </div>
+        <div class="col-sm-6">
+            <label>Recieved By:</label>
+            {{ form.date_received_by }}
         </div>
     </fieldset>
     <fieldset>

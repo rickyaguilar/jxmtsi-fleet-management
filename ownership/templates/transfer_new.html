@@ -49,7 +49,7 @@ function transferownership(trans) {
             <input name="req_employee_id" id="req_employee_id" list="emp_list" class="form-control" required>
             <datalist id="emp_list">               
             {% for emp_id in e_list %}
-              <option data-value="{{ emp_id.Employee_Id }} | {{ emp_id.Last_name}} | {{ emp_id.First_name }} | {{ emp_id.Band }} | {{ emp_id.Cost_center }}" value="{{ emp_id.Employee_Id }}">
+              <option data-value="{{ emp_id.Employee_Id }} | {{ emp_id.Last_name}} | {{ emp_id.First_name }} | {{ emp_id.Band }} | {{ emp_id.Cost_center }} | {{ emp_id.Last_name}}" value="{{ emp_id.Employee_Id }}">
               </option>
             {% endfor %}
             </datalist>
@@ -531,6 +531,7 @@ function transferownership(trans) {
             <label>LTO Location:</label>
             <select name="lto_location" id="lto_location" class="form-control">
                 <option value="">----------</option>
+                <option value="Makati">Makati</option>
                 <option value="Manila East">Manila East</option>
                 <option value="Manila West">Manila West</option>
                 <option value="Manila South">Manila South</option>
@@ -641,6 +642,7 @@ $('#req_employee_id').on('change', function () {
     $('#req_Fname').val(parts[2]);
     $('#req_band').val(parts[3]);
     $('#req_cost').val(parts[4]);
+    $('#received_by').val(parts[5]);
 });
 </script>
 <!--for vehicle auto-fill-->

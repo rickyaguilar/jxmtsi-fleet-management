@@ -138,27 +138,6 @@ class vehicleMasterListView(ListView):
 class vehicleMasterDetails(DetailView):
     model = VehicleMasterList
     template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
-# def vehicleMasterDetails(request, pk):
-#     """
-#     Retrieve, update or delete a code snippet.
-#     """
-#     try:
-#         snippet = VehicleMasterList.objects.get(pk=pk)
-#     except VehicleMasterList.DoesNotExist:
-#         return HttpResponse(status=404)
-
-#     if request.method == 'GET':
-#         serializer = vehicleSerializer(snippet)
-#         return JsonResponse(serializer.data)
-
-#     elif request.method == 'PUT':
-#         data = JSONParser().parse(request)
-#         serializer = vehicleSerializer(snippet, data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data)
-#         return JsonResponse(serializer.errors, status=400)
-
 
 class vehicleMasterUpdate(UpdateView):
     model = VehicleMasterList
@@ -219,6 +198,9 @@ def employeeMasterlistHistoryView(request):
 
        return render(request, 'employeeMasterlist/employeeMasterlist_history.html', context={'object': obj})
 
+class vreg_details(DetailView):
+    model = VehicleMasterList
+    template_name = 'vehicleMasterlist/vreg_details.html'
 
 # def registration(request):
 #     model = VehicleMasterList

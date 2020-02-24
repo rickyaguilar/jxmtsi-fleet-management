@@ -38,6 +38,7 @@ class Ownership(models.Model):
         ('Final Pay','Final Pay'),
     )
     Location = (
+        ('Makati','Makati'),
         ('Manila East','Manila East'),
         ('Manila West','Manila West'),
         ('Manila South','Manila South'),
@@ -60,6 +61,10 @@ class Ownership(models.Model):
         ('Others','Others'),
 
     )
+    TMGloc =(
+        ('Pasay','Pasay'),
+        ('Caloocan','Caloocan'),
+        )
     Activity_id = models.CharField(max_length=100, default=increment_Activity_id)
     date_application = models.DateField(auto_now=False, null=True, blank=True)
     req_employee_id = models.CharField(max_length=50, null=True, blank=True)
@@ -99,7 +104,7 @@ class Ownership(models.Model):
     # return_endorsementfleet =models.CharField(max_length=100, null=True, blank=True)
     forwarded_fleet_liason =models.CharField(max_length=100, null=True, blank=True)
     tmg_date_in =models.CharField(max_length=100, null=True, blank=True)
-    tmg_location =models.CharField(max_length=100, null=True, blank=True)
+    tmg_location =models.CharField(max_length=100, null=True, blank=True,choices=TMGloc)
     tmg_date_return =models.CharField(max_length=100, null=True, blank=True)
     lto_location =models.CharField(max_length=100, null=True, blank=True, choices=Location)
     lto_date_in =models.CharField(max_length=100, null=True, blank=True)

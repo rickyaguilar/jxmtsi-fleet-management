@@ -6,8 +6,10 @@ from django.urls import reverse_lazy
 from .models import (
    	Fata_monitoring,
 )
+from django.db.models import Q
 from . forms import (
-    FATAmonitoringForm
+    FATAmonitoringForm,
+    reg_updateForm
 )
 from masterlist.models import EmployeeMasterlist,VehicleMasterList
 from django.views.generic import (
@@ -92,6 +94,15 @@ class monitoringDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('Monitoring_list')
 
+class regUpdate(SuccessMessageMixin, UpdateView):
+	model = VehicleMasterList
+	form_class = reg_updateForm
+	template_name = 'regupdate.html'
+	success_url = reverse_lazy('Monitoring_jan_reg')
+	def get_success_message(self, cleaned_data):
+		print(cleaned_data)
+		return "Registrations Updated Successfully!"
+
 def monitoringHistoryView(request):
     if request.method == "GET":
        obj = Fata_monitoring.history.all()
@@ -120,8 +131,14 @@ def marRegView(request):
 	return render(request, 'regMar_monitoring.html', context)
 
 def aprRegView(request):
+	# apr = Q(REGISTRATION_MONTH__contains="APR")
+	# reg = Q(Last_Registration_Date__null=True)
+	# em = Q(Smoke_Emission_Date_null=True)
+	# coc = Q(COC_Date=True)
 	context = {
 			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR")
+			# 'apr_list': VehicleMasterList.objects.filter(Q(REGISTRATION_MONTH__contains="APR") & (Q(Last_Registration_Date__null=True) | Q(Smoke_Emission_Date__null=True) | Q(COC_Date__null=True)))
+
 		}
 
 	return render(request, 'regApr_monitoring.html', context)
@@ -170,7 +187,7 @@ def octRegView(request):
 
 def plateMonitoringView(request):
 	context = {
-			'plate_monitoring': VehicleMasterList.objects.filter(PLATE_NO__isnull=False)
+			'plate_monitoring': VehicleMasterList.objects.filter(PLATE_NO__isnull=True)
 		}
 
 	return render(request, 'plate_monitoring.html', context)

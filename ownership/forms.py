@@ -51,7 +51,7 @@ class ownershipForm(forms.ModelForm):
         self.fields['endorosed_to_insurance'].required = False
         self.fields['requested_for_pullout'].required = False
         # self.fields['date_pulled'].required = False
-        self.fields['return_endorsementfleet'].required = False
+        # self.fields['return_endorsementfleet'].required = False
         self.fields['forwarded_fleet_liason'].required = False
         self.fields['lto_location'].required = False
 
@@ -88,6 +88,7 @@ class ownershipForm(forms.ModelForm):
         )
         Location = (
             ('Manila East','Manila East'),
+            ('Makati','Makati'),
             ('Manila West','Manila West'),
             ('Manila South','Manila South'),
             ('Manila North','Manila North'),
@@ -109,20 +110,24 @@ class ownershipForm(forms.ModelForm):
             ('Others','Others'),
 
         )
+        TMGloc =(
+        ('Pasay','Pasay'),
+        ('Caloocan','Caloocan'),
+        )
         widgets= {
             
             'date_application': forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            'req_employee_id': forms.TextInput(attrs={'class':'form-control'}),
-            'req_Fname': forms.TextInput(attrs={'class':'form-control'}),
-            'req_Lname': forms.TextInput(attrs={'class':'form-control'}),
-            'req_band': forms.TextInput(attrs={'class':'form-control'}),
-            'req_cost': forms.TextInput(attrs={'class':'form-control'}),
-            'req_title': forms.TextInput(attrs={'class':'form-control'}),
-            'plate_no': forms.Select(attrs={'class':'form-control'}),
-            'cond_sticker' : forms.TextInput(attrs={'class':'form-control'}),
-            'vehicle_model' : forms.TextInput(attrs={'class':'form-control'}),
-            'vehicle_brand' : forms.TextInput(attrs={'class':'form-control'}),
-            'vehicle_make' : forms.TextInput(attrs={'class':'form-control'}),
+            'req_employee_id': forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'req_Fname': forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'req_Lname': forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'req_band': forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'req_cost': forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'req_title': forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'plate_no': forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'cond_sticker' : forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'vehicle_model' : forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'vehicle_brand' : forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
+            'vehicle_make' : forms.TextInput(attrs={'class':'form-control','readonly':'true'}),
             'vendor' : forms.Select(attrs={'class':'form-control','choices':'vendor'}),
             'vendor_name' : forms.TextInput(attrs={'class':'form-control'}),
             'v_employee_id' : forms.TextInput(attrs={'class':'form-control'}),
@@ -148,16 +153,16 @@ class ownershipForm(forms.ModelForm):
             # 'return_endorsementfleet' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'forwarded_fleet_liason' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'tmg_date_in' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            'tmg_location' : forms.TextInput(attrs={'class':'form-control'}),
+            'tmg_location' : forms.Select(attrs={'class':'form-control','choices':'TMGloc'}),
             'tmg_date_return' : forms.TextInput(attrs={'class':'form-control','type':'date'}),        
             'lto_date_in' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            'lto_location' : forms.TextInput(attrs={'class':'form-control','choices':'Location'}),
-
+            'lto_location' : forms.Select(attrs={'class':'form-control','choices':'Location'}),
+            'lto_date_out' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             # 'lto_date_return': forms.TextInput(attrs={'class':'form-control','type':'date'}),
             # 'date_docs_return' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'date_transfered_completed' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'date_comletion_vismin' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
-            'date_received_by' : forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'date_received_by' : forms.TextInput(attrs={'class': 'form-control'}),
             'TOO_SLA' : forms.TextInput(attrs={'class':'form-control','value':'30','hidden':'true'}),
 
         }

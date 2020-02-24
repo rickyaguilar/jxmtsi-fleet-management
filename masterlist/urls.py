@@ -12,7 +12,6 @@ from .views import (
 	vehicleMasterDetails,
 	vehicleMasterUpdate,
 	vehicleMasterlistDeleteView,
-
 	)
 
 
@@ -36,6 +35,7 @@ urlpatterns = [
 	path('VehicleMasterlist/History/', views.vehicleMasterlistHistoryView, name='vehicleMasterlist_history'),
 	path('Vehicle/<int:pk>', views.releaseUpdate.as_view(), name='vupdate'),
 	path('Vehiclelist/export', views.vehicle_excel, name='vehiclelist_export'),
+	path('Registration/Details/<int:pk>', views.vreg_details.as_view(), name='vregistration_details'),
 	# path('Vehicle/filter', views.registration, name='vehiclefilter'),
 ]
 

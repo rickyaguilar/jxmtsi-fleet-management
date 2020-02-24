@@ -33,7 +33,7 @@
                         {% for object in plate_monitoring %}
                         <tr class="odd gradeX">
                             <td>{{ object.PLATE_NO }}</td>
-                            <td>{{ object.CS_NO }}</td>
+                            <td><u><a href="{% url 'vehicle-update' object.id %}">{{ object.CS_NO }}</a></u></td>
                             <td>{{ object.MODEL }}</td>
                             <td>{{ object.BRAND }}</td>
                             <td>{{ object.VEHICLE_MAKE }}</td>
