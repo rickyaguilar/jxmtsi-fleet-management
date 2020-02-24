@@ -282,8 +282,7 @@ class Vehicle_Repair(models.Model):
 	)
 	shop= (
 		('GR8','GR8'),
-		('Rapide','Rapide'),
-		('EV','EV')
+		('Others','Others')
 	)
 	maintenance= (
 		('Preventive Maintenance','Preventive Maintenance'),

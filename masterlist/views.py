@@ -90,32 +90,7 @@ def VmasterlistCreate(request):
             
         if emp_id == '':
             emp_save = None
-            
         reg = ''
-<<<<<<< HEAD
-        endplate = int(plate[-1])
-
-        if endplate == 1:
-            reg = 'JAN'
-        elif endplate == 2:
-            reg = 'FEB'
-        elif endplate == 3:
-            reg = 'MAR'
-        elif endplate == 4:
-            reg = 'APR'
-        elif endplate == 5:
-            reg = 'MAY'
-        elif endplate == 6:
-            reg = 'JUN'
-        elif endplate == 7:
-            reg = 'JUL'
-        elif endplate == 8:
-            reg = 'AUG'
-        elif endplate == 9:
-            reg = 'SEP'
-        else
-            reg = 'OCT'
-=======
         endplate = ''
 
         if endplate != "":
@@ -141,7 +116,6 @@ def VmasterlistCreate(request):
                 reg = 'SEP'
             elif endplate == 0:
                 reg = 'OCT'
->>>>>>> d428da83588f9d8b17f8e47ee5def6530df10285
 
         saveto_end = VehicleMasterList(PLATE_NO=plate, CS_NO=cs, CR_NAME=cr_name, MODEL=model, BRAND=brand,PLATE_ENDING=endplate, REGISTRATION_MONTH=reg,
             VEHICLE_MAKE=vmake, ENGINE_NO=eng_no, MV_FILE_NO=mvfile, VEHICLE_TYPE=vtype, VEHICLE_CATEGORY=vcat,
@@ -246,20 +220,20 @@ def employeeMasterlistHistoryView(request):
        return render(request, 'employeeMasterlist/employeeMasterlist_history.html', context={'object': obj})
 
 
-def registration(request):
-    model = VehicleMasterList
-    reg1 = VehicleMasterList.objects.filter(PLATE_ENDING="1")
-    reg2 = VehicleMasterList.objects.filter(PLATE_ENDING="2")
-    reg3 = VehicleMasterList.objects.filter(PLATE_ENDING="3")
-    reg4 = VehicleMasterList.objects.filter(PLATE_ENDING="4")
-    reg5 = VehicleMasterList.objects.filter(PLATE_ENDING="5")
-    reg6 = VehicleMasterList.objects.filter(PLATE_ENDING="6")
-    reg7 = VehicleMasterList.objects.filter(PLATE_ENDING="7")
-    reg8 = VehicleMasterList.objects.filter(PLATE_ENDING="8")
-    reg9 = VehicleMasterList.objects.filter(PLATE_ENDING="9")
-    reg0 = VehicleMasterList.objects.filter(PLATE_ENDING="0")
-    return render(request, 'registration/registration.html', {'title': 'Vehicle - Vehicle Filter', 'reg1': reg1,'reg2': reg2, 'reg3': reg3,
-    'reg4': reg4, 'reg5': reg5, 'reg6': reg6, 'reg7': reg7, 'reg8': reg8, 'reg9': reg9, 'reg0': reg0})
+# def registration(request):
+#     model = VehicleMasterList
+#     reg1 = VehicleMasterList.objects.filter(PLATE_ENDING="1")
+#     reg2 = VehicleMasterList.objects.filter(PLATE_ENDING="2")
+#     reg3 = VehicleMasterList.objects.filter(PLATE_ENDING="3")
+#     reg4 = VehicleMasterList.objects.filter(PLATE_ENDING="4")
+#     reg5 = VehicleMasterList.objects.filter(PLATE_ENDING="5")
+#     reg6 = VehicleMasterList.objects.filter(PLATE_ENDING="6")
+#     reg7 = VehicleMasterList.objects.filter(PLATE_ENDING="7")
+#     reg8 = VehicleMasterList.objects.filter(PLATE_ENDING="8")
+#     reg9 = VehicleMasterList.objects.filter(PLATE_ENDING="9")
+#     reg0 = VehicleMasterList.objects.filter(PLATE_ENDING="0")
+#     return render(request, 'registration/registration.html', {'title': 'Vehicle - Vehicle Filter', 'reg1': reg1,'reg2': reg2, 'reg3': reg3,
+#     'reg4': reg4, 'reg5': reg5, 'reg6': reg6, 'reg7': reg7, 'reg8': reg8, 'reg9': reg9, 'reg0': reg0})
 
 def vehicle_excel(request):
     v_queryset = VehicleMasterList.objects.all()   

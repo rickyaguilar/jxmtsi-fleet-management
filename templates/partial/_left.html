@@ -135,15 +135,11 @@ body {font-family: Arial;}
                         </ul>
                     </li> -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Transfer Of Ownership</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-user"></i><a href="{% url 'ownership_list' %}">Transfer of Ownership</a></li>
-                        </ul>
+                        <a href="{% url 'ownership_list' %}" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Transfer Of Ownership</a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder-open-o"></i>MasterList</a>
                         <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-folder-open-o"></i><a href="{% url 'vehiclefilter' %}">Report</a></li>
                             <li><i class="menu-icon fa fa-folder-open-o"></i><a href="{% url 'vehicle-list' %}">Vehicle Masterlist</a></li>
                             <li><i class="menu-icon fa fa-folder-open-o"></i><a href="{% url 'employee-list' %}">Employee Masterlist</a></li>
                         </ul>

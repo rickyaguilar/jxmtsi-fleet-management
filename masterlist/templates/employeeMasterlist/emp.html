@@ -120,13 +120,6 @@ $(document).ready(function() {
         "columns": [
             { 
             "data": "Employee_Id",
-            "render": function(data, type, row, meta, id){
-            if(type === 'display'){
-                // data = '<a href="/VehicleMasterlist/New/ {{ data.id }}">' + data + '</a>';
-                data = '<a href="{%url 'vehicle_new'%}">' + data + '</a>';
-                }
-            return data;
-            }
             },
             {"data":"Company"},
             {"data":"Last_name"},
@@ -165,7 +158,13 @@ $(document).ready(function() {
 </script>
 
 {% endblock %}
-
-
+<!-- // "render": function(data, type, row, meta, id){
+            // if(type === 'display'){
+            //     // data = '<a href="/VehicleMasterlist/New/ {{ data.id }}">' + data + '</a>';
+            //     data = '<a href="{%url 'vehicle_details' id.id %}">' + data + '</a>';
+            //     }
+            // return data;
+            // }
+ -->
 
 

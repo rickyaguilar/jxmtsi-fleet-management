@@ -74,7 +74,7 @@ class VehicleMasterList(models.Model):
 	Activity_Id  = models.CharField(max_length=100,null=True, default=increment_Activity_Id)
 	NO = models.CharField(max_length=100, null=True, default=increment_NO)
 	PLATE_NO = models.CharField(max_length=100, null=True, blank=True)
-	CS_NO = models.CharField(max_length=100, null=False)
+	CS_NO = models.CharField(max_length=100, null=True, blank=True)
 	CR_NAME = models.CharField(max_length=100, null=True, blank=True)
 	PLATE_ENDING = models.CharField(max_length=1, null=True, blank=True)
 	REGISTRATION_MONTH = models.CharField(max_length=5, null=True, blank=True)

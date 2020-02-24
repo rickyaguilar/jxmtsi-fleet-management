@@ -36,7 +36,7 @@ urlpatterns = [
 	path('VehicleMasterlist/History/', views.vehicleMasterlistHistoryView, name='vehicleMasterlist_history'),
 	path('Vehicle/<int:pk>', views.releaseUpdate.as_view(), name='vupdate'),
 	path('Vehiclelist/export', views.vehicle_excel, name='vehiclelist_export'),
-	path('Vehicle/filter', views.registration, name='vehiclefilter'),
+	# path('Vehicle/filter', views.registration, name='vehiclefilter'),
 ]
 
 
