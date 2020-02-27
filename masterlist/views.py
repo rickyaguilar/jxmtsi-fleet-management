@@ -92,8 +92,7 @@ def VmasterlistCreate(request):
             emp_save = None
         reg = ''
         endplate = ''
-
-        if endplate != '':
+        if plate != '':
             endplate = int(plate[-1])
             if endplate == 1:
                 reg = 'JAN'
