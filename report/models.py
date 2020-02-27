@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 import datetime
 from masterlist.models import EmployeeMasterlist,VehicleMasterList
+# History
+from simple_history.models import HistoricalRecords
 
 def increment_Activity_id():
 	last_in = vehicle_report.objects.all().order_by('id').last()
@@ -44,6 +46,7 @@ class vehicle_report(models.Model):
     date_forwarded = models.CharField(max_length=100, blank=True, null=True)
     date_initiated = models.DateField(auto_now=True, null=True)
     MVAR_SLA = models.CharField(max_length=10, null=True)
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.Activity_id

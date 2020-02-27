@@ -1,8 +1,9 @@
-
 from django.db import models
 import datetime
 from django.urls import reverse
 from masterlist.models import VehicleMasterList
+# History
+from simple_history.models import HistoricalRecords
 
 def increment_Activity_id():
 	last_in = Ownership.objects.all().order_by('id').last()
@@ -36,6 +37,34 @@ class Ownership(models.Model):
         ('Confirmed','Confirmed'),
         ('Final Pay','Final Pay'),
     )
+    Location = (
+        ('Makati','Makati'),
+        ('Manila East','Manila East'),
+        ('Manila West','Manila West'),
+        ('Manila South','Manila South'),
+        ('Manila North','Manila North'),
+        ('Navotas','Navotas'),
+        ('Aguinaldo','Aguinaldo'),
+        ('Las Pinas','Las Pinas'),
+        ('Muntinlupa','Muntinlupa'),
+        ('Paranaque','Paranaque'),
+        ('Quezon City','Quezon City'),
+        ('Taguig','Taguig'),
+        ('Pasay','Pasay'),
+        ('Novaliches','Novaliches'),
+        ('Pasig','Pasig'),
+        ('Caloocan','Caloocan'),
+        ('Marikina','Marikina'),
+        ('Mandaluyong','Mandaluyong'),
+        ('San Juan','San Juan'),
+        ('Diliman','Diliman'),
+        ('Others','Others'),
+
+    )
+    TMGloc =(
+        ('Pasay','Pasay'),
+        ('Caloocan','Caloocan'),
+        )
     Activity_id = models.CharField(max_length=100, default=increment_Activity_id)
     date_application = models.DateField(auto_now=False, null=True, blank=True)
     req_employee_id = models.CharField(max_length=50, null=True, blank=True)
@@ -71,21 +100,24 @@ class Ownership(models.Model):
     date_notarized =models.CharField(max_length=100, null=True, blank=True)
     endorosed_to_insurance = models.CharField(max_length=100, null=True, blank=True)
     requested_for_pullout =models.CharField(max_length=100, null=True, blank=True)
-    date_pulled =models.CharField(max_length=100, null=True, blank=True)
-    return_endorsementfleet =models.CharField(max_length=100, null=True, blank=True)
+    # date_pulled =models.CharField(max_length=100, null=True, blank=True)
+    # return_endorsementfleet =models.CharField(max_length=100, null=True, blank=True)
     forwarded_fleet_liason =models.CharField(max_length=100, null=True, blank=True)
     tmg_date_in =models.CharField(max_length=100, null=True, blank=True)
-    tmg_date_out =models.CharField(max_length=100, null=True, blank=True)
+    tmg_location =models.CharField(max_length=100, null=True, blank=True,choices=TMGloc)
     tmg_date_return =models.CharField(max_length=100, null=True, blank=True)
+    lto_location =models.CharField(max_length=100, null=True, blank=True, choices=Location)
     lto_date_in =models.CharField(max_length=100, null=True, blank=True)
     lto_date_out =models.CharField(max_length=100, null=True, blank=True)
-    lto_date_return =models.CharField(max_length=100, null=True, blank=True)
-    date_docs_return =models.CharField(max_length=100, null=True, blank=True)
+    # lto_date_return =models.CharField(max_length=100, null=True, blank=True)
+    # date_docs_return =models.CharField(max_length=100, null=True, blank=True)
     date_transfered_completed =models.CharField(max_length=100, null=True, blank=True)
     date_comletion_vismin =models.CharField(max_length=100, null=True, blank=True)
 
     TOO_SLA = models.CharField(max_length=10, null=True, blank=True)
     date_initiated = models.DateField(auto_now=True, null=True, blank=True)
+    date_received_by = models.CharField(max_length=100, null=True, blank=True)
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.Activity_id

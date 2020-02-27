@@ -11,14 +11,14 @@ from django.views.generic import (
      UpdateView,
  )
 from .models import (
-	EmployeeMasterlist,
-	VehicleMasterList
-	)
+    EmployeeMasterlist,
+    VehicleMasterList
+    )
 from . forms import (
-	EmpMasterlistForm,
-	Vmasterlist,
+    EmpMasterlistForm,
+    Vmasterlist,
     Vmaster
-	)
+    )
 from bootstrap_modal_forms.generic import BSModalDeleteView
 
 from rest_framework import viewsets
@@ -31,28 +31,6 @@ from django.shortcuts import render
 
 def Vmastertables(request):
     return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
-
-def vehicle_list(request):
-    # data_list = request.session['data_list']
-    # services = VehicleMasterList.objects.filter(id__in=data_list)
-    queryset_list = VehicleMasterList.objects.all()
-    paginator = Paginator(queryset_list, 20) # Show 25 contacts per page.
-
-    page = request.GET.get('page')
-    try:
-        queryset = paginator.page(page)
-    except PageNotAnInteger:
-        queryset = paginator.page(1)
-    except EmptyPage:
-        queryset = paginator.page(paginator.num_pages)
-
-    page_obj = paginator.get_page(page_number)
-    context = {
-        "objects_list":queryset,
-        "title":"List"
-    }
-    return render(request, 'vehicleMasterlist/vm.html', context)
-
 
 class vehicleViewSet(viewsets.ModelViewSet):
     queryset = VehicleMasterList.objects.all().order_by('id')
@@ -112,30 +90,31 @@ def VmasterlistCreate(request):
             
         if emp_id == '':
             emp_save = None
-
         reg = ''
-        endplate = int(plate[-1])
+        endplate = ''
+        if plate != '':
+            endplate = int(plate[-1])
+            if endplate == 1:
+                reg = 'JAN'
+            elif endplate == 2:
+                reg = 'FEB'
+            elif endplate == 3:
+                reg = 'MAR'
+            elif endplate == 4:
+                reg = 'APR'
+            elif endplate == 5:
+                reg = 'MAY'
+            elif endplate == 6:
+                reg = 'JUN'
+            elif endplate == 7:
+                reg = 'JUL'
+            elif endplate == 8:
+                reg = 'AUG'
+            elif endplate == 9:
+                reg = 'SEP'
+            elif endplate == 0:
+                reg = 'OCT'
 
-        if endplate == 1:
-            reg = 'Jan'
-        elif endplate == 2:
-            reg = 'Feb'
-        elif endplate == 3:
-            reg = 'Mar'
-        elif endplate == 4:
-            reg = 'Apr'
-        elif endplate == 5:
-            reg = 'May'
-        elif endplate == 6:
-            reg = 'Jun'
-        elif endplate == 7:
-            reg = 'Jul'
-        elif endplate == 8:
-            reg = 'Aug'
-        elif endplate == 9:
-            reg = 'Sep'
-        else:
-            reg = 'Oct'
         saveto_end = VehicleMasterList(PLATE_NO=plate, CS_NO=cs, CR_NAME=cr_name, MODEL=model, BRAND=brand,PLATE_ENDING=endplate, REGISTRATION_MONTH=reg,
             VEHICLE_MAKE=vmake, ENGINE_NO=eng_no, MV_FILE_NO=mvfile, VEHICLE_TYPE=vtype, VEHICLE_CATEGORY=vcat,
             Employee=emp_save, BAND_LEVEL=band, BENEFIT_GROUP=benefit, COST_CENTER=cost, GROUP=group, DIVISION=div,
@@ -157,32 +136,11 @@ class vehicleMasterListView(ListView):
 class vehicleMasterDetails(DetailView):
     model = VehicleMasterList
     template_name = 'vehicleMasterlist/vehicleMasterlist_details.html'
-# def vehicleMasterDetails(request, pk):
-#     """
-#     Retrieve, update or delete a code snippet.
-#     """
-#     try:
-#         snippet = VehicleMasterList.objects.get(pk=pk)
-#     except VehicleMasterList.DoesNotExist:
-#         return HttpResponse(status=404)
-
-#     if request.method == 'GET':
-#         serializer = vehicleSerializer(snippet)
-#         return JsonResponse(serializer.data)
-
-#     elif request.method == 'PUT':
-#         data = JSONParser().parse(request)
-#         serializer = vehicleSerializer(snippet, data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data)
-#         return JsonResponse(serializer.errors, status=400)
-
 
 class vehicleMasterUpdate(UpdateView):
-	model = VehicleMasterList
-	form_class = Vmasterlist
-	template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
+    model = VehicleMasterList
+    form_class = Vmasterlist
+    template_name = 'vehicleMasterlist/vehicleMasterlist_form.html'
 
 class releaseUpdate(UpdateView):
     model = VehicleMasterList
@@ -195,15 +153,20 @@ class vehicleMasterlistDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('vehicle-list')
 
+def vehicleMasterlistHistoryView(request):
+    if request.method == "GET":
+       obj = VehicleMasterList.history.all()
 
-class employeeViewSet(viewsets.ModelViewSet):
-    queryset = EmployeeMasterlist.objects.all().order_by('id')
-    serializer_class = EmployeeSerializer
+       return render(request, 'vehicleMasterlist/vehicleMasterlist_history.html', context={'object': obj})
 
 class employeeCreateView(CreateView):
     model = EmployeeMasterlist
     form_class = EmpMasterlistForm
     template_name = 'employeeMasterlist/employeeMasterlist_form.html'
+
+class employeeViewSet(viewsets.ModelViewSet):
+    queryset = EmployeeMasterlist.objects.all().order_by('id')
+    serializer_class = EmployeeSerializer
 
 # class employeeListView(ListView):
 #     model = EmployeeMasterlist
@@ -213,8 +176,8 @@ def empmastertables(request):
     return render(request, 'employeeMasterlist/emp.html')
 
 class employeeDetailView(DetailView):
-	model = EmployeeMasterlist
-	template_name = 'employeeMasterlist/employeeMasterlist_details.html'
+    model = EmployeeMasterlist
+    template_name = 'employeeMasterlist/employeeMasterlist_details.html'
 
 class employeeUpdateView(UpdateView):
     model = EmployeeMasterlist
@@ -227,21 +190,30 @@ class employeeMasterlistDeleteView(BSModalDeleteView):
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('employee-list')
 
+def employeeMasterlistHistoryView(request):
+    if request.method == "GET":
+       obj = EmployeeMasterlist.history.all()
 
-def registration(request):
+       return render(request, 'employeeMasterlist/employeeMasterlist_history.html', context={'object': obj})
+
+class vreg_details(DetailView):
     model = VehicleMasterList
-    reg1 = VehicleMasterList.objects.filter(PLATE_ENDING="1")
-    reg2 = VehicleMasterList.objects.filter(PLATE_ENDING="2")
-    reg3 = VehicleMasterList.objects.filter(PLATE_ENDING="3")
-    reg4 = VehicleMasterList.objects.filter(PLATE_ENDING="4")
-    reg5 = VehicleMasterList.objects.filter(PLATE_ENDING="5")
-    reg6 = VehicleMasterList.objects.filter(PLATE_ENDING="6")
-    reg7 = VehicleMasterList.objects.filter(PLATE_ENDING="7")
-    reg8 = VehicleMasterList.objects.filter(PLATE_ENDING="8")
-    reg9 = VehicleMasterList.objects.filter(PLATE_ENDING="9")
-    reg0 = VehicleMasterList.objects.filter(PLATE_ENDING="0")
-    return render(request, 'registration/registration.html', {'title': 'Vehicle - Vehicle Filter', 'reg1': reg1,'reg2': reg2, 'reg3': reg3,
-    'reg4': reg4, 'reg5': reg5, 'reg6': reg6, 'reg7': reg7, 'reg8': reg8, 'reg9': reg9, 'reg0': reg0})
+    template_name = 'vehicleMasterlist/vreg_details.html'
+
+# def registration(request):
+#     model = VehicleMasterList
+#     reg1 = VehicleMasterList.objects.filter(PLATE_ENDING="1")
+#     reg2 = VehicleMasterList.objects.filter(PLATE_ENDING="2")
+#     reg3 = VehicleMasterList.objects.filter(PLATE_ENDING="3")
+#     reg4 = VehicleMasterList.objects.filter(PLATE_ENDING="4")
+#     reg5 = VehicleMasterList.objects.filter(PLATE_ENDING="5")
+#     reg6 = VehicleMasterList.objects.filter(PLATE_ENDING="6")
+#     reg7 = VehicleMasterList.objects.filter(PLATE_ENDING="7")
+#     reg8 = VehicleMasterList.objects.filter(PLATE_ENDING="8")
+#     reg9 = VehicleMasterList.objects.filter(PLATE_ENDING="9")
+#     reg0 = VehicleMasterList.objects.filter(PLATE_ENDING="0")
+#     return render(request, 'registration/registration.html', {'title': 'Vehicle - Vehicle Filter', 'reg1': reg1,'reg2': reg2, 'reg3': reg3,
+#     'reg4': reg4, 'reg5': reg5, 'reg6': reg6, 'reg7': reg7, 'reg8': reg8, 'reg9': reg9, 'reg0': reg0})
 
 def vehicle_excel(request):
     v_queryset = VehicleMasterList.objects.all()   

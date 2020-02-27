@@ -4,6 +4,8 @@ from django.utils import timezone
 import datetime
 from datetime import date
 from masterlist.models import EmployeeMasterlist,VehicleMasterList
+# History
+from simple_history.models import HistoricalRecords
 
 def increment_Activity_id():
 	last_in = expense_voucher.objects.all().order_by('id').last()
@@ -101,6 +103,7 @@ class expense_voucher(models.Model):
 	voucher_forwarded = models.CharField(max_length=100, blank=True, null=True)
 	EVO_SLA = models.CharField(max_length=10, null=True)
 	date_initiated = models.DateField(auto_now=True, null=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
     		return self.Activity_id

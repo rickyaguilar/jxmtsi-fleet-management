@@ -92,6 +92,12 @@ class reportDeleteView(BSModalDeleteView):
     success_message = 'Success: Report Vehicle was deleted.'
     success_url = reverse_lazy('report_list')
 
+def reportHistoryView(request):
+    if request.method == "GET":
+       obj = vehicle_report.history.all()
+
+       return render(request, 'report_history.html', context={'object': obj})
+
 def report_excel(request):
     report_queryset = vehicle_report.objects.all()   
     response = HttpResponse(

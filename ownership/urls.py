@@ -8,6 +8,7 @@ urlpatterns = [
     path('Ownership/Update/<int:pk>', views.ownershipUpdate.as_view(), name='ownership_update'),
     path('Ownership/Details/<int:pk>', views.ownershipDetails.as_view(), name='ownership_details'),
     path('Ownership/Delete/<int:pk>', views.ownershipDeleteView.as_view(), name='ownership_delete'),
+    path('Ownership/History/', views.ownershipHistoryView, name='ownership_history'),
     path('Ownership/Export', views.ownership_excel, name='ownership_export'),
 
     ]

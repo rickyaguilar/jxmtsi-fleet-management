@@ -4,6 +4,8 @@ from django.utils import timezone
 import datetime
 from datetime import date
 from masterlist.models import EmployeeMasterlist,VehicleMasterList
+# History
+from simple_history.models import HistoricalRecords
 
 def increment_Activity_id():
 	last_in = CarRentalRequest.objects.all().order_by('id').last()
@@ -63,6 +65,7 @@ class CarRentalRequest(models.Model):
 	Immediate_supervisor = models.CharField(max_length=50, null=True, choices=CHOICES, blank=True)
 	CR_SLA = models.CharField(max_length=10, null=True, blank=True)
 	Date_initiated = models.DateField(auto_now=True, blank=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id
@@ -163,6 +166,7 @@ class Gas_card(models.Model):
 	person_release = models.CharField(max_length=100, null=True, blank=True)
 	date_initiated = models.DateField(auto_now=True, blank=True)
 	GCR_SLA = models.CharField(max_length=20, null=True, blank=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id
@@ -248,6 +252,7 @@ class service_vehicle(models.Model):
 	vehicle_fuel_type = models.CharField(max_length=100, null=True, blank=True)
 	SVV_SLA = models.CharField(max_length=10, null=True, blank=True)
 	date_initiated = models.DateField(auto_now=True, null=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id
@@ -277,8 +282,7 @@ class Vehicle_Repair(models.Model):
 	)
 	shop= (
 		('GR8','GR8'),
-		('Rapide','Rapide'),
-		('EV','EV')
+		('Others','Others')
 	)
 	maintenance= (
 		('Preventive Maintenance','Preventive Maintenance'),
@@ -334,6 +338,7 @@ class Vehicle_Repair(models.Model):
 	meter_reading = models.CharField(max_length=100, null=True, blank=True)
 	VRR_SLA = models.CharField(max_length=10, null=True, blank=True)
 	date_initiated = models.DateField(auto_now=True, null=True, blank=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Activity_id

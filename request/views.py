@@ -109,6 +109,12 @@ class requestDeleteView(BSModalDeleteView):
     success_message = 'Success: Report was deleted.'
     success_url = reverse_lazy('carrequest_list')
 
+def requestHistoryView(request):
+    if request.method == "GET":
+       obj = CarRentalRequest.history.all()
+
+       return render(request, 'car_rental/carrequest_history.html', context={'object': obj})
+
 def car_request_excel(request):
     rental_queryset = CarRentalRequest.objects.all()   
     response = HttpResponse(
@@ -298,6 +304,12 @@ class gasDeleteView(BSModalDeleteView):
     template_name = 'gas_card/gascard_delete.html'
     success_message = 'Success: Gas Gard Request was deleted.'
     success_url = reverse_lazy('gascard_list')
+
+def gasHistoryView(request):
+    if request.method == "GET":
+       obj = Gas_card.history.all()
+
+       return render(request, 'gas_card/gascard_history.html', context={'object': obj})
 
 def gas_request_excel(request):
     rental_queryset = Gas_card.objects.all()   
@@ -511,6 +523,12 @@ class serviceDeleteView(BSModalDeleteView):
     success_message = 'Success: Service Vehicle Request was deleted.'
     success_url = reverse_lazy('service_list')
 
+def serviceHistoryView(request):
+    if request.method == "GET":
+       obj = service_vehicle.history.all()
+
+       return render(request, 'service_vehicle/service_history.html', context={'object': obj})
+
 def service_request_excel(request):
     service_queryset = service_vehicle.objects.all()   
     response = HttpResponse(
@@ -710,6 +728,12 @@ class repairDeleteView(BSModalDeleteView):
     template_name = 'vehicle_repair/repair_delete.html'
     success_message = 'Success: Vehicle Repair Request was deleted.'
     success_url = reverse_lazy('repair_list')
+
+def repairHistoryView(request):
+    if request.method == "GET":
+       obj = Vehicle_Repair.history.all()
+
+       return render(request, 'vehicle_repair/repair_history.html', context={'object': obj})
 
 def repair_request_excel(request):
     repair_queryset = Vehicle_Repair.objects.all()   

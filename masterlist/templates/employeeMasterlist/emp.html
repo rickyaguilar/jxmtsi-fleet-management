@@ -20,21 +20,20 @@ tr:nth-child(even){background-color: #f2f2f2}
 table.dataTable.fixedHeader-floating {
      display: none !important; /* Hide the fixedHeader since we dont need it*/
 }
- 
- 
+
 .dataTables_scrollHeadInner{
     margin-left: 0px;
     width: 100% !important;
     position: fixed;
     display: block;
     overflow: hidden;
-    margin-right: 30px;
+    margin-right: 0px;
     background: white;
     z-index: 1000;
 }
  
 .dataTables_scrollBody{
-    padding-top: 60px;
+    padding-top: 80px;
 }
 </style>
 
@@ -53,8 +52,7 @@ table.dataTable.fixedHeader-floating {
                     <a href="{% url 'masterlist_dl'%}"> <u>Export Employee Masterlist</u></a>
                     <a href="{% url 'employeeMasterlist-new' %}" style="float:right"><u>Add New Employee</u></a>
                 </div>
-                <!-- <div style="width: 1300px; height: 500px; overflow-y: scroll;"> -->
-                    <table id="vtable" class="display" style="width:100%" data-server-side="true" data-ajax="/api/empmasterllist/?format=datatables">
+                    <table id="vtable" class="display" style="width:100%" data-server-side="true" data-ajax="/api/empmasterlist/?format=datatables">
                     <thead>
                         <tr>
                             <th>Employee ID:</th>
@@ -82,7 +80,6 @@ table.dataTable.fixedHeader-floating {
                         </tr>
                     </thead>
                     </table>
-                <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -114,30 +111,23 @@ $(document).ready(function() {
                     if(scroll_pos < margin)
                          var header_pos = margin - scroll_pos;
                     else
-                        header_pos = 0;
+                        header_pos = 20;
  
                     $('.dataTables_scrollHeadInner').css({"top" : header_pos});
                 });
             },
-        "ajax": "/api/empmasterllist/?format=datatables",
+        "ajax": "/api/empmasterlist/?format=datatables",
         "columns": [
             { 
             "data": "Employee_Id",
-            "render": function(data, type, row, meta, id){
-            if(type === 'display'){
-                // data = '<a href="/VehicleMasterlist/New/ {{ data.id }}">' + data + '</a>';
-                data = '<a href="{%url 'vehicle_new'%}">' + data + '</a>';
-                }
-            return data;
-            }
             },
             {"data":"Company"},
             {"data":"Last_name"},
             {"data":"First_name"},
             {"data":"Middle_name"},
             {"data":"Suffix"},
-            {"data":"Band"},
             {"data":"Cost_center"},
+            {"data":"Band"},
             {"data":"DIV_code"},
             {"data":"Group"},
             {"data":"Division"},
@@ -168,7 +158,13 @@ $(document).ready(function() {
 </script>
 
 {% endblock %}
-
-
+<!-- // "render": function(data, type, row, meta, id){
+            // if(type === 'display'){
+            //     // data = '<a href="/VehicleMasterlist/New/ {{ data.id }}">' + data + '</a>';
+            //     data = '<a href="{%url 'vehicle_details' id.id %}">' + data + '</a>';
+            //     }
+            // return data;
+            // }
+ -->
 
 

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from .models import Fata_monitoring
+from masterlist.models import VehicleMasterList
 
 
 
@@ -46,3 +47,30 @@ class FATAmonitoringForm(forms.ModelForm):
             "Innove_fixed_asset": forms.TextInput(attrs={'class':'form-control'})
 
         }
+class reg_updateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(reg_updateForm, self).__init__(*args, **kwargs)
+        self.fields['Last_Registration_Date'].required = False
+        self.fields['Smoke_Emission_Date'].required = False
+        self.fields['COC_Date'].required = False
+        self.fields['Remarks'].required = True
+    class Meta:
+        model = VehicleMasterList
+        fields = ['Last_Registration_Date','Smoke_Emission_Date','COC_Date','Remarks'
+    ]
+        remarks = (
+            ('Without Last Registration Date','Without Last Registration Date'),
+            ('Without Smoke Emission Date','Without Smoke Emission Date'),
+            ('Without COC Date','Without COC Date'),
+            ('Complete','Complete')
+            )
+
+        widgets= {
+        "Last_Registration_Date": forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+        "Smoke_Emission_Date": forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+        "COC_Date": forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+        "Remarks": forms.Select(attrs={'class':'form-control', 'choices':'remarks'}),
+        }
+
+
+

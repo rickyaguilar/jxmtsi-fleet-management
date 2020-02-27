@@ -114,6 +114,12 @@ class voucherDeleteView(BSModalDeleteView):
     success_message = 'Success: Expense Voucher was deleted.'
     success_url = reverse_lazy('voucher_list')
 
+def voucherHistoryView(request):
+    if request.method == "GET":
+       obj = expense_voucher.history.all()
+
+       return render(request, 'voucher_history.html', context={'object': obj})
+
 def voucher_excel(request):
     voucher_queryset = expense_voucher.objects.all()   
     response = HttpResponse(

@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.utils import timezone
 import datetime
 from datetime import date
+# History
+from simple_history.models import HistoricalRecords
 
 class EmployeeMasterlist(models.Model):
 	Company = models.CharField(max_length=100, null=True)
@@ -27,6 +29,7 @@ class EmployeeMasterlist(models.Model):
 	Area = models.CharField(max_length=100, null=True)
 	Area2 = models.CharField(max_length=100, null=True)
 	Benefit = models.CharField(max_length=100, null=True)
+	history = HistoricalRecords()
 
 	def __str__(self):
 		return self.Employee_Id
@@ -67,6 +70,12 @@ class VehicleMasterList(models.Model):
           ('SuZuki','Suzuki'),
           ('Chevrolet','Chevrolet'),
             )
+	remarks = (
+            ('Without Last Registration Date','Without Last Registration Date'),
+            ('Without Smoke Emission Date','Without Smoke Emission Date'),
+            ('Without COC Date','Without COC Date'),
+            ('Complete','Complete'),
+            )
 	
 	Activity_Id  = models.CharField(max_length=100,null=True, default=increment_Activity_Id)
 	NO = models.CharField(max_length=100, null=True, default=increment_NO)
@@ -104,6 +113,11 @@ class VehicleMasterList(models.Model):
 	PO_NO = models.CharField(max_length=100, null=True, blank=True)
 	PLATE_NUMBER_RELEASE_DATE = models.DateField(auto_now=False, null=True, blank=True)
 	Employee = models.CharField(max_length=100, null=True)
+	Last_Registration_Date = models.CharField(max_length=100, null=True, blank=True)
+	Smoke_Emission_Date = models.CharField(max_length=100, null=True, blank=True)
+	COC_Date = models.CharField(max_length=100, null=True, blank=True)
+	Remarks = models.CharField(max_length=100, null=True, blank=True, choices=remarks)
+	history = HistoricalRecords()
 
 
 	def __str__(self):
