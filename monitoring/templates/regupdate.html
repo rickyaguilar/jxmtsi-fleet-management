@@ -9,16 +9,19 @@
 <form method="POST">
 {% csrf_token %}
     <div class="col-sm-4">
-        <label><b>Last Registration Date:</b></label>{{ form.Last_Registration_Date }}
+        <label><b>Last Registration Date:</b></label>{{ form.Last_Registration_Date}}
+        <!-- <input type="Date" name="last_reg" id="last_reg"> -->
     </div>
     <div class="col-sm-4">
-        <label><b>Smoke Emission Date:</b></label>{{ form.Smoke_Emission_Date }}
+        <label><b>Smoke Emission Date:</b></label>{{ form.Smoke_Emission_Date}}
+        <!-- <input type="Date" name="smoke_date" id="smoke_date"> -->
     </div>
     <div class="col-sm-4">
-        <label><b>COC Date:</b></label>{{ form.COC_Date }}
+        <label><b>COC Date:</b></label>{{ form.COC_Date}}
+        <!-- <input type="Date" name="coc_date" id="coc_date"> -->
     </div>
     <div class="col-sm-4">
-        <label><b>Remarks:</b></label>{{ form.Remarks }}
+        <label>Remarks</label>{{ form.Remarks}}
     </div>
 </div>
     <div class="card-footer">

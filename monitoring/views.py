@@ -103,6 +103,26 @@ class regUpdate(SuccessMessageMixin, UpdateView):
 		print(cleaned_data)
 		return "Registrations Updated Successfully!"
 
+# def regUpdate(request, pk):
+# 	if request.method == 'POST':
+# 		Last_Registration_Date = request.POST.get('last_reg')
+# 		Smoke_Emission_Date = request.POST.get('smoke_date')
+# 		COC_Date = request.POST.get('coc_date')
+
+# 		Remarks = ""
+# 		if Last_Registration_Date == "":
+# 			Remarks = "Without Last Registrations Date"
+# 		elif Smoke_Emission_Date == "":
+# 			Remarks = "Without Smoke Emission Date"
+# 		elif COC_Date == "":
+# 			Remarks = "COC_Date"
+# 		else:
+# 			Remarks = "Complete"
+
+# 		VehicleMasterList.objects.filter(id=pk).update(Last_Registration_Date=Last_Registration_Date,Smoke_Emission_Date=Smoke_Emission_Date,COC_Date=COC_Date,Remarks=Remarks)
+
+# 		return HttpResponseRedirect('/Monitoring/Registration/January')
+
 def monitoringHistoryView(request):
     if request.method == "GET":
        obj = Fata_monitoring.history.all()
@@ -111,29 +131,36 @@ def monitoringHistoryView(request):
 
 def janRegView(request):
 	context = {
-			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN")
+			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN", Last_Registration_Date__isnull=True ),
+			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN", Smoke_Emission_Date__isnull=True),
+			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN", COC_Date__isnull=True)	
 		}
 
 	return render(request, 'regJan_monitoring.html', context)
 
 def febRegView(request):
 	context = {
-			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB")
+			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB", Last_Registration_Date__isnull=True),
+			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB", Smoke_Emission_Date__isnull=True),
+			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB", COC_Date__isnull=True)
 		}
 
 	return render(request, 'regFeb_monitoring.html', context)
 
 def marRegView(request):
 	context = {
-			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR")
+			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR",Last_Registration_Date__isnull=True),
+			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR",Smoke_Emission_Date__isnull=True),
+			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR",COC_Date__isnull=True)
 		}
 
 	return render(request, 'regMar_monitoring.html', context)
 
 def aprRegView(request):
 	context = {
-			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR")
-			 # & Q(PLATE_ENDING__contains="1") & (Q(Last_Registration_Date__isnull=True) | Q(Smoke_Emission_Date__isnull=True) | Q(COC_Date__isnull=True)))
+			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR", Last_Registration_Date__isnull=True),
+			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR", Smoke_Emission_Date__isnull=True),
+			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR", COC_Date__isnull=True)
 
 		}
 
@@ -141,42 +168,53 @@ def aprRegView(request):
 
 def mayRegView(request):
 	context = {
-			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY")
+			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY", Last_Registration_Date__isnull=True),
+			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY", Smoke_Emission_Date__isnull=True),
+			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY", COC_Date__isnull=True)
 		}
 
 	return render(request, 'regMay_monitoring.html', context)
 
 def junRegView(request):
 	context = {
-			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN")
+			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN", Last_Registration_Date__isnull=True),
+			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN", Smoke_Emission_Date__isnull=True),
+			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN", COC_Date__isnull=True)
 		}
 
 	return render(request, 'regJun_monitoring.html', context)
 
 def julRegView(request):
 	context = {
-			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL")
+			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", Last_Registration_Date__isnull=True),
+			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", Smoke_Emission_Date__isnull=True),
+			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", COC_Date__isnull=True)
 		}
-
 	return render(request, 'regJul_monitoring.html', context)
 
 def augRegView(request):
 	context = {
-			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG")
+			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG", Last_Registration_Date__isnull=True),
+			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG", Smoke_Emission_Date__isnull=True),
+			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG", COC_Date__isnull=True)
 		}
 
 	return render(request, 'regAug_monitoring.html', context)
 
 def sepRegView(request):
 	context = {
-			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP")
+			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP", Last_Registration_Date__isnull=True),
+			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP", Smoke_Emission_Date__isnull=True),
+			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP", COC_Date__isnull=True)
 		}
 
 	return render(request, 'regSep_monitoring.html', context)
 
 def octRegView(request):
 	context = {
-			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT")
+			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT", Last_Registration_Date__isnull=True),
+			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT", Smoke_Emission_Date__isnull=True),
+			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT", COC_Date__isnull=True)
 		}
 
 	return render(request, 'regOct_monitoring.html', context)

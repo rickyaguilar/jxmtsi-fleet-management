@@ -53,6 +53,7 @@ class reg_updateForm(forms.ModelForm):
         self.fields['Last_Registration_Date'].required = False
         self.fields['Smoke_Emission_Date'].required = False
         self.fields['COC_Date'].required = False
+        self.fields['Remarks'].required = True
     class Meta:
         model = VehicleMasterList
         fields = ['Last_Registration_Date','Smoke_Emission_Date','COC_Date','Remarks'
