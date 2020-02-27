@@ -74,6 +74,7 @@ class VehicleMasterList(models.Model):
             ('Without Last Registration Date','Without Last Registration Date'),
             ('Without Smoke Emission Date','Without Smoke Emission Date'),
             ('Without COC Date','Without COC Date'),
+            ('Complete','Complete'),
             )
 	
 	Activity_Id  = models.CharField(max_length=100,null=True, default=increment_Activity_Id)

@@ -131,13 +131,9 @@ def marRegView(request):
 	return render(request, 'regMar_monitoring.html', context)
 
 def aprRegView(request):
-	# apr = Q(REGISTRATION_MONTH__contains="APR")
-	# reg = Q(Last_Registration_Date__null=True)
-	# em = Q(Smoke_Emission_Date_null=True)
-	# coc = Q(COC_Date=True)
 	context = {
 			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR")
-			# 'apr_list': VehicleMasterList.objects.filter(Q(REGISTRATION_MONTH__contains="APR") & (Q(Last_Registration_Date__null=True) | Q(Smoke_Emission_Date__null=True) | Q(COC_Date__null=True)))
+			 # & Q(PLATE_ENDING__contains="1") & (Q(Last_Registration_Date__isnull=True) | Q(Smoke_Emission_Date__isnull=True) | Q(COC_Date__isnull=True)))
 
 		}
 

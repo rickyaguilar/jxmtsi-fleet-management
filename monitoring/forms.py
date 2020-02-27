@@ -60,7 +60,8 @@ class reg_updateForm(forms.ModelForm):
         remarks = (
             ('Without Last Registration Date','Without Last Registration Date'),
             ('Without Smoke Emission Date','Without Smoke Emission Date'),
-            ('Without COC Date','Without COC Date')
+            ('Without COC Date','Without COC Date'),
+            ('Complete','Complete')
             )
 
         widgets= {
