@@ -27,23 +27,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
 
-    <!--table responsive-->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootsdtrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css"> -->
-
-    <!---Django Rest framework--->
-    <!-- <meta name="description" content="Rolling Stone magazine's 2012 list of 500 greatest albums of all time with genres.">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"> -->
-
-
             <!-- #######################################
                  ########### DATA TABLE CSS ############
                  #######################################   -->  
-
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <style>
 table {
   border-collapse: collapse;
@@ -53,7 +39,7 @@ table {
 }
 
 th, td {
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
 form label{
@@ -139,25 +125,7 @@ form label{
     <script src="{% static 'vendors/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
     <script src="{% static 'assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
     <script src="{% static 'vendors/jquery-validation/dist/jquery.validate.min.js' %}"></script>
-    <!--table responsive js-->
-<!--     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script> -->
-    
-    <!-- {% comment %} <script src="{% static 'vendors/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js' %}"></script> {% endcomment %}
-    {% comment %} <script src="{% static 'js/dashboard.js' %}"></script> {% endcomment %}
-    {% comment %} <script src="{% static 'js/main.js' %}"></script> {% endcomment %}
-    {% comment %} <script src="{% static 'assets/js/jquery.js' %}"></script> {% endcomment %} -->
+
     <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
     <!-- You can alternatively load the minified version -->
     <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
@@ -166,21 +134,6 @@ form label{
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
-
-      <!---Datatable AltEditor--->
-<!--     <script src="https://code.jquery.com/jquery-1.12.0.min.js" ></script>
-    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" ></script>
-    <script src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js" ></script>
-    <script src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js" ></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
-    <script src="https://cdn.datatables.net/responsive/2.0.2/js/dataTables.responsive.min.js" ></script>
-    <script src="../../static/js/dataTables.altEditor.free.js" ></script> -->
-    <!-- <script src="./example8.js" ></script> -->
-
-    <!--django rest framework--->
-    <!-- <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
 
 <script>
     (function($) {
