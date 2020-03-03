@@ -19,7 +19,7 @@ function carrequest(car) {
 </div>
  <div class="w3-bar w3-black">
   <button class="w3-bar-item w3-button" onclick="carrequest('Car Rental Request')">Car Rental Request</button>
-  <button class="w3-bar-item w3-button" onclick="carrequest('OutBound Process')">OutBound Process</button>
+  <button class="w3-bar-item w3-button" onclick="carrequest('OutBound Process')">Outbound Process</button>
   <button class="w3-bar-item w3-button" onclick="carrequest('Approved Process')">Approved Process</button>
 </div>
 <form method="POST" action="{% url 'carrequest_submit' %}">
@@ -41,11 +41,11 @@ function carrequest(car) {
       </div>
       <br><br>
       <div class="col-sm-4">
-          <label>Date Received:</label>
+          <label>Date Received</label>
           <input type="Date" name="date_received" id="date_received" class="form-control" required>
       </div>
       <div class="col-sm-4">
-          <label>First Name:</label>
+          <label>First Name</label>
           <input type="text" name="fname" id="fname" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
@@ -54,11 +54,11 @@ function carrequest(car) {
       </div>
 
       <div class="col-sm-4">
-          <label>Contact Number:</label>
+          <label>Contact Number</label>
           <input type="text" name="cnumber" id="cnumber" class="form-control">
       </div>
       <div class="col-sm-4">
-          <label>Company:</label>
+          <label>Company</label>
           <input type="text" name="company" id="company" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
@@ -66,11 +66,11 @@ function carrequest(car) {
           <input type="text" name="band" id="band" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
-          <label>Department:</label>
+          <label>Department</label>
           <input type="text" name="dept" id="dept" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
-          <label>Cost Center:</label>
+          <label>Cost Center</label>
           <input type="text" name="cost" id="cost" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
@@ -78,19 +78,19 @@ function carrequest(car) {
           <input type="text" name="div" id="div" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
-          <label>Location:</label>
+          <label>Location</label>
           <input type="text" name="loc" id="loc" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
-          <label>Section:</label>
+          <label>Section</label>
           <input type="text" name="section" id="section" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
-          <label>Designation:</label>
+          <label>Designation</label>
           <input type="text" name="designation" id="designation" class="form-control" readonly>
       </div>
       <div class="col-sm-4">
-          <label>ATD:</label>
+          <label>ATD</label>
           <input type="text" name="atd" id="atd" class="form-control">
       </div>
     <br><br>
@@ -99,27 +99,27 @@ function carrequest(car) {
     <fieldset>
     <legend align="left">Car Rental Request Details</legend>
     <div class="col-sm-4">
-        <label>Vendor Name:</label>
+        <label>Vendor Name</label>
         <input type="text" name="vname" id="vname" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>Date:</label>
+        <label>Date</label>
         <input type="Date" name="date" id="date" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>Up to:</label>
+        <label>Up to</label>
         <input type="text" name="up_to" id="up_to" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>Time:</label>
+        <label>Time</label>
         <input type="Time" name="time" id="time" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>Place Of Delivery:</label>
+        <label>Place of Delivery</label>
         <input type="text" name="del_place" id="del_place" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>Type Of Rental:</label>
+        <label>Type of Rental</label>
         <select class="form-control" name="type_rental" id="type_rental">
           <option value="">-------</option>
           <option value="Daily">Daily</option>
@@ -127,23 +127,23 @@ function carrequest(car) {
         </select>
     </div>
     <div class="col-sm-4">
-        <label>Cost Center:</label>
+        <label>Cost Center</label>
         <input type="text" name="costcenter" id="costcenter" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>Rental Period:</label>
+        <label>Rental Period</label>
         <input type="text" name="rent_period" id="rent_period" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>Destination:</label>
+        <label>Destination</label>
         <input type="text" name="destination" id="destination" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>Delivery Date:</label>
+        <label>Delivery Date</label>
         <input type="Date" name="del_date" id="del_date" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>End User:</label>
+        <label>End User</label>
         <input type="text" name="end_user" id="end_user" class="form-control">
     </div>
     </fieldset>
@@ -157,7 +157,7 @@ function carrequest(car) {
     <fieldset>
       <legend align="left">Vehicle Details</legend>
     <div class="col-sm-6">
-      <label>Type Of Vehicle:</label>
+      <label>Type of Vehicle</label>
       <select class="form-control" name="vehicle_type" id="vehicle_type">
         <option value="">----------</option>
         <option value="Sedan">Sedan</option>
@@ -166,7 +166,7 @@ function carrequest(car) {
       </select>
     </div>
     <div class="col-sm-6">
-      <label>Plate Number:</label>
+      <label>Plate Number</label>
       <input type="text" name="plate_no" id="plate_no" class="form-control">
     </div>
     </fieldset>
@@ -180,7 +180,7 @@ function carrequest(car) {
   <fieldset>
   <legend align="left">Approval Process</legend>
   <div class="col-sm-6">
-      <label>Immediate Supervisor:</label>
+      <label>Immediate Supervisor</label>
       <select class="form-control" name="supervisor" id="supervisor">
         <option value="">----------</option>
         <option value="Ser Roy Dela Cruz">Ser Roy Dela Cruz</option>

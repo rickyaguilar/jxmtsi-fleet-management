@@ -25,7 +25,7 @@ SECRET_KEY = 'xm#bo4qsr2hahkrtiaga=@xa2xvi7ecrj1utnsramtbu-4g1&3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -96,11 +96,11 @@ DATABASES = {
     'default': {
     'ENGINE':'django.db.backends.postgresql_psycopg2',
         'NAME': 'django-cursor-pagination',
-        'NAME': 'fleet',
-        'USER': 'fleet',
-        'PASSWORD': 'fleet@27',
+        'NAME': 'Fleet',
+        'USER': 'postgres',
+        'PASSWORD': 'purchasing',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5433',
     }
 }
 
