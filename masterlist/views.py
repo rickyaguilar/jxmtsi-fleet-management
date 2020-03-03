@@ -33,7 +33,7 @@ def Vmastertables(request):
     return render(request, 'vehicleMasterlist/vehicleMasterlist.html')
 
 class vehicleViewSet(viewsets.ModelViewSet):
-    queryset = VehicleMasterList.objects.all().order_by('id')
+    queryset = VehicleMasterList.objects.filter(leasing_remark__isnull=True).order_by('id')
     serializer_class = vehicleSerializer
 
 def VmasterlistCreate(request):
@@ -64,6 +64,12 @@ def VmasterlistCreate(request):
         aqui_cost = request.POST.get('aqui_cost')
         asset = request.POST.get('asset')
         po_no = request.POST.get('po_no')
+        sap_pr = request.POST.get('sap_pr')
+        ivn_no = request.POST.get('ivn_no')
+        mathdoc = request.POST.get('mathdoc')
+        eq_no = request.POST.get('eq_no')
+        dealer = request.POST.get('dealer')
+        dealer_name = request.POST.get('dealer_name')
         plate_date = request.POST.get('plate_date')
         or_date = request.POST.get('or_date')
         
@@ -119,7 +125,8 @@ def VmasterlistCreate(request):
             VEHICLE_MAKE=vmake, ENGINE_NO=eng_no, MV_FILE_NO=mvfile, VEHICLE_TYPE=vtype, VEHICLE_CATEGORY=vcat,
             Employee=emp_save, BAND_LEVEL=band, BENEFIT_GROUP=benefit, COST_CENTER=cost, GROUP=group, DIVISION=div,
             DEPARTMENT=dept, SECTION=sec, IS_ID=is_emp, IS_FIRST_NAME=is_fname, IS_LAST_NAME=is_lname, LOCATION=loc,
-            ACQ_DATE=aqui_date, ACQ_COST=aqui_cost, ASSET_NO=asset, PO_NO=po_no, PLATE_NUMBER_RELEASE_DATE=plate_date, ORIGINAL_OR_DATE=or_date)
+            ACQ_DATE=aqui_date, ACQ_COST=aqui_cost, ASSET_NO=asset, PO_NO=po_no, PLATE_NUMBER_RELEASE_DATE=plate_date, ORIGINAL_OR_DATE=or_date,EQUIPMENT_NO=eq_no,
+            SAP_PR=sap_pr,Vehicle_IVN_no=ivn_no,Unit_MATDOC=mathdoc,dealer=dealer,dealer_name=dealer_name)
         saveto_end.save()
 
     return HttpResponseRedirect('/Masterlist/VehicleMasterlist/')
@@ -215,6 +222,129 @@ class vreg_details(DetailView):
 #     return render(request, 'registration/registration.html', {'title': 'Vehicle - Vehicle Filter', 'reg1': reg1,'reg2': reg2, 'reg3': reg3,
 #     'reg4': reg4, 'reg5': reg5, 'reg6': reg6, 'reg7': reg7, 'reg8': reg8, 'reg9': reg9, 'reg0': reg0})
 
+def vehicle_bayan(request):
+    context = {
+            'bayan_list': VehicleMasterList.objects.filter(CR_NAME__contains="BAYANTEL")
+        }
+
+    return render(request, 'vehicleMasterlist/vehicle_bayan.html', context)
+def vehicle_telicphil(request):
+    context = {
+            'teli_list': VehicleMasterList.objects.filter(CR_NAME__contains="TELICPHIL")
+        }
+
+    return render(request, 'vehicleMasterlist/vehicle_telicphil.html', context)
+
+def vehicle_leasing(request):
+    context = {
+            'leasing_list': VehicleMasterList.objects.filter(leasing_remark__isnull=False)
+        }
+
+    return render(request, 'vehicleMasterlist/vehicle_leasing.html', context)
+
+def vehicle_excel_leasing(request):
+    v_queryset = VehicleMasterList.objects.filter(leasing_remark__isnull=False)   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Vehicle Masterlist Leasing.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Vehicle Masterlist Leasing'
+
+    columns = [
+            'NO',
+            'PLATE_NO',
+            'CS_NO',
+            'CR_NAME',
+            'PLATE_ENDING',
+            'MODEL',
+            'BRAND',
+            'VEHICLE_MAKE',
+            'ENGINE_NO',
+            'CHASSIS_NO',
+            'MV_FILE_NO',
+            'VEHICLE_TYPE',
+            'VEHICLE_CATEGORY',
+            'Employee',
+            'BAND_LEVEL',
+            'BENEFIT_GROUP',
+            'COST_CENTER',
+            'GROUP',
+            'DIVISION',
+            'DEPARTMENT',
+            'SECTION',
+            'IS_ID',
+            'IS_FIRST_NAME',
+            'IS_LAST_NAME',
+            'LOCATION',
+            'ACQ_DATE',
+            'ACQ_COST',
+            'ASSET_NO',
+            'PO_NO',
+            'EQUIPMENT_NO',
+            'ASSIGNEE_LAST_NAME',
+            'ASSIGNEE_FIRST_NAME',
+            'REGISTRATION_MONTH',
+            'ORIGINAL_OR_DATE',
+            'PLATE_NUMBER_RELEASE_DATE',
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for vehicle in v_queryset:
+        row_num += 1
+        # ordate = vehicle.ORIGINAL_OR_DATE.strftime('%m/%d/%Y')
+        # platerelease = vehicle.PLATE_NUMBER_RELEASE_DATE.strftime('%m/%d/%Y')
+        row = [
+                vehicle.NO,
+                vehicle.PLATE_NO,
+                vehicle.CS_NO,
+                vehicle.CR_NAME,
+                vehicle.PLATE_ENDING,
+                vehicle.MODEL,
+                vehicle.BRAND,
+                vehicle.VEHICLE_MAKE,
+                vehicle.ENGINE_NO,
+                vehicle.CHASSIS_NO,
+                vehicle.MV_FILE_NO,
+                vehicle.VEHICLE_TYPE,
+                vehicle.VEHICLE_CATEGORY,
+                vehicle.Employee,
+                vehicle.BAND_LEVEL,
+                vehicle.BENEFIT_GROUP,
+                vehicle.COST_CENTER,
+                vehicle.GROUP,
+                vehicle.DIVISION,
+                vehicle.DEPARTMENT,
+                vehicle.SECTION,
+                vehicle.IS_ID,
+                vehicle.IS_FIRST_NAME,
+                vehicle.IS_LAST_NAME,
+                vehicle.LOCATION,
+                vehicle.ACQ_DATE,
+                vehicle.ACQ_COST,
+                vehicle.ASSET_NO,
+                vehicle.PO_NO,
+                vehicle.EQUIPMENT_NO,
+                vehicle.ASSIGNEE_LAST_NAME,
+                vehicle.ASSIGNEE_FIRST_NAME,
+                vehicle.REGISTRATION_MONTH,
+                vehicle.ORIGINAL_OR_DATE,
+                vehicle.PLATE_NUMBER_RELEASE_DATE,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
 def vehicle_excel(request):
     v_queryset = VehicleMasterList.objects.all()   
     response = HttpResponse(
@@ -225,6 +355,211 @@ def vehicle_excel(request):
 
     worksheet = workbook.active
     worksheet.title = 'Vehicle Masterlist'
+
+    columns = [
+            'NO',
+            'PLATE_NO',
+            'CS_NO',
+            'CR_NAME',
+            'PLATE_ENDING',
+            'MODEL',
+            'BRAND',
+            'VEHICLE_MAKE',
+            'ENGINE_NO',
+            'CHASSIS_NO',
+            'MV_FILE_NO',
+            'VEHICLE_TYPE',
+            'VEHICLE_CATEGORY',
+            'Employee',
+            'BAND_LEVEL',
+            'BENEFIT_GROUP',
+            'COST_CENTER',
+            'GROUP',
+            'DIVISION',
+            'DEPARTMENT',
+            'SECTION',
+            'IS_ID',
+            'IS_FIRST_NAME',
+            'IS_LAST_NAME',
+            'LOCATION',
+            'ACQ_DATE',
+            'ACQ_COST',
+            'ASSET_NO',
+            'PO_NO',
+            'EQUIPMENT_NO',
+            'ASSIGNEE_LAST_NAME',
+            'ASSIGNEE_FIRST_NAME',
+            'REGISTRATION_MONTH',
+            'ORIGINAL_OR_DATE',
+            'PLATE_NUMBER_RELEASE_DATE',
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for vehicle in v_queryset:
+        row_num += 1
+        # ordate = vehicle.ORIGINAL_OR_DATE.strftime('%m/%d/%Y')
+        # platerelease = vehicle.PLATE_NUMBER_RELEASE_DATE.strftime('%m/%d/%Y')
+        row = [
+                vehicle.NO,
+                vehicle.PLATE_NO,
+                vehicle.CS_NO,
+                vehicle.CR_NAME,
+                vehicle.PLATE_ENDING,
+                vehicle.MODEL,
+                vehicle.BRAND,
+                vehicle.VEHICLE_MAKE,
+                vehicle.ENGINE_NO,
+                vehicle.CHASSIS_NO,
+                vehicle.MV_FILE_NO,
+                vehicle.VEHICLE_TYPE,
+                vehicle.VEHICLE_CATEGORY,
+                vehicle.Employee,
+                vehicle.BAND_LEVEL,
+                vehicle.BENEFIT_GROUP,
+                vehicle.COST_CENTER,
+                vehicle.GROUP,
+                vehicle.DIVISION,
+                vehicle.DEPARTMENT,
+                vehicle.SECTION,
+                vehicle.IS_ID,
+                vehicle.IS_FIRST_NAME,
+                vehicle.IS_LAST_NAME,
+                vehicle.LOCATION,
+                vehicle.ACQ_DATE,
+                vehicle.ACQ_COST,
+                vehicle.ASSET_NO,
+                vehicle.PO_NO,
+                vehicle.EQUIPMENT_NO,
+                vehicle.ASSIGNEE_LAST_NAME,
+                vehicle.ASSIGNEE_FIRST_NAME,
+                vehicle.REGISTRATION_MONTH,
+                vehicle.ORIGINAL_OR_DATE,
+                vehicle.PLATE_NUMBER_RELEASE_DATE,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+def vehicle_excel_bayan(request):
+    v_queryset = VehicleMasterList.objects.filter(CR_NAME__contains="BAYANTEL")   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Vehicle Masterlist Bayan.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Vehicle Masterlist Bayan'
+
+    columns = [
+            'NO',
+            'PLATE_NO',
+            'CS_NO',
+            'CR_NAME',
+            'PLATE_ENDING',
+            'MODEL',
+            'BRAND',
+            'VEHICLE_MAKE',
+            'ENGINE_NO',
+            'CHASSIS_NO',
+            'MV_FILE_NO',
+            'VEHICLE_TYPE',
+            'VEHICLE_CATEGORY',
+            'Employee',
+            'BAND_LEVEL',
+            'BENEFIT_GROUP',
+            'COST_CENTER',
+            'GROUP',
+            'DIVISION',
+            'DEPARTMENT',
+            'SECTION',
+            'IS_ID',
+            'IS_FIRST_NAME',
+            'IS_LAST_NAME',
+            'LOCATION',
+            'ACQ_DATE',
+            'ACQ_COST',
+            'ASSET_NO',
+            'PO_NO',
+            'EQUIPMENT_NO',
+            'ASSIGNEE_LAST_NAME',
+            'ASSIGNEE_FIRST_NAME',
+            'REGISTRATION_MONTH',
+            'ORIGINAL_OR_DATE',
+            'PLATE_NUMBER_RELEASE_DATE',
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for vehicle in v_queryset:
+        row_num += 1
+        # ordate = vehicle.ORIGINAL_OR_DATE.strftime('%m/%d/%Y')
+        # platerelease = vehicle.PLATE_NUMBER_RELEASE_DATE.strftime('%m/%d/%Y')
+        row = [
+                vehicle.NO,
+                vehicle.PLATE_NO,
+                vehicle.CS_NO,
+                vehicle.CR_NAME,
+                vehicle.PLATE_ENDING,
+                vehicle.MODEL,
+                vehicle.BRAND,
+                vehicle.VEHICLE_MAKE,
+                vehicle.ENGINE_NO,
+                vehicle.CHASSIS_NO,
+                vehicle.MV_FILE_NO,
+                vehicle.VEHICLE_TYPE,
+                vehicle.VEHICLE_CATEGORY,
+                vehicle.Employee,
+                vehicle.BAND_LEVEL,
+                vehicle.BENEFIT_GROUP,
+                vehicle.COST_CENTER,
+                vehicle.GROUP,
+                vehicle.DIVISION,
+                vehicle.DEPARTMENT,
+                vehicle.SECTION,
+                vehicle.IS_ID,
+                vehicle.IS_FIRST_NAME,
+                vehicle.IS_LAST_NAME,
+                vehicle.LOCATION,
+                vehicle.ACQ_DATE,
+                vehicle.ACQ_COST,
+                vehicle.ASSET_NO,
+                vehicle.PO_NO,
+                vehicle.EQUIPMENT_NO,
+                vehicle.ASSIGNEE_LAST_NAME,
+                vehicle.ASSIGNEE_FIRST_NAME,
+                vehicle.REGISTRATION_MONTH,
+                vehicle.ORIGINAL_OR_DATE,
+                vehicle.PLATE_NUMBER_RELEASE_DATE,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+    
+def vehicle_excel_teli(request):
+    v_queryset = VehicleMasterList.objects.filter(CR_NAME__contains="TELICPHIL")   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename=Vehicle Masterlist Telicphil.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Vehicle Masterlist Telicphil'
 
     columns = [
             'NO',
