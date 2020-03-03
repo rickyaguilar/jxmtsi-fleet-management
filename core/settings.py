@@ -95,24 +95,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django-cursor-pagination',
-<<<<<<< HEAD
-        'NAME': 'fms',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
-=======
-<<<<<<< HEAD
-        'NAME': 'Fleet',
-        'USER': 'postgres',
-        'PASSWORD': 'purchasing',
-=======
         'NAME': 'fleet',
-        'USER': 'jxmtsi',
-        'PASSWORD': 'jxmtsi12345',
->>>>>>> 4f33232b96782c681df9ec16638dcfc862264b47
->>>>>>> 7c58c8cbe1aec06a502679dae75e2692f754412c
+        'USER': 'fleet',
+        'PASSWORD': 'fleet@27',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '',
     }
 }
 
