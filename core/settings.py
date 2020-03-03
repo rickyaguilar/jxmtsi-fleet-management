@@ -96,11 +96,11 @@ DATABASES = {
     'default': {
     'ENGINE':'django.db.backends.postgresql_psycopg2',
         'NAME': 'django-cursor-pagination',
-        'NAME': 'fleet',
-        'USER': 'fleet',
-        'PASSWORD': 'fleet@27',
+        'NAME': 'fms',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5433',
     }
 }
 

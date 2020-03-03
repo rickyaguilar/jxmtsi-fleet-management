@@ -16,13 +16,22 @@ class VehiclePaymentform(forms.ModelForm):
 		self.fields['Outstanding_balance'].required = False
 		self.fields['Date_final'].required = False
 		self.fields['Routing_remarks'].required = False
+		self.fields['rfp_number'].required = False
+		self.fields['invoice_number'].required = False
+		self.fields['equip_no'].required = False
+		self.fields['asset_no'].required = False
+		self.fields['sap_no'].required = False
+		self.fields['mat_no'].required = False
+		self.fields['Dealer_name'].required = False
+
 		
 	class Meta:
 		model = VehiclePayment
 		fields = ['A_employee_ID', 'E_First_name', 'E_Last_name', 'V_deliverDate','Plate_no',
 		            'V_model','V_brand','V_make','V_dealer','LTO_documents',
 		            'Docs_plate_no','LTO_stickers','Sticker_fields','Date_initial', 'First_payment', 'LTO_charges',
-		            'Outstanding_balance','Date_final','Routing_remarks','V_SLA']
+		            'Outstanding_balance','Date_final','Routing_remarks','V_SLA','rfp_number','invoice_number','equip_no','asset_no',
+		            'sap_no','mat_no','Dealer_name']
 		widgets = {
 			'A_employee_ID': forms.Select(attrs={'class':'form-control'}),
 			'E_First_name': forms.TextInput(attrs={'class':'form-control'}),
@@ -43,7 +52,14 @@ class VehiclePaymentform(forms.ModelForm):
 		    'Outstanding_balance': forms.TextInput(attrs={'class':'form-control','type':'number'}),
 		    'Date_final': forms.TextInput(attrs={'class':'form-control','type':'date'}),
 		    'Routing_remarks': forms.TextInput(attrs={'class':'form-control'}),
-		    'V_SLA': forms.TextInput(attrs={'class':'form-control','type':'number','value':'15','hidden':'True'})
+		    'V_SLA': forms.TextInput(attrs={'class':'form-control','type':'number','value':'15','hidden':'True'}),
+		    'rfp_number' : forms.TextInput(attrs={'class':'form-control'}),
+		    'invoice_number' : forms.TextInput(attrs={'class':'form-control'}),
+		    'equip_no' : forms.TextInput(attrs={'class': 'form-control'}),
+		    'asset_no' : forms.TextInput(attrs={'class': 'form-control'}),
+		    'sap_no' : forms.TextInput(attrs={'class': 'form-control'}),
+		    'mat_no' : forms.TextInput(attrs={'class': 'form-control'}),
+		    'Dealer_name' : forms.TextInput(attrs={'class': 'form-control'})
 		}
 
 class FuelsupplierForm(forms.ModelForm):
@@ -90,11 +106,14 @@ class vrepair_form(forms.ModelForm):
 		self.fields['dealership'].required = False
 		self.fields['amount'].required = False
 		self.fields['service_type'].required = False
+		self.fields['rfp_no'].required = False
+		self.fields['invoice_number2'].requred = False
+		self.fields['invoice_date'].required = False
 	class Meta:
 		model = Vehicle_Repair_payment
 		fields = ['request_date','employee','cost_center','first_name','last_name','contact_no','company',
 		'department','group_section','plate_no','v_brand','engine','v_make','v_model','chassis','band',
-		'cond_sticker','equipment_no','dealership','amount','service_type'
+		'cond_sticker','equipment_no','dealership','amount','service_type','rfp_no','invoice_number2','invoice_date'
 		]
 		maintenance= (
 		('Preventive Maintenance','Preventive Maintenance'),
@@ -126,6 +145,9 @@ class vrepair_form(forms.ModelForm):
 		'dealership' : forms.TextInput(attrs={'class':'form-control'}),
 		'amount' : forms.TextInput(attrs={'class':'form-control'}),
 		'service_type': forms.Select(attrs={'class':'form-control','choices':'maintenance'}),
+		'rfp_no': forms.TextInput(attrs={'class':'form-control'}),
+		'invoice_number2': forms.TextInput(attrs={'class':'form-control'}),
+		'invoice_date': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
 	}
 
 

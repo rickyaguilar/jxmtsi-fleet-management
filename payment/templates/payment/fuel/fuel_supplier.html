@@ -15,12 +15,12 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h3 align="center"><b>Fuel Supplier Payments</b></h3>&nbsp;
+        <h3 align="center"><b>Fuel Supplier Payment</b></h3>&nbsp;
     </div>
 </div>
 <div class="w3-bar w3-black">
   <button class="w3-bar-item w3-button" onclick="fuelsupplier('Fuel Supplier Payment')">Fuel Supplier Payment</button>
-  <button class="w3-bar-item w3-button" onclick="fuelsupplier('OutBound Process')">OutBound Process</button>
+  <button class="w3-bar-item w3-button" onclick="fuelsupplier('OutBound Process')">OutBound Process Tab</button>
 </div>
 <form method="POST" action="">
 {% csrf_token %}
@@ -30,17 +30,17 @@
   <fieldset>
     <legend align="left">Statement Of Account Processing</legend><br>
       <div class="col-sm-4">
-        <label>Date Receive SOA:</label>{{ form.SOA_Date_received }}</div>
+        <label>Date Receive SOA</label>{{ form.SOA_Date_received }}</div>
       <div class="col-sm-4">
-        <label>Fuel Provider:</label>{{ form.Fuel_provider }}</div>
+        <label>Fuel Provider</label>{{ form.Fuel_provider }}</div>
       <div class="col-sm-4">
-        <label>SOA Current Amount:</label>{{ form.SOA_current_amount }}</div>
+        <label>SOA Current Amount</label>{{ form.SOA_current_amount }}</div>
       <div class="col-sm-4">
-        <label>SOA Outstanding Amount:</label>{{ form.SOA_outstanding_amount }}</div>
+        <label>SOA Outstanding Amount</label>{{ form.SOA_outstanding_amount }}</div>
       <div class="col-sm-4">
-        <label>Payee:</label>{{ form.Payee }}</div>
+        <label>Payee</label>{{ form.Payee }}</div>
       <div class="col-sm-4">
-        <label>SOA Billing Date:</label>{{ form.SOA_billdate }}</div>
+        <label>SOA Billing Date</label>{{ form.SOA_billdate }}</div>
   </fieldset>
   <fieldset>
     <legend>RFS Processing</legend>

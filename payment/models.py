@@ -47,6 +47,9 @@ class CarRental(models.Model):
 	Assignee_company = models.CharField(max_length=100, null=True, blank=True)
 	Cost_center = models.CharField(max_length=100, null=True, blank=True)
 	Date_initiated = models.DateField(auto_now=True, blank=True)
+	car_provider = models.CharField(max_length=100, null=True, blank=True)
+	sqa_number = models.CharField(max_length=100, null=True, blank=True)
+	rfp_no2 = models.CharField(max_length=100, null=True, blank=True)
 	#<--other assignee---->
 	O_Fname = models.CharField(max_length=100, null=True, blank=True)
 	O_Lname = models.CharField(max_length=100, null=True, blank=True)
@@ -140,6 +143,14 @@ class VehiclePayment(models.Model):
 	Next_process = models.CharField(max_length=100, null=True, blank=True)
 	Date_initiated = models.DateField(auto_now=True)
 	history = HistoricalRecords()
+	rfp_number = models.CharField(max_length=100, null=True, blank=True)
+	invoice_number = models.CharField(max_length=100, null=True, blank=True)
+	equip_no = models.CharField(max_length=100, null=True, blank=True)
+	asset_no = models.CharField(max_length=100, null=True, blank=True)
+	sap_no = models.CharField(max_length=100, null=True, blank=True)
+	mat_no = models.CharField(max_length=100, null=True, blank=True)
+	Dealer_name = models.CharField(max_length=100, null=True, blank=True)
+
 
 	def __str__(self):
 		return self.Activity_id
@@ -240,6 +251,9 @@ class Vehicle_Repair_payment(models.Model):
 	service_type = models.CharField(max_length=100, null=True, blank=True, choices=maintenance)
 	date_initiated = models.DateField(auto_now=True)
 	history = HistoricalRecords()
+	rfp_no = models.CharField(max_length=100, null=100, blank=True)
+	invoice_number2 = models.CharField(max_length=100, null=100, blank=True)
+	invoice_date = models.CharField(max_length=100, null=100, blank=True)
 
 	def __str__(self):
 		return self.Activity_id

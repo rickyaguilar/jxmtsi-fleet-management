@@ -58,7 +58,7 @@ function vrepair(repair) {
             {{ form.company }}
         </div>
         <div class="col-sm-6">
-            <label>Department:</label>
+            <label>Department</label>
             {{ form.department }}
         </div>
         <div class="col-sm-6">
@@ -72,42 +72,45 @@ function vrepair(repair) {
     <legend align="left">Vehicle Details</legend>
         
         <div class="col-sm-6">
-            <label>Plate Number:</label>
+            <label>Plate Number</label>
             {{ form.plate_no }}
         </div>
         
         <div class="col-sm-6">
-            <label>Vehicle Brand:</label>
+            <label>Vehicle Brand</label>
             {{ form.v_brand }}
         </div>
         <div class="col-sm-6">
-            <label>Engine:</label>
+            <label>Engine</label>
             {{ form.engine }}
         </div>
         <div class="col-sm-6">
-            <label>Vehicle Model Year:</label>
+            <label>Vehicle Model Year</label>
             {{ form.v_model }}
         </div>
         <div class="col-sm-6">
-            <label>Vehicle Make:</label>
+            <label>Vehicle Make</label>
             {{ form.v_make}}
         </div>
         <div class="col-sm-6">
-            <label>Chassis:</label>
+            <label>Chassis</label>
             {{ form.chassis }}
         </div>
         <div class="col-sm-6">
-            <label>Band:</label>
+            <label>Band</label>
             {{ form.band }}
         </div>
         <div class="col-sm-6">
-            <label>Conduction Stikers:</label>
+            <label>Conduction Stikers</label>
             {{ form.cond_sticker }}
         </div>
         <div class="col-sm-6">
-            <label>Equipment Number:</label>
+            <label>Equipment Number</label>
             {{ form.equipment_no }}
         </div>
+        <div class="col-sm-6">
+            <label>RFP Number</label>
+            {{ form.rfp_no }}
     </fieldset>
     <div class="card-footer">
       <button type="submit" class="button">UPDATE</button>
@@ -117,7 +120,7 @@ function vrepair(repair) {
     <fieldset>
         <legend align="left">Repair Details</legend>
         <div class="col-sm-6">
-            <label>Dealership:</label>
+            <label>Provider</label>
             {{ form.dealership }}
         </div>
         <div class="col-sm-6">
@@ -125,8 +128,16 @@ function vrepair(repair) {
             {{ form.amount }}
         </div>
         <div class="col-sm-6">
-            <label>Type Of Service:</label>
+            <label>Type Of Service</label>
             {{ form.service_type }}
+        </div>
+        <div class="col-sm-6">
+            <label>Invoice Number</label>
+            {{ form.invoice_num }}
+        </div>
+        <div class="col-sm-6">
+            <label>Invoice Date</label>
+            {{ form.invoice_date }}
         </div>
     </fieldset>
     <div class="card-footer">
