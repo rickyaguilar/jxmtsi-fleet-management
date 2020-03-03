@@ -21,7 +21,7 @@ function gascard(card) {
  <div class="w3-bar w3-black">
     <button class="w3-bar-item w3-button" onclick="gascard('Gas Card Request')">Gas Card Request</button>
     <button class="w3-bar-item w3-button" onclick="gascard('Approved Process')">Approved Process</button>
-    <button class="w3-bar-item w3-button" onclick="gascard('OutBound Process')">OutBound Process</button>
+    <button class="w3-bar-item w3-button" onclick="gascard('OutBound Process')">Outbound Process</button>
     <button class="w3-bar-item w3-button" onclick="gascard('Inbound Process')">Inbound Process</button>
     <button class="w3-bar-item w3-button" onclick="gascard('Fleet Card Releasing')">Fleet Card Releasing</button>
 </div>
@@ -37,11 +37,11 @@ function gascard(card) {
         </div>
         </div>
         <div class="col-sm-4">
-            <label>Application Type:</label>
+            <label>Application Type</label>
             {{ form.application_type }}
         </div>
         <div class="col-sm-4">
-            <label>Fleet Card Provider:</label>
+            <label>Fleet Card Provider</label>
             {{ form.fleet_provider}}
         </div>
         <div class="col-sm-4">
@@ -50,15 +50,15 @@ function gascard(card) {
         </div>
 
         <div class="col-sm-4">
-            <label>Fuel Limit Amount:</label>
+            <label>Fuel Limit Amount</label>
             {{ form.fuel_limit_amount }}
         </div>
         <div class="col-sm-4">
-            <label>Fuel Limit Quantity:</label>
+            <label>Fuel Limit Quantity</label>
             {{ form.fuel_limit_quantity }}
         </div>
         <div class="col-sm-4">
-            <label>Products Restrictions</label>
+            <label>Product Restrictions</label>
             {{ form.products_restriction }}
         </div>
     <br><br>
@@ -67,123 +67,123 @@ function gascard(card) {
     <fieldset>
         <legend align="left">Requisitioner Details</legend>
         <div class="col-sm-4">
-            <label>Requisitioner Employee ID:</label>
+            <label>Requisitioner Employee ID</label>
             {{ form.req_employee_id }}
         </div>
         <div class="col-sm-4">
-            <label>Requisitioner First Name:</label>
+            <label>Requisitioner First Name</label>
             {{ form.req_fname }}
         </div>
         <div class="col-sm-4">
-            <label>Requisitioner Last Name:</label>
+            <label>Requisitioner Last Name</label>
             {{ form.req_lname }}
         </div>
         <div class="col-sm-4">
-            <label>Requisitioner Title:</label>
+            <label>Requisitioner Title</label>
             {{ form.req_title }}
         </div>
         <div class="col-sm-4">
-            <label>Requisitioner Cost Center:</label>
+            <label>Requisitioner Cost Center</label>
             {{ form.req_cost_center }}
         </div>
         <div class="col-sm-4">
-            <label>ATD Number:</label>
+            <label>ATD Number</label>
             {{ form.atd_no }}
         </div>
         <div class="col-sm-4">
-            <label>Temporary ATD Number:</label>
+            <label>Temporary ATD Number</label>
             {{ form.temporary_atd }}
         </div>
     </fieldset>
     <fieldset>
     <legend align="left">For New Employee Only</legend>
         <div class="col-sm-4">
-            <label>New Employee ID:</label>
+            <label>New Employee ID</label>
             {{ form.new_emp_id }}
         </div>
         <div class="col-sm-4">
-            <label>New First Name:</label>
+            <label>New First Name</label>
             {{ form.new_emp_fname }}
         </div>
         <div class="col-sm-4">
-            <label>New Last Name:</label>
+            <label>New Last Name</label>
             {{ form.new_emp_lname }}
         </div>
         <div class="col-sm-4">
-            <label>New Employee Cost Center:</label>
+            <label>New Employee Cost Center</label>
             {{ form.new_emp_cost }}
         </div>
         <div class="col-sm-4">
-            <label>Temporary ATD Number:</label>
+            <label>Temporary ATD Number</label>
             {{ form.new_temp_atd }}
         </div>
     </fieldset>
     <fieldset>
     <legend align="left">For Transfer of Accountability</legend>
         <div class="col-sm-4">
-            <label>New Assignee :</label>
+            <label>New Assignee </label>
             {{ form.new_assignee }}
         </div>
         <div class="col-sm-4">
-            <label>Cost Center Code:</label>
+            <label>Cost Center Code</label>
             {{ form.cost_center_code }}
         </div>
         <div class="col-sm-4">
-            <label>GCR Cancellation:</label>
+            <label>GCR Cancellation</label>
             {{ form.cancellation }}
         </div>
     </fieldset>
     <fieldset>
     <legend align="left">Vehicle Details</legend>
         <div class="col-sm-4">
-            <label>Plate Number:</label>
+            <label>Plate Number</label>
             {{ form.plate_no }}
         </div>
         <div class="col-sm-4">
-            <label>Conduction Sticker:</label>
+            <label>Conduction Sticker</label>
             {{ form.con_sticker }}
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Model Year:</label>
+            <label>Vehicle Model Year</label>
             {{ form.model_year }}
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Brand:</label>
+            <label>Vehicle Brand</label>
             {{ form.brand }}
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Make:</label>
+            <label>Vehicle Make</label>
             {{ form.make }}
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Fuel Type:</label>
+            <label>Vehicle Fuel Type</label>
             {{ form.fuel_type }}
         </div>
     </fieldset>
     <fieldset>
     <legend align="left">New Vehicle Details</legend>
         <div class="col-sm-4">
-            <label>Plate Number:</label>
+            <label>Plate Number</label>
             {{ form.new_plate_no }}
         </div>
         <div class="col-sm-4">
-            <label>Conduction Sticker:</label>
+            <label>Conduction Sticker</label>
             {{ form.new_cond_sticker }}
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Model Year:</label>
+            <label>Vehicle Model Year</label>
             {{ form.new_model_year }}
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Brand:</label>
+            <label>Vehicle Brand</label>
             {{ form.new_vbrand }}
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Make:</label>
+            <label>Vehicle Make</label>
             {{ form.new_vmake }}
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Fuel Type:</label>
+            <label>Vehicle Fuel Type</label>
             {{ form.new_vfuel_type }}
         </div>
     </fieldset>
@@ -195,7 +195,7 @@ function gascard(card) {
     <fieldset>
         <legend align="left">Approved Process</legend>
         <div class="col-sm-6">
-            <label>Approved By:</label>
+            <label>Approved By</label>
             {{ form.approved_by }}
         </div>
     </fieldset>
@@ -205,9 +205,9 @@ function gascard(card) {
     </div>
     <div id="OutBound Process" class="w3-container gas" style="display:none">
     <fieldset>
-        <legend align="left">OutBound Process</legend>
+        <legend align="left">Outbound Process</legend>
         <div class="col-sm-6">
-            <label>Date Submitted Application:</label>
+            <label>Date Submitted Application</label>
             {{ form.date_summitted }}
         </div>
     </fieldset>
@@ -219,11 +219,11 @@ function gascard(card) {
     <fieldset>
         <legend align="left">Inbound Process</legend>
         <div class="col-sm-6">
-            <label>Date Recieved Fleet Card:</label>
+            <label>Date Received Fleet Card</label>
             {{ form.fleet_received }}
         </div>
         <div class="col-sm-6">
-            <label>Fleet Card Number:</label>
+            <label>Fleet Card Number</label>
             {{ form.fleet_card_no }}
         </div>
     </fieldset>
@@ -235,11 +235,11 @@ function gascard(card) {
     <fieldset>
         <legend align="left">Fleet Card Releasing</legend>
         <div class="col-sm-6">
-            <label>Fleet Card Released Date:</label>
+            <label>Fleet Card Released Date</label>
             {{ form.fleet_date_release }}
         </div>
         <div class="col-sm-6">
-            <label>Person Releases Fleet Card:</label>
+            <label>Person Releases Fleet Card</label>
             {{ form.person_release }}
         </div>
         {{ form.GCR_SLA }}

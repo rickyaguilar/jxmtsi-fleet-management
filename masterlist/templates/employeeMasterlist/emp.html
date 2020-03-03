@@ -91,32 +91,14 @@ table.dataTable.fixedHeader-floating {
 <script>
 $(document).ready(function() {
     var table = $('#vtable').DataTable({
-        fixedHeader: true,
+        "processing": true,
         "serverSide": true,
         "scrollX": true,
         "scrollY": true,
-        "initComplete": function(settings, json){
- 
-                $('.dataTables_scrollBody').on('scroll',function(){
-                    $('.dataTables_scrollHeadInner').scrollLeft($(this).scrollLeft());
-                });
- 
-                $(document).on('scroll',function(){
- 
-                    var scroll_pos = $(this).scrollTop();
-                    var margin = 210; // Adjust it to your needs
-                    var cur_pos = $('.dataTables_scrollHeadInner').position();
-                    var header_pos = cur_pos.top;
- 
-                    if(scroll_pos < margin)
-                         var header_pos = margin - scroll_pos;
-                    else
-                        header_pos = 20;
- 
-                    $('.dataTables_scrollHeadInner').css({"top" : header_pos});
-                });
+        "ajax": {
+            "url":"/api/empmasterlist/?format=datatables",
+            "type":"POST"
             },
-        "ajax": "/api/empmasterlist/?format=datatables",
         "columns": [
             { 
             "data": "Employee_Id",
@@ -134,7 +116,7 @@ $(document).ready(function() {
             {"data":"Department"},
             {"data":"Section"},
             {"data":"Unit"},
-            {"data":"Sub_unit"},
+            {"data":"Sub_unit"}, 
             {"data":"IS_ID"},
             {"data":"IS_lastname"},
             {"data":"IS_firstname"},

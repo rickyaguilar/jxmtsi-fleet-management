@@ -136,7 +136,7 @@ def janRegView(request):
 			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN", COC_Date__isnull=True)	
 		}
 
-	return render(request, 'regJan_monitoring.html', context)
+	return render(request, 'month_reg/regJan_monitoring.html', context)
 
 def febRegView(request):
 	context = {
@@ -145,7 +145,7 @@ def febRegView(request):
 			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB", COC_Date__isnull=True)
 		}
 
-	return render(request, 'regFeb_monitoring.html', context)
+	return render(request, 'month_reg/regFeb_monitoring.html', context)
 
 def marRegView(request):
 	context = {
@@ -154,7 +154,7 @@ def marRegView(request):
 			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR",COC_Date__isnull=True)
 		}
 
-	return render(request, 'regMar_monitoring.html', context)
+	return render(request, 'month_reg/regMar_monitoring.html', context)
 
 def aprRegView(request):
 	context = {
@@ -164,7 +164,7 @@ def aprRegView(request):
 
 		}
 
-	return render(request, 'regApr_monitoring.html', context)
+	return render(request, 'month_reg/regApr_monitoring.html', context)
 
 def mayRegView(request):
 	context = {
@@ -173,7 +173,7 @@ def mayRegView(request):
 			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY", COC_Date__isnull=True)
 		}
 
-	return render(request, 'regMay_monitoring.html', context)
+	return render(request, 'month_reg/regMay_monitoring.html', context)
 
 def junRegView(request):
 	context = {
@@ -182,7 +182,7 @@ def junRegView(request):
 			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN", COC_Date__isnull=True)
 		}
 
-	return render(request, 'regJun_monitoring.html', context)
+	return render(request, 'month_reg/regJun_monitoring.html', context)
 
 def julRegView(request):
 	context = {
@@ -190,7 +190,7 @@ def julRegView(request):
 			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", Smoke_Emission_Date__isnull=True),
 			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", COC_Date__isnull=True)
 		}
-	return render(request, 'regJul_monitoring.html', context)
+	return render(request, 'month_reg/regJul_monitoring.html', context)
 
 def augRegView(request):
 	context = {
@@ -199,7 +199,7 @@ def augRegView(request):
 			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG", COC_Date__isnull=True)
 		}
 
-	return render(request, 'regAug_monitoring.html', context)
+	return render(request, 'month_reg/regAug_monitoring.html', context)
 
 def sepRegView(request):
 	context = {
@@ -208,7 +208,7 @@ def sepRegView(request):
 			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP", COC_Date__isnull=True)
 		}
 
-	return render(request, 'regSep_monitoring.html', context)
+	return render(request, 'month_reg/regSep_monitoring.html', context)
 
 def octRegView(request):
 	context = {
@@ -217,7 +217,99 @@ def octRegView(request):
 			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT", COC_Date__isnull=True)
 		}
 
-	return render(request, 'regOct_monitoring.html', context)
+	return render(request, 'month_reg/regOct_monitoring.html', context)
+
+
+# SUMMARY BY MONTH
+def janSumView(request):
+	context = {
+			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN", Last_Registration_Date__isnull=False ),
+			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN", Smoke_Emission_Date__isnull=False),
+			'jan_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumJan_monitoring.html', context)
+
+def febSumView(request):
+	context = {
+			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB", Last_Registration_Date__isnull=False ),
+			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB", Smoke_Emission_Date__isnull=False),
+			'feb_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumFeb_monitoring.html', context)
+
+def marSumView(request):
+	context = {
+			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR", Last_Registration_Date__isnull=False ),
+			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR", Smoke_Emission_Date__isnull=False),
+			'mar_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumMar_monitoring.html', context)
+
+def aprSumView(request):
+	context = {
+			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR", Last_Registration_Date__isnull=False ),
+			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR", Smoke_Emission_Date__isnull=False),
+			'apr_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumApr_monitoring.html', context)
+
+def maySumView(request):
+	context = {
+			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY", Last_Registration_Date__isnull=False ),
+			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY", Smoke_Emission_Date__isnull=False),
+			'may_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumMay_monitoring.html', context)
+
+def junSumView(request):
+	context = {
+			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN", Last_Registration_Date__isnull=False ),
+			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN", Smoke_Emission_Date__isnull=False),
+			'jun_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumJun_monitoring.html', context)
+
+def julSumView(request):
+	context = {
+			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", Last_Registration_Date__isnull=False ),
+			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", Smoke_Emission_Date__isnull=False),
+			'jul_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumJul_monitoring.html', context)
+
+def augSumView(request):
+	context = {
+			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG", Last_Registration_Date__isnull=False ),
+			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG", Smoke_Emission_Date__isnull=False),
+			'aug_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumAug_monitoring.html', context)
+
+def sepSumView(request):
+	context = {
+			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP", Last_Registration_Date__isnull=False ),
+			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP", Smoke_Emission_Date__isnull=False),
+			'sep_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumSep_monitoring.html', context)
+
+def octSumView(request):
+	context = {
+			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT", Last_Registration_Date__isnull=False ),
+			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT", Smoke_Emission_Date__isnull=False),
+			'oct_list': VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT", COC_Date__isnull=False)	
+		}
+
+	return render(request, 'sum_reg/sumOct_monitoring.html', context)
 
 def plateMonitoringView(request):
 	context = {
@@ -297,6 +389,589 @@ def fata_excel(request):
 
     workbook.save(response)
     return response
+
+#SUMMARY EXPORT
+def sum_jan_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JAN", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_January.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring January'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_feb_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="FEB", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_Febuary.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring Febuary'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_mar_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAR", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_March.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring March'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_apr_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="APR", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_April.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring April'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_may_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="MAY", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_May.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring May'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_jun_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUN", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_June.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring June'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_jul_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="JUL", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_July.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring July'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_aug_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="AUG", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_August.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring August'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_sep_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="SEP", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_September.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring September'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+
+def sum_oct_excel(request):
+    sum_queryset = VehicleMasterList.objects.filter(REGISTRATION_MONTH__contains="OCT", Last_Registration_Date__isnull=False, Smoke_Emission_Date__isnull=False, COC_Date__isnull=False )   
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename= Summary_Monitoring_October.xlsx'
+    workbook = Workbook()
+
+    worksheet = workbook.active
+    worksheet.title = 'Summary Monitoring October'
+
+    columns = [
+				'Plate Number' ,
+				'Conductions Sticker No.:' ,
+				'CR Name' ,
+				'Model' ,
+				'Brand' ,
+				'Vehicle Make' ,
+				'Assignee Last Name' ,
+				'Assignee First Name' ,
+				'MV-File' ,
+				'Last Registration Date' ,
+				'Smoke Emission Date' ,
+				'COC Date' ,
+				'Remarks' ,
+
+    ]
+    row_num = 1
+
+    for col_num, column_title in enumerate(columns, 1):
+        cell = worksheet.cell(row=row_num, column=col_num)
+        cell.value = column_title
+
+    for sum in sum_queryset:
+        row_num += 1
+        row = [
+				sum.PLATE_NO ,
+				sum.CS_NO ,
+				sum.CR_NAME ,
+				sum.MODEL ,
+				sum.BRAND ,
+				sum.VEHICLE_MAKE ,
+				sum.ASSIGNEE_LAST_NAME ,
+				sum.ASSIGNEE_FIRST_NAME ,
+				sum.MV_FILE_NO ,
+				sum.Last_Registration_Date ,
+				sum.Smoke_Emission_Date ,
+				sum.COC_Date ,
+				sum.Remarks ,
+        ]
+        
+        for col_num, cell_value in enumerate(row, 1):
+            cell = worksheet.cell(row=row_num, column=col_num)
+            cell.value = cell_value
+
+    workbook.save(response)
+    return response
+	
+
 
 
 		

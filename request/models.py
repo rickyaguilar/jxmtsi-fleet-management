@@ -235,6 +235,7 @@ class service_vehicle(models.Model):
 	new_employee_cost = models.CharField(max_length=100, null=True, blank=True)
 	new_temporary_atd = models.CharField(max_length=100, null=True, blank=True)
 	prefered_vehicle = models.CharField(max_length=100, null=True, choices=vtype, blank=True)
+	justification = models.CharField(max_length=100, null=True, blank=True)
 	E_plate_no = models.CharField(max_length=100, null=True, blank=True)
 	E_con_sticker = models.CharField(max_length=100, null=True, blank=True)
 	E_model_year = models.CharField(max_length=100, null=True, blank=True)

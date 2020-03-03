@@ -110,6 +110,11 @@ class VehicleMasterList(models.Model):
 	ACQ_COST = models.CharField(max_length=100, null=True, blank=True)
 	ASSET_NO = models.CharField(max_length=100, null=True, blank=True)
 	EQUIPMENT_NO = models.CharField(max_length=100, null=True, blank=True)
+	SAP_PR = models.CharField(max_length=100, null=True, blank=True)
+	Vehicle_IVN_no = models.CharField(max_length=100, null=True, blank=True)
+	Unit_MATDOC = models.CharField(max_length=100, null=True, blank=True)
+	dealer = models.CharField(max_length=100, null=True, blank=True)
+	dealer_name = models.CharField(max_length=100, null=True, blank=True)
 	PO_NO = models.CharField(max_length=100, null=True, blank=True)
 	PLATE_NUMBER_RELEASE_DATE = models.DateField(auto_now=False, null=True, blank=True)
 	Employee = models.CharField(max_length=100, null=True)
@@ -117,6 +122,7 @@ class VehicleMasterList(models.Model):
 	Smoke_Emission_Date = models.CharField(max_length=100, null=True, blank=True)
 	COC_Date = models.CharField(max_length=100, null=True, blank=True)
 	Remarks = models.CharField(max_length=100, null=True, blank=True, choices=remarks)
+	leasing_remark = models.CharField(max_length=225, null=True, blank=True)
 	history = HistoricalRecords()
 
 

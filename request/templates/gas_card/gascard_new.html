@@ -21,7 +21,7 @@ function gascard(card) {
  <div class="w3-bar w3-black">
     <button class="w3-bar-item w3-button" onclick="gascard('Gas Card Request')">Gas Card Request</button>
     <button class="w3-bar-item w3-button" onclick="gascard('Approved Process')">Approved Process</button>
-    <button class="w3-bar-item w3-button" onclick="gascard('OutBound Process')">OutBound Process</button>
+    <button class="w3-bar-item w3-button" onclick="gascard('OutBound Process')">Outbound Process</button>
     <button class="w3-bar-item w3-button" onclick="gascard('Inbound Process')">Inbound Process</button>
     <button class="w3-bar-item w3-button" onclick="gascard('Fleet Card Releasing')">Fleet Card Releasing</button>
 </div>
@@ -37,7 +37,7 @@ function gascard(card) {
         </div>
         </div>
         <div class="col-sm-4">
-            <label>Application Type:</label>
+            <label>Application Type</label>
             <select name="app_type" id="app_type" class="form-control">
                 <option value="">--------</option>
                 <option value="Daily">Daily</option>
@@ -52,7 +52,7 @@ function gascard(card) {
             </select>
         </div>
         <div class="col-sm-4">
-            <label>Fleet Card Provider:</label>
+            <label>Fleet Card Provider</label>
             <select name="fleet_card" id="fleet_card" class="form-control">
                 <option value="">---------</option>
                 <option value="Petron">Petron</option>
@@ -66,19 +66,20 @@ function gascard(card) {
                     <option value="Single">Single</option>
                     <option value="Driver">Driver</option>
                     <option value="Vehicle">Vehicle</option>
+                    <option value="Dual Card">Dual Card</option>
                 </select>
         </div>
 
         <div class="col-sm-4">
-            <label>Fuel Limit Amount:</label>
+            <label>Fuel Limit Amount</label>
             <input type="Text" name="fuel_amount" id="fuel_amount" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Fuel Limit Quantity:</label>
+            <label>Fuel Limit Quantity</label>
             <input type="Text" name="fuel_quantity" id="fuel_quantity" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Products Restrictions</label>
+            <label>Product Restrictions</label>
             <select name="products_restriction" id="products_restriction" class="form-control">
                     <option value="">-------</option>
                     <option value="S - Super Only">S - Super Only</option>
@@ -97,7 +98,7 @@ function gascard(card) {
     <fieldset>
         <legend align="left">Requisitioner Details</legend>
         <div class="col-sm-4">
-            <label>Requisitioner Employee ID:</label>
+            <label>Requisitioner Employee ID</label>
             <input name="req_emp_id" id="req_emp_id" list="emp_list" class="form-control" required>
             <datalist id="emp_list">               
             {% for empid in elist %}
@@ -107,72 +108,72 @@ function gascard(card) {
             </datalist>
         </div>
         <div class="col-sm-4">
-            <label>Requisitioner First Name:</label>
+            <label>Requisitioner First Name</label>
             <input type="Text" name="r_fname" id="r_fname" class="form-control" readonly>
         </div>
         <div class="col-sm-4">
-            <label>Requisitioner Last Name:</label>
+            <label>Requisitioner Last Name</label>
             <input type="Text" name="r_lname" id="r_lname" class="form-control" readonly>
         </div>
         <div class="col-sm-4">
-            <label>Requisitioner Cost Center:</label>
+            <label>Requisitioner Cost Center</label>
             <input type="Text" name="r_costcenter" id="r_costcenter" class="form-control" readonly>
         </div>
         <div class="col-sm-4">
-            <label>Requisitioner Title:</label>
+            <label>Requisitioner Title</label>
             <input type="Text" name="r_title" id="r_title" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>ATD Number:</label>
+            <label>ATD Number</label>
             <input type="Text" name="atd_no" id="atd_no" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Temporary ATD Number:</label>
+            <label>Temporary ATD Number</label>
             <input type="Text" name="temp_atd" id="temp_atd" class="form-control">
         </div>
     </fieldset>
     <fieldset>
     <legend align="left">For New Employee Only</legend>
         <div class="col-sm-4">
-            <label>New Employee ID:</label>
+            <label>New Employee ID</label>
             <input type="Text" name="new_empId" id="new_empId" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>New First Name:</label>
+            <label>New First Name</label>
             <input type="Text" name="new_fname" id="new_fname" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>New Last Name:</label>
+            <label>New Last Name</label>
             <input type="Text" name="new_lname" id="new_lname" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>New Employee Cost Center:</label>
+            <label>New Employee Cost Center</label>
             <input type="Text" name="new_costcenter" id="new_costcenter" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Temporary ATD Number:</label>
+            <label>Temporary ATD Number</label>
             <input type="Text" name="new_tempATD" id="new_tempATD" class="form-control">
         </div>
     </fieldset>
     <fieldset>
     <legend align="left">For Transfer of Accountability</legend>
         <div class="col-sm-4">
-            <label>New Assignee :</label>
+            <label>New Assignee </label>
             <input type="Text" name="new_assignee" id="new_assignee" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Cost Center Code:</label>
+            <label>Cost Center Code</label>
             <input type="Text" name="cost_code" id="cost_code" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>GCR Cancellation:</label>
+            <label>GCR Cancellation</label>
             <input type="Text" name="gcr_cancel" id="gcr_cancel" class="form-control">
         </div>
     </fieldset>
     <fieldset>
     <legend align="left">Vehicle Details</legend>
         <div class="col-sm-4">
-            <label>Plate Number:</label>
+            <label>Plate Number</label>
             <input name="plate_no" id="plate_no" list="v_list" class="form-control" required>
             <datalist id="v_list">               
             {% for vlist in vlist %}
@@ -182,50 +183,50 @@ function gascard(card) {
             </datalist>
         </div>
         <div class="col-sm-4">
-            <label>Conduction Sticker:</label>
+            <label>Conduction Sticker</label>
             <input type="Text" name="c_sticker" id="c_sticker" class="form-control" readonly>
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Model Year:</label>
+            <label>Vehicle Model Year</label>
             <input type="Text" name="v_model" id="v_model" class="form-control" readonly>
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Brand:</label>
+            <label>Vehicle Brand</label>
             <input type="Text" name="v_brand" id="v_brand" class="form-control" readonly>
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Make:</label>
+            <label>Vehicle Make</label>
             <input type="Text" name="v_make" id="v_make" class="form-control" readonly>
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Fuel Type:</label>
+            <label>Vehicle Fuel Type</label>
             <input type="Text" name="v_fueltype" id="v_fueltype" class="form-control">
         </div>
     </fieldset>
     <fieldset>
     <legend align="left">New Vehicle Details</legend>
         <div class="col-sm-4">
-            <label>Plate Number:</label>
+            <label>Plate Number</label>
             <input type="Text" name="new_plate_no" id="new_plate_no" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Conduction Sticker:</label>
+            <label>Conduction Sticker</label>
             <input type="Text" name="new_cs" id="new_cs" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Model Year:</label>
+            <label>Vehicle Model Year</label>
             <input type="Text" name="new_model" id="new_model" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Brand:</label>
+            <label>Vehicle Brand</label>
             <input type="Text" name="new_brand" id="new_brand" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Make:</label>
+            <label>Vehicle Make</label>
             <input type="Text" name="new_make" id="new_make" class="form-control">
         </div>
         <div class="col-sm-4">
-            <label>Vehicle Fuel Type:</label>
+            <label>Vehicle Fuel Type</label>
             <input type="Text" name="new_fueltype" id="new_fueltype" class="form-control">
         </div>
     </fieldset>
@@ -237,10 +238,11 @@ function gascard(card) {
     <fieldset>
         <legend align="left">Approved Process</legend>
         <div class="col-sm-6">
-            <label>Approved By:</label>
+            <label>Approved By</label>
             <select name="approved_by" id="approved_by" class="form-control">
                 <option value="">-------</option>
-                <option value="Sir Roy Perluval Dela Cruz">Sir Roy Perluval Dela Cruz</option>
+                <option value="Ser Roy Perluval Dela Cruz">Ser Roy Perluval Dela Cruz</option>
+                <option value="Shyla Marie Taboon">Shyla Marie Taboon</option>
             </select>
         </div>
     </fieldset>
@@ -250,9 +252,9 @@ function gascard(card) {
     </div>
     <div id="OutBound Process" class="w3-container gas" style="display:none">
     <fieldset>
-        <legend align="left">OutBound Process</legend>
+        <legend align="left">Outbound Process</legend>
         <div class="col-sm-6">
-            <label>Date Submitted Application:</label>
+            <label>Date Submitted Application</label>
             <input type="Date" name="date_sumitted_app" id="date_sumitted_app" class="form-control">
         </div>
     </fieldset>
@@ -264,11 +266,11 @@ function gascard(card) {
     <fieldset>
         <legend align="left">Inbound Process</legend>
         <div class="col-sm-6">
-            <label>Date Recieved Fleet Card:</label>
+            <label>Date Received Fleet Card</label>
             <input type="Date" name="date_recieved_fleet" id="date_recieved_fleet" class="form-control">
         </div>
         <div class="col-sm-6">
-            <label>Fleet Card Number:</label>
+            <label>Fleet Card Number</label>
                 <input type="Text" name="fleet_card_no" id="fleet_card_no" class="form-control">
             </div>
     </fieldset>
@@ -280,11 +282,11 @@ function gascard(card) {
     <fieldset>
         <legend align="left">Fleet Card Releasing</legend>
         <div class="col-sm-6">
-            <label>Fleet Card Released Date:</label>
+            <label>Fleet Card Released Date</label>
             <input type="Text" name="fleet_card_release" id="fleet_card_release" class="form-control">
         </div>
         <div class="col-sm-6">
-            <label>Person Releases Fleet Card:</label>
+            <label>Person Releases Fleet Card</label>
             <input type="Text" name="person_release_card" id="person_release_card" class="form-control">
         </div>
         <input type="Text" name="gcr_sla" id="gcr_sla" class="form-control" value="10" hidden>
