@@ -36,13 +36,16 @@
                 <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Activity ID:</th>
-                            <th>Assignee Full Name:</th>
-                            <th>Assignee Cost Center:</th>
-                            <th>Billing Date:</th>
-                            <th>Plate Number:</th>
+                            <th>Activity ID</th>
+                            <th>Assignee Full Name</th>
+                            <th>Assignee Cost Center</th>
+                            <th>Billing Date</th>
+                            <th>Plate Number</th>
                             <th>SLA Working Days</th>
                             <th>Date Initiated</th>
+                            <th>Provider</th>
+                            <th>SQA Number</th>
+                            <th>RFP Number</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -56,9 +59,12 @@
                             <td>{{ CarRental.Plate_no }}</td>
                             <td>{{ CarRental.C_SLA }}/Days</td>
                             <td>{{ CarRental.Date_initiated }}</td>
+                            <td>{{ CarRental.car_provider}} </td>
+                            <td>{{ CarRental.sqa_number}} </td>
+                            <td>{{ CarRental.rfp_no2 }}</td>
                             <form action="{% url 'carrental_delete' CarRental.id %}" method="POST">
                                 {% csrf_token %}
-                                <td><button title= "Delete" class="btn btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
+                                <td><button title= "Delete" class="btn-danger btn-sm" type="submit" name="button"><span class="fa fa-trash"></span></button></td>
                             </form>
                         </tr>
                         {% endfor %}

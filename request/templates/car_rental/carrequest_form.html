@@ -20,7 +20,7 @@ function carrequest(car) {
 </div>
  <div class="w3-bar w3-black">
   <button class="w3-bar-item w3-button" onclick="carrequest('Car Rental Request')">Car Rental Request</button>
-  <button class="w3-bar-item w3-button" onclick="carrequest('OutBound Process')">OutBound Process</button>
+  <button class="w3-bar-item w3-button" onclick="carrequest('OutBound Process')">Outbound Process</button>
   <button class="w3-bar-item w3-button" onclick="carrequest('Approved Process')">Approved Process</button>
 </div>
 <form method="POST">
@@ -36,11 +36,11 @@ function carrequest(car) {
       </div>
       <br><br>
       <div class="col-sm-4">
-          <label>Date Received:</label>
+          <label>Date Received</label>
           {{ form.Date_received }}
       </div>
       <div class="col-sm-4">
-          <label>First Name:</label>
+          <label>First Name</label>
           {{ form.Assignee_Fname}}
       </div>
       <div class="col-sm-4">
@@ -49,11 +49,11 @@ function carrequest(car) {
       </div>
 
       <div class="col-sm-4">
-          <label>Contact Number:</label>
+          <label>Contact Number</label>
           {{ form.Assignee_No }}
       </div>
       <div class="col-sm-4">
-          <label>Company:</label>
+          <label>Company</label>
           {{ form.Assignee_Company }}
       </div>
       <div class="col-sm-4">
@@ -61,11 +61,11 @@ function carrequest(car) {
         {{ form.Assignee_band }}
       </div>
       <div class="col-sm-4">
-          <label>Department:</label>
+          <label>Department</label>
           {{ form.Assignee_Dept }}
       </div>
       <div class="col-sm-4">
-          <label>Cost Center:</label>
+          <label>Cost Center</label>
           {{ form.Assignee_Cost }}
       </div>
       <div class="col-sm-4">
@@ -73,19 +73,19 @@ function carrequest(car) {
         {{ form.Assignee_Div }}
       </div>
       <div class="col-sm-4">
-          <label>Location:</label>
+          <label>Location</label>
           {{ form.Assignee_Loc }}
       </div>
       <div class="col-sm-4">
-          <label>Section:</label>
+          <label>Section</label>
           {{ form.Assignee_Section }}
       </div>
       <div class="col-sm-4">
-          <label>Designation:</label>
+          <label>Designation</label>
           {{ form.Assignee_Designation }}
       </div>
       <div class="col-sm-4">
-          <label>ATD:</label>
+          <label>ATD</label>
           {{ form.Assignee_ATD }}
       </div>
     <br><br>
@@ -94,52 +94,52 @@ function carrequest(car) {
     <fieldset>
     <legend align="left">Car Rental Request Details</legend>
     <div class="col-sm-4">
-        <label>Vendor Name:</label>
+        <label>Vendor Name</label>
         {{ form.Vendor_name }}
     </div>
     <div class="col-sm-4">
-        <label>Date:</label>
+        <label>Date</label>
         {{ form.Date }}
     </div>
     <div class="col-sm-4">
-        <label>Up to:</label>
+        <label>Up to</label>
         {{ form.Up_to }}
     </div>
     <div class="col-sm-4">
-        <label>Time:</label>
+        <label>Time</label>
         {{ form.Time }}
     </div>
     <div class="col-sm-4">
-        <label>Place Of Delivery:</label>
+        <label>Place of Delivery</label>
         {{ form.Place_of_del }}
     </div>
     <div class="col-sm-4">
-        <label>Type Of Rental:</label>
+        <label>Type of Rental</label>
         {{ form.type_rental }}
     </div>
     <div class="col-sm-4">
-        <label>Cost Center:</label>
+        <label>Cost Center</label>
         {{ form.Cost_center }}
     </div>
     <div class="col-sm-4">
-        <label>Rental Period:</label>
+        <label>Rental Period</label>
         {{ form.Rental_period }}
     </div>
     <div class="col-sm-4">
-        <label>Destination:</label>
+        <label>Destination</label>
         {{ form.Destination }}
     </div>
     <div class="col-sm-4">
-        <label>Delivery Date:</label>
+        <label>Delivery Date</label>
         {{ form.Delivery_date}}
     </div>
     <div class="col-sm-4">
-        <label>End User:</label>
+        <label>End User</label>
         {{ form.End_user }}
     </div>
     </fieldset>
     <div class="card-footer">
-      <button type="submit" class="button">PROCEED</butoon>
+      <button type="submit" class="button">PROCEED</button><a href="{% url 'carrequest_list' %}" type="button" class="btn">CLOSE</a>
     </div>
     <br><br><br>
   </div>
@@ -148,11 +148,11 @@ function carrequest(car) {
     <fieldset>
       <legend align="left">Vehicle Details</legend>
     <div class="col-sm-6">
-      <label>Type Of Vehicle:</label>
+      <label>Type of Vehicle</label>
       {{ form.Type_of_vehicle }}
     </div>
     <div class="col-sm-6">
-      <label>Plate Number:</label>
+      <label>Plate Number</label>
       {{ form.Plate_no }}
     </div>
     </fieldset>
@@ -166,7 +166,7 @@ function carrequest(car) {
   <fieldset>
   <legend align="left">Approval Process</legend>
   <div class="col-sm-6">
-      <label>Immediate Supervisor:</label>
+      <label>Immediate Supervisor</label>
       {{ form.Immediate_supervisor }}
   </div>
   <div class="col-sm-6">

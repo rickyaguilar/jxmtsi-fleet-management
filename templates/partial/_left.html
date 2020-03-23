@@ -21,18 +21,40 @@
   cursor: pointer;
   outline: none;
   color: #F9F7F7;
-  background-color: #858181;
+  background-color: #56953e;
   border: none;
   border-radius: 20px;
   /*box-shadow: 0 9px #999;*/
 }
-/*
-.button:hover {background-color: #131414}
+
+.button:hover {background-color: #AAB7B8}
 
 .button:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
-  transform: translateY(4px);*/
+  transform: translateY(4px);
+}
+.btn {
+  padding: 15px 25px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  /*text-decoration-color: #000000;*/
+  cursor: pointer;
+  outline: none;
+  color: #F9F7F7;
+  background-color: #21618C;
+  border: none;
+  border-radius: 20px;
+  /*box-shadow: 0 9px #999;*/
+}
+
+.btn:hover {background-color: #AAB7B8}
+
+.btn:active {
+  background-color: #21618C;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 </style>
 <style>
@@ -75,7 +97,15 @@ body {font-family: Arial;}
   border-top: none;
 }
 </style>
+<style type="text/css">
+    #left-panel {
+      background-color: #3b5998;
+    }
+    #main-menu {
+      background-color: #3b5998;
+    }
 
+</style>
 
 <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -86,11 +116,11 @@ body {font-family: Arial;}
                 <ul class="nav navbar-nav">
                     <li class="active">
                     <br>
-                        <img src="{% static 'images/f2.png' %}">
+                        <img src="{% static 'images/JXMTSI_Logo.png' %}">
                     </li>
                     <h3 class="menu-title"></h3><br><!-- /.menu-title -->
                     <li>
-                        <a href="{% url 'FLEET-index' %}"><i class="menu-icon fa fa-tachometer-o"></i>Dasboard</a>
+                        <a href="{% url 'FLEET-index' %}"><i class="menu-icon fa fa-tachometer-o"></i>Dashboard</a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop" style="color:#3FF712;"></i>Payment's</a>
@@ -103,7 +133,7 @@ body {font-family: Arial;}
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-send-o	
-" style="color:#33F8E6"></i>Request</a>
+                    " style="color:#33F8E6"></i>Request</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-send-o"style="color:#33F8E6"></i><a href="{% url 'carrequest_list' %}">Car Rental Request</a></li>
                             <li><i class="fa fa-send-o"style="color:#33F8E6"></i><a href="{% url 'gascard_list' %}">Gas Card Request</a></li>
@@ -122,6 +152,7 @@ body {font-family: Arial;}
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-folder-o" style="color:#F34415"></i><a href="{% url 'Monitoring_list' %}">FATA Monitoring</a></li>
                             <li><i class="menu-icon fa fa-folder-o" style="color:#F34415"></i><a href="{% url 'Monitoring_jan_reg' %}">Registration Monitoring</a></li>
+                            <li><i class="menu-icon fa fa-folder-o" style="color:#F34415"></i><a href="{% url 'Summary_jan_reg' %}">Summary Monitoring</a></li>
                             <li><i class="menu-icon fa fa-folder-o" style="color:#F34415"></i><a href="{% url 'Monitoring_plate' %}">Plate Monitoring</a></li>
                         </ul>
                     </li>

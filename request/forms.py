@@ -218,6 +218,7 @@ class serviceform(forms.ModelForm):
 		self.fields['new_employee_cost'].required = False
 		self.fields['new_temporary_atd'].required = False
 		self.fields['prefered_vehicle'].required = False
+		self.fields['justification'].required = False
 		self.fields['E_con_sticker'].required = False
 		self.fields['E_model_year'].required = False
 		self.fields['E_brand'].required = False
@@ -239,7 +240,7 @@ class serviceform(forms.ModelForm):
 			'request_date','req_employee_id','req_lname','req_fname','assignee_employee_id','assignee_group',
 			'assignee_fname','assignee_lname','assignee_costcenter','assignee_section','assignee_location', 
 			'assignee_atd','new_employee_id','new_employee_fname','new_employee_lname','new_employee_cost',
-			'new_temporary_atd','prefered_vehicle','E_plate_no','E_con_sticker','E_model_year','E_brand',
+			'new_temporary_atd','prefered_vehicle','justification','E_plate_no','E_con_sticker','E_model_year','E_brand',
 			'E_make','E_type','approved_by','approved_date','vehicle_provider','vehicle_plate_no','vehicle_CS_no',
 			'vehicle_model','vehicle_brand','vehicle_make','vehicle_fuel_type','SVV_SLA'
 		]
@@ -293,6 +294,7 @@ class serviceform(forms.ModelForm):
 			'new_employee_cost': forms.TextInput(attrs={'class':'form-control', 'readonly':'True'}),
 			'new_temporary_atd': forms.TextInput(attrs={'class':'form-control'}),
 			'prefered_vehicle': forms.Select(attrs={'class':'form-control', 'choices':'vtype'}),
+			'justification': forms.TextInput(attrs={'class':'form-control', 'readonly':'True'}),
 			'E_plate_no': forms.TextInput(attrs={'class':'form-control', 'readonly':'True'}),
 			'E_con_sticker': forms.TextInput(attrs={'class':'form-control', 'readonly':'True'}),
 			'E_model_year': forms.TextInput(attrs={'class':'form-control', 'readonly':'True'}),

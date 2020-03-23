@@ -466,6 +466,7 @@ def servicesubmit(request):
         new_employee_cost = request.POST.get('new_employee_cost')
         new_temporary_atd = request.POST.get('new_temporary_atd')
         prefered_vehicle = request.POST.get('prefered_vehicle')
+        justification = request.POST.get('justification')
         E_plate_no = request.POST.get('E_plate_no')
         E_con_sticker = request.POST.get('E_con_sticker')
         E_model_year = request.POST.get('E_model_year')
@@ -487,7 +488,7 @@ def servicesubmit(request):
             assignee_employee_id=assignee_employee_id, assignee_group=Assignee_Group, assignee_fname=assignee_fname, assignee_lname=assignee_lname,
             assignee_costcenter=assignee_costcenter, assignee_section=assignee_section, assignee_location=assignee_location, assignee_atd=assignee_atd,
             new_employee_id=new_employee_id, new_employee_fname=new_employee_fname, new_employee_lname=new_employee_lname, new_employee_cost=new_employee_cost,
-            new_temporary_atd=new_temporary_atd, prefered_vehicle=prefered_vehicle, E_plate_no=E_plate_no, E_con_sticker=E_con_sticker,
+            new_temporary_atd=new_temporary_atd, prefered_vehicle=prefered_vehicle, justification=justification, E_plate_no=E_plate_no, E_con_sticker=E_con_sticker,
             E_model_year =E_model_year, E_brand=E_brand, E_make=E_make, E_type=E_type, approved_by=approved_by, approved_date=approved_date,
             vehicle_provider =vehicle_provider, vehicle_plate_no=vehicle_plate_no, vehicle_CS_no=vehicle_CS_no, vehicle_model =vehicle_model,
             vehicle_brand =vehicle_brand, vehicle_make=vehicle_make, vehicle_fuel_type=vehicle_fuel_type, SVV_SLA =svv_sla,)
@@ -559,6 +560,7 @@ def service_request_excel(request):
         'New Employee Cost Center' ,
         'New Temporary ATD' ,
         'Prefered Vehicle' ,
+        'Justification' ,
         'Plate No' ,
         'Conduction Sticker' ,
         'Model' ,
@@ -605,6 +607,7 @@ def service_request_excel(request):
         service.new_employee_cost ,
         service.new_temporary_atd ,
         service.prefered_vehicle ,
+        service.justification,
         service.E_plate_no ,
         service.E_con_sticker ,
         service.E_model_year ,

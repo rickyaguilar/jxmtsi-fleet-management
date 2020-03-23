@@ -77,6 +77,12 @@ class Vmasterlist(forms.ModelForm):
             self.fields['ASSET_NO'].required = False
             self.fields['EQUIPMENT_NO'].required = False
             self.fields['PO_NO'].required = False
+            self.fields['SAP_PR'].required = False
+            self.fields['Vehicle_IVN_no'].required = False
+            self.fields['ASSET_NO'].required = False
+            self.fields['Unit_MATDOC'].required = False
+            self.fields['dealer'].required = False
+            self.fields['dealer_name'].required = False
             self.fields['PLATE_NUMBER_RELEASE_DATE'].required = False
 
       class Meta:
@@ -85,7 +91,8 @@ class Vmasterlist(forms.ModelForm):
                   'PLATE_NO','CS_NO','CR_NAME','PLATE_ENDING','REGISTRATION_MONTH','MODEL','BRAND',
                   'VEHICLE_MAKE','ENGINE_NO','CHASSIS_NO','MV_FILE_NO','VEHICLE_TYPE','ASSIGNEE_LAST_NAME','ASSIGNEE_FIRST_NAME','VEHICLE_CATEGORY','Employee',
                   'BAND_LEVEL','BENEFIT_GROUP','COST_CENTER','GROUP','DIVISION','DEPARTMENT','SECTION','IS_ID','IS_LAST_NAME','IS_FIRST_NAME','LOCATION','ORIGINAL_OR_DATE',
-                  'ACQ_DATE','ACQ_COST','ASSET_NO','EQUIPMENT_NO','PO_NO','PLATE_NUMBER_RELEASE_DATE','Last_Registration_Date','Smoke_Emission_Date','COC_Date','Remarks'
+                  'ACQ_DATE','ACQ_COST','ASSET_NO','EQUIPMENT_NO', 'SAP_PR','Vehicle_IVN_no','Unit_MATDOC','dealer',
+                  'dealer_name','PO_NO','PLATE_NUMBER_RELEASE_DATE','Last_Registration_Date','Smoke_Emission_Date','COC_Date','Remarks'
             ]
 
             Vbrand= (
@@ -99,6 +106,33 @@ class Vmasterlist(forms.ModelForm):
                   ('Nissan','Nissan'),
                   ('SuZuki','Suzuki'),
                   ('Chevrolet','Chevrolet'),
+                  ('Jeep">Jeep'),
+                  ('Audi','Audi'),
+                  ('BMW','BMW'),
+                  ('Bently','Bently'),
+                  ('Cadillac','Cadillac'),
+                  ('Chrysler','Chrysler'),
+                  ('Dodge','Dodge'),
+                  ('GMC','GMC'),
+                  ('Genesis','Genesis'),
+                  ('Jaguar','Jaguar'),
+                  ('Land Rover','Land Rover'),
+                  ('Lexus','Lexus'),
+                  ('Lincoln','Lincoln'),
+                  ('Lotus','Lotus'),
+                  ('Maserati','Maserati'),
+                  ('Mercedes-Benz','Mercedes-Benz'),
+                  ('Mini','Mini'),
+                  ('Porsche','Porsche'),
+                  ('Ram','Ram'),
+                  ('Rolls-Royce','Rolls-Royce'),
+                  ('Saab','Saab'),
+                  ('Scion','Scion'),
+                  ('Subaru','Subaru'),
+                  ('Tesla','Tesla'),
+                  ('Volkswagen','Volkswagen'),
+                  ('Volvo','Volvo'),
+                  ('Saturn','Saturn'),
             )
 
             widgets = {
@@ -134,6 +168,11 @@ class Vmasterlist(forms.ModelForm):
                   'ACQ_COST': forms.TextInput(attrs={'class':'form-control'}),
                   'ASSET_NO': forms.TextInput(attrs={'class':'form-control'}),
                   'EQUIPMENT_NO': forms.TextInput(attrs={'class':'form-control'}),
+                  'SAP_PR': forms.TextInput(attrs={'class':'form-control'}),
+                  'Vehicle_IVN_no': forms.TextInput(attrs={'class':'form-control'}),
+                  'Unit_MATDOC': forms.TextInput(attrs={'class':'form-control'}),
+                  'dealer': forms.TextInput(attrs={'class':'form-control'}),
+                  'dealer_name': forms.TextInput(attrs={'class':'form-control'}),
                   'PO_NO': forms.TextInput(attrs={'class':'form-control'}),
                   'PLATE_NUMBER_RELEASE_DATE': forms.TextInput(attrs={'class':'form-control'}),
                   'Last_Registration_Date': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),

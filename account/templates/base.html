@@ -27,23 +27,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
 
-    <!--table responsive-->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootsdtrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css"> -->
-
-    <!---Django Rest framework--->
-    <!-- <meta name="description" content="Rolling Stone magazine's 2012 list of 500 greatest albums of all time with genres.">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"> -->
-
-
             <!-- #######################################
                  ########### DATA TABLE CSS ############
                  #######################################   -->  
-
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <style>
 table {
   border-collapse: collapse;
@@ -53,7 +39,7 @@ table {
 }
 
 th, td {
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
 form label{
@@ -64,7 +50,7 @@ div.dataTables_wrapper {
         margin: 0 auto;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(even){background-color: #b8fedf}
 </style>
 
 <!-- <style type="text/css">
@@ -78,14 +64,7 @@ table.table {
   width: auto;
   
 }
-</style>
-
-<!-- <style type="text/css">
-form label{
-  font-weight:bold;
-} 
-</style>
- -->
+ </style>
 </head>
 
 <body>
@@ -135,21 +114,51 @@ form label{
     <script src="{% static 'vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
     <script src="{% static 'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
     <script src="{% static 'vendors/jszip/dist/jszip.min.js' %}"></script>
-    <script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <!-- <script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
     <script src="{% static 'vendors/pdfmake/build/vfs_fonts.js' %}"></script>
-    <script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+     --><script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
     <script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'vendors/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+<<<<<<< HEAD
     <script src="{% static 'assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
     <script src="{% static 'vendors/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+=======
+    <!-- <script src="{% static 'assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
+     --><script src="{% static 'vendors/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+    <!-- You can alternatively load the minified version -->
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+>>>>>>> 143f96385e35661c0e5845f1cad1fffcf334bc6c
 
     
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
 
+<<<<<<< HEAD
     <script src="{% static 'assets/datatables/js/jquery.dataTables.min.js' %}"></script>
 
 
+=======
+<script>
+    (function($) {
+        "use strict";
+
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: null,
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#1de9b6',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#1de9b6', '#03a9f5'],
+            normalizeFunction: 'polynomial'
+        });
+    })(jQuery);
+</script>
+>>>>>>> 143f96385e35661c0e5845f1cad1fffcf334bc6c
             <!-- #######################################
                  ########### DATA TABLE JS #############
                  #######################################   -->  
@@ -175,6 +184,7 @@ form label{
     } );
 } );
 </script>
+
 
      {% block extra_js %}{% endblock %}
      {% block extrascripts %}

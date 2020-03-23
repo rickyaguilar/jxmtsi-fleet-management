@@ -36,6 +36,15 @@ urlpatterns = [
 	path('Vehicle/<int:pk>', views.releaseUpdate.as_view(), name='vupdate'),
 	path('Vehiclelist/export', views.vehicle_excel, name='vehiclelist_export'),
 	path('Registration/Details/<int:pk>', views.vreg_details.as_view(), name='vregistration_details'),
+	######Vehicle Bayantel FIlter########
+	path('Vehicle/Bayantel', views.vehicle_bayan, name='vehicle_bayantel'),
+	path('Vehicle/Bayan/Export', views.vehicle_excel_bayan, name='vehiclebayan_export'),
+	#####Vehicle vehicle_telicphil ###
+	path('Vehicle/Telicphil', views.vehicle_telicphil, name='vehicle_teli'),
+	path('Vehicle/Teli/Export', views.vehicle_excel_teli, name='vehicleteli_export'),
+	#####Vehicle Leasing#####
+	path('Vehicle/Leasing', views.vehicle_leasing, name='vehicle_leasing'),
+	path('Vehicle/Leasing/Export', views.vehicle_excel_leasing, name='leasing_export'),
 	# path('Vehicle/filter', views.registration, name='vehiclefilter'),
 ]
 

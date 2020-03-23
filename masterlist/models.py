@@ -40,7 +40,7 @@ class EmployeeMasterlist(models.Model):
 def increment_Activity_Id():
 	last_in = VehicleMasterList.objects.all().order_by('id').last()
 	if not last_in:
-	    return 'VML' + str(datetime.datetime.today().strftime('%Y')) + '-' + '000000'
+	    return 'VML' + str(datetime.datetime.today().strftime('%Y')) + '-' + '000001'
 	in_id = last_in.Activity_Id
 	in_int = int(in_id[8:])
 	new_in_int = in_int + 1
@@ -59,16 +59,42 @@ def increment_NO():
 
 class VehicleMasterList(models.Model):
 	Vbrand= (
-          ('Honda','Honda'),
-          ('Toyota','Toyota'),
-          ('Mitsubishi','Mitsubishi'),
-          ('Ford','Ford'),
-          ('Masda','Masda'),
-          ('Isuzu','Isuzu'),
-          ('Hyundai','Hyundai'),
-          ('Nissan','Nissan'),
-          ('SuZuki','Suzuki'),
-          ('Chevrolet','Chevrolet'),
+			('Honda','Honda'),
+			('Toyota','Toyota'),
+			('Mitsubishi','Mitsubishi'),
+			('Ford','Ford'),
+			('Masda','Masda'),
+			('Isuzu','Isuzu'),
+			('Hyundai','Hyundai'),
+			('Nissan','Nissan'),
+			('SuZuki','Suzuki'),
+			('Chevrolet','Chevrolet'),
+			('Audi','Audi'),
+			('BMW','BMW'),
+			('Bently','Bently'),
+			('Cadillac','Cadillac'),
+			('Chrysler','Chrysler'),
+			('Dodge','Dodge'),
+			('GMC','GMC'),
+			('Genesis','Genesis'),
+			('Jaguar','Jaguar'),
+			('Land Rover','Land Rover'),
+			('Lexus','Lexus'),
+			('Lincoln','Lincoln'),
+			('Lotus','Lotus'),
+			('Maserati','Maserati'),
+			('Mercedes-Benz','Mercedes-Benz'),
+			('Mini','Mini'),
+			('Porsche','Porsche'),
+			('Ram','Ram'),
+			('Rolls-Royce','Rolls-Royce'),
+			('Saab','Saab'),
+			('Scion','Scion'),
+			('Subaru','Subaru'),
+			('Tesla','Tesla'),
+			('Volkswagen','Volkswagen'),
+			('Volvo','Volvo'),
+			('Saturn','Saturn'),
             )
 	remarks = (
             ('Without Last Registration Date','Without Last Registration Date'),
@@ -110,6 +136,11 @@ class VehicleMasterList(models.Model):
 	ACQ_COST = models.CharField(max_length=100, null=True, blank=True)
 	ASSET_NO = models.CharField(max_length=100, null=True, blank=True)
 	EQUIPMENT_NO = models.CharField(max_length=100, null=True, blank=True)
+	SAP_PR = models.CharField(max_length=100, null=True, blank=True)
+	Vehicle_IVN_no = models.CharField(max_length=100, null=True, blank=True)
+	Unit_MATDOC = models.CharField(max_length=100, null=True, blank=True)
+	dealer = models.CharField(max_length=100, null=True, blank=True)
+	dealer_name = models.CharField(max_length=100, null=True, blank=True)
 	PO_NO = models.CharField(max_length=100, null=True, blank=True)
 	PLATE_NUMBER_RELEASE_DATE = models.DateField(auto_now=False, null=True, blank=True)
 	Employee = models.CharField(max_length=100, null=True)
@@ -117,6 +148,7 @@ class VehicleMasterList(models.Model):
 	Smoke_Emission_Date = models.CharField(max_length=100, null=True, blank=True)
 	COC_Date = models.CharField(max_length=100, null=True, blank=True)
 	Remarks = models.CharField(max_length=100, null=True, blank=True, choices=remarks)
+	leasing_remark = models.CharField(max_length=225, null=True, blank=True)
 	history = HistoricalRecords()
 
 

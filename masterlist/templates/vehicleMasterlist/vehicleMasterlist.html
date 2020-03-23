@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
 table {
   border-collapse: collapse;
@@ -18,12 +16,25 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 </style>
 
-
 <div class="breadcrumbs">
     <div class="col-sm-12">
-        <h3><b>Vehicle MasterList</b></h3>
+        <h3><b>Vehicle MasterList All Units</b></h3>
     </div>
 </div>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">All Units</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'vehicle_bayantel' %}">Bayan</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'vehicle_teli' %}">TelicPhil</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="{% url 'vehicle_leasing' %}">Leasing</a>
+  </li>
+</ul>
 <div class="content mt-3" >
     <div class="animated fadeIn">
         <div class="row">
@@ -34,15 +45,14 @@ tr:nth-child(even){background-color: #f2f2f2}
                     <a href="{% url 'vehicle_new' %}" style="float:right"><u>Add Vehicle Masterlist</u></a>
                     <a href="{% url 'vehicleMasterlist_history' %}" style="float:right" class="mr-3"><u>Vehicle Masterlist History</u></a>
                 </div>
-                    <div style="overflow-x:auto;">
-                    <table id="vtable" class="table table-striped table-bordered" style="width:100%" data-server-side="true" data-ajax="/api/masterlist/?format=datatables">
+                    <table id="vtable" class="table table-striped table-bordered" style="width:100%" data-server-side="true" data-ajax="https://fmsjxmtsi.herokuapp.com/api/empmasterlist/">
                     <thead>
                         <tr>
                             <th>Activity No</th>
                             <th>NO</th>
                             <th>Plate Number</th>
-                            <th>Conductions Sticker No.:</th>
-                            <th>CR Name:</th>
+                            <th>Conductions Sticker No.</th>
+                            <th>CR Name</th>
                             <th>Plate Ending</th>
                             <th>Registration Month</th>
                             <th>Model</th>
@@ -72,8 +82,14 @@ tr:nth-child(even){background-color: #f2f2f2}
                             <th>Asset No</th>
                             <th>Equipment No</th>
                             <th>PO No</th>
+                            <th>SAP PR</th>
+                            <th>Invoice no</th>
+                            <th>Unit MATDOC</th>
+                            <th>Dealer</th>
+                            <th>Dealer Name</th>
                             <th>Plate No release Date</th>
                             <th>Employee ID</th>
+                            <th>Leasing Remarks</th>
                         </tr>
                     </thead>
                     </table>
@@ -89,11 +105,31 @@ tr:nth-child(even){background-color: #f2f2f2}
 <script>
 
 $(document).ready(function() {
+    // $.fn.dataTable.ext.errMode = 'throw';
     var table = $('#vtable').DataTable({
+        "processing": true,
         "serverSide": true,
         "scrollX": true,
-        "ajax": "/api/masterlist/?format=datatables",
-        "primaryKey":"id",
+        "ajax": {
+            "URL":"https://fmsjxmtsi.herokuapp.com/api/masterlist/",
+            // "URL":"/api/masterlist/?format=datatables",
+            "Type":"GET",
+            "dataSrc":"data",
+            "xhrFields": {
+                "withCredentials": true
+            }
+            // "dataSrc": function ( json ) {
+            //     for ( var i=0, ien=json.data.length ; i<ien ; i++ ) {
+            //         json.data[i][0] = '<a href="/message/'+json.data[i][0]+'>View message</a>';
+            //         }
+            //     return json.data;
+            //     }
+            },
+        // "ajax": {
+        //     "Authorization":"Bearer 125c7980-6cd1-40a5-99eb-b6e0ae43255b",
+        //     "Content-Type:":"/api/masterlist/",
+        //     "X-HTTP-Method-Override":"POST"
+        //     },
         "columns": [
             { 
             "data": "Activity_Id",
@@ -107,7 +143,7 @@ $(document).ready(function() {
             {"data":"NO"},
             {"data":"PLATE_NO"},
             {"data":"CS_NO"},
-            {"data":"CR_NAME", "sortable": false},
+            {"data":"CR_NAME"},
             {"data":"PLATE_ENDING"},
             {"data":"REGISTRATION_MONTH"},
             {"data":"MODEL"},
@@ -137,8 +173,14 @@ $(document).ready(function() {
             {"data":"ASSET_NO"},
             {"data":"EQUIPMENT_NO"},
             {"data":"PO_NO"},
+            {"data":"SAP_PR"},
+            {"data":"Vehicle_IVN_no"},
+            {"data":"Unit_MATDOC"},
+            {"data":"dealer"},
+            {"data":"dealer_name"},
             {"data":"PLATE_NUMBER_RELEASE_DATE"},
             {"data":"Employee"},
+            {"data":"leasing_remark"}
         ]
 
     });

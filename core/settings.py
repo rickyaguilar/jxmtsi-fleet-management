@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xm#bo4qsr2hahkrtiaga=@xa2xvi7ecrj1utnsramtbu-4g1&3'
-
+# SECRET_KEY = 'xm#bo4qsr2hahkrtiaga=@xa2xvi7ecrj1utnsramtbu-4g1&3'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fmsjxmtsi.herokuapp.com']
 
 
 # Application definition
@@ -95,12 +96,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE':'django.db.backends.postgresql_psycopg2',
+<<<<<<< HEAD
         'NAME': 'django-cursor-pagination',
         'NAME': 'django_project',
         'USER': 'jaspersanchez',
         'PASSWORD': 'jsanchez',
+=======
+        'NAME': 'fleet_9.5',
+        'USER': 'Fleet',
+        'PASSWORD': 'fleet',
+>>>>>>> 143f96385e35661c0e5845f1cad1fffcf334bc6c
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5434',
     }
 }
 
@@ -140,7 +147,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'FLEET-index'
@@ -158,4 +165,4 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework_datatables.pagination.DatatablesPageNumberPagination',
     'PAGE_SIZE': 50,
 }
-
+django_heroku.settings(locals())

@@ -15,13 +15,13 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h3 ><b>New Vehicle Payments</b></h3>&nbsp;
+        <h3 ><b>New Vehicle Payment</b></h3>&nbsp;
     </div>
 </div>
 <div class="w3-bar w3-black">
-  <button class="w3-bar-item w3-button" onclick="vehiclePayment('New vehicle Payment')"><u>New vehicle Payment</u></button>
-  <button class="w3-bar-item w3-button" onclick="vehiclePayment('OutBound Process')"><u>OutBound Process</u></button>
-  <button class="w3-bar-item w3-button" onclick="vehiclePayment('Inbound Process')"><u>Inbound Process</u></button>
+  <button class="w3-bar-item w3-button" onclick="vehiclePayment('New vehicle Payment')"><u>New Vehicle Payment Bar</u></button>
+  <button class="w3-bar-item w3-button" onclick="vehiclePayment('OutBound Process')"><u>OutBound Process Tab</u></button>
+  <button class="w3-bar-item w3-button" onclick="vehiclePayment('Inbound Process')"><u>Inbound Process Tab</u></button>
 </div>
 <form method="POST">
 {% csrf_token %}
@@ -34,13 +34,22 @@
     </div>
 
     <div class="col-sm-4">
-        <label>Employee First Name:</label>
+        <label>Employee First Name</label>
         {{ form.E_First_name }}
     </div>
     <div class="col-sm-4">
-        <label>Employee Last Name:</label>
+        <label>Employee Last Name</label>
         {{ form.E_Last_name }}
     </div>
+    <div class="col-sm-4">
+        <label>RFP No.</label>
+        {{ form.rfp_number }}
+    </div>
+    <div class="col-sm-4">
+        <label>Invoice No. </label>
+        {{ form.invoice_number }}
+    </div>    
+
     <br><br>
     </fieldset>
     <hr>
@@ -52,29 +61,50 @@
     </div>
 
     <div class="col-sm-4">
-        <label>Vehicle Plate Number:</label>
+        <label>Vehicle Plate Number</label>
         {{ form.Plate_no }}
     </div>
 
     <div class="col-sm-4">
-        <label>Vehicle Model Year:</label>
+        <label>Vehicle Model Year</label>
         {{ form.V_model }}
     </div>
     <div class="col-sm-4">
-        <label>Vehicle Brand:</label>
+        <label>Vehicle Brand</label>
         {{ form.V_brand }}
     </div>
     <div class="col-sm-4">
-        <label>Vehicle Make:</label>
+        <label>Vehicle Make</label>
         {{ form.V_make }}
     </div>
     <div class="col-sm-4">
-        <label>Vehicle Dealer:</label>
+        <label>Vehicle Dealer</label>
         {{ form.V_dealer }}
     </div>
+    <div class="col-sm-4">
+        <label>Equipment Number</label>
+        {{ form.equip_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>Asset Number</label>
+        {{ form.asset_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>SAP PR Number</label>
+        {{ form.sap_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>Mat Doc Number</label>
+        {{ form.mat_no }}
+    </div>
+    <div class="col-sm-4">
+        <label>Dealer Name</label>
+        {{ form.Dealer_name }}
+    </div>
+
     </fieldset>
     <div class="card-footer">
-      <button type="submit" class="button">PROCEED</button>
+      <button type="submit" class="button">PROCEED</button><a href="{% url 'Vehicle_list' %}" type="button" class="btn">CLOSE</a>
     </div>
     <br><br><br>
   </div>
@@ -83,20 +113,20 @@
     <fieldset>
       <legend align="left">Document Routing 1</legend>
     <div class="col-sm-6">
-        <label>Date Received LTO Documents:</label>
+        <label>Date Received LTO Documents</label>
         {{ form.LTO_documents }}
     </div>
 
     <div class="col-sm-6">
-        <label>Plate Number:</label>
+        <label>Plate Number</label>
         {{ form.Docs_plate_no }}
         </div>
     <div class="col-sm-6">
-        <label>LTO PrintOut Sticker Fields:</label>
+        <label>MV File Number</label>
         {{ form.LTO_stickers }}
     </div>
     <div class="col-sm-6">
-        <label>Sticker Fields:</label>
+        <label>Sticker Fields</label>
         {{ form.Sticker_fields }}
         <br>
     </div>
@@ -104,19 +134,19 @@
   <fieldset>
     <legend align="left">Payment Details</legend>
     <div class="col-sm-6">
-        <label>Date Transmitted Initial SOA to Accounting:</label>
+        <label>Date Transmitted Initial SOA to Accounting</label>
         {{ form.Date_initial }}
     </div>
     <div class="col-sm-6">
-        <label>Precent of first Payments:</label>
+        <label>Percent of First Payment</label>
         {{ form.First_payment }}
     </div>
     <div class="col-sm-6">
-        <label>LTO Charges:</label>
+        <label>LTO Charges</label>
         {{ form.LTO_charges }}
     </div>
     <div class="col-sm-6">
-        <label>Outstanding Balance:</label>
+        <label>Outstanding Balance</label>
         {{ form.Outstanding_balance }}
         <br>
     </div>
@@ -130,11 +160,11 @@
   <fieldset>
   <legend align="left">Document Routing 2</legend>
   <div class="col-sm-6">
-      <label>Date Transmitted Final SOA:</label>
+      <label>Date Transmitted Final SOA</label>
       {{ form.Date_final }}
   </div>
   <div class="col-sm-6">
-      <label>Routing Remarks:</label>
+      <label>Routing Remarks</label>
       {{ form.Routing_remarks }}
   </div>
   <div class="col-sm-6">

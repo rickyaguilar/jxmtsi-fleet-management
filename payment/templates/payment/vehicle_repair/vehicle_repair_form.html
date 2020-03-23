@@ -15,12 +15,12 @@ function vrepair(repair) {
 
 <div class="row">
     <div class="col-lg-12">
-        <h3><b>Vehicle Repair Payment's</b></h3>&nbsp;
+        <h3><b>Vehicle Repair Payment</b></h3>&nbsp;
     </div>
 </div>
  <div class="w3-bar w3-black">
     <button class="w3-bar-item w3-button" onclick="vrepair('Vehicle Repair Payment')">Vehicle Repair Payment</button>
-    <button class="w3-bar-item w3-button" onclick="vrepair('Outbound Process')">Outbound Process</button>
+    <button class="w3-bar-item w3-button" onclick="vrepair('Outbound Process')">Outbound Process Tab</button>
     </div>
 <form method="POST" action="{% url 'vehiclerepair_payment_submit' %}">
 {% csrf_token %}
@@ -48,7 +48,7 @@ function vrepair(repair) {
             <input type="text" name="cost_center" id="cost_center" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>First Name:</label>
+            <label>First Name</label>
             <input type="text" name="fname" id="fname" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
@@ -64,7 +64,7 @@ function vrepair(repair) {
             <input type="text" name="company" id="company" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>Department:</label>
+            <label>Department</label>
             <input type="text" name="department" id="department" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
@@ -78,7 +78,7 @@ function vrepair(repair) {
     <legend align="left">Vehicle Details</legend>
         
         <div class="col-sm-6">
-            <label>Plate Number:</label>
+            <label>Plate No.</label>
             <input name="plate_no" id="plate_no" list="v_list" class="form-control">
             <datalist id="v_list">               
             {% for vehiclelist in vlist %}
@@ -89,63 +89,76 @@ function vrepair(repair) {
         </div>
         
         <div class="col-sm-6">
-            <label>Vehicle Brand:</label>
+            <label>Vehicle Brand</label>
             <input type="text" name="v_brand" id="v_brand" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>Engine:</label>
+            <label>Engine</label>
             <input type="text" name="engine" id="engine" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>Vehicle Model Year:</label>
+            <label>Vehicle Model Year</label>
             <input type="text" name="v_model" id="v_model" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>Vehicle Make:</label>
+            <label>Vehicle Make</label>
             <input type="text" name="v_make" id="v_make" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>Chassis:</label>
+            <label>Chassis</label>
             <input type="text" name="chassis" id="chassis" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>Band:</label>
+            <label>Band</label>
             <input type="text" name="v_band" id="v_band" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>Conduction Stikers:</label>
+            <label>Conduction Stikers</label>
             <input type="text" name="cs_no" id="cs_no" class="form-control" readonly>
         </div>
         <div class="col-sm-6">
-            <label>Equipment Number:</label>
+            <label>Equipment Number</label>
             <input type="text" name="eq_no" id="eq_no" class="form-control" readonly>
+        </div>
+        <div class="col-sm-6">
+            <label>RFP Number</label>
+            <input type="text" name="rfp_no" id="rfpno" class="form-control">
         </div>
     </fieldset>
     <div class="card-footer">
-      <button type="submit" class="button">SUBMIT</button>
+      <button type="submit" class="button">SUBMIT</button><a href="{% url 'vehiclerepair_payment' %}" type="button" class="btn">CLOSE</a>
     </div>
     </div>
     <div id="Outbound Process" class="w3-container vr" style="display:none">
     <fieldset>
         <legend align="left">Repair Details</legend>
         <div class="col-sm-6">
-            <label>Dealership:</label>
-            <input type="dealer" name="dealer" id="dealer" class="form-control">
+            <label>Provider</label>
+            <input type="text" name="dealer" id="dealer" class="form-control">
         </div>
         <div class="col-sm-6">
-            <label>Amount:</label>
-            <input type="amount" name="amount" id="amount" class="form-control">
+            <label>Amount</label>
+            <input type="Number" name="amount" id="amount" class="form-control">
         </div>
         <div class="col-sm-6">
-            <label>Type Of Service:</label>
-            <select name="service_type" id="service_type" class="form-control">
+            <label>Type Of Service</label>
+            <input type="text" name="service_type" id="service_type" class="form-control">
+            <!-- <select name="service_type" id="service_type" class="form-control">
                 <option value="">---------</option>
                 <option value="Corrective Maitenance">Corrective Maitenance</option>
                 <option value="Preventive">Preventive</option>
                 <option value="Tires">Tires</option>
                 <option value="Battery">Battery</option>
                 <option value="Others">Others</option>
-            </select>
+            </select> -->
+        </div>
+        <div class="col-sm-6">
+            <label>Invoice Number</label>
+            <input type="text" name="invoice_num" id="invoice_num" class="form-control">
+        </div>
+        <div class="col-sm-6">
+            <label>Invoice Date</label>
+            <input type="date" name="invoice_date" id="invoice_date" class="form-control">
         </div>
     </fieldset>
     <div class="card-footer">
