@@ -79,7 +79,7 @@ class Vmasterlist(forms.ModelForm):
             self.fields['PO_NO'].required = False
             self.fields['SAP_PR'].required = False
             self.fields['Vehicle_IVN_no'].required = False
-            self.fields['asset_no'].required = False
+            self.fields['ASSET_NO'].required = False
             self.fields['Unit_MATDOC'].required = False
             self.fields['dealer'].required = False
             self.fields['dealer_name'].required = False
@@ -106,6 +106,33 @@ class Vmasterlist(forms.ModelForm):
                   ('Nissan','Nissan'),
                   ('SuZuki','Suzuki'),
                   ('Chevrolet','Chevrolet'),
+                  ('Jeep">Jeep'),
+                  ('Audi','Audi'),
+                  ('BMW','BMW'),
+                  ('Bently','Bently'),
+                  ('Cadillac','Cadillac'),
+                  ('Chrysler','Chrysler'),
+                  ('Dodge','Dodge'),
+                  ('GMC','GMC'),
+                  ('Genesis','Genesis'),
+                  ('Jaguar','Jaguar'),
+                  ('Land Rover','Land Rover'),
+                  ('Lexus','Lexus'),
+                  ('Lincoln','Lincoln'),
+                  ('Lotus','Lotus'),
+                  ('Maserati','Maserati'),
+                  ('Mercedes-Benz','Mercedes-Benz'),
+                  ('Mini','Mini'),
+                  ('Porsche','Porsche'),
+                  ('Ram','Ram'),
+                  ('Rolls-Royce','Rolls-Royce'),
+                  ('Saab','Saab'),
+                  ('Scion','Scion'),
+                  ('Subaru','Subaru'),
+                  ('Tesla','Tesla'),
+                  ('Volkswagen','Volkswagen'),
+                  ('Volvo','Volvo'),
+                  ('Saturn','Saturn'),
             )
 
             widgets = {

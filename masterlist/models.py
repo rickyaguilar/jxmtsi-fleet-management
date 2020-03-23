@@ -40,7 +40,7 @@ class EmployeeMasterlist(models.Model):
 def increment_Activity_Id():
 	last_in = VehicleMasterList.objects.all().order_by('id').last()
 	if not last_in:
-	    return 'VML' + str(datetime.datetime.today().strftime('%Y')) + '-' + '000000'
+	    return 'VML' + str(datetime.datetime.today().strftime('%Y')) + '-' + '000001'
 	in_id = last_in.Activity_Id
 	in_int = int(in_id[8:])
 	new_in_int = in_int + 1
@@ -59,16 +59,42 @@ def increment_NO():
 
 class VehicleMasterList(models.Model):
 	Vbrand= (
-          ('Honda','Honda'),
-          ('Toyota','Toyota'),
-          ('Mitsubishi','Mitsubishi'),
-          ('Ford','Ford'),
-          ('Masda','Masda'),
-          ('Isuzu','Isuzu'),
-          ('Hyundai','Hyundai'),
-          ('Nissan','Nissan'),
-          ('SuZuki','Suzuki'),
-          ('Chevrolet','Chevrolet'),
+			('Honda','Honda'),
+			('Toyota','Toyota'),
+			('Mitsubishi','Mitsubishi'),
+			('Ford','Ford'),
+			('Masda','Masda'),
+			('Isuzu','Isuzu'),
+			('Hyundai','Hyundai'),
+			('Nissan','Nissan'),
+			('SuZuki','Suzuki'),
+			('Chevrolet','Chevrolet'),
+			('Audi','Audi'),
+			('BMW','BMW'),
+			('Bently','Bently'),
+			('Cadillac','Cadillac'),
+			('Chrysler','Chrysler'),
+			('Dodge','Dodge'),
+			('GMC','GMC'),
+			('Genesis','Genesis'),
+			('Jaguar','Jaguar'),
+			('Land Rover','Land Rover'),
+			('Lexus','Lexus'),
+			('Lincoln','Lincoln'),
+			('Lotus','Lotus'),
+			('Maserati','Maserati'),
+			('Mercedes-Benz','Mercedes-Benz'),
+			('Mini','Mini'),
+			('Porsche','Porsche'),
+			('Ram','Ram'),
+			('Rolls-Royce','Rolls-Royce'),
+			('Saab','Saab'),
+			('Scion','Scion'),
+			('Subaru','Subaru'),
+			('Tesla','Tesla'),
+			('Volkswagen','Volkswagen'),
+			('Volvo','Volvo'),
+			('Saturn','Saturn'),
             )
 	remarks = (
             ('Without Last Registration Date','Without Last Registration Date'),

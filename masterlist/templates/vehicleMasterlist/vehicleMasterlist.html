@@ -45,15 +45,14 @@ tr:nth-child(even){background-color: #f2f2f2}
                     <a href="{% url 'vehicle_new' %}" style="float:right"><u>Add Vehicle Masterlist</u></a>
                     <a href="{% url 'vehicleMasterlist_history' %}" style="float:right" class="mr-3"><u>Vehicle Masterlist History</u></a>
                 </div>
-                    <div style="overflow-x:auto;">
-                    <table id="vtable" class="table table-striped table-bordered" style="width:100%" data-server-side="true" data-ajax="/api/masterlist/?format=datatables">
+                    <table id="vtable" class="table table-striped table-bordered" style="width:100%" data-server-side="true" data-ajax="https://fmsjxmtsi.herokuapp.com/api/empmasterlist/">
                     <thead>
                         <tr>
                             <th>Activity No</th>
                             <th>NO</th>
                             <th>Plate Number</th>
-                            <th>Conductions Sticker No.:</th>
-                            <th>CR Name:</th>
+                            <th>Conductions Sticker No.</th>
+                            <th>CR Name</th>
                             <th>Plate Ending</th>
                             <th>Registration Month</th>
                             <th>Model</th>
@@ -106,14 +105,31 @@ tr:nth-child(even){background-color: #f2f2f2}
 <script>
 
 $(document).ready(function() {
+    // $.fn.dataTable.ext.errMode = 'throw';
     var table = $('#vtable').DataTable({
+        "processing": true,
         "serverSide": true,
         "scrollX": true,
-        // "ajax": "/api/masterlist/?format=datatables",
         "ajax": {
-            "url":"/api/empmasterlist/?format=datatables",
-            "type":"POST"
+            "URL":"https://fmsjxmtsi.herokuapp.com/api/masterlist/",
+            // "URL":"/api/masterlist/?format=datatables",
+            "Type":"GET",
+            "dataSrc":"data",
+            "xhrFields": {
+                "withCredentials": true
+            }
+            // "dataSrc": function ( json ) {
+            //     for ( var i=0, ien=json.data.length ; i<ien ; i++ ) {
+            //         json.data[i][0] = '<a href="/message/'+json.data[i][0]+'>View message</a>';
+            //         }
+            //     return json.data;
+            //     }
             },
+        // "ajax": {
+        //     "Authorization":"Bearer 125c7980-6cd1-40a5-99eb-b6e0ae43255b",
+        //     "Content-Type:":"/api/masterlist/",
+        //     "X-HTTP-Method-Override":"POST"
+        //     },
         "columns": [
             { 
             "data": "Activity_Id",
@@ -127,7 +143,7 @@ $(document).ready(function() {
             {"data":"NO"},
             {"data":"PLATE_NO"},
             {"data":"CS_NO"},
-            {"data":"CR_NAME", "sortable": false},
+            {"data":"CR_NAME"},
             {"data":"PLATE_ENDING"},
             {"data":"REGISTRATION_MONTH"},
             {"data":"MODEL"},
