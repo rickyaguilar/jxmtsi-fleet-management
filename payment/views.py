@@ -225,7 +225,7 @@ class VehicleUpdateView(SuccessMessageMixin, UpdateView):
 
 class VehicleDeleteView(BSModalDeleteView):
     model = VehiclePayment
-    template_name = 'vehicle/vehicle_delete.html'
+    template_name = 'payment/vehicle/vehicle_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('Vehicle_list')
 
@@ -263,7 +263,7 @@ class FuelUpdateView(SuccessMessageMixin, UpdateView):
 
 class FuelDeleteView(BSModalDeleteView):
     model = Fuel_supplier
-    template_name = 'fuel/fuel_supplier_delete.html'
+    template_name = 'payment/fuel/fuel_supplier_delete.html'
     success_message = 'Success: Item was deleted.'
     success_url = reverse_lazy('Fuel_supplierList')
 
