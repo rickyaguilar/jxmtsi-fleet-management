@@ -31,18 +31,18 @@ tr:nth-child(even){background-color: #f2f2f2}
                     <a href="{% url 'masterlist_dl'%}"> <u>Export Employee Masterlist</u></a>
                     <a href="{% url 'employeeMasterlist-new' %}" style="float:right"><u>Add New Employee</u></a>
                 </div>
-                    <table id="vtable" class="display" style="width:100%" data-server-side="true" data-ajax="https://fmsjxmtsi.herokuapp.com/api/empmasterlist/">
+                    <table id="vtable" class="display" style="width:100%" data-server-side="false" data-ajax="/api/empmasterlist/?format=datatables">
                     <thead>
                         <tr>
                             <th>Employee ID</th>
-                            <th>Company:</th>
+                            <th>Company</th>
                             <th>Employee Last Name</th>
                             <th>Employee First Name</th>
                             <th>Employee Middle Name</th>
                             <th>Employee Suffix</th>
                             <th>Band</th>
                             <th>Cost Center</th>
-                            <th>DIV code</th>
+                            <th>DIV Code</th>
                             <th>Group</th>
                             <th>Division</th>
                             <th>Department</th>
@@ -66,34 +66,18 @@ tr:nth-child(even){background-color: #f2f2f2}
 </div><!-- .content -->
 
 {% endblock %}
+
 {% block extra_js %}
 <script>
 $(document).ready(function() {
-    // $.fn.dataTable.ext.errMode = 'throw';
     var table = $('#vtable').DataTable({
-        "processing": true,
-        "serverSide": true,
+        "serverSide": false,
         "scrollX": true,
-        "ajax":{
-            "URL":"https://fmsjxmtsi.herokuapp.com/api/empmasterlist/",
-            // "URL":"/api/masterlist/?format=datatables",
-            "Type":"GET",
-            "dataSrc":"data",
-            "xhrFields": {
-                "withCredentials": true
-            }
-            // "dataSrc": function ( json ) {
-            //     for ( var i=0, ien=json.data.length ; i<ien ; i++ ) {
-            //         json.data[i][0] = '<a href="/message/'+json.data[i][0]+'>View message</a>';
-            //     }
-            //     return json.data;
-            // }
+        "deferRender": true,
+        "ajax": {
+            "url": "/api/empmasterlist/?format=datatables",
+            "type": "POST"
         },
-        // "ajax": {
-        //     "Authorization":"Bearer 125c7980-6cd1-40a5-99eb-b6e0ae43255b",
-        //     "Content-Type:":"/api/empmasterlist/",
-        //     "X-HTTP-Method-Override":"POST"
-        //     },
         "columns": [
             {"data":"Employee_Id"},
             {"data":"Company"},
@@ -133,13 +117,6 @@ $(document).ready(function() {
 </script>
 
 {% endblock %}
-<!-- // "render": function(data, type, row, meta, id){
-            // if(type === 'display'){
-            //     // data = '<a href="/VehicleMasterlist/New/ {{ data.id }}">' + data + '</a>';
-            //     data = '<a href="{%url 'vehicle_details' id.id %}">' + data + '</a>';
-            //     }
-            // return data;
-            // }
- -->
+
 
 

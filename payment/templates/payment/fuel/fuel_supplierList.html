@@ -47,14 +47,8 @@
                             <td>{{ Fuel_supplier.Date_initiated }}</td>
                             <td>{{ Fuel_supplier.Payment_deadline }}</td>
                             <td>{{ Fuel_supplier.Date_forwarded }}</td>
-<<<<<<< HEAD
                             <td>
-                                <button type="button" class="delete-inventory btn btn-sm btn-danger rounded" data-id="{% url 'Fuel_delete' Fuel_supplier.pk %}">
-=======
-                            <form action="{% url 'Fuel_delete' Fuel_supplier.id %}" method="POST">
-                                {% csrf_token %}
-                                <td><button title= "Delete"  class="btn-danger btn-sm" type="submit" name="button">
->>>>>>> 143f96385e35661c0e5845f1cad1fffcf334bc6c
+                                <button type="button" class="delete-inventory btn-sm btn-danger rounded" data-id="{% url 'Fuel_delete' Fuel_supplier.pk %}">
                                 <span class="fa fa-trash"></span>
                                 </button>
                             </td>

@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+<style type="text/css">
+  th {
+    text-align: middle;
+  }
+</style>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
 <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" />
@@ -80,18 +84,17 @@
     }
 </script>
 
-<div class="row">
-    <div class="col-lg-12">
-        <h2 class="page-header">Car Rental Payment Details</h2>
+<div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h2>Car Rental Payment Details</h2>
     </div>
-</div>
-
 <br>
 
-<table width="90%" class="table table-bordered table-hover" border="2px">
+<table width="90%" class="table table-bordered table-hover" border="5px">
     <tr>
-      <th width="25%">Activity ID: </th><td width="25%">{{ object.Activity_id }}</td>
-      <th width="25%">Invoice No: </th><td width="25%">{{ object.I_number }}</td>
+      <th width="25%">Activity ID </th><td width="25%">{{ object.Activity_id }}</td>
+      <th width="25%">Invoice Number </th><td width="25%">{{ object.I_number }}</td>
     </tr>
     <tr>
         <th>SLA</th><td>{{ object.C_SLA }}/Days</td>
@@ -102,55 +105,55 @@
         <th></th><td></td>
     </tr>
     <tr>
-      <th>Billing Date:</th><td>{{ object.Bill_date }}</td>
-      <th>Assignee Employee ID: </th> <td>{{ object.Employee_id }}</td>
+      <th>Billing Date</th><td>{{ object.Bill_date }}</td>
+      <th>Assignee Employee ID </th> <td>{{ object.Employee_id }}</td>
     </tr>
     <tr>
-      <th>Employee First Name: </th> <td>{{ object.F_name }}</td>
-      <th>Employee Last Name: </th> <td>{{ object.L_name }}</td>
+      <th>Employee First Name </th> <td>{{ object.F_name }}</td>
+      <th>Employee Last Name </th> <td>{{ object.L_name }}</td>
     </tr>
     <tr>
-      <th>Assignee Company:</th> <td>{{ object.Assignee_company }}</td>
-      <th>Assignee Cost Center:</th> <td>{{ object.Cost_center }}</td>
+      <th>Assignee Company</th> <td>{{ object.Assignee_company }}</td>
+      <th>Assignee Cost Center</th> <td>{{ object.Cost_center }}</td>
     </tr>
     <tr>
-      <th>Other Assignee First Name: </th> <td>{{ object.O_Fname }}</td>
-      <th>Other Assignee Last Name:</th> <td>{{ object.O_Lname }}</td>
+      <th>Other Assignee First Name </th> <td>{{ object.O_Fname }}</td>
+      <th>Other Assignee Last Name</th> <td>{{ object.O_Lname }}</td>
     </tr>
     <tr>
-      <th>Other Assignee Cost Center: </th> <td>{{ object.O_cost_center }}</td>
-      <th>Plate Number: </th> <td>{{ object.Plate_no }}</td>
+      <th>Other Assignee Cost Center </th> <td>{{ object.O_cost_center }}</td>
+      <th>Plate Number </th> <td>{{ object.Plate_no }}</td>
     </tr>
     <tr>
-      <th>Vehicle Brand: </th> <td>{{ object.V_brand }}</td>
+      <th>Vehicle Brand </th> <td>{{ object.V_brand }}</td>
     </tr>
     <tr>
-      <th>Vehicle Make: </th> <td>{{ object.V_make }}</td>
-      <th>Date Delivered Vehicle:: </th> <td>{{ object.D_vehicle}}</td>
+      <th>Vehicle Make </th> <td>{{ object.V_make }}</td>
+      <th>Date Delivered Vehicle </th> <td>{{ object.D_vehicle}}</td>
     </tr>
     <tr>
-      <th>Start of Rental:</th> <td>{{ object.S_rental }}</td>
-      <th>End of Rental: </th> <td>{{ object.E_rental }}</td>
+      <th>Start of Rental</th> <td>{{ object.S_rental }}</td>
+      <th>End of Rental </th> <td>{{ object.E_rental }}</td>
     </tr>
     <tr>
-      <th>Rental Duration: </th> <td>{{ object.R_duration }}-Days</td>
-      <th>Rental Cost:</th> <td>{{ object.R_Cost }}</td>
+      <th>Rental Duration </th> <td>{{ object.R_duration }}-Days</td>
+      <th>Rental Cost</th> <td>{{ object.R_Cost }}</td>
     </tr>
     <tr>
-      <th>Gasoline Cost:</th> <td>{{ object.G_cost }}</td>
-      <th>Toll Fee:</th> <td>{{ object.T_fee }}</td>
+      <th>Gasoline Cost</th> <td>{{ object.G_cost }}</td>
+      <th>Toll Fee</th> <td>{{ object.T_fee }}</td>
     </tr>
     <tr>
-      <th>Parking Fee: </th> <td>{{ object.P_fee }}</td>
-      <th>Delivery Fee:</th> <td>{{ object.Del_fee }}</td>
+      <th>Parking Fee </th> <td>{{ object.P_fee }}</td>
+      <th>Delivery Fee</th> <td>{{ object.Del_fee }}</td>
     </tr>
     <tr>
-      <th>Driver Fee:</th> <td>{{ object.Dri_fee }}</td>
-      <th>Meal Cost: </th> <td>{{ object.M_cost }}</td>
+      <th>Driver Fee</th> <td>{{ object.Dri_fee }}</td>
+      <th>Meal Cost </th> <td>{{ object.M_cost }}</td>
     </tr>
     <tr>
 
-      <th>Other Expenses:</th> <td>{{ object.O_expenses }}</td>
+      <th>Other Expenses</th> <td>{{ object.O_expenses }}</td>
     </tr>
     <tr>
         <th></th><td></td>
@@ -158,15 +161,16 @@
     </tr>
         <tr>
         <th></th><td></td>
-        <th>VAT:</th><td>{{object.VAT}}</td>
+        <th>VAT</th><td>{{object.VAT}}</td>
     </tr> 
     <tr>
         <th></th><td></td>
-        <th>Total Expenses:</th><td>₱  {{ object.T_expenses }}</td>
+        <th>Total Expenses</th><td>₱  {{ object.T_expenses }}</td>
     </tr>    
 </table>
     <div class="card-footer">
-      <a data-toggle="modal" data-target="#updateModal" class="button">UPDATE</a><a href="{% url 'carrental_list' %}" type="button" class="btn">CLOSE</a> 
+      <a data-toggle="modal" data-target="#updateModal" class="button">UPDATE</a>
+      <a href="{% url 'carrental_list' %}" type="button" class="btn">CLOSE</a> 
     </div>
 
 <!--Update Modal--->
@@ -320,7 +324,8 @@
         </div>
         <br><br>
         <div class="col-lg-12">
-            <button class="button" type="submit">PROCEED</button><a href="{% url 'carrental_list' %}" type="button" class="btn">CLOSE</a>    
+            <button class="button" type="submit">PROCEED</button>
+            <a href="{% url 'carrental_list' %}" type="button" class="btn">CLOSE</a>    
         </div>
             <div class="modal-footer">
           </div>

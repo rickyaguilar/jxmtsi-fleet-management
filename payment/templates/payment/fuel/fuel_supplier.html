@@ -20,7 +20,7 @@
 </div>
 <div class="w3-bar w3-black">
   <button class="w3-bar-item w3-button" onclick="fuelsupplier('Fuel Supplier Payment')">Fuel Supplier Payment</button>
-  <button class="w3-bar-item w3-button" onclick="fuelsupplier('OutBound Process')">OutBound Process Tab</button>
+  <button class="w3-bar-item w3-button" onclick="fuelsupplier('OutBound Process')">Outbound Process Tab</button>
 </div>
 <form method="POST" action="">
 {% csrf_token %}
@@ -49,7 +49,9 @@
       </div>
   </fieldset>
   <div class="card-footer">
-    <button type="Submit" class="button">SUBMIT</button><a href="{% url 'Fuel_supplierList' %}" type="button" class="btn">CLOSE</a>
+    <button type="Submit" class="button">SUBMIT</button>
+    <button type="Reset" class="btnc">CLEAR ALL</button>
+    <a href="{% url 'Fuel_supplierList' %}" type="button" class="btn">CLOSE</a>
   </div>
 </div>
 <div id="OutBound Process" class="w3-container Fsupplier" style="display:none">

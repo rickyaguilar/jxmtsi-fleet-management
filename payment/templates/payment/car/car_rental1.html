@@ -65,7 +65,7 @@
         <input type="text" name="car_provider" id="car_provider" class="form-control">
     </div>
     <div class="col-sm-4">
-        <label>SQA Number</label>
+        <label>SOA Number</label>
         <input type="text" name="sqa_number" id="sqa_number" class="form-control">
     </div>
     <div class="col-sm-4">
@@ -165,7 +165,9 @@
 
     </div>
     <div class="card-footer">
-        <button type="submit" class="button">PROCEED</button><button class="button" type="reset" value="Reset">CLEAR FIELDS</button>
+        <button type="submit" class="button">PROCEED</button>
+        <button class="btnc" type="reset" value="Reset">CLEAR All</button>
+        <a href="{% url 'carrental_list' %}" class="btn">CLOSE</a>
     </div>
 </form>
 

@@ -107,13 +107,13 @@ function myFunction() {
         <label>SAP PR Number</label>{{ form.SAP_PR }}
     </div>
     <div class="col-sm-4">
-        <label>Vehicle IVN No</label>{{ form.Vehicle_IVN_no }}
+        <label>Vehicle IVN Number</label>{{ form.Vehicle_IVN_no }}
     </div>
     <div class="col-sm-4">
         <label>Unit MATDOC</label>{{ form.Unit_MATDOC }}
     </div>
     <div class="col-sm-4">
-        <label>Equipment No</label>{{ form.Equipment_no }}
+        <label>Equipment Number</label>{{ form.Equipment_no }}
     </div>
     <div class="col-sm-4">
         <label>Dealership</label>{{ form.dealer }}
@@ -126,8 +126,9 @@ function myFunction() {
     </div> 
 </div>
     <div class="card-footer">
-        <button type="submit" class="button">PROCEED</a></button><button 
-       class="button" type="reset" value="Reset">CLEAR FIELDS</button><a href="{% url 'vehicle-list' %}" class="btn">CLOSE</a>
+        <button type="submit" class="button">PROCEED</a></button>
+        <button class="btnc" type="reset" value="Reset">CLEAR ALL</button>
+       <a href="{% url 'vehicle-list' %}" class="btn">CLOSE</a>
     </div>
 
 </form>
