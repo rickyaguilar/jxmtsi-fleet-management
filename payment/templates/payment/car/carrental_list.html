@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <div class="modal fade" tabindex="-1" role="dialog" id="modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content"></div>
   </div>
 </div>
 
-
 <div class="breadcrumbs">
     <div class="col-sm-12">
         <h3><b>Car Rental Payment</b></h3>
     </div>
 </div>
-
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'carrental_list' %}">Car Rental Payment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'cardeadline' %}">Coming Deadline</a>
+  </li>
+</ul>
 <div class="content mt-3">
     <div class="animated fadeIn">
         <div class="row">
@@ -34,6 +39,7 @@
                             <th>Plate Number</th>
                             <th>SLA</th>
                             <th>Date Initiated</th>
+                            <th>Date Deadline</th>
                             <th>Provider</th>
                             <th>SOA Number</th>
                             <th>RFP Number</th>
@@ -50,6 +56,7 @@
                             <td>{{ CarRental.Plate_no }}</td>
                             <td>{{ CarRental.C_SLA }}/Days</td>
                             <td>{{ CarRental.Date_initiated }}</td>
+                            <td>{{ CarRental.Deadline }}</td>
                             <td>{{ CarRental.car_provider}} </td>
                             <td>{{ CarRental.sqa_number}} </td>
                             <td>{{ CarRental.rfp_no2 }}</td>

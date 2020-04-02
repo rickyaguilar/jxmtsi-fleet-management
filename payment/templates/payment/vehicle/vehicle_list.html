@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% block content %}
+<style type="text/css">
+#example td.red {
+     color: red;
+     font-weight: bold;
+}
+</style>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modal">
   <div class="modal-dialog modal-md" role="document">
@@ -8,13 +14,19 @@
   </div>
 </div>
 
-
 <div class="breadcrumbs">
     <div class="col-sm-14">
         <h3><b>New Vehicle Payment</b></h3>
     </div>
 </div>
-
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active">New Vehicle Payment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Vehicle_deadline' %}">Coming Deadline</a>
+  </li>
+</ul>
 <div class="content mt-3">
     <div class="animated fadeIn">
         <div class="row">
@@ -34,6 +46,7 @@
                             <th>PO Number</th>
                             <th>SLA</th>
                             <th>Date Initiated</th>
+                            <th>Date Deadline</th>
                             <th>Equipment Number</th>
                             <th>Asset Number</th>
                             <th>Sap PR Number</th>
@@ -50,12 +63,13 @@
                             <td>{{ VehiclePayment.Plate_no }}</td>
                             <td>{{ VehiclePayment.PO_no }}</td>
                             <td>{{ VehiclePayment.V_SLA }}/Days</td>
-                            <td>{{ VehiclePayment.Date_initiated}}</td>
+                            <td>{{ VehiclePayment.Date_initiated }}</td>
+                            <td>{{ VehiclePayment.Deadline }}</td>
                             <td>{{ VehiclePayment.equip_no }}</td>
                             <td>{{ VehiclePayment.asset_no }}</td>
                             <td>{{ VehiclePayment.sap_no }}</td>
                             <td>{{ VehiclePayment.mat_no }}</td>
-                            <td>{{ VehiclePayment.Dealer_name}}</td>
+                            <td>{{ VehiclePayment.Dealer_name }}</td>
                             <td>
                                 <button type="button" class="delete-inventory btn-sm btn-danger rounded" data-id="{% url 'Vehicle_delete' VehiclePayment.pk %}">
                                 <span class="fa fa-trash"></span>
