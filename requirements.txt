@@ -3,7 +3,7 @@ astroid==2.3.2
 certifi==2019.6.16
 configparser==3.5.0
 coverage==4.5.1
-Django==2.1.7
+Django==2.2.13
 django-ajax-selects==1.7.1
 django-bootstrap-modal-forms==1.4.4
 django-chosen==0.1
