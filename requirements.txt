@@ -16,7 +16,7 @@ django-mathfilters==0.4.0
 django-pure-pagination==0.3.0
 django-simple-history==2.8.0
 django-widget-tweaks==1.4.5
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-datatables==0.5.1
 docopt==0.6.2
 et-xmlfile==1.0.1
